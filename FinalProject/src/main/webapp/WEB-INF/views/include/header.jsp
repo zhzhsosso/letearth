@@ -190,10 +190,10 @@
                                             </ul>
                                         </li>
                                         <li>
-                                            <a href="#">공지사항 </a>
+                                            <a href="/notice/main">공지사항 & 이벤트 </a>
                                             <ul class="sub-menu">
-                                                <li><a href="#">공지사항</a></li>
-                                                <li><a href="#">이벤트</a></li>
+                                                <li><a href="/notice/all">공지사항</a></li>
+                                                <li><a href="/notice/event">이벤트</a></li>
                                             </ul>
                                         </li>
 <!--                                         <li><a href="contact.html">Contact</a></li> -->
