@@ -34,6 +34,9 @@
    
    
    <section class="contact-form-area">
+   <div style="display: flex;">
+   <%@ include file="../include/adSide.jsp" %>	
+   
         <div class="container">
         
         
@@ -142,7 +145,7 @@
 		</ul>
 	</div>
         </div>
-        
+     </div>   
     </section>
    
    
