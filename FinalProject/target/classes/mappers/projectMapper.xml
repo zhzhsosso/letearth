@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.letearth.mapper.projectMapper">
+
+	<!-- 프로젝트 번호 생성 -->
+	<insert id="insertProNo" parameterType="ProjectVO" useGeneratedKeys="true" keyColumn="pro_no" keyProperty="pro_no">
+		insert into project(mem_id) values(#{mem_id})
+	</insert>
+	
+	<!-- 프로젝트 기본정보 등록 -->
+	<insert id="updatePro_basicInfo" parameterType="ProjectVO" useGeneratedKeys="true" keyColumn="pro_no" keyProperty="pro_no">	
+		insert into project(mem_id, cat_no, cat_name, pro_title, pro_context, pro_thum, tags) values(#{mem_id}, #{cat_no}, #{cat_name}, #{pro_title}, #{pro_context}, #{pro_thum}, #{tags})
+	</insert>
+	
+	<!-- 프로젝트 일정 등록 -->
+	<update id="updatePlan">
+		update project set pro_gp=#{pro_gp}, pro_st_dt=#{pro_st_dt}, pro_ed_dt=#{pro_ed_dt}, del_date=#{del_date}
+		where pro_no = #{pro_no}
+	</update>
+	
+	<!-- 리워드 생성 -->
+	<insert id="createReward">
+		insert into reward(pro_no, reward_price, reward_title, reward_content, reward_stock, reward_ship, reward_shipmonth, reward_shipdate)
+		values(#{pro_no}, #{reward_price}, #{reward_title}, #{reward_content}, #{reward_stock}, #{reward_ship}, #{reward_shipmonth}, #{reward_shipdate})
+	</insert>
+	
+	<!-- 리워드 조회 -->
+	<select id="getReward" resultType="com.letearth.project.domain.RewardVO">
+		select * from reward
+		where pro_no = #{pro_no}
+	</select>
+	
+	<!-- 리워드 삭제 -->
+	<delete id="deleteReward">
+		delete from reward
+		where reward_no = #{reward_no}
+	</delete>
+	
+	<!-- 스토리 업데이트 -->
+	<update id="updateStory">
+		update project set pro_story=#{pro_story} where pro_no=#{pro_no}
+				
+	</update>
+
+	<!-- 정책 업데이트-->
+	<update id="updatePolicy">
+		update project set pro_policy=#{pro_policy}
+		where pro_no=#{pro_no}
+	</update>
+	
+	<!-- 대표자 및 정산 정보 등록 -->
+	<update id="updatePartner" parameterType="ProjectVO">
+		<choose>
+			<when test="par_cat.equals('개인')">
+				update project set par_cat=#{par_cat}, par_intro=#{par_intro}, par_birth=#{par_birth}, par_acc_name=#{par_acc_name}, par_acc=#{par_acc}, par_bank=#{par_bank}, par_scan=#{par_scan}
+				where pro_no=#{pro_no}
+			</when>
+			<when test="par_cat.equals('사업자')">
+				update project set par_cat=#{par_cat}, par_intro=#{par_intro}, par_com_num=#{par_com_num}, par_acc_name=#{par_acc_name}, par_acc=#{par_acc}, par_bank=#{par_bank}, par_scan=#{par_scan}
+				where pro_no=#{pro_no}
+			</when>
+		</choose>
+	</update>
+	
+</mapper>

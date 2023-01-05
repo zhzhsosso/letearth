@@ -1,0 +1,117 @@
+@charset "UTF-8";
+.textBox{
+	border: none;
+	height: 40px;
+	width: 200px;
+	background: #fff !important;
+	color: #212121;
+	border: 1px solid #ced4da;
+	margin:10px;
+	font-size: 15px;
+	padding : 0.375rem 0.75rem;
+	border-radius: 5px;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+.bigTextBox{
+	border: none;
+	height: 40px;
+	width: 300px;
+	background: #fff !important;
+	color: #212121;
+	border: 1px solid #ced4da;
+	margin:10px;
+	font-size: 15px;
+	padding : 0.375rem 0.75rem;
+	border-radius: 5px;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+.textArea{
+	border: none;
+	height: 100px;
+	width: 700px;
+	background: #fff !important;
+	color: #212121;
+	border: 1px solid #ced4da;
+	margin:10px;
+	font-size: 15px;
+	padding : 0.375rem 0.75rem;
+	border-radius: 5px;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+	resize: none;
+}
+.bigTextArea{
+	border: none;
+	height: 300px;
+	width: 650px;
+	background: #fff !important;
+	color: #212121;
+	border: 1px solid #ced4da;
+	margin:10px;
+	font-size: 15px;
+	padding : 0.375rem 0.75rem;
+	border-radius: 5px;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+	resize: none;
+}
+.longTextBox{
+	border: none;
+	height: 50px;
+	width: 500px;
+	background: #fff !important;
+	color: #212121;
+	border: 1px solid #ced4da;
+	margin:10px;
+	font-size: 15px;
+	padding : 0.375rem 0.75rem;
+	border-radius: 5px;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+.tagBox{
+	border: none;
+	height: auto;
+	width: 500px;
+	background: #fff !important;
+	color: #212121;
+	border: 1px solid #ced4da;
+	margin:10px;
+	font-size: 15px;
+	padding : 0.375rem 0.75rem;
+	border-radius: 5px;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+
+/* radio */
+.select {
+    padding: 15px 10px;
+}
+.select input[type=radio]{
+    display: none;
+}
+.select input[type=radio]+label{
+    display: inline-block;
+    cursor: pointer;
+    height: 24px;
+    width: 90px;
+    border: 1px solid #ced4da;
+    line-height: 24px;
+    text-align: center;
+    font-weight:bold;
+    font-size:13px;
+    vertical-align: middle;
+}
+.select input[type=radio]+label{
+    background-color: #fff;
+    color: #333;
+}
+.select input[type=radio]:checked+label{
+    background-color: #333;
+    color: #fff;
+}
+/* radio */

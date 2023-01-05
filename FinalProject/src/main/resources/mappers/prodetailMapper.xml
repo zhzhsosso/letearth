@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.letearth.mapper.prodetailMapper">
+  
+  	<!--  하나의 프로젝트 정보 조회 -->
+	<select id="getProjectDetail" resultType="ProDetailVO">
+	  	select * from project 
+	  	where pro_no = #{pro_no}
+	</select>
+  
+  	<!-- 메인 -->
+  	<!-- 최신순으로 정렬한 프로젝트 정보 가져오기 : main/all -->
+	<select id="getProjectList" resultType="ProDetailVO">
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt, tags, 
+		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
+		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
+		from project
+		<![CDATA[
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d")
+		]]>
+		order by pro_st_dt desc
+	</select>
+	
+	<!-- 후원 달성률 순으로 정렬한 프로젝트 정보 가져오기 : main/all -->
+	<select id="getPopularProject" resultType="ProDetailVO">
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
+		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
+		from project
+		<![CDATA[
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d")
+		]]>
+		order by truncate(pro_tp / pro_gp, 2) * 100 desc
+	</select>
+  
+    <!-- 오픈예정 프로젝트 정보 가져오기 : main/scheall -->
+	<select id="getScheList" resultType="ProDetailVO">
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
+		DATEDIFF(DATE_FORMAT(pro_st_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
+		from project
+		<![CDATA[
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d")
+		]]>
+		order by pro_st_dt asc
+	</select>
+
+    <!-- 오픈예정 클래스 정보 가져오기 : main/scheclass -->
+	<select id="getScheclassList" resultType="ProDetailVO">
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
+		DATEDIFF(DATE_FORMAT(pro_st_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
+		from project
+		<![CDATA[
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 1
+		]]>
+		order by pro_st_dt asc
+	</select>
+	
+    <!-- 오픈예정 상품 정보 가져오기 : main/scheprod -->
+	<select id="getScheprodList" resultType="ProDetailVO">
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
+		DATEDIFF(DATE_FORMAT(pro_st_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
+		from project
+		<![CDATA[
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 2
+		]]>
+		order by pro_st_dt asc
+	</select>  
+  
+   	<!-- 최신순으로 정렬한 진행 중 프로젝트 정보 가져오기 : main/nowall -->
+	<select id="getNowList" resultType="ProDetailVO">
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
+		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
+		from project
+		<![CDATA[
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d")
+		]]>
+		order by pro_st_dt desc
+	</select>
+	
+   	<!-- 최신순으로 정렬한 진행 중 클래스 정보 가져오기 : main/nowclass -->
+	<select id="getNowclassList" resultType="ProDetailVO">
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
+		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
+		from project
+		<![CDATA[
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 1
+		]]>
+		order by pro_st_dt desc
+	</select>
+	
+   	<!-- 최신순으로 정렬한 진행 중 상품 정보 가져오기 : main/nowprod -->
+	<select id="getNowprodList" resultType="ProDetailVO">
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
+		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
+		from project
+		<![CDATA[
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 2
+		]]>
+		order by pro_st_dt desc
+	</select>
+  
+   	<!-- 최근마감된 순으로 정렬한 프로젝트 정보 가져오기 : main/endall -->
+	<select id="getEndList" resultType="ProDetailVO">
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
+		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
+		from project
+		<![CDATA[
+		where DATE_FORMAT(pro_ed_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d")
+		]]>
+		order by pro_ed_dt asc
+	</select>
+
+   	<!-- 최근마감된 순으로 정렬한 클래스 정보 가져오기 : main/endclass -->
+	<select id="getEndclassList" resultType="ProDetailVO">
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
+		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
+		from project
+		<![CDATA[
+		where DATE_FORMAT(pro_ed_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and cat_no = 1
+		]]>
+		order by pro_ed_dt asc
+	</select>
+	
+   	<!-- 최근마감된 순으로 정렬한 상품 정보 가져오기 : main/endprod -->
+	<select id="getEndprodList" resultType="ProDetailVO">
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
+		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
+		from project
+		<![CDATA[
+		where DATE_FORMAT(pro_ed_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and cat_no = 2
+		]]>
+		order by pro_ed_dt asc
+	</select>
+	<!-- 메인 -->
+  
+  	<!-- <프로젝트 정보> 프로젝트 이름, 프로젝트 썸네일, 총 후원금액, 후원자 수, 남은 기간, 달성률, 목표금액, 펀딩기간
+	pro_title, pro_thum, pro_tprice, supporterCnt, left_date, achievement_rate, pro_gp, pro_st_dt ~ prot_end_dt-->
+  	<select id="getProInfo" parameterType="int" resultType="ProDetailVO">  		
+		select t1.pro_no, pro_title, pro_thum, pro_tp, pro_gp, pro_st_dt, pro_ed_dt,
+		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate",
+		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date",
+		count(t2.pro_no) as "supporterCnt"
+		from project t1 left join order_tbl t2 
+		on t1.pro_no = t2.pro_no 
+		where t1.pro_no = #{pro_no}
+		group by pro_no
+  	</select>
+  	
+  	<!-- <프로젝트 소개 탭> getProIntro 소개, 예산, 일정, 팀소개, 리워드 소개, 프로젝트 정책 -->
+  	<select id="getProIntro" parameterType="int" resultType="ProDetailVO">
+  		select project.pro_no, pro_story, pro_file, pro_story2, pro_file2, pro_context, par_intro reward_title, reward_content, reward_price, pro_policy
+		from project, reward
+		where project.pro_no = reward.pro_no 
+		and project.pro_no = #{pro_no}
+  	</select>
+  	
+  	<!-- 리워드 정보 -->
+  	<select id="getReward" parameterType="int" resultType="ProDetailVO">
+	  	select pro_no, reward_no, reward_title, reward_content, reward_price, reward_stock
+		from reward
+		where pro_no = #{pro_no};
+  	</select>
+  	
+	<!-- 판매자 공지사항, 사용자 댓글 작성-->
+	<insert id="sninsert">
+	  	insert into pro_reply (pro_no,mem_id,reply_content,reply_classify,reply_category) 
+	  	values (#{pro_no},#{mem_id},#{reply_content},#{reply_classify},#{reply_category})
+	</insert>
+	  	
+	<!-- 프로젝트별 판매자 공지사항 리스트 -->
+	<select id="getsnListAll" resultType="ProReplyVO">
+		select * from pro_reply 
+		where pro_no = #{pro_no} and reply_category="3" 
+	  	order by reply_no desc
+	</select>
+	  	
+	
+	<!-- 프로젝트별 사용자 댓글 리스트 230102 수정함-->
+	<select resultType="ProReplyVO" id="geturListAll">
+		select reply_no, pro_no, p.mem_id, reply_content, rereply_content, reply_date, reply_classify, reply_file, reply_category, m.mem_status
+		from pro_reply p join member m on p.mem_id = m.mem_id
+		where pro_no=#{pro_no} and reply_category != "3" and m.mem_status != "3"
+		order by reply_no desc 
+	</select>
+	  	
+	<!-- 판매자 답글 업데이트 -->
+	  <update id="rrupdate">
+	  	update pro_reply set rereply_content=#{rereply_content}, reply_classify=#{reply_classify} 
+	  	where reply_no = #{reply_no}
+	  </update>
+	  	
+	<!-- 프로젝트 신고하기 -->
+	  <insert id="rpinsert">
+	  	insert into report (pro_no,reper_id,reped_id,rep_cat,rep_reason,rep_content,rep_status) 
+		values (#{pro_no},#{reper_id},(select mem_id as reped_id from project where pro_no = #{pro_no}),#{rep_cat},#{rep_reason},#{rep_content},#{rep_status})
+	  </insert>
+  	
+  	<!-- 댓글 신고하기 -->
+  	<insert id="replyrepo">
+  		insert into report (pro_no,reply_no,reper_id,reped_id,rep_cat,rep_reason,rep_content,rep_status) 
+  		values (#{pro_no},#{reply_no},#{reper_id},(select mem_id as reped_id from pro_reply where reply_no = #{reply_no}),#{rep_cat},#{rep_reason},#{rep_content},#{rep_status})
+  	</insert>
+  		
+  	<!-- 공지 페이징 처리 목록 -->
+  	<select id="listPage" resultType="ProReplyVO">
+		<![CDATA[
+		select * from pro_reply 
+		where reply_no > 0 and reply_category = "3" 
+		order by reply_no desc, reply_date desc 
+		limit #{pageStart},#{perPageNum} 
+		]]>
+	</select>
+		  
+	<!-- 공지 글 전체 개수 -->
+	<select resultType="int" id="countBoard">
+		select count(reply_no) from pro_reply
+		where reply_category = "3" 
+	</select>
+  	
+  	<!-- 좋아요 눌렀는지 안 눌렀는지 -->
+	<select id="findLike" resultType="int">
+		select count(*) from likey where pro_no = #{pro_no} and mem_id = #{mem_id}
+	</select>
+	
+	<!-- 좋아요 누름 -->
+	<insert id="insertLike">
+		insert into likey(pro_no, mem_id) value(#{pro_no}, #{mem_id})
+	</insert>
+	
+	<!-- 좋아요 취소 -->
+	<delete id="deleteLike">
+		delete from likey where pro_no=#{pro_no} and mem_id=#{mem_id}
+	</delete>
+  
+  </mapper>

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.letearth.mapper.adBoardMapper">
+ 	
+ 	<!-- FAQ 글쓰기 -->
+ 	<insert id="insertFaq">
+ 		insert into notice(not_cat, not_middle, not_title, not_content) 
+ 		values (3, #{not_middle }, #{not_title }, #{not_content })
+ 	</insert>
+ 	
+ 	<!-- FAQ 페이징 목록 -->
+ 	 <select id="listFaq" resultType="AdminVO">
+	  	<![CDATA[
+	  	select * from notice
+	  	where not_no > 0 and not_cat =3
+	  	order by not_no desc, not_date desc
+	  	limit #{pageStart},#{perPageNum}
+	  	]]>
+  	</select>
+  	
+ 	<!-- FAQ 글전체 개수 -->
+	  <select id="countFaq" resultType="int">
+	  	select count(not_no) from notice
+	  	where not_cat = 3
+	 </select>
+  	
+  	
+  	<!-- FAQ 수정 -->
+  	<update id="updateFaq">
+    	update notice set not_middle=#{not_middle}, not_title=#{not_title}, not_content=#{not_content }, not_date=now()
+    	where not_no = #{not_no}  
+  	</update>
+  	
+  	<!-- FAQ 삭제 -->
+  	<delete id="deleteFaq">
+  		delete from notice
+  		where not_no = #{not_no } 
+ 	</delete>
+ 	
+ 	
+ 	
+  	<!-- 조회수 1증가 -->
+  	<update id="updateViewcnt">
+		update notice set not_viewcnt = not_viewcnt + 1
+		where not_no = #{not_no }
+	</update>
+  	
+  	<!-- 본문 조회(notice_no) : 공통영역-->
+  	<select id="getBoard" resultType="AdminVO">
+		select * from notice
+		where not_no = #{not_no }	
+	</select>
+ 	
+ 	
+ 	
+ 	<!-- 1:1 문의 페이징 목록 -->
+ 	 <select id="listRewrite" resultType="AdminVO">
+	  	<![CDATA[
+	  	select * from notice
+	  	where not_no > 0 and not_cat = 0
+	  	order by not_re_ref desc, not_re_seq asc
+	  	limit #{pageStart},#{perPageNum}
+	  	]]>
+  	</select> 	
+ 	<!-- 1:1 문의 전체 글 개수 -->
+ 	<select id="countRewrite" resultType="int">
+	  	select count(not_no) from notice
+	  	where not_cat = 0
+	</select>
+ 	
+ 	<!-- 1:1 문의 조회수 1증가 -->
+ 	<!-- 1:1 문의 본문 조회 --> <!-- ".getBoard 사용" -->
+	
+ 	<!-- 1:1 문의 답글작성 -->
+ 	<select id="selectRewrite" parameterType="int" resultType="AdminVO">
+ 		select not_re_ref, not_re_seq, not_re_lev
+ 		from notice
+ 		where not_no = #{not_no }
+ 	</select>
+ 	
+ 	<update id="updateRewrite" parameterType="AdminVO">
+ 		<![CDATA[
+  			update notice set not_re_seq = not_re_seq + 1
+  			where not_re_ref = #{not_re_ref } and not_re_seq > #{not_re_seq }
+  		]]>
+ 	</update>
+ 	
+ 	<insert id="insertRewrite" parameterType="AdminVO">
+ 		
+		insert into notice(not_cat, not_middle, not_title, not_reply, 
+							not_re_ref, not_re_lev, not_re_seq)
+		values(0, #{not_middle }, #{not_title }, #{not_reply }, 
+				#{not_re_ref }, #{not_re_lev }, #{not_re_seq })
+ 	</insert>	
+ 	
+ 	<!-- 1:1 문의 답글삭제 -->
+ 	<delete id="deleteRewrite">
+ 		delete from notice
+  		where not_no = #{not_no }
+ 	</delete>
+ 	
+ 	
+
+  
+  
+  
+	<!-- 블랙리스트 목록 -->
+		<resultMap type="ProjectVO" id="ProjectVO">
+		    <result column="pro_title" property="pro_title"/>
+		</resultMap>
+		 
+		<resultMap type="AdminVO" id="AdminVO">
+		    <result column="black_no" property="black_no"/>
+		    <result column="mem_id" property="mem_id"/>
+		    <result column="pro_no" property="pro_no"/>
+		    <result column="black_type" property="black_type"/>
+		    <result column="black_date" property="black_date"/>
+		    <collection property="ProjectVO" resultMap="ProjectVO"/>
+		</resultMap>
+
+	  	<select id="listBlack" parameterType="AdminVO" resultMap="AdminVO">
+	  		select bl.black_no, bl.mem_id, bl.pro_no, bl.black_type, bl.black_date, pj.pro_title 
+	  		from blacklist bl
+	  		join project pj
+	  		on bl.pro_no = pj.pro_no
+	  	</select>
+  
+	<!-- 블랙리스트 전체 개수 -->
+	  	<select id="countBlack" resultType="int">
+			select count(black_no) from blacklist 	
+	  	</select>	
+	  	
+  	
+  	
+  	
+ 	<!-- 블랙리스트 테이블로 저장 (공통영역)-->
+ 	<insert id="insertBlack">
+ 		insert into blacklist(mem_id, pro_no, black_type) 
+ 		values (#{reped_id }, #{pro_no }, #{rep_cat })
+  	</insert>
+  	 	  	
+  	
+	<!-- 블랙리스트 처리1(회원) - 멤버상태 3으로 변경 -->
+ 	<update id="updateBlackMem">
+    	update member set mem_status=3
+    	where mem_id = #{reped_id }  
+  	</update>
+  	
+  	
+ 	<!-- 블랙리스트 처리2(회원) - member_id에 해당하는 신고는 모두 Y처리 -->
+  	<update id="updateReportMem">
+    	update report set rep_status='Y'
+    	where reped_id = #{reped_id }
+  	</update>
+  	
+  	
+  	<!-- 블랙리스트 처리3(회원) - 멤버테이블에 날짜 업데이트 -->
+  	<update id="updateBdate">
+  		update member mem
+		join blacklist bl
+		on mem.mem_id = bl.mem_id
+		set mem.mem_bdate = bl.black_date
+		where mem.mem_id = #{reped_id }
+  	</update>
+  	
+  	
+  	
+  	
+ 	<!-- 블랙리스트 처리1(프로젝트) - 프로젝트상태 7로 변경 -->
+ 	<update id="updateBlackPro">
+    	update project set pro_status=7
+    	where pro_no = #{pro_no }  
+  	</update>
+ 		
+ 	<!-- 블랙리스트 처리2(프로젝트) - project_no에 해당하는 신고는 모두 Y처리 -->
+  	<update id="updateReportPro">
+    	update report set rep_status='Y'
+    	where pro_no = #{pro_no } 
+  	</update>
+ 	
+ 	 <!-- 블랙리스트 처리3(프로젝트) - 프로젝트테이블에 날짜 업데이트 -->
+  	<update id="updatePro_Bdate">
+  		update project pro
+		join blacklist bl
+		on pro.pro_no = bl.pro_no
+		set pro.pro_bdate = bl.black_date
+		where pro.pro_no = #{pro_no }
+  	</update>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	<!-- 신고접수 목록 -->
+ 	<select id="listReport" resultType="AdminVO">
+	  	<![CDATA[
+	  	select * from report
+	  	where rep_no > 0
+	  	order by rep_no desc, rep_date desc
+	  	limit #{pageStart},#{perPageNum}
+	  	]]>
+  	</select>
+  	
+ 	<!-- 신고접수 전체글개수 -->
+	<select id="countReport" resultType="int">
+	  	select count(rep_no) from report
+	</select>
+ 	
+ 	<!-- 신고상세내역 -->
+ 	<select id="getReport" resultType="AdminVO">
+		select * from notice
+		where not_no = #{not_no }	
+	</select>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ </mapper>

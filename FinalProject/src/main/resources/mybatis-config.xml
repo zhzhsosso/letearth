@@ -1,0 +1,17 @@
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <configuration>
+  
+  	<typeAliases>
+		<package name="com.letearth.member.domain"/>  	
+		<package name="com.letearth.project.domain"/>  
+		<package name="com.letearth.prodetail.domain"/>
+		<package name="com.letearth.notice.domain"/>
+		<package name="com.letearth.order.domain"/>
+		<package name="com.letearth.admin.domain"/>
+  	</typeAliases>
+  
+  </configuration>
+  

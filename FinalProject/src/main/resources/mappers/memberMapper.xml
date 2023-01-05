@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.letearth.mapper.memberMapper">
+	
+	<!-- 일반 회원가입 -->
+	<insert id="insertMember">
+		insert into member(mem_id, mem_pw, mem_name, mem_phone, mem_email, mem_cr_dt, mem_link, rep_cnt, mem_status) 
+		value(#{mem_id},#{mem_pw},#{mem_name},#{mem_phone},#{mem_email},now(),"N", 0, 0)
+	</insert>
+	
+	<!-- 일반 로그인 -->
+	<select id="loginMember" resultType="int">
+		select count(*) from member where mem_id=#{mem_id} and mem_pw=#{mem_pw}
+	</select>
+	
+	<!-- 아이디 찾기 -->
+	<select id="findMemID" resultType="String">
+		select mem_id from member where mem_name=#{mem_name} and mem_email=#{mem_email}
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="findMemPW" resultType="MemberVO">
+		select * from member where mem_id=#{mem_id} and mem_name=#{mem_name} and mem_email=#{mem_email}
+	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="changePw">
+		update member set mem_pw=#{mem_pw} where mem_id=#{mem_id}
+	</update>
+	
+	<!-- mem_id에 해당하는 회원의 정보 불러오기 -->
+	<select id="getMember" resultType="MemberVO">
+		select * from member where mem_id=#{mem_id}
+	</select>
+	
+	<!-- 카카오 회원인지 아닌지 -->
+	<select id="kakaoAccount" parameterType="String" resultType="String">
+		select count(*) from member where mem_id=#{kid} and mem_link="Y"
+	</select>
+	
+	<!-- 카카오 회원가입 -->
+	<insert id="insertKakao" parameterType="MemberVO">
+		insert into member(mem_id, mem_name, mem_email, mem_cr_dt, mem_link, rep_cnt, mem_status) 
+		values (#{mem_id}, #{mem_name}, #{mem_email}, now(), "Y", 0, 0)
+	</insert>
+
+	<!-- 리워드 번호, 회원 아이디에 해당하는 주문정보, 리워드정보, 프로젝트 정보 -->
+	<select id="getOrder" resultType="PlusVO">
+		select *
+		from order_tbl ord
+		join reward rew
+		on ord.reward_no=rew.reward_no
+		join member mem
+		on ord.mem_id=mem.mem_id
+		join project pro
+		on ord.pro_no=pro.pro_no
+		where ord.mem_id=#{mem_id}
+	</select>
+	
+	<!-- 상세 주문내역 -->
+	<select id="detailOrder" resultType="OrderVO">
+		select *
+		from order_tbl
+		where order_no=#{order_no}
+	</select>
+	
+	<!-- 주문 취소 -->
+	<delete id="deleteOrder">
+		delete from order_tbl
+		where order_no=#{order_no}
+	</delete>
+	
+	<!-- 판매자 회원 아이디에 해당하는 프로젝트 -->
+	<select id="geMyProject" resultType="PlusVO">
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,
+		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
+		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
+		from project
+		where mem_id=#{mem_id}
+	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="myModify">
+		update member
+		set mem_name=#{mem_name}, mem_phone=#{mem_phone}, mem_email=#{mem_email}
+		where mem_id=#{mem_id}
+	</update>
+	
+	<!-- 패스워드 체크 -->
+	<select id="passChk" resultType="Integer">
+		select count(*) FROM member
+		where mem_id = #{mem_id}
+		  and mem_pw = #{mem_pw}
+	</select>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="myDelete">
+		delete from member
+		where mem_id=#{mem_id} and mem_pw=#{mem_pw}
+	</delete>
+	
+	<!-- 관심 프로젝트 불러오기 -->
+	<select id="getLikey" resultType="PlusVO">
+		select *,
+		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
+		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
+		from likey lik
+		join project pro
+		on lik.pro_no = pro.pro_no
+		where lik.mem_id=#{mem_id}
+	</select>
+	
+	<!-- 관심 프로젝트 삭제 -->
+	<delete id="deleteMyLike">
+		delete from likey
+		where like_no=#{like_no}
+	</delete>
+	
+	<!-- 댓글 불러오기 -->
+	<select id="getReply" resultType="ProReplyVO">
+		select rep.*, pro.pro_title
+		from pro_reply rep
+		join project pro
+		on rep.pro_no = pro.pro_no
+		where rep.mem_id=#{mem_id}
+		order by reply_no desc
+	</select>
+	
+	<!-- 댓글 글 개수 -->
+	<select id="getReplyCnt" resultType="Integer">
+		select count(*)
+		from pro_reply
+		where mem_id=#{mem_id}
+	</select>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteMyReply">
+		delete from pro_reply
+		where reply_no=#{reply_no}
+	</delete>
+	
+	<!-- qna 작성 -->
+	<insert id="insertQna"  parameterType="NoticeVO" useGeneratedKeys="true" keyColumn="not_no" keyProperty="not_no">
+		insert into notice(mem_id, not_cat, not_middle, not_title, not_content)
+		values(#{mem_id},0,#{not_middle},#{not_title},#{not_content})
+	</insert>
+	
+	<!-- qna 글 번호 업데이트 -->
+	<update id="updateQna">
+		update notice set not_re_ref=#{not_no}
+		where not_no=#{not_no}
+	</update>
+	
+	<!-- qna 글 개수 -->
+	<select id="getQnaCnt" resultType="Integer">
+		select count(*)
+		from notice
+		where mem_id=#{mem_id}
+	</select>
+	
+	<!-- qna 불러오기 -->
+	<select id="getQna" resultType="NoticeVO">
+		select *, count(*) over(partition by not_re_ref) AS not_count
+		from notice
+		where not_re_ref in (select not_no
+							 from 	notice
+							 where	mem_id=#{mem_id})
+	    order by not_re_ref desc, not_re_seq asc;
+	</select>
+	
+	<!-- qna 삭제 -->
+	<delete id="deleteQna">
+		delete from notice
+		where not_no=#{not_no}
+	</delete>
+	
+</mapper>

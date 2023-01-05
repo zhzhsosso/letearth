@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.letearth.mapper.orderMapper">
+
+	<!-- 회원 한명 정보 조회 -->
+	<select id="memInfo" resultType="MemberVO">
+		select * from member where mem_id = #{mem_id}
+	</select>
+	
+	<!-- 리워드 리스트 -->
+	<select id="rewardList" resultType="RewardVO">
+		select * from reward where pro_no = #{pro_no}
+	</select>
+	
+	<!-- 리워드 한개 조회 -->
+	<select id="getReward" resultType="RewardVO">
+		select * from reward where reward_no = #{reward_no}
+	</select>
+
+	<!-- 회원 연락처 추가 -->
+	<update id="updateMemTel">
+		update member set mem_phone = #{mem_phone} where mem_id = #{mem_id}
+	</update>
+	
+	<!-- 주문 max 번호 조회 -->
+	<select id="maxOrderno" resultType="int">
+		select max(order_no) from order_tbl
+	</select>
+	
+	<!-- 주문 완료 -->
+	<insert id="insertOrder">
+		insert into order_tbl(order_trade_num,pro_no,mem_id,reward_no,pur_email,order_price,order_plus,total_price,order_status,bank_name,bank_account,
+			receiver_name,receiver_phone,address_no,address,address_detail,shipping_status,shipping_req,shipping_com,shipping_no,order_date,order_count,order_option) 
+			values(#{order_trade_num},#{pro_no},#{mem_id},#{reward_no},#{pur_email},#{order_price},#{order_plus},#{total_price},#{order_status},#{bank_name},#{bank_account},
+			#{receiver_name},#{receiver_phone},#{address_no},#{address},#{address_detail},#{shipping_status},#{shipping_req},#{shipping_com},#{shipping_no},now(),#{order_count},#{order_option})
+	</insert>
+	
+	<!-- 리워드 수량 1개 차감 -->
+	<update id="rewardStock">
+		update reward set reward_stock=(reward_stock-1) where reward_no=#{reward_no}
+	</update>
+	
+	<!-- 주문번호로 주문정보 1개 조회 -->
+	<select id="orderInfo" resultType="OrderVO">
+		select o.*, date_format(o.order_date,'%Y-%m-%d') as o_date, p.pro_title, p.pro_file, r.reward_title, r.reward_shipmonth, r.reward_shipdate 
+		from order_tbl o join project p on o.pro_no = p.pro_no join reward r on r.reward_no = o.reward_no where order_trade_num = #{order_trade_num}
+	</select>
+	
+	<!-- 후원만 -->
+	<select id="orderInfo2" resultType="OrderVO">
+		select o.*, date_format(o.order_date,'%Y-%m-%d') as o_date, p.pro_file 
+		from order_tbl o join project p on o.pro_no = p.pro_no where order_trade_num = #{order_trade_num}
+	</select>
+	
+	<!-- 배송지 변경 -->
+	<update id="shipChange">
+		update order_tbl set receiver_name=#{receiver_name}, address_no=#{address_no}, address=#{address}, address_detail=#{address_detail}, 
+			   receiver_phone=#{receiver_phone}, shipping_req=#{shipping_req}, shipping_status=#{shipping_status} 
+		where order_no=#{order_no}
+	</update>
+</mapper>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.letearth.mapper.noticeMapper">
+  
+  	<select id="getServerTime" resultType="string">
+  	 select now()
+  	</select>
+  
+	<!-- 게시판 글쓰기 -->
+  	<insert id="create">
+     	insert into notice (not_title,not_content,not_file,mem_id,not_cat) 
+     	values (#{not_title},#{not_content},#{not_file},#{mem_id},#{not_cat})  
+ 	</insert>
+  
+	<!-- 게시판 전체목록 -->
+	<select id="list" resultType="NoticeVO">
+	     select not_no, not_title, not_date, not_cat, not_content 
+	     from notice
+	     <![CDATA[ 
+	     where DATE_FORMAT(not_date, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and not_cat !=0 and not_cat !=3
+	     ]]>
+		 order by not_date desc
+	</select>
+  
+	<!-- 게시판 글 조회수 1 증가 -->
+	<update id="updateViewcnt">
+	   	update notice set not_viewcnt = not_viewcnt + 1
+	   	where not_no = #{not_no}
+	</update>
+  
+ 	<!-- 글번호(not_no) 글정보 모두 조회 --> 
+	<select id="getNotice" resultType="NoticeVO">
+	     select not_no, not_title, not_date, not_cat, not_content, not_file 
+	     from notice
+	     where not_no = #{not_no}
+	</select>
+  
+	<!-- 글정보 수정 --> 
+  	<update id="updateNotice">
+  		update notice set not_title=#{not_title}, not_cat=#{not_cat}, not_content=#{not_content}, not_file=#{not_file}
+  		where not_no = #{not_no}
+  	</update>
+
+	<!-- 글정보 삭제 -->   
+  	<delete id="deleteNotice">
+  		delete from notice  	
+  		where not_no = #{not_no}
+  	</delete>
+  
+  	<!-- 공지사항 전체목록 -->
+	<select id="allList" resultType="NoticeVO">
+	     select not_no, not_title, not_date, not_cat, not_content 
+	     from notice
+	     <![CDATA[ 
+	     where DATE_FORMAT(not_date, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and not_cat = 1
+	     ]]>
+		 order by not_date desc
+	</select>
+  
+  	<!-- 이벤트 전체목록 -->
+	<select id="eventList" resultType="NoticeVO">
+	     select not_no, not_title, not_date, not_cat, not_content 
+	     from notice
+	     <![CDATA[ 
+	     where DATE_FORMAT(not_date, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and not_cat = 2
+	     ]]>
+		 order by not_date desc
+	</select>
+  
+	<!-- 페이징처리 게시판목록 -->
+	<select id="listPage" resultType="NoticeVO">
+	 <![CDATA[
+		select * from notice
+		where not_no > 0 and DATE_FORMAT(not_date, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and not_cat !=0 and not_cat !=3
+		order by not_date desc 
+		limit #{page},5
+		]]> 
+	</select>
+	
+	  <!-- 페이징처리 게시판목록 -->
+	<select id="listPage2" resultType="NoticeVO">
+	 <![CDATA[
+		select * from notice
+		where not_no > 0 and DATE_FORMAT(not_date, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and not_cat !=0 and not_cat !=3
+		order by not_date desc
+		limit #{pageStart},#{perPageNum}
+		]]> 
+	</select>  
+  
+  <!-- 페이징처리 공지 게시판목록 -->
+	<select id="allListPage" resultType="NoticeVO">
+	 <![CDATA[
+		select * from notice
+		where not_no > 0 and DATE_FORMAT(not_date, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and not_cat =1
+		order by not_date desc 
+		limit #{page},5
+		]]> 
+	</select>
+	
+	  <!-- 페이징처리 공지 게시판목록 -->
+	<select id="allListPage2" resultType="NoticeVO">
+	 <![CDATA[
+		select * from notice
+		where not_no > 0 and DATE_FORMAT(not_date, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and not_cat =1
+		order by not_date desc
+		limit #{pageStart},#{perPageNum}
+		]]> 
+	</select>  
+	
+	<!-- 페이징처리 이벤트 게시판목록 -->
+	<select id="eventListPage" resultType="NoticeVO">
+	 <![CDATA[
+		select * from notice
+		where not_no > 0 and DATE_FORMAT(not_date, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and not_cat =2
+		order by not_date desc 
+		limit #{page},5
+		]]> 
+	</select>
+	
+	  <!-- 페이징처리 이벤트 게시판목록 -->
+	<select id="eventListPage2" resultType="NoticeVO">
+	 <![CDATA[
+		select * from notice
+		where not_no > 0 and DATE_FORMAT(not_date, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and not_cat =2
+		order by not_date desc
+		limit #{pageStart},#{perPageNum}
+		]]> 
+	</select>  
+  
+  
+  
+  
+  
+  
+  </mapper>
