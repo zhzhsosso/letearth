@@ -3,10 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
+
 <!-- 헤더 -->
 <%@ include file="../include/header.jsp"%>
-
-
 
 <style type="text/css">
 body {
@@ -81,20 +81,118 @@ body {
 }
 
 .img-circle {
-	height: 150px;
-	width: 150px;
+	height: 180px;
+	width: 180px;
 	border-radius: 150px;
 	border: 3px solid #fff;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 	z-index: 1;
 }
+
+.img-rectangle {
+	width: 400px;
+	height: 180px;
+	border: 3px solid #fff;
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+	object-fit: cover;
+}
+
+/* Fixed sidenav, full height */
+.sidenav {
+	height: 100%;
+	width: 200px;
+	position: fixed;
+	z-index: 1;
+	/*    top: 30%;  */
+	/*    left: 20%;  */
+	background-color: #EEF6E6;
+	overflow-x: hidden;
+	padding-top: 30px;
+	padding-bottom: 100px;
+	position: relative;
+	top: 120px;
+	left: 250px;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+	padding: 6px 8px 6px 16px;
+	text-decoration: none;
+	font-size: 17px;
+	color: #818181;
+	display: block;
+	border: none;
+	background: none;
+	width: 100%;
+	text-align: left;
+	cursor: pointer;
+	outline: none;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+	color: #ACCC97;
+}
+
+/* Main content */
+.main {
+	margin-left: 200px; /* Same as the width of the sidenav */
+	font-size: 20px; /* Increased text to enable scrolling */
+	padding: 0px 10px;
+	position: relative;
+	top: 30%;
+	left: 20%
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+	background-color: #D8E9C5;
+	color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+	display: none;
+	background-color: #EEF5E6;
+	padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+	float: right;
+	padding-right: 8px;
+}
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+	.sidenav {
+		padding-top: 15px;
+	}
+	.sidenav a {
+		font-size: 18px;
+	}
+}
+
+.inline-block-center div {
+	display: inline-block;
+	width: 600px;
+	margin: 0px auto;
+}
+
+.flex-container {
+	display: flex;
+	/* display: inline-flex; */
+}
 </style>
 
 
 
-
-<br><br><br><br>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <!--====== PAGE TITLE PART START ======-->
 
@@ -113,240 +211,260 @@ body {
 
 <!--====== PAGE TITLE PART ENDS ======-->
 
-
-
 <!--====== PROJECT CONTENT PART START ====== -->
 <section class="project-details-content-area pb-110">
-	<div class="container">
-		<!-- 	<div class="container" style="margin-left: 70.600; margin-right: 70.600;"> -->
-
-		<div class="row justify-content-center">
-
-			<!-- 사이드바 -->
-			<div class="col-lg-4 col-md-7 col-sm-9">
-				<div class="project-details-sidebar">
-					<!--회색박스 -->
-					<div class="project-details-park mt-30 box item-2"
-						style="padding: 2em">
-						<div>
-							<h1 class="title" style="padding: 1.5em;">관리자</h1>
-						</div>
-
-						<br>
-						<div style="background-color: white;">
-							<ul style="padding: 1.5em">
-								<span style="font-size: 20px;">고객센터</span>
-								<li><a href="">공지사항</a></li>
-								<li><a href="">FAQ</a></li>
-								<li><a href="">1:1 문의</a></li>
-							</ul>
-						</div>
-						<br>
-						<div style="background-color: white;">
-							<ul style="padding: 1.5em">
-								<span style="font-size: 20px;">펀딩관리</span>
-								<li><a href="">프로젝트 승인</a></li>
-								<li><a href="">프로젝트 목록 및 상세조회</a></li>
-								<li><a href="">정산관리</a></li>
-							</ul>
-						</div>
-						<br>
-						<div style="background-color: white;">
-							<ul style="padding: 1.5em">
-								<span style="font-size: 20px;">회원관리</span>
-								<li><a href="">회원목록 및 상세조회</a></li>
-								<li><a href="">신고 조회 및 처리</a></li>
-								<li><a href="">블랙리스트 조회</a></li>
-							</ul>
-						</div>
-						<br>
-					</div>
-					<!-- 회색박스 -->
-				</div>
+	<div style="display: flex;">
+		<!-- 사이드바 -->
+		<div class="sidenav">
+			<a href="/board/adMain"> <i class="fa fa-solid fa-leaf"></i> <span
+				style="position: relative; left: 2px; bottom: 3px; font-weight: bolder;">관리자메인</span>
+			</a>
+			<button class="dropdown-btn">
+				<i class="fa fa-solid fa-paper-plane"></i> &nbsp;고객센터 <i
+					class="fa fa-caret-down"></i>
+			</button>
+			<div class="dropdown-container">
+				<a href="/board/adNoticeList">공지사항</a> <a href="/board/adFaqList">FAQ</a>
+				<a href="/board/adRewriteList">1:1문의</a>
 			</div>
-			<!-- 사이드바 -->
+
+			<button class="dropdown-btn">
+				<i class="fa fa-solid fa-bank"></i> &nbsp;펀딩관리 <i
+					class="fa fa-caret-down"></i>
+			</button>
+			<div class="dropdown-container">
+				<a href="#">프로젝트 승인</a> <a href="#">프로젝트 목록</a> <a href="#">재펀딩</a>
+				<a href="#">정산관리</a>
+			</div>
+
+			<button class="dropdown-btn">
+				<i class="fa fa-solid fa-users"></i> &nbsp;회원관리 <i
+					class="fa fa-caret-down"></i>
+			</button>
+			<div class="dropdown-container">
+				<a href="/report/adRepList">신고접수관리</a> <a href="#">회원목록</a> <a
+					href="/report/adBlackList">블랙리스트</a>
+			</div>
+		</div>
+		<!-- 사이드바 -->
 
 
 
-			<!-- Detail 1 과 동일 -->
-			<div class="col-lg-8">
-				<form action="/mempro/adProList2" method="get">
-					<div class="tab-content" id="pills-tabContent">
-						<div class="tab-pane fade show active" id="pills-home"
-							role="tabpanel" aria-labelledby="pills-home-tab">
-							<div class="project-details-content-top">
+
+
+
+
+
+		<div class="container">
+			<div class="container" style="width: 1400">
+				<div class="col-lg-8">
+					<!-- 					<form action="/mempro/adProList1" method="get"> -->
+s							<div class="project-details-content-top">
 								<div class="col-lg-4 col-md-7 col-sm-9"></div>
 							</div>
-							<div class="project-details-item">
-								<br> <br> <br>
-								<div>
-									<!-- 1. 테이블 -->
-									<p style="font-size: 2em;">판매자 정보</p>
-									<br>
-									<h5 class="title"></h5>
 
-
-
-									<!-- 회원정보 (프로필) -->
-									<div
-										class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
-										<div class="banner"></div>
-										<img src="./messi.jpg" alt="" class="img-circle mx-auto mb-3">
-										<h3 class="mb-4">${proVO.mem_id }</h3>
-
-
-
-										<table class="table table-condensed">
-											<tbody>
-												<tr>
-													<th style="width: 150px">연락처</th>
-													<td>${proVO.memberVO.mem_phone }</td>
-												</tr>
-												<tr>
-													<th>이메일</th>
-													<td>${proVO.memberVO.mem_email }</td>
-												</tr>
-												<tr>
-													<th>가입날짜</th>
-												<td>${proVO.memberVO.mem_cr_dt }</td>
-<%-- 					왜안되고 ㅈㄹ이냐고		<td><fmt:formatDate value="${proVO.memberVO.mem_cr_dt }" pattern="yyyy-MM-dd" /></td> --%>
-												</tr>
-												<tr>
-													<th>펀딩횟수</th>
-													<td>${memPro }회</td>
-												</tr>
-												<tr>
-													<th>구매횟수</th>
-													<td>${memOrd }회</td>
-												</tr>
-
-											</tbody>
-										</table>
-
-
-
-									</div>
-								</div>
-
-
-
-								<br> <br>
-								<!-- 프로젝트정보 (프로필) -->
-								<!-- detail1 : X 달성금액, 달성률, 배송상황, 정산현황 -->
-								<!-- detail2 : O 달성금액, 달성률, 배송상황, 정산현황 -->
-
-								<p style="font-size: 2em;">프로젝트 정보</p>
-								<h5 class="title"></h5>
-								<div
-									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
-									<table class="table table-condensed">
-										<tbody>
-											<tr>
-												<th style="width: 150px">제목</th>
-												<td>${proVO.pro_title }</td>
-											</tr>
-											<tr>
-												<th>시작일</th>
-												<td>${proVO.pro_st_dt }</td>
-											</tr>
-											<tr>
-												<th>종료일</th>
-												<td>${proVO.pro_ed_dt }</td>
-											</tr>
-											<tr>
-												<th>기간</th>
-												<td>${proVO.pro_title }</td>
-											</tr>
-											<tr>
-												<th>목표금액</th>
-												<td>${proVO.pro_gp }원</td>
-											</tr>
-											<tr>
-												<th>달성금액</th>
-												<td>${proVO.pro_tp }원</td>
-											</tr>
-											<tr>
-												<th>달성률</th>
-												<td><fmt:formatNumber
-														value="${proVO.pro_tp / proVO.pro_gp }" type="percent" />
-												</td>
-											</tr>
-
-										</tbody>
-									</table>
-								</div>
-								<br> <br>
-
-								<!-- 결제회원 리스트 -->
-								<div class="container">
-									<p style="font-size: 2em;">결제 회원 리스트</p>
-									<br>
-									<div
-										class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
+<!-- div class="flex-container" -->
+<!-- 회원정보 (프로필) -->
+							<div class="flex-container" style="width: 1000">
+								<div class="project-details-item" style="width: 1000">
+									<br> <br> <br> <br> <br>
+									<div>
+										<p style="font-size: 2.2rem;" align="left">판매자 정보</p>
+										<br>
 										<h5 class="title"></h5>
 
-										<table class="table">
-											<thead>
-												<tr>
-													<th style="width: 100px">아이디</th>
-													<th style="width: 100px">리워드</th>
-													<th style="width: 180px">구매수량</th>
-													<th style="width: 150px">결제금액</th>
-													<th style="width: 180px">결제일시</th>
-													<th style="width: 200px">운송장번호</th>
-												</tr>
-											</thead>
 
-											<c:forEach var="ordList" items="${ordList  }">
+
+										<div
+											class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
+											<div class="banner"></div>
+											<img src="/resources/assets/images/messi.jpg" alt=""
+												class="img-circle mx-auto mb-3">
+											<%--<img src="/resources/assets/images/${proVO.memberVO.mem_profile }" alt="" class="img-circle mx-auto mb-3"> --%>
+											<h3 class="mb-4">${proVO.mem_id }</h3>
+
+
+
+											<table class="table table-condensed">
 												<tbody>
 													<tr>
-														<td>
-															<div class="user-info">
-<!-- 																<div class="user-info__img"> -->
-<!-- 																	<img src="img/user1.jpg" alt="User Img"> -->
-<!-- 																</div> -->
-																<div class="user-info__basic">
-																	<h5 class="mb-0">${ordList.mem_id }</h5>
-																</div>
-															</div>
-														</td>
-														<td>${ordList.reward_no } </td>
-														<td>${ordList.order_count } 개</td>
-														<td>${ordList.total_price } 원</td>
-<%-- 														<td>${ordList.order_date }</td> --%>
-														<td><fmt:formatDate value="${ordList.order_date }" pattern="yyyy-MM-dd" /></td>
-														<td>${ordList.shipping_no }</td>
-<!-- 														<td> -->
-<!-- 															<div class="dropdown open"> -->
-<!-- 																<a href="#!" class="px-2" id="triggerId1" -->
-<!-- 																	data-toggle="dropdown" aria-haspopup="true" -->
-<!-- 																	aria-expanded="false"> <i class="fa fa-ellipsis-v"></i> -->
-<!-- 																</a> -->
-<!-- 																<div class="dropdown-menu" aria-labelledby="triggerId1"> -->
-<!-- 																	<a class="dropdown-item" href="#"><i -->
-<!-- 																		class="fa fa-pencil mr-1"></i> Edit</a> <a -->
-<!-- 																		class="dropdown-item text-danger" href="#"><i -->
-<!-- 																		class="fa fa-trash mr-1"></i> Delete</a> -->
-<!-- 																</div> -->
-<!-- 															</div> -->
-<!-- 														</td> -->
+														<th style="width: 150px">연락처</th>
+														<td>${proVO.memberVO.mem_phone }</td>
 													</tr>
+													<tr>
+														<th>이메일</th>
+														<td>${proVO.memberVO.mem_email }</td>
+													</tr>
+													<tr>
+														<th>가입날짜</th>
+														<td><fmt:formatDate
+																value="${proVO.memberVO.mem_cr_dt }"
+																pattern="yyyy-MM-dd" /></td>
+													</tr>
+													<tr>
+														<th>펀딩횟수</th>
+														<td>${memPro }회</td>
+													</tr>
+													<tr>
+														<th>구매횟수</th>
+														<td>${memOrd }회</td>
+													</tr>
+
 												</tbody>
-											</c:forEach>
-										</table>
+											</table>
+
+
+
+										</div>
+									</div>
+								</div>
+<!-- 회원정보 (프로필) -->
+
+
+<!-- 중간 텀 -->
+								<div class id="empty" style="width: 100"></div>
+<!-- 중간 텀 -->
+
+
+								<br> <br>
+<!-- 프로젝트정보 (프로필) -->
+								<!-- detail1 : X 달성금액, 달성률, 배송상황, 정산현황 -->
+								<!-- detail2 : O 달성금액, 달성률, 배송상황, 정산현황 -->
+								<div class="project-details-item" style="width: 1000">
+									<br> <br> <br> <br> <br>
+									<div>
+										<p style="font-size: 2.2rem;" align="left">프로젝트 정보</p>
+										<br>
+										<h5 class="title"></h5>
+										<div
+											class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
+											<table class="table table-condensed">
+												<!-- 사진을 넣을지 그냥 타이틀만 넣을지 정하기 -->
+												<div class="banner">
+													<img src="/resources/assets/images/messi.jpg" alt=""
+														class="img-rectangle">
+													<h6>　</h6>
+													<h3 class="mb-4">${proVO.pro_title }</h3>
+													<tbody>
+														<!-- 												<tr> -->
+														<!-- 													<th style="width: 150px">제목</th> -->
+														<%-- 													<td>${proVO.pro_title }</td> --%>
+														<!-- 												</tr> -->
+														<tr>
+															<th>시작일</th>
+															<td>${proVO.pro_st_dt }</td>
+														</tr>
+														<tr>
+															<th>종료일</th>
+															<td>${proVO.pro_ed_dt }</td>
+														</tr>
+														<tr>
+															<th>기간</th>
+															<fmt:parseDate value="${proVO.pro_st_dt }" var="str_Date"
+																pattern="yyyy-MM-dd" />
+															<fmt:parseNumber
+																value="${str_Date.time / (1000*60*60*24)}"
+																integerOnly="true" var="strDate"></fmt:parseNumber>
+															<fmt:parseDate value="${proVO.pro_ed_dt }" var="end_Date"
+																pattern="yyyy-MM-dd" />
+															<fmt:parseNumber
+																value="${end_Date.time / (1000*60*60*24)}"
+																integerOnly="true" var="endDate"></fmt:parseNumber>
+															<td>${endDate - strDate }일</td>
+														</tr>
+														<tr>
+															<th>목표금액</th>
+															<td><fmt:formatNumber value="${proVO.pro_gp }" />원</td>
+														</tr>
+														<tr>
+															<th>　</th>
+															<td>　</td>
+														</tr>
+
+													</tbody>
+												</div>
+											</table>
+										</div>
 									</div>
 								</div>
 							</div>
-							<br> <br> <br>
-						</div>
-					</div>
-			</div>
-			</form>
+<!-- div class="flex-container" -->
 
+
+
+	<!-- 결제회원 리스트 -->
+	<br><br><br><br>
+	<div class="container" style="width: 135%">
+		<p style="font-size: 2em;">결제 회원 리스트</p>
+		<br>
+		<div
+			class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
+			<h5 class="title"></h5>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th></th>
+						<th style="width: 100px">아이디</th>
+						<th style="width: 100px">리워드</th>
+						<th style="width: 180px">구매수량</th>
+						<th style="width: 150px">결제금액</th>
+						<th style="width: 200px">결제일시</th>
+						<th style="width: 200px">운송장번호</th>
+					</tr>
+				</thead>
+
+				<c:forEach var="ordList" items="${ordList  }" varStatus="status">
+					<tbody>
+						<tr>
+							<td>${status.count }</td>
+							<td>
+								<div class="user-info">
+									<!-- 																<div class="user-info__img"> -->
+									<!-- 																	<img src="img/user1.jpg" alt="User Img"> -->
+									<!-- 																</div> -->
+									<div class="user-info__basic">
+										<h5 class="mb-0">${ordList.mem_id }</h5>
+									</div>
+								</div>
+							</td>
+							<td>${ordList.reward_no }</td>
+							<td>${ordList.order_count }개</td>
+							<td>${ordList.total_price }원</td>
+							<td><fmt:formatDate value="${ordList.order_date }"
+									pattern="yyyy-MM-dd" /></td>
+							<td>${ordList.shipping_no }</td>
+						</tr>
+					</tbody>
+				</c:forEach>
+			</table>
 		</div>
 	</div>
-	<!-- Detail 1 과 동일 -->
+	<!-- 결제회원 리스트 -->
 
+						
+				</div>
+<!-- 프로젝트정보 (프로필) -->
+			</div>
+		</div>
+		
+		
+		
+	</div>
+
+<br><br><br><br>
+
+
+
+	<div align="center">
+	<button type="submit"
+		onclick="location.href='javascript:window.history.back();'"
+		class="main-btn" style="float: center;">목록</button>
+	<button type="submit"  class="main-btn"
+		style="float: center;">목록</button>
+	<!-- 			</form> -->
+
+	</div>
 </section>
 
 
@@ -362,38 +480,32 @@ body {
 
 
 
-<!-- 페이징처리 -->
-<div>
-	<ul>
-
-		<c:if test="${pvo.prev }">
-			<li><a href="/report/adBlackList?page=${pvo.startPage-1 }">«</a></li>
-			<!-- 10 -->
-		</c:if>
-
-		<c:forEach var="idx" begin="${pvo.startPage }" end="${pvo.endPage }"
-			step="1">
-			<li <c:out value="${idx == pvo.cri.page? 'class=active':'' }"/>><a
-				href="/report/adBlackList?page=${idx }">${idx }</a></li>
-		</c:forEach>
-
-		<c:if test="${pvo.next }">
-			<li><a href="/report/adBlackList?page=${pvo.endPage+1 }">»</a></li>
-			<!-- 11 -->
-		</c:if>
-	</ul>
-</div>
 
 
 
 
-
-</div>
-</div>
-</div>
-
-</section>
-
+<!--  ====== PROJECT CONTENT PART ENDS ====== -->
 
 <!-- 푸터 -->
 <%@ include file="../include/footer.jsp"%>
+
+
+<!-- 드롭다운 -->
+<script>
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+var dropdown = document.getElementsByClassName("dropdown-btn");
+var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+   var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+    } else {
+      dropdownContent.style.display = "block";
+    }
+  });
+}
+</script>
+<!-- 드롭다운 -->
