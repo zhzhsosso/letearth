@@ -40,6 +40,9 @@
    
    
    <section class="contact-form-area">
+     <div style="display: flex;">
+   <%@ include file="../include/adSide.jsp" %>	
+   
         <div class="container">     
     <br>
  	<br>        
@@ -78,7 +81,7 @@
 			<form role="form" name="fr" id="contact-form" action="" method="post">
 						<table class="table table-hover">
 							<tbody>
-								<tr style="background-color: #f8f9fa">
+								<tr style="background-color: #EEF5E6">
 									<th>번호</th>
 									<th>회원아이디</th>
 									<th>프로젝트이름</th>
@@ -206,7 +209,7 @@
 			</c:if>
 		</ul>
 	</div>
-	
+	</div>
        </div>    
     </section>
 <!-- 페이징처리 -->

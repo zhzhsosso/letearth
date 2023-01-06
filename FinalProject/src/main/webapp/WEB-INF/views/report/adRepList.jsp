@@ -35,6 +35,9 @@
    
    
       <section class="contact-form-area">
+       <div style="display: flex;">
+   <%@ include file="../include/adSide.jsp" %>	
+      
         <div class="container">     
     <br>
  	<br>        
@@ -219,7 +222,7 @@
 			<form role="form" name="fr" id="contact-form" action="" method="post">
 						<table class="table table-hover">
 							<tbody>
-								<tr style="background-color: #f8f9fa">
+								<tr style="background-color: #EEF5E6">
 									<th>신고번호</th>
 									<th>신고자</th>
 									<th>유형</th>
@@ -309,6 +312,7 @@
 		</ul>
 	</div>
 	
+   </div>
    </div>
 </section>
    

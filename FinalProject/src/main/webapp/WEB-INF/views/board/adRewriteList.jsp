@@ -34,6 +34,9 @@
    
    
    <section class="contact-form-area">
+   <div style="display: flex;">
+   <%@ include file="../include/adSide.jsp" %>	
+   
         <div class="container">
         
         
@@ -75,7 +78,7 @@
 					<input type="hidden" name="not_re_seq" value="${vo.not_re_seq }">
 						<table class="table table-hover">
 							<tbody>
-								<tr style="background-color: #f8f9fa">
+								<tr style="background-color: #EEF5E6">
 									<th>글번호</th>
 									<th>1:1문의 제목</th>
 									<th>작성자</th>
@@ -142,7 +145,7 @@
 		</ul>
 	</div>
         </div>
-        
+     </div>   
     </section>
    
    
