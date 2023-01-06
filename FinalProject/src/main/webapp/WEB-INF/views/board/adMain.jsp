@@ -9,11 +9,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style type="text/css">
 
-/* On mouse-over */
-.sidenav a:hover, .dropdown-btn:hover {
-  color: #f1f1f1;
-}
-
 /* Main content */
 .main {
   margin-left: 200px; /* Same as the width of the sidenav */
@@ -25,30 +20,6 @@
   left: 20%
 }
 
-/* Add an active class to the active dropdown button */
-.active {
-  background-color: green;
-  color: white;
-}
-
-/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-.dropdown-container {
-  display: none;
-  background-color: #262626;
-  padding-left: 8px;
-}
-
-/* Optional: Style the caret down icon */
-.fa-caret-down {
-  float: right;
-  padding-right: 8px;
-}
-
-/* Some media queries for responsiveness */
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
 </style>
 </head>
 <body>
@@ -56,6 +27,7 @@
 <%@ include file="../include/header.jsp" %>
 
 <section class="contact-form-area">
+ <div style="display: flex;">
 <%@ include file="../include/adSide.jsp" %>			
 	<div class="container">
 		
@@ -66,6 +38,7 @@
 			
 			
 			
+			 내용
 			
 			
 			
@@ -76,8 +49,7 @@
 			
 			
 			
-			
-			
+		</div>	
 		</div>
 	</section>
 
