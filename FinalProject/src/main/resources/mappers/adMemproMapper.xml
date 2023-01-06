@@ -16,7 +16,8 @@
 		limit #{pageStart},#{perPageNum}
 		]]> 
 	</select>
-	
+
+
 	
 	<!-- 프젝 상세조회(프젝번호 클릭시) : getDetailPro -->
 	<resultMap type="com.letearth.member.domain.MemberVO" id="MemberVO">
@@ -127,7 +128,8 @@
 	<!-- 구매자 구매 리스트 -->
 	<select id="memOrdList" resultType="memOrdVO">
 	<![CDATA[
-		select pro_title,reward_title,order_no,total_price,order_status 
+		select pro.pro_title, rew.reward_title, ord.order_no, ord.total_price, ord.order_status, 
+		ord.order_date, pro.pro_tp, pro.pro_gp, ord.shipping_no 
 		from order_tbl ord join project pro join reward rew 
 		on ord.pro_no = pro.pro_no 
 		and ord.reward_no = rew.reward_no 
@@ -144,10 +146,9 @@
 	</select>
 
 
-
 	<!-- 판매자 프로젝트 리스트 -->
 	<select id="memProList" resultType="ProjectVO">
-		select * from project 
+		select * from project
 		where mem_id = #{mem_id} 
 		order by pro_no desc;
 	</select>

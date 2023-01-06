@@ -50,24 +50,29 @@
 
 
 	<section class="contact-form-area">
-		<div class="container">
-			<br> <br>
+		<div style="display: flex;">
+
+			<!-- 사이드바 -->
+			<%@ include file="../include/adSide.jsp"%>
+
+			<div class="container">
+				<br> <br> <br> <br> <br> <br>
 			<!-- 어드민 -->
 			<h2 class="box-title" align="center">
-				<b style="color: #6c757d;">프로젝트 목록</b>
+				<b style="color: #6c757d;">프로젝트 목록</b> <br> <br> <br>
 			</h2>
-			<hr id="pro2Selector" align="center">
 			<div class="col-xs-12">
-				<br> <br>
-				<div style="font-size: 1.5rem;" align="left">
+				<div style="font-size: 2.2rem;" align="left">
 					<a id="listAll">전체</a> | <a id="list5">판매중</a> | <a id="list6">마감</a>
 					| <a id="list7">판매중지</a>
-					<hr id="pro2Selector1">
 				</div>
+				<br>
 				<!-- 어드민 -->
 				
 				<div class="box">
+				<br>
 					<div class="box-header">
+					<br>
 						<div class="box-tools" align="right">
 							<div class="input-group input-group-sm hidden-xs"
 								style="width: 150px;">
@@ -89,35 +94,35 @@
 							method="post">
 							<table class="table table-hover">
 								<tbody>
-									<tr style="background-color: #f8f9fa">
-										<th>프로젝트 번호</th>
-										<th>아이디</th>
-										<th>프로젝트 이름</th>
-										<th>펀딩 시작날짜</th>
-										<th>목표금액</th>
-										<th>달성률</th>
-										<th>프로젝트 상태</th>
+									<tr style="background-color: #EEF5E6">
+										<th style="font-size: 15px;">프로젝트 번호</th>
+										<th style="font-size: 15px;">프로젝트 이름</th>
+										<th style="font-size: 15px;">아이디</th>
+										<th style="font-size: 15px;">펀딩 시작날짜</th>
+										<th style="font-size: 15px;">목표금액</th>
+										<th style="font-size: 15px;">달성률</th>
+										<th style="font-size: 15px;">프로젝트 상태</th>
 									</tr>
 									<c:forEach var="proVO" items="${proList }">
 										<tr>
-											<td>${proVO.pro_no }</td>
-											<td>${proVO.mem_id }</td>
-											<td><a
+											<td style="font-size: 15px;">${proVO.pro_no }</td>
+											<td style="font-size: 15px;"><a
 												href="/mempro/adProDetail2?pro_no=${proVO.pro_no }"
 												style="color: green"> ${proVO.pro_title } </a></td>
-											<td>${proVO.pro_st_dt }</td>
-											<td>${proVO.pro_gp }원</td>
-											<td><fmt:formatNumber
+											<td style="font-size: 15px;">${proVO.mem_id }</td>
+											<td style="font-size: 15px;">${proVO.pro_st_dt }</td>
+											<td style="font-size: 15px;"><fmt:formatNumber value="${proVO.pro_tp }" />원</td>
+											<td style="font-size: 15px;"><fmt:formatNumber
 													value="${proVO.pro_tp / proVO.pro_gp }" type="percent" /></td>
 											<c:choose>
 												<c:when test="${proVO.pro_status == 5}">
-													<td><span class="label label-success">판매중</span></td>
+													<td style="font-size: 15px;"><span class="label label-success">판매중</span></td>
 												</c:when>
 												<c:when test="${proVO.pro_status == 6}">
-													<td><span class="label label-info">마감</span></td>
+													<td style="font-size: 15px;"><span class="label label-info">마감</span></td>
 												</c:when>
 												<c:when test="${proVO.pro_status == 7}">
-													<td><span class="label label-warning">판매중지</span></td>
+													<td style="font-size: 15px;"><span class="label label-warning">판매중지</span></td>
 												</c:when>
 											</c:choose>
 										</tr>
@@ -134,27 +139,27 @@
 							<table class="table table-hover">
 								<tbody>
 									<tr style="background-color: #f8f9fa">
-										<th>프로젝트 번호</th>
-										<th>아이디</th>
-										<th>프로젝트 이름</th>
-										<th>펀딩 시작날짜</th>
-										<th>목표금액</th>
-										<th>달성률</th>
-										<th>프로젝트 상태</th>
+										<th style="font-size: 15px;">프로젝트 번호</th>
+										<th style="font-size: 15px;">프로젝트 이름</th>
+										<th style="font-size: 15px;">아이디</th>
+										<th style="font-size: 15px;">펀딩 시작날짜</th>
+										<th style="font-size: 15px;">목표금액</th>
+										<th style="font-size: 15px;">달성률</th>
+										<th style="font-size: 15px;">프로젝트 상태</th>
 									</tr>
 									<c:forEach var="proVO5" items="${proList }">
 										<c:if test="${proVO5.pro_status == 5}">
 											<tr>
-												<td>${proVO5.pro_no }</td>
-												<td>${proVO5.mem_id }</td>
-												<td><a
+												<td style="font-size: 15px;">${proVO5.pro_no }</td>
+												<td style="font-size: 15px;"><a
 													href="/mempro/adProDetail2?pro_no=${proVO5.pro_no }"
 													style="color: green"> ${proVO5.pro_title } </a></td>
-												<td>${proVO5.pro_st_dt }</td>
-												<td>${proVO5.pro_gp }원</td>
-												<td><fmt:formatNumber
+												<td style="font-size: 15px;">${proVO5.mem_id }</td>
+												<td style="font-size: 15px;">${proVO5.pro_st_dt }</td>
+												<td style="font-size: 15px;"><fmt:formatNumber value="${proVO5.pro_tp }" />원</td>
+												<td style="font-size: 15px;"><fmt:formatNumber
 														value="${proVO5.pro_tp / proVO5.pro_gp }" type="percent" /></td>
-												<td><span class="label label-success">판매중</span></td>
+												<td style="font-size: 15px;"><span class="label label-success">판매중</span></td>
 											</tr>
 										</c:if>
 									</c:forEach>
@@ -171,27 +176,27 @@
 							<table class="table table-hover">
 								<tbody>
 									<tr style="background-color: #f8f9fa">
-										<th>프로젝트 번호</th>
-										<th>아이디</th>
-										<th>프로젝트 이름</th>
-										<th>펀딩 시작날짜</th>
-										<th>목표금액</th>
-										<th>달성률</th>
-										<th>프로젝트 상태</th>
+										<th style="font-size: 15px;">프로젝트 번호</th>
+										<th style="font-size: 15px;">프로젝트 이름</th>
+										<th style="font-size: 15px;">아이디</th>
+										<th style="font-size: 15px;">펀딩 시작날짜</th>
+										<th style="font-size: 15px;">목표금액</th>
+										<th style="font-size: 15px;">달성률</th>
+										<th style="font-size: 15px;">프로젝트 상태</th>
 									</tr>
 									<c:forEach var="proVO6" items="${proList }">
 										<c:if test="${proVO6.pro_status == 6}">
 											<tr>
-												<td>${proVO6.pro_no }</td>
-												<td>${proVO6.mem_id }</td>
-												<td><a
+												<td style="font-size: 15px;">${proVO6.pro_no }</td>
+												<td style="font-size: 15px;"><a
 													href="/mempro/adProDetail2?pro_no=${proVO6.pro_no }"
 													style="color: green"> ${proVO6.pro_title } </a></td>
-												<td>${proVO6.pro_st_dt }</td>
-												<td>${proVO6.pro_gp }원</td>
-												<td><fmt:formatNumber
+												<td style="font-size: 15px;">${proVO6.mem_id }</td>
+												<td style="font-size: 15px;">${proVO6.pro_st_dt }</td>
+												<td style="font-size: 15px;"><fmt:formatNumber value="${proVO6.pro_tp }" />원</td>
+												<td style="font-size: 15px;"><fmt:formatNumber
 														value="${proVO6.pro_tp / proVO6.pro_gp }" type="percent" /></td>
-												<td><span class="label label-success">마감</span></td>
+												<td style="font-size: 15px;"><span class="label label-info">마감</span></td>
 											</tr>
 										</c:if>
 									</c:forEach>
@@ -207,27 +212,27 @@
 							<table class="table table-hover">
 								<tbody>
 									<tr style="background-color: #f8f9fa">
-										<th>프로젝트 번호</th>
-										<th>아이디</th>
-										<th>프로젝트 이름</th>
-										<th>펀딩 시작날짜</th>
-										<th>목표금액</th>
-										<th>달성률</th>
-										<th>프로젝트 상태</th>
+										<th style="font-size: 15px;">프로젝트 번호</th>
+										<th style="font-size: 15px;">프로젝트 이름</th>
+										<th style="font-size: 15px;">아이디</th>
+										<th style="font-size: 15px;">펀딩 시작날짜</th>
+										<th style="font-size: 15px;">목표금액</th>
+										<th style="font-size: 15px;">달성률</th>
+										<th style="font-size: 15px;">프로젝트 상태</th>
 									</tr>
 									<c:forEach var="proVO7" items="${proList }">
 										<c:if test="${proVO7.pro_status == 7}">
 											<tr>
-												<td>${proVO7.pro_no }</td>
-												<td>${proVO7.mem_id }</td>
-												<td><a
+												<td style="font-size: 15px;">${proVO7.pro_no }</td>
+												<td style="font-size: 15px;"><a
 													href="/mempro/adProDetail2?pro_no=${proVO7.pro_no }"
 													style="color: green"> ${proVO7.pro_title } </a></td>
-												<td>${proVO5.pro_st_dt }</td>
-												<td>${proVO5.pro_gp }원</td>
-												<td><fmt:formatNumber
+												<td style="font-size: 15px;">${proVO7.mem_id }</td>
+												<td style="font-size: 15px;">${proVO5.pro_st_dt }</td>
+												<td style="font-size: 15px;"><fmt:formatNumber value="${proVO7.pro_tp }" />원</td>
+												<td style="font-size: 15px;"><fmt:formatNumber
 														value="${proVO7.pro_tp / proVO7.pro_gp }" type="percent" /></td>
-												<td><span class="label label-success">판매중지</span></td>
+												<td style="font-size: 15px;"><span class="label label-warning">판매중지</span></td>
 											</tr>
 										</c:if>
 									</c:forEach>
