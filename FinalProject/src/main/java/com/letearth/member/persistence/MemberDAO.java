@@ -69,6 +69,11 @@ public interface MemberDAO {
 	public List<PlusVO> getProject(PlusVO plusVO) throws Exception;
 	
 	/**
+	 * 주문 목록
+	 */
+	public List<PlusVO> getMyOrder(PlusVO plusVO) throws Exception;
+	
+	/**
 	 * 관심 프로젝트 불러오기
 	 */
 	public List<PlusVO> getLikey(PlusVO plusVO) throws Exception;

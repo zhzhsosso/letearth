@@ -14,6 +14,7 @@ public class PlusVO {
 	private String pro_thum;
 	private int pro_gp;
 	private int pro_tp;
+	private int pro_status;
 	private String pro_st_dt;
 	private String pro_ed_dt;
 	private String achievement_rate;

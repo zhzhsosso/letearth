@@ -1,5 +1,8 @@
 package com.letearth.member.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
 import com.letearth.member.domain.MemberVO;
 import com.letearth.member.domain.PlusVO;
 import com.letearth.member.service.MemberService;
@@ -20,6 +24,9 @@ import com.letearth.notice.domain.NoticeVO;
 import com.letearth.order.domain.OrderVO;
 import com.letearth.prodetail.domain.LikeyVO;
 import com.letearth.prodetail.domain.ProReplyVO;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/mypage/*")
@@ -32,6 +39,7 @@ public class MypageController {
 	
 	// http://localhost:8080/mypage/mypage
 	// http://localhost:8080/member/login
+	
 	/**
 	 * 마이페이지 이동
 	 */
@@ -152,6 +160,28 @@ public class MypageController {
 		model.addAttribute("proList", memService.getProject(plusVO));
 		mylog.debug("myProject: 나의 프로젝트 조회 완료!");
 		mylog.debug("myProject: 나의 프로젝트 탭 이동!");
+	}
+	
+	// http://localhost:8080/mypage/myProAdmin?pro_no=146
+	/**
+	 * 주문 내역 조회
+	 */
+	@RequestMapping(value = "/myProAdmin", method = RequestMethod.GET)
+	public void myProAdminGET(@RequestParam("pro_no") String pro_no, HttpSession session, PlusVO plusVO, Model model) throws Exception {
+	
+		String mem_id = (String) session.getAttribute("mem_id");
+		mylog.debug(pro_no);
+		
+		List<PlusVO> ordList = memService.getMyOrder(plusVO);
+
+		Gson gson = new Gson();
+		String jsonString = gson.toJson(ordList);
+		
+		model.addAttribute("jsonString", jsonString);
+        
+		mylog.debug("myProAdmin: 주문 내역 조회 완료!");
+		mylog.debug("myProAdmin: 판매자 관리 탭 이동!");
+		
 	}
 	
 	/**
