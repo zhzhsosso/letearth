@@ -112,7 +112,7 @@ body {
 	padding-top: 30px;
 	padding-bottom: 100px;
 	position: relative;
-	top: 170px;
+	top: 120px;
 	left: 250px;
 }
 
@@ -196,22 +196,21 @@ body {
 <br>
 <br>
 
-<!--====== PAGE TITLE PART START ======-->
-
 <section class="page-title-area">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
 				<div>
-					<!-- 					<h3 class="title" -->
-					<%-- 						style="color: black; font-size: 3em; margin-left: 400px;">${proList.pro_title }</h3> --%>
+
+					<h2 class="box-title" align="center">
+
+						<b style="color: #6c757d;">회원 리스트</b> <br> <br> <br>
+					</h2>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
-<!--====== PAGE TITLE PART ENDS ======-->
 
 <!--====== PROJECT CONTENT PART START ====== -->
 <section class="project-details-content-area pb-110">
@@ -258,10 +257,12 @@ body {
 
 
 		<div class="container">
+
+
 			<div class="container" style="width: 1400">
 				<div class="col-lg-8">
 					<!-- 					<form action="/mempro/adProList1" method="get"> -->
-					s
+
 					<div class="project-details-content-top">
 						<div class="col-lg-4 col-md-7 col-sm-9"></div>
 					</div>
@@ -272,7 +273,7 @@ body {
 						<div class="project-details-item" style="width: 1000">
 							<br> <br> <br> <br>
 							<div>
-								<p style="font-size: 2.2rem;" align="left">　</p>
+								<p style="font-size: 2.2rem;" align="left"></p>
 								<br>
 								<h5 class="title"></h5>
 
@@ -408,7 +409,7 @@ body {
 							<table class="table">
 								<thead>
 									<tr>
-										<th>　</th>
+										<th></th>
 										<th style="width: 200px">프로젝트이름</th>
 										<th style="width: 150px">리워드번호</th>
 										<th style="width: 200px">리워드이름</th>
@@ -424,14 +425,14 @@ body {
 										<tr>
 											<td>${status.count }</td>
 											<td>${ordList.pro_title }</td>
-											<td style="text-align:center">${ordList.reward_no }</td>
+											<td style="text-align: center">${ordList.reward_no }</td>
 											<td>${ordList.reward_title }</td>
 											<td><fmt:formatNumber value="${ordList.total_price }" />원</td>
 											<td><fmt:formatDate value="${ordList.order_date }"
- 													pattern="yyyy-MM-dd" /></td>
+													pattern="yyyy-MM-dd" /></td>
 											<td><fmt:formatNumber
-													value="${ordList.pro_tp / ordList.pro_gp }" type="percent" /></td> 
-										<td>${ordList.shipping_no }</td>
+													value="${ordList.pro_tp / ordList.pro_gp }" type="percent" /></td>
+											<td>${ordList.shipping_no }</td>
 										</tr>
 									</tbody>
 								</c:forEach>
@@ -452,7 +453,7 @@ body {
 							<table class="table">
 								<thead>
 									<tr>
-										<th>　</th>
+										<th></th>
 										<th style="width: 80px">분류</th>
 										<th style="width: 200px">프로젝트번호</th>
 										<th style="width: 200px">프로젝트이름</th>
@@ -462,7 +463,7 @@ body {
 										<th style="width: 200px">시작일</th>
 										<th style="width: 200px">종료일</th>
 										<th style="width: 100px">기간</th>
-<!-- 										<th style="width: 100px">상태</th> -->
+										<!-- 										<th style="width: 100px">상태</th> -->
 									</tr>
 								</thead>
 
@@ -471,7 +472,7 @@ body {
 										<tr>
 											<td>${status.count }</td>
 											<td>${proList.cat_name }</td>
-											<td style="text-align:center">${proList.pro_no }</td>
+											<td style="text-align: center">${proList.pro_no }</td>
 											<td>${proList.pro_title }</td>
 											<td><fmt:formatNumber value="${proList.pro_gp }" />원</td>
 											<td><fmt:formatNumber value="${proList.pro_tp }" />원</td>
@@ -488,26 +489,26 @@ body {
 											<fmt:parseNumber value="${end_Date.time / (1000*60*60*24)}"
 												integerOnly="true" var="endDate"></fmt:parseNumber>
 											<td>${endDate - strDate }일</td>
-<%-- 											<c:choose> --%>
-<%-- 												<c:when test="${proList.pro_status == 2}"> --%>
-<!-- 													<td>승인요청</td> -->
-<%-- 												</c:when> --%>
-<%-- 												<c:when test="${proList.pro_status == 3}"> --%>
-<!-- 													<td>승인</td> -->
-<%-- 												</c:when> --%>
-<%-- 												<c:when test="${proList.pro_status == 4}"> --%>
-<!-- 													<td>반려</td> -->
-<%-- 												</c:when> --%>
-<%-- 												<c:when test="${proList.pro_status == 5}"> --%>
-<!-- 													<td>판매중</td> -->
-<%-- 												</c:when> --%>
-<%-- 												<c:when test="${proList.pro_status == 6}"> --%>
-<!-- 													<td>마감</td> -->
-<%-- 												</c:when> --%>
-<%-- 												<c:when test="${proList.pro_status == 7}"> --%>
-<!-- 													<td>판매중지</td> -->
-<%-- 												</c:when> --%>
-<%-- 											</c:choose> --%>
+											<%-- 											<c:choose> --%>
+											<%-- 												<c:when test="${proList.pro_status == 2}"> --%>
+											<!-- 													<td>승인요청</td> -->
+											<%-- 												</c:when> --%>
+											<%-- 												<c:when test="${proList.pro_status == 3}"> --%>
+											<!-- 													<td>승인</td> -->
+											<%-- 												</c:when> --%>
+											<%-- 												<c:when test="${proList.pro_status == 4}"> --%>
+											<!-- 													<td>반려</td> -->
+											<%-- 												</c:when> --%>
+											<%-- 												<c:when test="${proList.pro_status == 5}"> --%>
+											<!-- 													<td>판매중</td> -->
+											<%-- 												</c:when> --%>
+											<%-- 												<c:when test="${proList.pro_status == 6}"> --%>
+											<!-- 													<td>마감</td> -->
+											<%-- 												</c:when> --%>
+											<%-- 												<c:when test="${proList.pro_status == 7}"> --%>
+											<!-- 													<td>판매중지</td> -->
+											<%-- 												</c:when> --%>
+											<%-- 											</c:choose> --%>
 										</tr>
 									</tbody>
 								</c:forEach>

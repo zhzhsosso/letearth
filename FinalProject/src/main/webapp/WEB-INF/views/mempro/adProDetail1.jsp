@@ -89,12 +89,12 @@ body {
 	z-index: 1;
 }
 
-.img-rectangle{
-  width:400px;
-  height:180px;
-  border: 3px solid #fff;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
-  object-fit:cover;
+.img-rectangle {
+	width: 400px;
+	height: 180px;
+	border: 3px solid #fff;
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+	object-fit: cover;
 }
 
 /* Fixed sidenav, full height */
@@ -214,49 +214,44 @@ body {
 <!--====== PROJECT CONTENT PART START ====== -->
 <section class="project-details-content-area pb-110">
 	<div style="display: flex;">
-<!-- 사이드바 -->
-<div class="sidenav">   
-   <a href="/board/adMain">
-   <i class="fa fa-solid fa-leaf"></i>
-   <span style="position: relative; left: 2px; bottom: 3px; font-weight: bolder;">관리자메인</span>
-   </a>
-   <button class="dropdown-btn">
-   <i class="fa fa-solid fa-paper-plane"></i>
-      &nbsp;고객센터 <i class="fa fa-caret-down"></i>
-   </button>
-   <div class="dropdown-container">
-      <a href="/board/adNoticeList">공지사항</a> 
-      <a href="/board/adFaqList">FAQ</a> 
-      <a href="/board/adRewriteList">1:1문의</a>
-   </div>
-   
-   <button class="dropdown-btn">
-   <i class="fa fa-solid fa-bank"></i>
-      &nbsp;펀딩관리 <i class="fa fa-caret-down"></i>
-   </button>
-   <div class="dropdown-container">
-      <a href="#">프로젝트 승인</a> 
-      <a href="#">프로젝트 목록</a> 
-      <a href="#">재펀딩</a>
-      <a href="#">정산관리</a>
-   </div>
-   
-   <button class="dropdown-btn">
-   <i class="fa fa-solid fa-users"></i>
-      &nbsp;회원관리 <i class="fa fa-caret-down"></i>
-   </button>
-   <div class="dropdown-container">
-      <a href="/report/adRepList">신고접수관리</a> 
-      <a href="#">회원목록</a> 
-      <a href="/report/adBlackList">블랙리스트</a>
-   </div>
-</div>
-<!-- 사이드바 -->
-		
-		
-		
-		
-		
+		<!-- 사이드바 -->
+		<div class="sidenav">
+			<a href="/board/adMain"> <i class="fa fa-solid fa-leaf"></i> <span
+				style="position: relative; left: 2px; bottom: 3px; font-weight: bolder;">관리자메인</span>
+			</a>
+			<button class="dropdown-btn">
+				<i class="fa fa-solid fa-paper-plane"></i> &nbsp;고객센터 <i
+					class="fa fa-caret-down"></i>
+			</button>
+			<div class="dropdown-container">
+				<a href="/board/adNoticeList">공지사항</a> <a href="/board/adFaqList">FAQ</a>
+				<a href="/board/adRewriteList">1:1문의</a>
+			</div>
+
+			<button class="dropdown-btn">
+				<i class="fa fa-solid fa-bank"></i> &nbsp;펀딩관리 <i
+					class="fa fa-caret-down"></i>
+			</button>
+			<div class="dropdown-container">
+				<a href="#">프로젝트 승인</a> <a href="#">프로젝트 목록</a> <a href="#">재펀딩</a>
+				<a href="#">정산관리</a>
+			</div>
+
+			<button class="dropdown-btn">
+				<i class="fa fa-solid fa-users"></i> &nbsp;회원관리 <i
+					class="fa fa-caret-down"></i>
+			</button>
+			<div class="dropdown-container">
+				<a href="/report/adRepList">신고접수관리</a> <a href="#">회원목록</a> <a
+					href="/report/adBlackList">블랙리스트</a>
+			</div>
+		</div>
+		<!-- 사이드바 -->
+
+
+
+
+
 
 
 		<div class="container">
@@ -340,58 +335,88 @@ body {
 								<!-- detail1 : X 달성금액, 달성률, 배송상황, 정산현황 -->
 								<!-- detail2 : O 달성금액, 달성률, 배송상황, 정산현황 -->
 								<div class="project-details-item" style="width: 1000">
-								<br> <br> <br>
-								<div>
-									<p style="font-size: 2.2rem;" align="left">프로젝트 정보</p>
-									<br>
-									<h5 class="title"></h5>
-									<div
-										class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
-										<table class="table table-condensed">
-<!-- 사진을 넣을지 그냥 타이틀만 넣을지 정하기 -->
-											<div class="banner">
-											<img src="/resources/assets/images/messi.jpg" alt=""
-												class="img-rectangle">
-												<h6>　</h6>
-												<h3 class="mb-4">${proVO.pro_title }</h3>
-											<tbody>
-<!-- 												<tr> -->
-<!-- 													<th style="width: 150px">제목</th> -->
-<%-- 													<td>${proVO.pro_title }</td> --%>
-<!-- 												</tr> -->
-												<tr>
-													<th>시작일</th>
-													<td>${proVO.pro_st_dt }</td>
-												</tr>
-												<tr>
-													<th>종료일</th>
-													<td>${proVO.pro_ed_dt }</td>
-												</tr>
-												<tr>
-													<th>기간</th>
-													<fmt:parseDate value="${proVO.pro_st_dt }" var="str_Date"
-														pattern="yyyy-MM-dd" />
-													<fmt:parseNumber value="${str_Date.time / (1000*60*60*24)}"
-														integerOnly="true" var="strDate"></fmt:parseNumber>
-													<fmt:parseDate value="${proVO.pro_ed_dt }" var="end_Date"
-														pattern="yyyy-MM-dd" />
-													<fmt:parseNumber value="${end_Date.time / (1000*60*60*24)}"
-														integerOnly="true" var="endDate"></fmt:parseNumber>
-													<td>${endDate - strDate }일</td>
-												</tr>
-												<tr>
-													<th>목표금액</th>
-													<td><fmt:formatNumber value="${proVO.pro_gp }" />원</td>
-												</tr>
+									<br> <br> <br>
+									<div>
+										<p style="font-size: 2.2rem;" align="left">프로젝트 정보</p>
+										<br>
+										<h5 class="title"></h5>
+										<div
+											class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
+											<table class="table table-condensed">
+												<!-- 사진을 넣을지 그냥 타이틀만 넣을지 정하기 -->
+												<div class="banner">
+													<img src="/resources/assets/images/messi.jpg" alt=""
+														class="img-rectangle">
+													<h6></h6>
+													<h3 class="mb-4">${proVO.pro_title }</h3>
+													<tbody>
+														<!-- 												<tr> -->
+														<!-- 													<th style="width: 150px">제목</th> -->
+														<%-- 													<td>${proVO.pro_title }</td> --%>
+														<!-- 												</tr> -->
+														<tr>
+															<th>시작일</th>
+															<td>${proVO.pro_st_dt }</td>
+														</tr>
+														<tr>
+															<th>종료일</th>
+															<td>${proVO.pro_ed_dt }</td>
+														</tr>
+														<tr>
+															<th>기간</th>
+															<fmt:parseDate value="${proVO.pro_st_dt }" var="str_Date"
+																pattern="yyyy-MM-dd" />
+															<fmt:parseNumber
+																value="${str_Date.time / (1000*60*60*24)}"
+																integerOnly="true" var="strDate"></fmt:parseNumber>
+															<fmt:parseDate value="${proVO.pro_ed_dt }" var="end_Date"
+																pattern="yyyy-MM-dd" />
+															<fmt:parseNumber
+																value="${end_Date.time / (1000*60*60*24)}"
+																integerOnly="true" var="endDate"></fmt:parseNumber>
+															<td>${endDate - strDate }일</td>
+														</tr>
+														<tr>
+															<th>목표금액</th>
+															<td><fmt:formatNumber value="${proVO.pro_gp }" />원</td>
+														</tr>
 
-											</tbody>
-											</div>
-										</table>
+													</tbody>
+												</div>
+											</table>
+										</div>
 									</div>
-								</div>
 								</div>
 							</div>
 							<!-- div class="flex-container" -->
+
+
+
+
+
+							<!-- 프로젝트 미리보기 -->
+
+							<div id="proPreview" class="container"
+								style="width: 145%; overflow-y: scroll; height: 800px;">
+								<p style="font-size: 2em;">
+									<br>프로젝트 미리보기
+								</p>
+								<br>
+								<div
+									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
+									<h5 class="title"></h5>
+
+
+
+								</div>
+								<%-- <jsp:include page="/mempro/infoPreview?pro_no=${proVO.pro_no }"/> --%>
+							</div>
+							<!-- 프로젝트 미리보기 -->
+
+
+
+
+
 
 						</div>
 					</div>
@@ -400,9 +425,9 @@ body {
 				<!-- 프로젝트정보 (프로필) -->
 
 
-				<button type="button" class="btn btn-primary btn-lg"
-					data-toggle="modal" data-target="#proDetail">모달창 : 해당 프로젝트
-					상세보기 가져오기</button>
+				<!-- 				<button type="button" class="btn btn-primary btn-lg" -->
+				<!-- 					data-toggle="modal" data-target="#proDetail">모달창 : 해당 프로젝트 -->
+				<!-- 					상세보기 가져오기</button> -->
 
 
 				<!--  모달에 외부 jsp 가져오기 도전 !! 아직 미완성 .. -->
@@ -418,25 +443,25 @@ body {
 
 
 
-				<!-- 모달 영역 시작 -->
-				<div class="modal fade" id="proDetail" tabindex="-1" role="dialog"
-					aria-labelledby="myModalLabel">
-					<div class="modal-dialog modal-lg modal-dialog-scrollable"
-						role="document" style="width: 1200px; height: 700px">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h4 class="modal-title" id="myModalLabel">모달창 : 해당 프로젝트
-									상세보기 가져오기</h4>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-							</div>
-						</div>
-						<div class="modal-body"></div>
+				<!-- 				모달 영역 시작 -->
+				<!-- 				<div class="modal fade" id="proDetail" tabindex="-1" role="dialog" -->
+				<!-- 					aria-labelledby="myModalLabel"> -->
+				<!-- 					<div class="modal-dialog modal-lg modal-dialog-scrollable" -->
+				<!-- 						role="document" style="width: 1200px; height: 700px"> -->
+				<!-- 						<div class="modal-content"> -->
+				<!-- 							<div class="modal-header"> -->
+				<!-- 								<h4 class="modal-title" id="myModalLabel">모달창 : 해당 프로젝트 -->
+				<!-- 									상세보기 가져오기</h4> -->
+				<!-- 								<button type="button" class="close" data-dismiss="modal" -->
+				<!-- 									aria-label="Close"> -->
+				<!-- 									<span aria-hidden="true">×</span> -->
+				<!-- 								</button> -->
+				<!-- 							</div> -->
+				<!-- 						</div> -->
+				<!-- 						<div class="modal-body"></div> -->
 
-					</div>
-				</div>
+				<!-- 					</div> -->
+				<!-- 				</div> -->
 			</div>
 			<!-- 모달영역 끝 -->
 
@@ -445,15 +470,15 @@ body {
 		</div>
 	</div>
 
-	<div align="center">
-	<button type="submit"
-		onclick="location.href='javascript:window.history.back();'"
-		class="main-btn" style="float: center;">목록</button>
-	<button type="submit" onclick="/mempro/adProList1" class="main-btn"
-		style="float: center;">목록</button>
-	<!-- 			</form> -->
+<!-- 	<div align="center"> -->
+<!-- 		<button type="submit" -->
+<!-- 			onclick="location.href='javascript:window.history.back();'" -->
+<!-- 			class="main-btn" style="float: center;">목록</button> -->
+<!-- 		<button type="submit" onclick="/mempro/adProList1" class="main-btn" -->
+<!-- 			style="float: center;">목록</button> -->
+<!-- 		<!-- 			</form> --> -->
 
-	</div>
+<!-- 	</div> -->
 </section>
 
 
@@ -498,3 +523,24 @@ for (i = 0; i < dropdown.length; i++) {
 }
 </script>
 <!-- 드롭다운 -->
+
+
+<!-- 스크롤안에 jsp 불러오기 -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+<!-- <script> -->
+
+// $(document).ready(function(){
+
+	
+//    $("#proPreview").load("/mempro/infoPreview",);
+// //    $("#proPreview").load("/mempro/infoPreview?pro_no=${pro_no}");
+// //    $("#proPreview").load("/mempro/infoPreview?pro_no=${pdvo.pro_no}");
+// //     $("#proPreview").load("/mempro/infoPreview?pro_no="+pdvo.pro_no);
+
+// });
+<!--  </script> -->
+<!-- 스크롤안에 jsp 불러오기 -->
+
+
+
+

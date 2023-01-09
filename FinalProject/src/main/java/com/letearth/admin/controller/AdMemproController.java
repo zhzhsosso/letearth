@@ -3,6 +3,7 @@ package com.letearth.admin.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -10,16 +11,21 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.letearth.prodetail.domain.Criteria;
 import com.letearth.admin.domain.MemOrdVO;
-import com.letearth.order.domain.OrderVO;
-import com.letearth.prodetail.domain.PageVO;
 import com.letearth.admin.service.AdMemproService;
 import com.letearth.member.domain.MemberVO;
+import com.letearth.order.domain.OrderVO;
+import com.letearth.prodetail.domain.Criteria;
+import com.letearth.prodetail.domain.PageVO;
+import com.letearth.prodetail.domain.ProDetailVO;
+import com.letearth.prodetail.domain.ProReplyVO;
+import com.letearth.prodetail.service.ProDetailService;
 import com.letearth.project.domain.ProjectVO;
 
 @Controller
@@ -30,7 +36,8 @@ public class AdMemproController {
 	= LoggerFactory.getLogger(AdBoardController.class);
 	
 	@Inject
-	private AdMemproService adMemproService; // 그냥 service라고 할지 아직 안정해서 일단 풀네임으로 선언함.
+	private AdMemproService adMemproService;
+	private ProDetailService pdservice;
 	
 	
 	/**
@@ -88,6 +95,57 @@ public class AdMemproController {
 	
 	
 	/**
+	 * 프로젝트 상세조회 1 + 프로젝트 프리뷰
+	 */
+	//http://localhost:8080/mempro/adProDetail1
+//	@RequestMapping(value="/adProDetail1", method=RequestMethod.GET)
+//	public void adProDetail1GET(RedirectAttributes redirect, HttpServletRequest request, Model model, @RequestParam("pro_no") int pro_no, HttpSession session, OrderVO ordVO) throws Exception{
+//		
+////		//파라미터, 세션값 받기
+////		int pro_no = Integer.parseInt(request.getParameter("pro_no"));
+////		String mem_id = (String)session.getAttribute("mem_id");
+////				
+//		pdservice.getProIntro(pro_no);
+//		pdservice.getProInfo(pro_no);
+//		pdservice.getReward(pro_no);
+//		
+//		//특정 글번호에 해당하는 정보 가져오기
+//		ProDetailVO pdvo = pdservice.getProjectDetail(pro_no);
+//					
+//		//판매자 공지사항, 사용자 댓글, 판매자 답글 정보 가져오기
+//		List<ProReplyVO> sellNoticeList = pdservice.getsnListAll(pro_no);
+//		List<ProReplyVO> userReplyList = pdservice.geturListAll(pro_no);
+//		
+//		
+//		ProjectVO proVO = adMemproService.getDetailPro1(pro_no);
+//		int memOrd = adMemproService.totalMemOrd();
+//		int memPro = adMemproService.totalMemPro();
+//		
+//		
+//		
+//		// 연결된 뷰페이지로 정보 전달(model)	
+//		model.addAttribute("pdvo", pdvo);
+//		model.addAttribute("sellNoticeList", sellNoticeList);
+//		model.addAttribute("userReplyList", userReplyList);
+//		model.addAttribute("pro_no", pro_no);
+//					
+//		model.addAttribute("info", pdservice.getProInfo(pro_no));
+//		model.addAttribute("intro", pdservice.getProIntro(pro_no));
+//		model.addAttribute("reward", pdservice.getReward(pro_no));
+//		
+//		model.addAttribute("proVO", proVO);
+//		model.addAttribute("memOrd", memOrd);
+//		model.addAttribute("memPro", memPro);
+//		
+//		
+//		
+//		
+//		
+//	}
+	
+	
+	
+	/**
 	 * 프로젝트 리스트 조회 2(상태5-7)
 	 */
 	//http://localhost:8080/mempro/adProList2
@@ -132,6 +190,7 @@ public class AdMemproController {
 		int memPro = adMemproService.totalMemPro();
 		List<OrderVO> ordList = adMemproService.proOrdMemList(ordVO); // 결제회원 리스트
 		
+		
 		model.addAttribute("proVO", proVO);
 		model.addAttribute("memOrd", memOrd);
 		model.addAttribute("memPro", memPro);
@@ -169,10 +228,18 @@ public class AdMemproController {
 //			if(id==null || !id.equals("admin")) {
 //				return "redirect:member/login";
 //			}
-			
+			///
 			// 서비스 dao 회원 목록 가져오기
 			List<MemberVO> memList = adMemproService.getMemList(cri);
 			
+			
+			// 페이징처리 하단부 정보 준비
+			PageVO pvo = new PageVO();
+			pvo.setCri(cri);
+			mylog.debug("totalMem : " + adMemproService.totalMem());
+			pvo.setTotalCount(adMemproService.totalMem()); // 회원 전체 수
+			
+			model.addAttribute("pvo", pvo);
 			model.addAttribute("memList",memList);
 			System.out.println("memList : " + memList);
 			
@@ -187,28 +254,33 @@ public class AdMemproController {
 	 */
 	//http://localhost:8080/mempro/adMemDetail
 	@RequestMapping(value="/adMemDetail", method=RequestMethod.GET)
-	public void adMemDetailGET(HttpSession session, Model model, @RequestParam("mem_id") String mem_id, MemOrdVO moVO, ProjectVO proVO) throws Exception{
+	public void adMemDetailGET(HttpSession session, Model model, @RequestParam("mem_id") String mem_id, MemOrdVO moVO, ProjectVO proVO, OrderVO ordVO) throws Exception{
 		
 		MemberVO memVO = adMemproService.getMemDetail(mem_id);
 		List<MemOrdVO> ordList = adMemproService.memOrdList(moVO);
 		List<ProjectVO> proList = adMemproService.memProList(proVO);
+		int memOrd = adMemproService.totalMemOrd();
+		int memPro = adMemproService.totalMemPro();
 		
-		mylog.debug("memVO : 매퍼에서 다 넣어졌는지 확인해보기 " + memVO);
-		System.out.println("proVO : 매퍼에서 다 넣어졌는지 확인해보기 " + memVO);
-		System.out.println("ordList : ordList가 만들어졌는가...확인해보자 " + ordList);
-		System.out.println("proList : proList가 만들어졌는가...확인해보자 " + proList);
+//		mylog.debug("memVO : 매퍼에서 다 넣어졌는지 확인해보기 " + memVO);
+//		System.out.println("proVO : 매퍼에서 다 넣어졌는지 확인해보기 " + memVO);
+//		System.out.println("ordList : ordList가 만들어졌는가...확인해보자 " + ordList);
+//		System.out.println("proList : proList가 만들어졌는가...확인해보자 " + proList);
+		System.out.println("memPro : memPro가 만들어졌는가...확인해보자 " + memPro);
+		System.out.println("memOrd : memOrd가 만들어졌는가...확인해보자 " + memOrd);
 		
 		
 		
 		model.addAttribute("memVO", memVO);
 		model.addAttribute("ordList", ordList);
 		model.addAttribute("proList", proList);
+		model.addAttribute("memOrd", memOrd);
+		model.addAttribute("memPro", memPro);
 		
 		
 	}
 	
-	
-	
+
 	/**
 	 * 회원 탈퇴
 	 * GET은 따로 만들지않고 모달창에서 removeForm받은 다음 post로 보내기
@@ -219,6 +291,56 @@ public class AdMemproController {
 		
 		return "redirect:/mempro/adMemList";
 	}
+	
+	
+	
+	
+	
+	/**
+	 * prodetailGET
+	 * 프로젝트 소개
+	 * 
+	 * Prodetailcontroller 에서 가져오기
+	 * 
+	 */
+	@RequestMapping(value="/infoPreview", method=RequestMethod.GET)
+	public String infoPreviewGET(RedirectAttributes redirect, HttpSession session, Model model, HttpServletRequest request) throws Exception {		
+		// 프로젝트 번호에 해당하는 정보들이 보여짐!
+		//파라미터, 세션값 받기
+		int pro_no = Integer.parseInt(request.getParameter("pro_no"));
+		String mem_id = (String)session.getAttribute("mem_id");
+		
+		pdservice.getProIntro(pro_no);
+		pdservice.getProInfo(pro_no);
+		pdservice.getReward(pro_no);
+		
+		//특정 글번호에 해당하는 정보 가져오기
+		ProDetailVO pdvo = pdservice.getProjectDetail(pro_no);
+					
+		//판매자 공지사항, 사용자 댓글, 판매자 답글 정보 가져오기
+		List<ProReplyVO> sellNoticeList = pdservice.getsnListAll(pro_no);
+		List<ProReplyVO> userReplyList = pdservice.geturListAll(pro_no);
+		
+		// 연결된 뷰페이지로 정보 전달(model)	
+		model.addAttribute("pdvo", pdvo);
+		model.addAttribute("sellNoticeList", sellNoticeList);
+		model.addAttribute("userReplyList", userReplyList);
+		model.addAttribute("pro_no", pro_no);
+					
+		model.addAttribute("info", pdservice.getProInfo(pro_no));
+		model.addAttribute("intro", pdservice.getProIntro(pro_no));
+		model.addAttribute("reward", pdservice.getReward(pro_no));
+		
+		return "/mempro/infoPreview";
+	}
+	
+		
+	
+	
+	
+	
+	
+	
 	
 	
 	
