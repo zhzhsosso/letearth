@@ -9,9 +9,9 @@
 <!-- sweetalert -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <style>
-
 .plan {
 	text-align: left;
 	color: #6C9FFF;
@@ -19,8 +19,6 @@
 }
 
 .field {
-	display: flex;
-	vertical-align: middle;
 	float: right;
 }
 
@@ -30,10 +28,12 @@
 
 #exp {
 	border: none;
+	float: right;
 }
 
 #vat {
 	border: none;
+	float: right;
 }
 
 .step-heading {
@@ -66,7 +66,6 @@
 	margin: 0px 30px 30px 10px;
 	font-size: 15px;
 }
-
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -150,7 +149,7 @@ String today = date.format(now);%>
 </script>
 <script type="text/javascript">
 function checkPlan() {
-	if(document.fr.pro_gp.value == "") {
+	if($('#pro_gp').val() < 0) {
 		Swal.fire({
 			icon : 'error',
 			title : '목표금액을 입력해주세요!',
@@ -159,7 +158,7 @@ function checkPlan() {
 		document.fr.pro_gp.focus();
 		return false;
 	}
-	if(document.fr.pro_st_dt.value == "") {
+	if($('#startDate').val() == "") {
 		Swal.fire({
 			icon : 'error',
 			title : '시작날짜를 입력해주세요!',
@@ -168,7 +167,7 @@ function checkPlan() {
 		document.fr.pro_gp.focus();
 		return false;
 	}
-	if(document.fr.pro_ed_dt.value == "") {
+	if($('#endDate').val() == "") {
 		Swal.fire({
 			icon : 'error',
 			title : '종료날짜를 입력해주세요!',
@@ -177,7 +176,7 @@ function checkPlan() {
 		document.fr.pro_ed_dt.focus();
 		return false;
 	}
-	if(document.fr.del_date.value == "") {
+	if($('#del_date').val() == "") {
 		Swal.fire({
 			icon : 'error',
 			title : '배송 예정일을 입력해주세요!',
@@ -186,161 +185,153 @@ function checkPlan() {
 		document.fr.del_date.focus();
 		return false;
 	}
-	fr.submit();
+	$.ajax({
+		async : true,
+	    type:'post',
+	    url:"/project/plan",
+	    data: {
+	    	pro_gp:$("#pro_gp").val(),
+	    	pro_st_dt:$("#startDate").val(),
+	    	pro_ed_dt:$('#endDate').val(),
+	    	del_date:$('#del_date').val(),
+		},
+	    dataType : "text",
+	    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+	    success : function(resp) {
+	    	alert('등록완료');
+	    	$.ajax({
+				url:"/project/reward",
+				type:"get",
+				datatype:"html",
+				success:function(data){
+					$("#plan").html(data);
+				}	
+			});
+	    },
+	    error: function(jqXHR, textStatus, errorThrown) {
+	        alert("ERROR : " + textStatus + " : " + errorThrown);
+	    }        
+	});
 }
 </script>
-</head>
-<body>
+<!--====== PROJECT CONTENT PART START ====== -->
+<form action="/project/plan" method="post" name="fr">
+	<div style="display: flex; justify-content: center;">
+		<div class="col-lg-8">
+			<div class="blog-details__main">
+				<div class="blog-details__main">
+					<div class="meta">
+						<div class="blog-details__tags">
+							<span>모금 금액</span>
+						</div>
+						<small>프로젝트를 완성하기 위해 필요한 금액을 설정해주세요. 목표금액 설정시 꼭 알아두세요. <br>
+							1. 어쩌구 블라블라 <br> 2. 어쩌구 블라블라 <br> 3. 어쩌구 블라블 <br>
+						</small>
+					</div>
+					<div id="gp_div">
+						<input type="text" id="goalP" name="gprice" numberOnlyMinComma="true" koreanCurrency="true" class="textBox" value=${proVO.pro_gp }>원
+						<input type="text" id="pro_gp" name="pro_gp" value="">
+					</div>
+					<div class="field">
+						<span>결제대행 수수료(총 결제액의 3% + VAT)</span>
+						<input type="text" id="vat" style="text-align: right" value="0" readonly> 원<br>
+						<span>목표금액 달성 시 예상 수령 액</span>
+						<input type="text" id="exp" style="text-align: right" value="0" readonly> 원
+					</div>
+				</div>
+				<br>
+				<br>
 
-	<!-- 헤더 -->
-	<%@ include file="../include/header.jsp"%>
-	
-	<!--====== PAGE TITLE PART START ======-->
-    
-    <section class="page-title-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div>
-                        <h3 class="title" style="color: black; font-size: 3em">2. 일정</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--====== PAGE TITLE PART ENDS ======-->
-	
-	
-	<!--====== PROJECT CONTENT PART START ====== -->
-	<form action="/project/plan" method="post">
-	    <section class="project-details-content-area pb-110">
-	        <div class="container">
-	            <div class="row justify-content-center">
-	            
-	          		<!-- 사이드 바 -->
-					<%@ include file="../include/proSidebar.jsp" %>
-					<!-- 사이드 바 -->
-					
-	                <div class="col-lg-8">
-	                    <div class="tab-content" id="pills-tabContent">
-	                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-	                            <div class="project-details-content-top">
-		                           	 <div class="col-lg-4 col-md-7 col-sm-9">
-		                           	 </div>
-	                            </div>
-	                            <div class="project-details-item">
-		                            <p style="font-size: 2.5em;">모금금액
-	                                    <h5 class="title">프로젝트를 완성하기 위해 필요한 금액을 설정해주세요.</h5>
-		                                    목표금액 설정시 꼭 알아두세요. <br>
-		                                    1. 어쩌구 블라블라 <br>
-		                                    2. 어쩌구 블라블라 <br>
-		                                    3. 어쩌구 블라블 <br> <br><br>
-		                                <div id="gp_div">    
-											<input type="text" id="goalP" name="gprice" numberOnlyMinComma="true" koreanCurrency="true" class="textBox">원
-											<input type="hidden" id="pro_gp" name="pro_gp" value="">
-										</div>
-										<hr>
-										<div class="field"> 
-											<p>결제대행 수수료(총 결제액의 3% + VAT)</p>
-											<input type="text" id="vat" style="text-align: right" value="0" readonly> 원
-										</div>
-										<div class="field">
-											<p>목표금액 달성 시 예상 수령 액</p>
-											<input type="text" id="exp" style="text-align: right" value="0" readonly> 원
-										</div>
-									</p>
-									<p style="font-size: 2.5em;">펀딩 일정</p>
-	                                    <h5 class="title">설정한 일시가 되면 펀딩이 자동으로 시작됩니다. <br> 펀딩 시작 전까지 날짜를 변경할 수 있고, 즉시
-										펀딩을 시작할 수 도 있습니다.</h5>
-	                                   <div class="container my-5">
-										<div class="my-5">
-											<div class="steps" id="stepWizard">
-												<div class="step position-relative">
-													<div class="step-heading position-static" id="step1">
-														<div>
-															<div class="num d-inline-flex text-white align-items-center justify-content-center position-relative rounded-circle bg-primary">1</div>
-															<div class="pl-3 d-inline-flex title">시작일</div>
-														</div>
-													</div>
-	
-													<div class="line position-absolute"></div>
-	
-													<div id="collapse1" class="pl-5" aria-labelledby="step1"
-														data-parent="#stepWizard">
-														<div class="step-body">
-															<input type="date" id="startDate" class="textBox" name="pro_st_dt" value="" min=<%=today%>>
-														</div>
-													</div>
-												</div>
-	
-												<div class="step position-relative">
-													<div class="step-heading position-static" id="step2">
-														<div class="num d-inline-flex text-white align-items-center justify-content-center position-relative rounded-circle bg-primary">2</div>
-														<div class="pl-3 d-inline-flex title">펀딩기간</div>
-													</div>
-	
-													<div class="line position-absolute"></div>
-	
-													<div id="collapse2" class="pl-5" aria-labelledby="step2" data-parent="#stepWizard">
-														<div class="step-body">최대 60일</div>
-													</div>
-												</div>
-	
-												<div class="step position-relative">
-													<div class="step-heading position-static" id="step3">
-														<div class="num d-inline-flex text-white align-items-center justify-content-center position-relative rounded-circle bg-primary">3</div>
-														<div class="pl-3 d-inline-flex title">종료일</div>
-													</div>
-	
-													<div class="line position-absolute"></div>
-	
-													<div id="collapse2" class="pl-5">
-														<div class="step-body">
-															<input type="date" id="endDate" class="textBox" name="pro_ed_dt" min=<%=today%> max="">
-														</div>
-													</div>
-												</div>
-												
-												<div class="step position-relative">
-													<div class="step-heading position-static" id="step3">
-														<div class="num d-inline-flex text-white align-items-center justify-content-center position-relative rounded-circle bg-primary">4</div>
-														<div class="pl-3 d-inline-flex title">배송 예정일</div>
-													</div>
-	
-													<div class="line position-absolute"></div>
-	
-													<div id="collapse2" class="pl-5">
-														<div class="step-body" id="del_div">
-															<input type="text" name="del_date" class="textBox" id="del_date">
-														</div>
-													</div>
-												</div>
-	
-												<div class="step position-relative">
-													<div class="step-heading position-static" id="step4">
-														<div class="num d-inline-flex text-white align-items-center justify-content-center position-relative rounded-circle bg-primary">5</div>
-														<div class="pl-3 d-inline-flex title">정산일</div>
-													</div>
-	
-	
-													<div id="collapse2" class="pl-5">
-														<div class="step-body">후원자 결제 종료 다음 날부터 7 영업일</div>
-													</div>
-												</div>
-											</div>
+				<div class="blog-details__main">
+					<div class="blog-details__meta">
+						<div class="blog-details__tags">
+							<span>펀딩 일정</span>
+						</div>
+						<small>설정한 일시가 되면 펀딩이 자동으로 시작됩니다. <br> 펀딩 시작 전까지 날짜를
+							변경할 수 있고, 즉시 펀딩을 시작할 수 도 있습니다.
+						</small>
+					</div>
+				</div>
+				<div class="blog-author__content">
+					<div class="container my-5">
+						<div class="my-5">
+							<div class="steps" id="stepWizard">
+								<div class="step position-relative">
+									<div class="step-heading position-static" id="step1">
+										<div>
+											<div class="num d-inline-flex text-white align-items-center justify-content-center position-relative rounded-circle bg-primary">1</div>
+											<div class="pl-3 d-inline-flex title">시작일</div>
 										</div>
 									</div>
-	                            </div>
-	                    	</div>
-	                	</div>
-							<button type="button" class="main-btn" style="float: right;" onclick="return checkPlan();">다음</button>
-	            	</div>
+
+									<div class="line position-absolute"></div>
+
+									<div id="collapse1" class="pl-5" aria-labelledby="step1" data-parent="#stepWizard">
+										<div class="step-body">
+											<input type="date" id="startDate" class="textBox" name="pro_st_dt" value="${proVO.pro_st_dt }" min=<%=today%>>
+										</div>
+									</div>
+								</div>
+
+								<div class="step position-relative">
+									<div class="step-heading position-static" id="step2">
+										<div class="num d-inline-flex text-white align-items-center justify-content-center position-relative rounded-circle bg-primary">2</div>
+										<div class="pl-3 d-inline-flex title">펀딩기간</div>
+									</div>
+
+									<div class="line position-absolute"></div>
+
+									<div id="collapse2" class="pl-5" aria-labelledby="step2" data-parent="#stepWizard">
+										<div class="step-body">최대 60일</div>
+									</div>
+								</div>
+
+								<div class="step position-relative">
+									<div class="step-heading position-static" id="step3">
+										<div class="num d-inline-flex text-white align-items-center justify-content-center position-relative rounded-circle bg-primary">3</div>
+										<div class="pl-3 d-inline-flex title">종료일</div>
+									</div>
+
+									<div class="line position-absolute"></div>
+
+									<div id="collapse2" class="pl-5">
+										<div class="step-body">
+											<input type="date" id="endDate" class="textBox" name="pro_ed_dt" min=<%=today%> max="" value=${proVO.pro_ed_dt }>
+										</div>
+									</div>
+								</div>
+
+								<div class="step position-relative">
+									<div class="step-heading position-static" id="step3">
+										<div class="num d-inline-flex text-white align-items-center justify-content-center position-relative rounded-circle bg-primary">4</div>
+										<div class="pl-3 d-inline-flex title">배송 예정일</div>
+									</div>
+
+									<div class="line position-absolute"></div>
+
+									<div id="collapse2" class="pl-5">
+										<div class="step-body" id="del_div">
+											<input type="text" name="del_date" class="textBox" id="del_date" value=${proVO.del_date }>
+										</div>
+									</div>
+								</div>
+
+								<div class="step position-relative">
+									<div class="step-heading position-static" id="step4">
+										<div class="num d-inline-flex text-white align-items-center justify-content-center position-relative rounded-circle bg-primary">5</div>
+										<div class="pl-3 d-inline-flex title">정산일</div>
+									</div>
+
+									<div id="collapse2" class="pl-5">
+										<div class="step-body">후원자 결제 종료 다음 날부터 7 영업일</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-	    	</div>
-	    </section>
-	</form>
-
-
-
-	<!-- 푸터 -->
-	<%@ include file="../include/footer.jsp"%>
+			</div>
+		</div>
+	</div>
+	<button type="button" class="main-btn" style="float: right;" onclick="checkPlan();">다음</button>
+</form>

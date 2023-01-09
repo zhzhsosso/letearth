@@ -5,6 +5,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../resources/assets/css/project.css">
 <script src="../resources/assets/js/vendor/jquery-3.5.1.min.js"></script>
+    
 <style>
 #rangeGraph{
     height:10px;
@@ -46,7 +47,6 @@ only screen and (min-width: 768px) and (max-width: 991px)
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
-	alert('실행!');
 	// 페이지 로딩 시 내정보 보여주기
 	$.ajax({
 		url:"/mypage/myInfo",
@@ -57,10 +57,6 @@ $(document).ready(function(){
 		}	
 	});
 	
-});
-</script>
-<script>
-$(document).ready(function(){
 	// 내정보
 	$('#myInfo-tab').click(function() {
 		$.ajax({
@@ -132,7 +128,7 @@ $(document).ready(function(){
 			}	
 		});
 	});
-
+	
 });
 </script>
 <!-- 헤더 -->
@@ -171,7 +167,7 @@ $(document).ready(function(){
                         <ul class="nav nav-pills" id="pills-tab" role="tablist">
                         	<!-- 탭 메뉴 -->
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="myInfo-tab" data-toggle="pill" href="#myInfo" role="tab" aria-controls="pills-profile" aria-selected="false" style="padding: 0px; margin-left:1em; margin-right:1em; background: none; color: #1b1f2e;">나의 정보</a>
+                                <a class="nav-link active" id="myInfo-tab" data-toggle="pill" href="#myInfo" role="tab" aria-controls="myInfo" aria-selected="true" style="padding: 0px; margin-left:1em; margin-right:1em; background: none; color: #1b1f2e;">나의 정보</a>
                             </li>
                             
                             <c:if test="${memVO.mem_status == 1}">
@@ -198,7 +194,7 @@ $(document).ready(function(){
             	 <hr>
                     <div class="tab-content" id="pills-tabContent">
 	                    <!-- 나의 정보 -->
-	                    <div class="tab-pane fade" id="myInfo" role="tabpanel" aria-labelledby="myInfo-tab">
+	                    <div class="tab-pane fade show active" id="myInfo" role="tabpanel" aria-labelledby="myInfo-tab">
 	                    </div>
 	                    <!-- 나의 정보 -->
 	                    <!-- 나의 프로젝트 -->

@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script src="../resources/assets/js/vendor/jquery-3.5.1.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -18,39 +20,56 @@ $(document).ready(function(){
 <script>
 function ckModal(){
 	if(document.getElementById("result").value == ""){
-		swal('프로젝트 심사 기준을 확인해주세요!',"",'info');
-	} else if(document.getElementById("result").value == "ok"){
-		location.href="/project/verification";
+		Swal.fire({
+	    	icon: 'error',
+		title: '심사 기준을 확인해주세요.'
+	})
+		document.fr.reward_stock.focus();
+		return false;
 	}
+	
+	location.href="/project/verification";
 }
 </script>
 
+<section class="about-area pt-120 pb-120">
+	<section class="project-details-content-area pb-110">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8">
+					<div class="tab-content" id="pills-tabContent">
+						<div class="tab-pane fade show active" id="pills-home"
+							role="tabpanel" aria-labelledby="pills-home-tab">
+							<div class="project-details-content-top">
+								<div class="col-lg-4 col-md-7 col-sm-9"></div>
+							</div>
+							<div class="project-details-item">
+								<div class="item">
+									<br>
+									<p style="font-size: 2.5em; color: black; padding-bottom: 1em">
+									프로젝트 심사기준을 확인해주세요</p>
+									<h5 class="title" style="padding-bottom: 1em">심사 기준을 준수하면 보다 빠른 프로젝트 승인이 가능합니다.</h5>
+									<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="btn">
+										심사 기준 전문 보기
+									</button>
+									<br>
 
-	<section class="next-big-thing-area next-big-thing-about-area">
-        <div class="container">
-        
-         	<div class="row justify-content-center">
-		        <div class="col-lg-8">
-		            <div class="section-title text-center">
-		            <h3 class="title">프로젝트 심사기준을 확인해주세요</h3>
-		                <span>심사 기준을 준수하면 보다 빠른 프로젝트 승인이 가능합니다.</span>
-		                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="btn">
-									심사 기준 전문 보기
-								</button> <br>
-								
-								<!-- 모달 영역 시작 -->
-								<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-									<div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h4 class="modal-title" id="myModalLabel">광고 심의 가이드라인</h4>
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-													<span aria-hidden="true">×</span>
-												</button>
-											</div>
-											<div class="modal-body" align="left">
-											<h2>프로젝트 심사 기준</h2><br>
-											<p style="color: black; font-size: 20px;">&#128172;제1조 목적</p> <br>
+									<!-- 모달 영역 시작 -->
+									<div class="modal fade" id="myModal" tabindex="-1"
+										role="dialog" aria-labelledby="myModalLabel">
+										<div class="modal-dialog modal-lg modal-dialog-scrollable"
+											role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title" id="myModalLabel">광고 심의 가이드라인</h4>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">×</span>
+													</button>
+												</div>
+												<div class="modal-body" align="left">
+													<h2>프로젝트 심사 기준</h2>
+													<br>
+													<p style="color: black; font-size: 20px;">&#128172;제1조 목적</p> <br>
 											<p>
 											텀블벅에서 진행되는 모든 프로젝트는 이용약관에 따라,
 											모금상의 신뢰와 안전을 위해 공개되기 전에 텀블벅 심사팀(이하 ‘운영자’)의 심사를 거칩니다.
@@ -121,56 +140,46 @@ function ckModal(){
 											② 후원자의 배송정보와 연락처는 텀블벅 시스템을 통해 개인 정보 제공 동의를 거쳐 수집된 배송정보와 연락처를 사용하여야 하며, 부득이한 사유 없이 별도의 배송정보를 수집해서는 안 됩니다.<br>
 											</p>
 											<br>
-											
+
+												</div>
 											</div>
 										</div>
 									</div>
+									<!-- 모달영역 끝 -->
+									
 								</div>
-								<!-- 모달영역 끝 -->
-		            </div>
-		        </div>
-		    </div>
-		    
-            <div class="row align-items-center"> 
-                <div class="col-lg-6">              
-                    <div class="next-big-thing-content-2">  
-		                 <p>승인 가능 프로젝트</p>
-                        <div class="next-big-thing-list">
-                            <div class="list">
-                                <ul>
-                                    <li><i class="flaticon-check"></i>기존에 없던 새로운 시도</li>
-                                    <li><i class="flaticon-check"></i>기존에 없던 작품, 제품, 디지털 콘텐츠, 활동, 행사</li>
-                                    <li><i class="flaticon-check"></i>창작자의 이전 제품 및 콘텐츠는 새로운 선물에 부수적으로 제공 가능</li>
-                                </ul>
-                            </div>                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="next-big-thing-content-2">
-                        <p>반려 대상 프로젝트</p>
-                        <div class="next-big-thing-list">
-                            <div class="list">
-                                <ul>
-                                    <li><i class="flaticon-check"></i>기존 상품· 콘텐츠의 판매 및 홍보</li>
-                                    <li><i class="flaticon-check"></i>제3자에 후원금 또는 물품 기부</li>
-                                    <li><i class="flaticon-check"></i>시중에 판매 및 유통되었던 제품·콘텐츠 제공</li>
-                                    <li><i class="flaticon-check"></i>현금, 주식, 지분, 복권, 사이버머니, 상품권 등 수익성 상품 제공</li>
-                                    <li><i class="flaticon-check"></i>추첨을 통해서만 제공되는 선물</li>
-                                    <li><i class="flaticon-check"></i>무기, 군용장비, 라이터 등 위험 품목</li>
-                                </ul>
-                            </div>                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    		<input type="hidden" name="result" value="" id="result">
-            <div class="input-box mt-20 text-center">
-	            <a class="main-btn" href="/project/createSecond">뒤로가기</a>
-	            <input type="submit" class="main-btn" value="확인" onclick="return ckModal();">
-            </div>
-            
-          
+								<div class="item">
+					                <span>승인 가능 프로젝트</span>
+			                                <ul>
+			                                    <li>기존에 없던 새로운 시도</li>
+			                                    <li>기존에 없던 작품, 제품, 디지털 콘텐츠, 활동, 행사</li>
+			                                    <li>창작자의 이전 제품 및 콘텐츠는 새로운 선물에 부수적으로 제공 가능</li>
+			                                </ul>
+			                                <br>
+			                                <br>
+			                                
+			                       <span>반려 대상 프로젝트</span>
+			                                <ul>
+			                                    <li>기존 상품· 콘텐츠의 판매 및 홍보</li>
+			                                    <li>제3자에 후원금 또는 물품 기부</li>
+			                                    <li>시중에 판매 및 유통되었던 제품·콘텐츠 제공</li>
+			                                    <li>현금, 주식, 지분, 복권, 사이버머니, 상품권 등 수익성 상품 제공</li>
+			                                    <li>추첨을 통해서만 제공되는 선물</li>
+			                                    <li>무기, 군용장비, 라이터 등 위험 품목</li>
+			                                </ul>
+					            </div>
+								</div>
+								<div style="display: flex; justify-content: center;">
+									<input type="hidden" name="result" id="result" value="">
+									<a class="main-btn" href="/project/createSecond" style="margin-right: 2em;">뒤로가기</a>
+									<a class="main-btn" onclick="ckModal();">다음</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</section>
+</section>
+
 <%@ include file="../include/footer.jsp" %>

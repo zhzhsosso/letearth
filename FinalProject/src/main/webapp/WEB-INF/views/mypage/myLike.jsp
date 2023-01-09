@@ -27,7 +27,22 @@
     margin-right: 10px;
 }
 </style>
+
 <script type="text/javascript">
+$(document).ready(function(){
+	console.log(document.getElementById("achi_rate").innerHTML.split(".")[0]);
+	var rate = document.getElementById("achi_rate").innerHTML.split(".")[0];
+	
+	if(rate >= 100){
+	   	 $("#rangeGraph span").css("width", "100%")
+	} else{
+	   	 $("#rangeGraph span").css("width", rate+"%")
+	}
+		
+	});
+});
+
+
 function deleteLike(like_no) {
 	Swal.fire({
 		title: '좋아요를 삭제하시겠습니까?',
@@ -96,7 +111,7 @@ function deleteLike(like_no) {
 								<div class="projects-range-content">
 									<ul>
 										<li>달성률:</li>
-										<li id="rate">${likey.achievement_rate}%</li>
+										<li id="achi_rate">${likey.achievement_rate}%</li>
 									</ul>
 									<div id="rangeGraph">
 										<span></span>
