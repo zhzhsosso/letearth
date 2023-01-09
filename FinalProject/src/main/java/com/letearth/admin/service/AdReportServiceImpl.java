@@ -78,4 +78,11 @@ public class AdReportServiceImpl implements AdReportService {
 	public AdminVO getReport(Integer rep_no) throws Exception {
 		return adReportDAO.getReport(rep_no);
 	}
+	
+	// 신고검색
+//	@Override
+//	public List<AdminVO> getListReport(String type, String keyword, Criteria cri) throws Exception {
+//		
+//		return adReportDAO.getListReport(type, keyword, cri);
+//	}
 }

@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -133,6 +134,32 @@ public class AdReportController {
 		
 	}
 
-	
+	// http://localhost:8080/report/adRepList
+	// 검색 GET
+//	@RequestMapping(value = "/adRepsList",method = RequestMethod.GET)
+//	public String adRepsListGET(Criteria cri,HttpSession session,Model model, @RequestAttribute("keyword") String keyword, @RequestAttribute("type") String type) throws Exception{
+//		
+//		session.setAttribute("updateCheck", true); // => 세션 존재하면 true
+//		
+//		List<AdminVO> adRepsList = adReportService.getListReport(type, keyword, cri);
+//		
+//		// 페이징처리 하단부 정보 준비
+//		PageVO pvo = new PageVO();
+//		pvo.setCri(cri);
+//		mylog.debug("totalRepCnt : " + adReportService.totalRepCnt());
+//		pvo.setTotalCount(adReportService.totalRepCnt()); // 작성되어있는 글 전체 개수
+//		
+//		model.addAttribute("pvo", pvo);
+//		
+//		// 연결되어 있는 뷰페이지로 정보 전달 (Model 객체)
+//		model.addAttribute("adRepsList", adRepsList);
+//		model.addAttribute("keyword", keyword);
+//		model.addAttribute("type", type);
+//		
+//		
+//		// 페이지 이동(/report/adRepsList)	
+//		return "/report/adRepsList";
+//		
+//	}
 	
 }

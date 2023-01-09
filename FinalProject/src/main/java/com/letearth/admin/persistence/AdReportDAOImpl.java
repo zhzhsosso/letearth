@@ -89,4 +89,6 @@ public class AdReportDAOImpl implements AdReportDAO {
 		return vo;
 	}
 	
+
+	
 }

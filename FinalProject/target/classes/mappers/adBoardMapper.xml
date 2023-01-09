@@ -23,7 +23,7 @@
   	
  	<!-- FAQ 글전체 개수 -->
 	  <select id="countFaq" resultType="int">
-	  	select count(not_no) from notice
+	  	select count(*) from notice
 	  	where not_cat = 3
 	 </select>
   	
@@ -67,7 +67,7 @@
   	</select> 	
  	<!-- 1:1 문의 전체 글 개수 -->
  	<select id="countRewrite" resultType="int">
-	  	select count(not_no) from notice
+	  	select count(*) from notice
 	  	where not_cat = 0
 	</select>
  	
@@ -217,9 +217,7 @@
  	
  	
  	
- 	
- 	
- 	
+
  	
  	
  	

@@ -24,8 +24,8 @@
   padding-bottom : 100px;
 
   position: relative;
-  top: 330px;
-  left: 250px; 
+  top: 300px;
+  left: 300px; 
 }
 
 /* Style the sidenav links and the dropdown button */
