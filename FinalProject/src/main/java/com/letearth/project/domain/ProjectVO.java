@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.letearth.member.domain.MemberVO;
+
 import lombok.Data;
 
 @Data
@@ -39,6 +41,8 @@ public class ProjectVO {
 	private String par_intro;
 	private String pro_bdate;
 	private MultipartFile file;
+	
+	private MemberVO MemberVO;
 	
 }
 

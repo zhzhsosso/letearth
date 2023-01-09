@@ -8,6 +8,7 @@ import lombok.Data;
 public class MemberVO {
 	private String mem_id;
 	private String mem_pw;
+	private int mem_no;
 	private String mem_name;
 	private String mem_phone;
 	private String mem_email;
