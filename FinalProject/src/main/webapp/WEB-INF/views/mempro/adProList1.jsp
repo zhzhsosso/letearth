@@ -39,6 +39,14 @@ hr {
 	background-color: #9dd84b;
 	border: 0;
 }
+
+/*hover*/
+#hov a:hover {
+	color: green;
+	transition: 0s;
+	font-weight: bolder;
+	/*text-decoration: underline;*/
+}
 </style>
 </head>
 <body>
@@ -61,8 +69,10 @@ hr {
 				</h2>
 				<div class="col-xs-12">
 					<div style="font-size: 2.2rem;" align="left">
-						<a id="listAll">전체</a> | <a id="list2">승인요청</a> | <a id="list3">승인</a>
-						| <a id="list4">반려</a>
+						<span id="hov"> <a id="listAll">전체</a> | <a id="list2">승인요청</a>
+							| <a id="list3">승인</a> | <a id="list4">반려</a>
+						</span>
+
 					</div>
 					<br>
 					<!-- 어드민 -->
@@ -92,7 +102,7 @@ hr {
 								<table class="table table-hover">
 									<tbody>
 										<tr style="background-color: #EEF5E6">
-											<th style="font-size: 15px;">프로젝트 번호</th>
+											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">프로젝트 번호</th>
 											<th style="font-size: 15px;">프로젝트 이름</th>
 											<th style="font-size: 15px;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
@@ -139,7 +149,7 @@ hr {
 								<table class="table table-hover">
 									<tbody>
 										<tr style="background-color: #f8f9fa">
-											<th style="font-size: 15px;">프로젝트 번호</th>
+											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">프로젝트 번호</th>
 											<th style="font-size: 15px;">프로젝트 이름</th>
 											<th style="font-size: 15px;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
@@ -176,7 +186,7 @@ hr {
 								<table class="table table-hover">
 									<tbody>
 										<tr style="background-color: #f8f9fa">
-											<th style="font-size: 15px;">프로젝트 번호</th>
+											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">프로젝트 번호</th>
 											<th style="font-size: 15px;">프로젝트 이름</th>
 											<th style="font-size: 15px;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
@@ -212,7 +222,7 @@ hr {
 								<table class="table table-hover">
 									<tbody>
 										<tr style="background-color: #f8f9fa">
-											<th style="font-size: 15px;">프로젝트 번호</th>
+											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">프로젝트 번호</th>
 											<th style="font-size: 15px;">프로젝트 이름</th>
 											<th style="font-size: 15px;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
@@ -249,18 +259,18 @@ hr {
 				<div class="box-footer clearfix" id="paging">
 					<ul class="pagination pagination-sm no-margin pull-left">
 						<c:if test="${pvo.prev }">
-							<li><a href="/report/adBlackList?page=${pvo.startPage-1 }">«</a></li>
+							<li><a href="/mempro/adProList1?page=${pvo.startPage-1 }">«</a></li>
 							<!-- 10 -->
 						</c:if>
 
 						<c:forEach var="idx" begin="${pvo.startPage }"
 							end="${pvo.endPage }" step="1">
 							<li <c:out value="${idx == pvo.cri.page? 'class=active':'' }"/>><a
-								href="/report/adBlackList?page=${idx }">${idx }</a></li>
+								href="/mempro/adProList1?page=${idx }">${idx }</a></li>
 						</c:forEach>
 
 						<c:if test="${pvo.next }">
-							<li><a href="/report/adBlackList?page=${pvo.endPage+1 }">»</a></li>
+							<li><a href="/mempro/adProList1?page=${pvo.endPage+1 }">»</a></li>
 							<!-- 11 -->
 						</c:if>
 					</ul>

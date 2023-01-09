@@ -117,6 +117,16 @@ hr {
 		font-size: 18px;
 	}
 }
+
+/*hover*/
+#hov a:hover{
+  color : green;
+  transition : 0s;
+  font-weight: bolder;
+  /*text-decoration: underline;*/
+}
+
+
 </style>
 </head>
 <body>
@@ -141,9 +151,10 @@ hr {
 				</h2>
 				<div class="col-xs-12">
 					<div style="font-size: 2.2rem;" align="left">
+						<span id="hov">
 						<a id="listAll">전체</a> | <a id="list2">구매회원</a> | <a id="list3">판매회원</a>
 						| <a id="list4">블랙리스트</a>
-						<!-- 				<hr id="pro2Selector1"> -->
+						</span>
 					</div>
 					<!-- 어드민 -->
 					<br>
@@ -172,7 +183,8 @@ hr {
 								<table class="table table-hover">
 									<tbody>
 										<tr style="background-color: #EEF5E6">
-											<th style="font-size: 15px;">회원 아이디</th>
+											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">회원 번호</th>
+											<th style="font-size: 15px;" >회원 아이디</th>
 											<th style="font-size: 15px;">회원 이름</th>
 											<th style="font-size: 15px;">회원 연락처</th>
 											<th style="font-size: 15px;">회원 분류</th>
@@ -180,10 +192,10 @@ hr {
 											<th style="font-size: 15px;">상세정보</th>
 										</tr>
 
-										<c:forEach var="memVO" items="${memList }">
+										<c:forEach var="memVO" items="${memList }" varStatus="status">
 											<tr>
-												<%-- 		<td><a href="/mempro/adMemDetail?mem_id=${memVO.mem_id }">${memVO.mem_id }</a></td>--%>
-												<td style="font-size: 15px;">${memVO.mem_id }</td>
+												<td style="font-size: 15px;">${memVO.mem_no }</td>
+												<td style="font-size: 15px;"><a href="/mempro/adMemDetail?mem_id=${memVO.mem_id }">${memVO.mem_id }</a></td>
 												<td style="font-size: 15px;">${memVO.mem_name }</td>
 												<td style="font-size: 15px;">${memVO.mem_phone }</td>
 
@@ -221,14 +233,15 @@ hr {
 							</form>
 						</div>
 						<!-- memAll -->
-						<!-- mem2 -->
+						<!-- mem2 : 구매회원-->
 
 						<div class="box-body table-responsive no-padding" id=mem2>
 							<form role="form" name="fr" id="contact-form" action=""
 								method="post">
 								<table class="table table-hover">
 									<tbody>
-										<tr style="background-color: #f8f9fa">
+										<tr style="background-color: #EEF5E6">
+											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">회원 번호</th>
 											<th style="font-size: 15px;">회원 아이디</th>
 											<th style="font-size: 15px;">회원 이름</th>
 											<th style="font-size: 15px;">회원 연락처</th>
@@ -237,10 +250,11 @@ hr {
 											<th style="font-size: 15px;">상세정보</th>
 										</tr>
 
-										<c:forEach var="memVO2" items="${memList }">
+										<c:forEach var="memVO2" items="${memList }" >
 											<c:if test="${memVO2.mem_status == 0}">
 												<tr>
-													<td style="font-size: 15px;">${memVO2.mem_id }</td>
+													<td style="font-size: 15px;">${memVO2.mem_no }</td>
+													<td style="font-size: 15px;"><a href="/mempro/adMemDetail?mem_id=${memVO2.mem_id }">${memVO2.mem_id }</a></td>
 													<td style="font-size: 15px;">${memVO2.mem_name }</td>
 													<td style="font-size: 15px;">${memVO2.mem_phone }</td>
 													<td style="font-size: 15px;"><span
@@ -262,17 +276,18 @@ hr {
 								</table>
 							</form>
 						</div>
-						<!-- mem2 -->
+						<!-- mem2 : 구매회원-->
 
 
-						<!-- mem3 -->
+						<!-- mem3 : 판매회원 -->
 
 						<div class="box-body table-responsive no-padding" id="mem3">
 							<form role="form" name="fr" id="contact-form" action=""
 								method="post">
 								<table class="table table-hover">
 									<tbody>
-										<tr style="background-color: #f8f9fa">
+										<tr style="background-color: #EEF5E6">
+											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">회원 번호</th>
 											<th style="font-size: 15px;">회원 아이디</th>
 											<th style="font-size: 15px;">회원 이름</th>
 											<th style="font-size: 15px;">회원 연락처</th>
@@ -281,11 +296,11 @@ hr {
 											<th style="font-size: 15px;">상세정보</th>
 										</tr>
 
-										<c:forEach var="memVO3" items="${memList }">
+										<c:forEach var="memVO3" items="${memList }" >
 											<c:if test="${memVO3.mem_status == 1}">
 												<tr>
-
-													<td style="font-size: 15px;">${memVO3.mem_id }</td>
+													<td style="font-size: 15px;">${memVO3.mem_no }</td>
+													<td style="font-size: 15px;"><a href="/mempro/adMemDetail?mem_id=${memVO3.mem_id }">${memVO3.mem_id }</a></td>
 													<td style="font-size: 15px;">${memVO3.mem_name }</td>
 													<td style="font-size: 15px;">${memVO3.mem_phone }</td>
 													<td style="font-size: 15px;"><span
@@ -308,16 +323,17 @@ hr {
 								</table>
 							</form>
 						</div>
-						<!-- mem3 -->
+						<!-- mem3 : 판매회원 -->
 
-						<!-- mem4 -->
+						<!-- mem4 : 블랙리스트 -->
 
 						<div class="box-body table-responsive no-padding" id="mem4">
 							<form role="form" name="fr" id="contact-form" action=""
 								method="post">
 								<table class="table table-hover">
 									<tbody>
-										<tr style="background-color: #f8f9fa">
+										<tr style="background-color: #EEF5E6">
+											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">회원 번호</th>
 											<th style="font-size: 15px;">회원 아이디</th>
 											<th style="font-size: 15px;">회원 이름</th>
 											<th style="font-size: 15px;">회원 연락처</th>
@@ -326,12 +342,11 @@ hr {
 											<th style="font-size: 15px;">상세정보</th>
 										</tr>
 
-										<c:forEach var="memVO4" items="${memList }">
+										<c:forEach var="memVO4" items="${memList }" varStatus="status">
 											<c:if test="${memVO4.mem_status == 3}">
-												<%-- 										<c:if test="${not empty memVO3.mem_bdate }"> --%>
 												<tr>
-
-													<td style="font-size: 15px;">${memVO4.mem_id }</td>
+													<td style="font-size: 15px;">${memVO4.mem_no }</td>
+													<td style="font-size: 15px;"><a href="/mempro/adMemDetail?mem_id=${memVO4.mem_id }">${memVO4.mem_id }</a></td>
 													<td style="font-size: 15px;">${memVO4.mem_name }</td>
 													<td style="font-size: 15px;">${memVO4.mem_phone }</td>
 
@@ -354,7 +369,7 @@ hr {
 								</table>
 							</form>
 						</div>
-						<!-- mem4 -->
+						<!-- mem4 : -->
 
 
 
@@ -364,18 +379,18 @@ hr {
 					<div class="box-footer clearfix" id="paging">
 						<ul class="pagination pagination-sm no-margin pull-left">
 							<c:if test="${pvo.prev }">
-								<li><a href="/report/adBlackList?page=${pvo.startPage-1 }">«</a></li>
+								<li><a href="/mempro/adMemList?page=${pvo.startPage-1 }">«</a></li>
 								<!-- 10 -->
 							</c:if>
 
 							<c:forEach var="idx" begin="${pvo.startPage }"
 								end="${pvo.endPage }" step="1">
 								<li <c:out value="${idx == pvo.cri.page? 'class=active':'' }"/>><a
-									href="/report/adBlackList?page=${idx }">${idx }</a></li>
+									href="/mempro/adMemList?page=${idx }">${idx }</a></li>
 							</c:forEach>
 
 							<c:if test="${pvo.next }">
-								<li><a href="/report/adBlackList?page=${pvo.endPage+1 }">»</a></li>
+								<li><a href=/mempro/adMemList?page=${pvo.endPage+1 }">»</a></li>
 								<!-- 11 -->
 							</c:if>
 						</ul>
