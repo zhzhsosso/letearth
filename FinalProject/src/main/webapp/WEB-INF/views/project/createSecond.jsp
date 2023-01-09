@@ -64,9 +64,11 @@
 					                                	　펀딩 성공 후의 정산을 위해 신분증 또는 사업자 등록증, 국내 은행 계좌를 준비해 주세요.
 					                           		</li>
 					                            </ul>	                           
-					                        </div>                     
-					                        <a class="main-btn" href="/project/createFirst">뒤로가기</a>
-					                        <a class="main-btn" onclick="return Checkb();">다음</a>
+					                        </div>
+					                        <div style="display: flex; justify-content: center;">                
+						                        <a class="main-btn" href="/project/createFirst" style="margin-right: 2em;">뒤로가기</a>
+						                        <a class="main-btn" onclick="return Checkb();">다음</a>
+					                        </div>
 				                        </form>
 	                                </div>
 	                            </div>

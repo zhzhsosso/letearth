@@ -128,13 +128,21 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	/**
+	 * 주문 내역
+	 */
+	@Override
+	public List<PlusVO> getMyOrder(PlusVO plusVO) throws Exception {
+		return memDAO.getMyOrder(plusVO);
+	}
+
+	/**
 	 * 관심 프로젝트 불러오기
 	 */
 	@Override
 	public List<PlusVO> getLikey(PlusVO plusVO) throws Exception {
 		return memDAO.getLikey(plusVO);
 	}
-	
+
 	/**
 	 * 좋아요 삭제
 	 */

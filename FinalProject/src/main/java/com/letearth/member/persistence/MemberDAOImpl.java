@@ -135,6 +135,14 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 	
 	/**
+	 * 주문 목록
+	 */
+	@Override
+	public List<PlusVO> getMyOrder(PlusVO plusVO) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getMyOrder", plusVO);
+	}
+
+	/**
 	 * 관심 프로젝트 불러오기
 	 */
 	@Override
