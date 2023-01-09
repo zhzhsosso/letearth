@@ -46,7 +46,10 @@ public class AdminVO {
 	// ProjectVO 
 	private ProjectVO ProjectVO;
 	
-	
+	// 검색기능
+	private String type;
+	private String keyword;
+	private String colName;
 	
 	
 	

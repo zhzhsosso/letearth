@@ -28,14 +28,14 @@
 
 <section class="contact-form-area">
  <div style="display: flex;">
-<%@ include file="../include/adSide.jsp" %>			
+<%@ include file="../include/adSide1.jsp" %>			
 	<div class="container">
 		
 				
 
-			
-			
-			
+		<div align="center">
+		<img alt="" src="/resources/main_construction.png" width="700px;" height="1000px;">	
+		</div>		
 			
 			
 			 내용

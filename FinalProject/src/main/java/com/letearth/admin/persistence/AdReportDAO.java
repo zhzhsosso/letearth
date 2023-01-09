@@ -38,4 +38,5 @@ public interface AdReportDAO {
 	// 신고상세
 	public AdminVO getReport(Integer rep_no) throws Exception;
 	
+	
 }

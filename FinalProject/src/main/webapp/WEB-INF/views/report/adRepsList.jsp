@@ -163,23 +163,23 @@
 						<div class="box-tools" align="right">
 							<div class="input-group input-group-sm hidden-xs"
 								style="width: 180px; height: 50px;">
-<!-- 				<form role="searchForm" method="get" onsubmit="return fun1()"> -->
-<!-- 					<div class="fcntr" style="width:200px;"> -->
-<!--                    		 <select name="type" id="type" style="width: 50%;"> -->
-<!--                        		<option value="">::검색유형::</option> -->
-<!-- 							<option value="1">신고자</option> -->
-<!-- 							<option value="2">신고대상</option>							   -->
-<!-- 						</select> -->
-<!--                 	</div> -->
+				<form role="searchForm" method="get" onsubmit="return fun1()">
+					<div class="fcntr" style="width:200px;">
+                   		 <select name="type" id="type" style="width: 50%;">
+                       		<option value="">::검색유형::</option>
+							<option value="1">신고자</option>
+							<option value="2">신고대상</option>							  
+						</select>
+                	</div>
 					
-								<input type="text" name="keyword"
+								<input type="text" name="table_search"
 									class="form-control pull-right" placeholder="Search" style="height: 30px; font-size: 1.5rem;">
 								<div class="input-group-btn">
 									<button type="submit" class="btn btn-default" id="sbtn">
 										<i class="fa fa-search"></i>
 									</button>
 								</div>
-<!-- 				</form> -->
+				</form>
 							</div>
 						</div>
 					</div>
@@ -334,7 +334,6 @@
 							</tbody>
 						</table>
 <!-- 					  </form> -->
-<br><br><br><br><br><br>
 					</div>
 <!-- tableMem -->
 <!-- tablePro -->
