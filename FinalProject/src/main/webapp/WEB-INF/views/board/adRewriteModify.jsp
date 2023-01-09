@@ -7,7 +7,7 @@
    
    <h1>css정비중입니다...</h1>
   
-   
+   삭제예정
    <img alt="" src="/resources/main_construction.png">
    
    

@@ -5,44 +5,68 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../resources/assets/css/project.css">
 <script src="../resources/assets/js/vendor/jquery-3.5.1.min.js"></script>
- <!--====== Required meta tags ======-->
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <!--====== Title ======-->
-    <title>LET EARTH</title>
-    
-    <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="../resources/assets/images/favicon.ico" type="image/png">
 
-    <!--====== Bootstrap css ======-->
-    <link rel="stylesheet" href="../resources/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<!--====== Required meta tags ======-->
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!--====== Title ======-->
+<title>LET EARTH</title>
+
+<!--====== Favicon Icon ======-->
+<link rel="shortcut icon" href="../resources/assets/images/favicon.ico" type="image/png">
+
+<!--====== Bootstrap css ======-->
+<link rel="stylesheet" href="../resources/assets/css/bootstrap.min.css">
+
+<!--====== flaticon css ======-->
+<link rel="stylesheet" href="../resources/assets/css/flaticon.css">
+
+<!--====== odometer css ======-->
+<link rel="stylesheet" href="../resources/assets/css/odometer.min.css">
+
+<!--====== magnific popup css ======-->
+<link rel="stylesheet" href="../resources/assets/css/magnific-popup.css">
+
+<!--====== Fontawesome css ======-->
+<link rel="stylesheet" href="../resources/assets/css/font-awesome.min.css">
+
+<!--====== animate css ======-->
+<link rel="stylesheet" href="../resources/assets/css/animate.min.css">
+
+<!--====== Slick css ======-->
+<link rel="stylesheet" href="../resource/sassets/css/slick.css">
+
+<!--====== Default css ======-->
+<link rel="stylesheet" href="../resources/assets/css/default.css">
+
+<!--====== Style css ======-->
+<link rel="stylesheet" href="../resources/assets/css/style.css">
+
     
-    <!--====== flaticon css ======-->
-    <link rel="stylesheet" href="../resources/assets/css/flaticon.css">
-    
-    <!--====== odometer css ======-->
-    <link rel="stylesheet" href="../resources/assets/css/odometer.min.css">
-    
-    <!--====== magnific popup css ======-->
-    <link rel="stylesheet" href="../resources/assets/css/magnific-popup.css">
-    
-    <!--====== Fontawesome css ======-->
-    <link rel="stylesheet" href="../resources/assets/css/font-awesome.min.css">
-    
-    <!--====== animate css ======-->
-    <link rel="stylesheet" href="../resources/assets/css/animate.min.css">
-    
-    <!--====== Slick css ======-->
-    <link rel="stylesheet" href="../resource/sassets/css/slick.css">
-    
-    <!--====== Default css ======-->
-    <link rel="stylesheet" href="../resources/assets/css/default.css">
-    
-    <!--====== Style css ======-->
-    <link rel="stylesheet" href="../resources/assets/css/style.css">
+<!-- TOAST UI Editor CDN URL(CSS)-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css"/>
+<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+
+<!-- jQuery CDN -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+
+<!-- jQuery UI CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/tag_create.css">
+<script type="module" src="/tag_create.js"></script>
+<script src="https://unpkg.com/@yaireo/tagify"></script>
+<link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
+
 <style>
 #rangeGraph{
     height:10px;
@@ -80,10 +104,19 @@ only screen and (min-width: 768px) and (max-width: 991px)
 .project-details-content-area .tab-btns .nav li a {
 	color: #1b1f2e;
 }
-
 </style>
 <script>
 $(document).ready(function(){
+	// 페이지 로딩 시 기본정보 탭 보여주기
+	$.ajax({
+		url:"/project/basicInfo",
+		type:"get",
+		datatype:"html",
+		success:function(data){
+			$("#basicInfo").html(data);
+		}	
+	});
+	
 	// 기본 정보
 	$('#basicInfo-tab').click(function() {
 		$.ajax({
@@ -96,7 +129,7 @@ $(document).ready(function(){
 		});
 	});
 	
-	// 나의 프로젝트
+	// 일정
 	$('#plan-tab').click(function() {
 		$.ajax({
 			url:"/project/plan",
@@ -108,7 +141,7 @@ $(document).ready(function(){
 		});
 	});
 	
-	// 펀딩 프로젝트
+	// 리워드
 	$('#reward-tab').click(function() {
 		$.ajax({
 			url:"/project/reward",
@@ -120,7 +153,7 @@ $(document).ready(function(){
 		});
 	});
 	
-	// 관심 프로젝트
+	// 스토리
 	$('#story-tab').click(function() {
 		$.ajax({
 			url:"/project/story",
@@ -132,26 +165,26 @@ $(document).ready(function(){
 		});
 	});
 	
-	// 댓글
-	$('#myReply-tab').click(function() {
+	// 정책
+	$('#policy-tab').click(function() {
 		$.ajax({
-			url:"/mypage/myReply",
+			url:"/project/policy",
 			type:"get",
 			datatype:"html",
 			success:function(data){
-				$("#myReply").html(data);
+				$("#policy").html(data);
 			}	
 		});
 	});
 	
-	// qna
-	$('#myQna-tab').click(function() {
+	// 대표자
+	$('#regist-tab').click(function() {
 		$.ajax({
-			url:"/mypage/myQna",
+			url:"/project/regist",
 			type:"get",
 			datatype:"html",
 			success:function(data){
-				$("#myQna").html(data);
+				$("#regist").html(data);
 			}	
 		});
 	});
@@ -202,7 +235,7 @@ $(document).ready(function(){
                         <ul class="nav nav-pills" id="pills-tab" role="tablist">
                         	<!-- 탭 메뉴 -->
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="basicInfo-tab" data-toggle="pill" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="false" style="padding: 0px; margin-left:1em; margin-right:1em; background: none; color: #1b1f2e;">기본 정보</a>
+                                <a class="nav-link" id="basicInfo-tab" data-toggle="pill" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="false" style="padding: 0px; margin-left:1em; margin-right:1em; background: none; color: #1b1f2e;">기본 정보</a>
                             </li>
                             <li class="nav-item" role="presentation">
                                <a class="nav-link" id="plan-tab" data-toggle="pill" href="#plan" role="tab" aria-controls="plan" aria-selected="false" style="padding: 0px; margin-left:1em; margin-right:1em; background: none; color: #1b1f2e;">일정</a>
@@ -225,27 +258,27 @@ $(document).ready(function(){
             	 <hr>
                     <div class="tab-content" id="pills-tabContent">
 	                    <!-- 기본 정보 -->
-	                    <div class="tab-pane fade" id="basicInfo" role="tabpanel" aria-labelledby="myInfo-tab">
+	                    <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
 	                    </div>
 	                    <!-- 기본 정보 -->
 	                    <!-- 일정 -->
-	                    <div class="tab-pane fade" id="plan" role="tabpanel" aria-labelledby="myProject-tab">
+	                    <div class="tab-pane fade" id="plan" role="tabpanel" aria-labelledby="plan-tab">
 	                    </div>
 	                    <!-- 일정 -->
 	                    <!-- 리워드 -->
-	                    <div class="tab-pane fade" id="reward" role="tabpanel" aria-labelledby="myFunding-tab">
+	                    <div class="tab-pane fade" id="reward" role="tabpanel" aria-labelledby="reward-tab">
 	                    </div>
 	                    <!-- 리워드 -->
 	                    <!-- 스토리 -->
-	                    <div class="tab-pane fade" id="story" role="tabpanel" aria-labelledby="myLike-tab">
+	                    <div class="tab-pane fade" id="story" role="tabpanel" aria-labelledby="story-tab">
 	                    </div>
 	                    <!-- 스토리 -->
 	                    <!-- 정책 -->
-	                    <div class="tab-pane fade" id="policy" role="tabpanel" aria-labelledby="myReply-tab">
+	                    <div class="tab-pane fade" id="policy" role="tabpanel" aria-labelledby="policy-tab">
 	                    </div>
 	                    <!-- 정책 -->
                       	<!-- 대표자 -->
-                        <div class="tab-pane fade" id="regist" role="tabpanel" aria-labelledby="myQna-tab">
+                        <div class="tab-pane fade" id="regist" role="tabpanel" aria-labelledby="regist-tab">
                         </div>
                       	<!-- 대표자 -->
 					</div>

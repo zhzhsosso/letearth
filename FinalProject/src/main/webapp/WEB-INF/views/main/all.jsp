@@ -10,12 +10,21 @@
   src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script>
-	<script type="text/javascript">
+  
+<script type="text/javascript">
+// 	$(document).ready(function(){
+
+// 	var rate = document.getElementById("rate").innerHTML.split(".")[0];
 	
-	console.log();
-	
-	
-	</script>
+// 	if(rate >= 100){
+// 	   	 $("#rangeGraph span").css("width", "100%")
+// 	} else{
+// 	   	 $("#rangeGraph span").css("width", rate+"%")
+// 	}
+		
+// 	});
+		
+</script>
 
 	<style>
 		#rangeGraph{
@@ -50,7 +59,7 @@
 
 
     <!--====== EXPLORE PROJECTS PART START : 신규 프로젝트 ======-->
-    <section class="explore-projects-area explore-projects-page-area" style="padding-bottom: 325px;">
+    <section class="explore-projects-area explore-projects-page-area" style="padding-bottom: 90px;">
         <div class="container">
         
             <div class="row justify-content-center">
@@ -70,12 +79,12 @@
                 <div class="col-lg-4 col-md-6 col-sm-9" style="width: 270px;">
                     <div class="explore-projects-item mt-30">
                         <div class="explore-projects-thumb">
-                            <img src="${pro.pro_thum }" alt="LetEarth">
+                            <img src="${pro.pro_thum }" alt="LetEarth" style="width: 370px; height: 370px;">
                             <a href="/prodetail/info?pro_no=${pro.pro_no}">
                             	<i class="fa fa-heart"></i>
                             </a>
                         </div>
-                        <div class="explore-projects-content">
+                        <div class="explore-projects-content" style="height: 280px;">
                         	<div class="item d-flex align-items-center">
                         	<p><i class="fa fa-clock-o"></i></p><p>마감까지</p>
                         	</div>	
@@ -99,11 +108,11 @@
                                 </div>
                             </div>
                             <div class="projects-goal">
-                                <span>달성 금액: <span><fmt:formatNumber value="${pro.pro_tp }" pattern="#,###"/></span> 원</span>
+                                <span>달성 금액: <span><fmt:formatNumber value="${pro.pro_tp }" pattern="#,###"/></span> 원</span><br>
                                 <span>목표 금액: <span><fmt:formatNumber value="${pro.pro_gp }" pattern="#,###"/></span> 원</span>
                             </div>
                             <div>
-                            	<span>태그 : ${pro.tags }</span>
+                            	<span>태그 : #${pro.tags }</span>
                             </div>
                         </div>
                     </div>
@@ -137,13 +146,13 @@
             <c:forEach var="i" begin="0" end="5" step="1">
          	   	<c:set var="pl" value="${popularList[i] }"/>
 
-                <div class="col-lg-4 col-md-6 col-sm-9" style="width: 270px;">
+                <div class="col-lg-4 col-md-6 col-sm-9" style="width: 280px;">
                     <div class="explore-projects-item mt-30">
                         <div class="explore-projects-thumb">
-                            <img src="${pl.pro_thum }" alt="LetEarth_popularList">
+                            <img src="${pl.pro_thum }" alt="LetEarth_popularList" style="width: 370px; height: 370px;">
                             <a href="/prodetail/info?pro_no=${pl.pro_no }"><i class="fa fa-heart"></i></a>
                         </div>
-                        <div class="explore-projects-content">
+                        <div class="explore-projects-content" style="height: 255px;">
                         	<div class="item d-flex align-items-center">
                         	<p><i class="fa fa-clock-o"></i>마감까지</p>
                         	</div>		
@@ -155,9 +164,11 @@
                                 <div class="projects-range-content">
                                     <ul>
                                         <li>달성률:</li>
-                                        <li>${pl.achievement_rate}%</li>
+                                        <li id="rate">${pl.achievement_rate}%</li>
                                     </ul>
-                                    <div class="range"></div>
+                                    <div id="rangeGraph">
+                                		<span></span>
+                               		</div>
                                 </div>
                             </div>
                             <div class="projects-goal">

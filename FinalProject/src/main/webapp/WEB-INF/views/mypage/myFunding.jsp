@@ -23,16 +23,14 @@
 </style>
 <script>
 function myFunDetail(num){
-	$(document).ready(function(){
-		// 회원정보 수정
-		$.ajax({
-			url:"/mypage/myFunDetail?order_no="+num,
-			type:"get",
-			datatype:"html",
-			success:function(data){
-				$("#myFunding").html(data);
-			}	
-		});
+	// 펀딩 상세 조회
+	$.ajax({
+		url:"/mypage/myFunDetail?order_no="+num,
+		type:"get",
+		datatype:"html",
+		success:function(data){
+			$("#myFunding").html(data);
+		}	
 	});
 }
 </script>
@@ -55,7 +53,25 @@ function myFunDetail(num){
 				<div class="date3"><fmt:formatDate value="${ordList.order_date }"/></div>
 				<div class="date3">${ordList.reward_title }</div>
 				<div class="date3">${ordList.total_price }</div>
-				<div class="date3">${ordList.shipping_status }</div>
+				<div class="date3">
+				<c:choose>
+					<c:when test="${ordList.shipping_status == 1 }">
+						결제완료
+					</c:when>
+					<c:when test="${ordList.shipping_status == 2 }">
+						배송준비중
+					</c:when>
+					<c:when test="${ordList.shipping_status == 3 }">
+						배송시작
+					</c:when>
+					<c:when test="${ordList.shipping_status == 4 }">
+						배송완료
+					</c:when>
+					<c:when test="${ordList.shipping_status == 5 }">
+						펀딩취소
+					</c:when>
+				</c:choose>
+				</div>
 			</div>
 		</c:forEach>
 

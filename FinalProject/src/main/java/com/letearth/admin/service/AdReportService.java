@@ -35,4 +35,7 @@ public interface AdReportService {
 	
 	// 신고상세
 	public AdminVO getReport(Integer rep_no) throws Exception;
+	
+//	// 신고검색
+//	public  List<AdminVO> getListReport(String type, String keyword, Criteria cri) throws Exception;
 }

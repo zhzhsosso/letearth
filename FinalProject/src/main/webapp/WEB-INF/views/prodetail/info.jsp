@@ -528,9 +528,6 @@ $(document).ready(function() {
                 <div class="col-lg-7">
                     <div class="project-details-thumb">
                         <img src="../resources/assets/images/single-project-thumb.jpg" alt="project_thumb"> 
-                        <div class="icon">
-                            <i class="fa fa-heart"></i>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -586,9 +583,9 @@ $(document).ready(function() {
                         </div>
                         <div class="project-share d-flex align-items-center" style="margin-top: 7px;">
                             <span>좋아요</span>
-                            <ul>
-                                <li><input type="button" value="♥" id="LikeBtn" onClick='chkLike("<%=session.getAttribute("mem_id") %>")'><i class="fa-duotone fa-heart"></i></li>
-                            </ul>
+							<div class="icon">
+                            	<a onClick='chkLike("<%=session.getAttribute("mem_id") %>")'><i class="fa fa-heart"></i></a>
+                        	</div>                   
                         </div>
                     </div>
                 </div>
@@ -671,15 +668,14 @@ $(document).ready(function() {
                                 <p style="color: black; font-size: 25px;" id="budget">프로젝트 예산</p>
                                 <div class="item">
                                     <i class="flaticon-checkmark"></i>
-                                    <h5 class="title">One Power Bank for Every Wrist Car</h5>
-                                    <p>Lorem Ipsum nibh vel velit auctor aliquet. Aenean sollic tudin, lorem is simply free text quis bibendum.</p>
+                                    <h5 class="title">예산 소개</h5>
+                                    <p>예산 소개는 여기</p>
                                 </div>
                                 <div class="item mt-45 mb-50">
                                     <i class="flaticon-checkmark"></i>
-                                    <h5 class="title">One Power Bank for Every Wrist Car</h5>
-                                    <p>Lorem Ipsum nibh vel velit auctor aliquet. Aenean sollic tudin, lorem is simply free text quis bibendum.</p>
+                                    <h5 class="title">예산</h5>
+                                    <p>예산 소개</p>
                                 </div>
-                                <p class="text">Nulla in ex at mi viverra sagittis ut non erat raesent nec congue elit. Nunc arcu odio, convallis a lacinia ut, tristique id eros. Suspendisse leo erat, pellentesque et commodo vel, varius in felis. Nulla mollis turpis porta justo eleifend volutpat. Cras malesuada nec magna eu blandit. Nam sed efficitur ante. Quisque lobortis sodales risus, eu dapibus dolor porta vitae. Vestibulum eu ex auctor, scelerisque velit sit amet, vehicula sapien.</p>
                             </div>
                             
                             <div class="project-details-content-top">
@@ -805,6 +801,7 @@ $(document).ready(function() {
                             <div class="comment-one mt-50">
                            	
                            		<!-- 댓글 작성하기 -->
+                           		<c:if test="${sessionScope.mem_id ne null }">
                            			 <div class="comment-form">
 		                                <form role="form" class="contact-one__form" name="urfr" method="post">
 		                                
@@ -843,6 +840,7 @@ $(document).ready(function() {
 		                                    </div>
 		                                </form>
 		                           	</div>
+		                           	</c:if>
 		                       	<!-- 댓글 작성하기 --> 
 		                       	
 		                       	<!-- 회원댓글 -->
@@ -874,31 +872,34 @@ $(document).ready(function() {
 							                            </div>
 						                            </c:when>
 					                            </c:choose>
-					                            <c:choose>
-					                            	<c:when test="${sessionScope.mem_id ne ur.mem_id }">
-						                            	<a href="#" data-toggle="modal" data-target="#reportreplyMo" onclick="javascript:transferPno(${ur.reply_no});">
-															신고하기
-														</a>
-					                            	</c:when>
-					                            	<c:when test="${sessionScope.mem_id eq ur.mem_id }">
-					                            		 <div class="blog-one__meta">
-						                            		<a>내가 쓴 댓글</a>
-						                            	</div>
-					                            	</c:when>
-					                            	
-					                            </c:choose>
-					                           
+					                            <c:if test="${sessionScope.mem_id ne null }">
+						                            <c:choose>
+						                            	<c:when test="${sessionScope.mem_id ne ur.mem_id }">
+							                            	<a href="#" data-toggle="modal" data-target="#reportreplyMo" onclick="javascript:transferPno(${ur.reply_no});">
+																신고하기
+															</a>
+						                            	</c:when>
+						                            	<c:when test="${sessionScope.mem_id eq ur.mem_id }">
+						                            		 <div class="blog-one__meta">
+							                            		<a>내가 쓴 댓글</a>
+							                            	</div>
+						                            	</c:when>
+						                            	
+						                            </c:choose>
+					                          	 </c:if>
 				                            </div>
 	                                        <p>${ur.reply_content }</p>
 	                                    </div>
 	                                    
-		                                <!-- 답글쓰기 버튼 관리자만 보이게 -->
-	                                    <div class="blog-btn">
-<!-- 	                                        <a href="javascript:onDisplay()" class="main-btn">답글쓰기 </a> -->
-	                                        <a href="#" class="rereplymd main-btn" data-toggle="modal" data-target="#moaModal" onclick="javascript:transferRno(${ur.reply_no});">
-												답글쓰기
-											</a>
-	                                    </div>
+		                                <!-- 답글쓰기 버튼 판매자만 보이게 -->
+		                                <c:if test="${sessionScope.mem_id eq pdvo.mem_id }">
+		                                    <div class="blog-btn">
+	<!-- 	                                        <a href="javascript:onDisplay()" class="main-btn">답글쓰기 </a> -->
+		                                        <a href="#" class="rereplymd main-btn" data-toggle="modal" data-target="#moaModal" onclick="javascript:transferRno(${ur.reply_no});">
+													답글쓰기
+												</a>
+		                                    </div>
+	                                    </c:if>
 		                                <!-- 답글쓰기 버튼 관리자만 보이게 -->
 	                                </div>
 	                                
@@ -935,10 +936,12 @@ $(document).ready(function() {
                      <!-- 커뮤니티 -->
                      
                      </div>
-                     <div class="singorp">
-	                     <img src="../resources/assets/images/singo.png" alt="reportsingo">
-	                     <a href="#" id="rePort">이 프로젝트 신고하기</a>
-                     </div>
+                     <c:if test="${sessionScope.mem_id ne null }">
+	                     <div class="singorp">
+		                     <img src="../resources/assets/images/singo.png" alt="reportsingo">
+		                     <a href="#" id="rePort">이 프로젝트 신고하기</a>
+	                     </div>
+                     </c:if>
                 </div>
                 
 				<!-- 사이드바 - 리워드 선택 reward -->

@@ -73,13 +73,25 @@
 		where order_no=#{order_no}
 	</delete>
 	
-	<!-- 판매자 회원 아이디에 해당하는 프로젝트 -->
+	<!-- 나의 프로젝트 불러오기 -->
 	<select id="geMyProject" resultType="PlusVO">
-		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt, pro_status,
 		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
 		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
 		from project
 		where mem_id=#{mem_id}
+	</select>
+	
+	<!-- 주문 내역 조회 -->
+	<select id="getMyOrder" resultType="PlusVO">
+		select *
+		from order_tbl ord
+		join project pro
+		on ord.pro_no=pro.pro_no
+		join reward rew
+        on ord.reward_no=rew.reward_no
+		where ord.pro_no=#{pro_no}
+		order by order_no desc;
 	</select>
 	
 	<!-- 회원정보 수정 -->

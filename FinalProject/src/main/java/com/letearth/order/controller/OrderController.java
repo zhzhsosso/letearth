@@ -61,8 +61,13 @@ public class OrderController {
 	 */
 	// http://localhost:8080/order/or_main?pro_no=15
 	@GetMapping(value="/or_main")
-	public void ormainGET(HttpSession session, @RequestParam("pro_no") int pro_no, Model model,@RequestParam("reward_no") Integer reward_no) throws Exception {
+	public String ormainGET(HttpSession session, @RequestParam("pro_no") int pro_no, Model model, @RequestParam("reward_no") Integer reward_no) throws Exception {
 		String mem_id = (String)session.getAttribute("mem_id");
+		if(mem_id == null) {
+			
+			return "redirect:/member/login";
+		}
+		
 		
 		ProDetailVO pvo = service.proInfo(pro_no);
 		MemberVO mvo = service.memInfo(mem_id);
@@ -85,6 +90,8 @@ public class OrderController {
 		model.addAttribute("rvo", rvo);
 		
 		mylog.debug("여기까진 왔는지~~~~~~~~~~~~~~~~~~~~~~~~~~~!~!!~!~!~!~!~!!!!!!!");
+		
+		return "/order/or_main";
 	}
 	
 	/**

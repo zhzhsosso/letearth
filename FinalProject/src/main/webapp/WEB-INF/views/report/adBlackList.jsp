@@ -5,32 +5,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<!-- 어드민 lte -->
+<link href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> -->
+<link href="/resources/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+<link href="/resources/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+<!-- 어드민 lte -->
 <meta charset="UTF-8">
 <title>블랙리스트</title>
 <style type="text/css">
 
 #sbtn {
 	position: absolute;
-	top: -4px;
+	top: 0px;
+	
+	background-color: #BFCC97;
 }
 
 #repSelector {
-  width : 20%;
+  width : 16%;
   height : 3px;
   background-color : #BBE093;
   border : 0;
   
    position: relative;
-   top: -15px; 
+   top: -12px; 
 /*    left: 380px;  */
-   left: 40%;
+   left: 42.5%;
 }
 
 #repSelector1{
    position: relative;
    top: -15px; 
 }
+
+/*hover*/
+#hov a:hover{
+  color : green;
+  transition : 0s;
+  font-weight: bolder;
+  /*text-decoration: underline;*/
+  
+ } 
+ 
+  /*페이징*/
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #89A378;
+    border-color: #89A378;
+}
+
 </style>
 
 </head>
@@ -41,32 +68,35 @@
    
    <section class="contact-form-area">
      <div style="display: flex;">
-   <%@ include file="../include/adSide.jsp" %>	
+   <%@ include file="../include/adSide1.jsp" %>	
    
-        <div class="container">     
+        <div class="container">    
+    <br> 
     <br>
  	<br>        
    <!-- 어드민 -->		
 		<h2 class="box-title" align="center"><b style="color: #6c757d;">관리자 블랙리스트</b></h2>
 		<hr id="repSelector" align="center">
-			<div class="col-xs-12"><br><br>
-				<div style="font-size: 1.5rem;" align="left">
+			<div class="col-xs-12" style="font-size: 16px;"><br><br>
+				<div style="font-size: 2.5rem; cursor: pointer;" align="left">
+				<span id="hov"> 
 					<a id="listAll">전체</a> 
 					| 
 					<a id="listMem">회원</a>
 					| 
 					<a id="listPro">프로젝트</a>
+				</span>
 					<hr id="repSelector1">	
 				</div>
 					
 			<!-- 어드민 -->                                                      
-				<div class="box">
+				<div class="box" style="border: none;">
 					<div class="box-header">
 						<div class="box-tools" align="right">
 							<div class="input-group input-group-sm hidden-xs"
-								style="width: 150px;">
+								style="width: 200px; height: 50px;">
 								<input type="text" name="table_search"
-									class="form-control pull-right" placeholder="Search">
+									class="form-control pull-right" placeholder="Search" style="height: 30px; font-size: 1.5rem;">
 								<div class="input-group-btn">
 									<button type="submit" class="btn btn-default" id="sbtn">
 										<i class="fa fa-search"></i>
@@ -75,7 +105,7 @@
 							</div>
 						</div>
 					</div>
-					<br>
+					<br><br>
 <!-- tableAll -->
 					<div class="box-body table-responsive no-padding" id="tableAll">
 			<form role="form" name="fr" id="contact-form" action="" method="post">
@@ -119,7 +149,7 @@
 			<form role="form" name="fr" id="contact-form" action="" method="post">
 						<table class="table table-hover">
 							<tbody>
-								<tr style="background-color: #f8f9fa">
+								<tr style="background-color: #EEF5E6">
 									<th>번호</th>
 									<th>회원아이디</th>
 									<th>프로젝트이름</th>
@@ -154,7 +184,7 @@
 			<form role="form" name="fr" id="contact-form" action="" method="post">
 						<table class="table table-hover">
 							<tbody>
-								<tr style="background-color: #f8f9fa">
+								<tr style="background-color: #EEF5E6">
 									<th>번호</th>
 									<th>회원아이디</th>
 									<th>프로젝트이름</th>
@@ -191,9 +221,11 @@
 		
 			</div>
 
+	</div>
+       </div>    
         <!-- 페이징처리 -->
-<div class="box-footer clearfix" id="paging">
-		<ul class="pagination pagination-sm no-margin pull-left">
+<div class="box-footer clearfix" style="position: absolute; right: 45%; border: none;">
+		<ul class="pagination pagination-sm no-margin pull-center">
 			<c:if test="${pvo.prev }">
 				<li><a href="/report/adBlackList?page=${pvo.startPage-1 }">«</a></li> <!-- 10 -->
 			</c:if>
@@ -209,10 +241,10 @@
 			</c:if>
 		</ul>
 	</div>
-	</div>
-       </div>    
-    </section>
 <!-- 페이징처리 -->
+
+<br><br><br><br><br><br><br><br>
+    </section>
    
    <!-- 푸터 -->
    <%@ include file="../include/footer.jsp" %>

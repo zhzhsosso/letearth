@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"> 
+<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style type="text/css">
@@ -58,7 +60,7 @@
 }
 
 /* Add an active class to the active dropdown button */
-.active {
+.active1 {
   background-color: #D8E9C5; 
   color: white;
 }
@@ -92,8 +94,13 @@
 		
 <!-- 사이드바 -->
 <div class="sidenav">	
+	<a href="/board/adMain">
+	<i class="fa fa-solid fa-leaf"></i>
+	<span style="position: relative; left: 2px; bottom: 3px; font-weight: bolder;">관리자메인</span>
+	</a>
 	<button class="dropdown-btn">
-		고객센터 <i class="fa fa-caret-down"></i>
+	<i class="fa fa-solid fa-paper-plane"></i>
+		&nbsp;고객센터 <i class="fa fa-caret-down"></i>
 	</button>
 	<div class="dropdown-container">
 		<a href="/board/adNoticeList">공지사항</a> 
@@ -102,21 +109,22 @@
 	</div>
 	
 	<button class="dropdown-btn">
-		펀딩관리 <i class="fa fa-caret-down"></i>
+	<i class="fa fa-solid fa-bank"></i>
+		&nbsp;펀딩관리 <i class="fa fa-caret-down"></i>
 	</button>
 	<div class="dropdown-container">
-		<a href="#">프로젝트 승인</a> 
-		<a href="#">프로젝트 목록</a> 
-		<a href="#">재펀딩</a>
+		<a href="/mempro/adProList1">프로젝트 승인</a> 
+		<a href="/mempro/adProList2">프로젝트 목록</a> 
 		<a href="#">정산관리</a>
 	</div>
 	
 	<button class="dropdown-btn">
-		회원관리 <i class="fa fa-caret-down"></i>
+	<i class="fa fa-solid fa-users"></i>
+		&nbsp;회원관리 <i class="fa fa-caret-down"></i>
 	</button>
 	<div class="dropdown-container">
 		<a href="/report/adRepList">신고접수관리</a> 
-		<a href="#">회원목록</a> 
+		<a href="/mempro/adMemList">회원목록</a> 
 		<a href="/report/adBlackList">블랙리스트</a>
 	</div>
 </div>
@@ -156,7 +164,7 @@ var i;
 
 for (i = 0; i < dropdown.length; i++) {
   dropdown[i].addEventListener("click", function() {
-    this.classList.toggle("active");
+    this.classList.toggle("active1");
    var dropdownContent = this.nextElementSibling;
     if (dropdownContent.style.display === "block") {
       dropdownContent.style.display = "none";
