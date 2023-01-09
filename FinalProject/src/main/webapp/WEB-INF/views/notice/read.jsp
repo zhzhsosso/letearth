@@ -19,30 +19,26 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="section-title text-center">
-<!--                         <span>test</span> -->
-                        <h3 class="title">
-                        		<c:choose>
-								<c:when test="${vo.not_cat eq 1}">공지사항</c:when>
-								<c:when test="${vo.not_cat eq 2}">이벤트</c:when>
-								</c:choose></h3>
+                        <span>test</span>
+                        <h3 class="title">READ</h3>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                 	<h4>
-                	<span><a style="color:black;" href="/notice/main">전체</a></span>
+                	<span><a href="/notice/main">전체</a></span>
                 	<span>      </span>
-                	<span><a style="color:black;" href="/notice/all">공지사항</a></span>
+                	<span><a href="/notice/all">공지사항</a></span>
                 	<span>      </span>     
-               		<span><a style="color:black;" href="/notice/event">이벤트</a></span></h4>
+               		<span><a href="/notice/event">이벤트</a></span></h4>
                 <hr>
 
                         <div class="conact-form-item">
                             <div class="row">
                             <div class="col-lg-6 col-md-6">
 	                            
-	                            <h4 style="color:gray;">
+	                            <h4>
 	                            [
                                 <c:choose>
 								<c:when test="${vo.not_cat eq 1}">공지사항</c:when>
@@ -50,23 +46,21 @@
 								</c:choose>
 								] 
 	                             ${vo.not_title }</h4>
-
+	                            <p Align="right"><fmt:formatDate value="${vo.not_date }" pattern="yyyy.MM.dd"/></p>
+                           		<br>
+                           		${vo.not_content }
+                           		<br> <br> <br>
+                           		첨부파일 : ${vo.not_file }
+                           		<br>
+        
                             </div>
                         </div>
                         
-                        <p Align="right"><fmt:formatDate value="${vo.not_date }" pattern="yyyy.MM.dd"/></p>
-                   		<br>
-                   		${vo.not_content }
-                   		<br> <br> <br>
-                   		첨부파일 : ${vo.not_file } <br>
-                   		<img src="E:\FileAdd/${vo.not_file }" />
-                   		<br>
-                        
                         <div class="input-box mt-20 text-center">
-                        <c:if test="${mem_id.equals('admin') }">
+<%--                         <c:if test="${mem_id.equals('admin') }"> --%>
                             <button class="main-btn mo" type="submit">수정하기</button>
                             <button class="main-btn de" type="submit">삭제하기</button>
-                        </c:if>
+<%--                         </c:if> --%>
                             <button class="main-btn ma" type="submit">목록으로</button>
                         </div>
                         

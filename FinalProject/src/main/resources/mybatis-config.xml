@@ -11,6 +11,7 @@
 		<package name="com.letearth.notice.domain"/>
 		<package name="com.letearth.order.domain"/>
 		<package name="com.letearth.admin.domain"/>
+		<package name="com.letearth.openbank.domain"/>
   	</typeAliases>
   
   </configuration>
