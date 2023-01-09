@@ -15,7 +15,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="section-title text-center">
-                        <span>test</span>
+<!--                         <span>test</span> -->
                         <h3 class="title">수정하기</h3>
                     </div>
                 </div>
@@ -31,8 +31,8 @@
                                     </div>
                                 </div>
 
-
-							<select name="not_cat" id="not_cat">
+							<div class="col-lg-6 col-md-6">
+							<select style="width:120px;height:30px;margin-top:20px;" name="not_cat" id="not_cat">
 								 <option value="${not_cat }" ${not_cat == 'vo.not_cat' ? 'selected="selected"' : '' } disabled>카테고리 선택</option>
 									<c:choose>
 										<c:when test="${vo.not_cat eq 1}">
@@ -46,7 +46,12 @@
 										</c:when>
 									</c:choose>
 							</select>
-
+							
+							<br>
+								<input style="width:250px;height:30px;margin-top:10px;" type="file" value="파일 업로드" name="not_file">
+							</div>
+							
+							
                                 <div class="col-lg-12">
                                     <div class="input-box mt-20">
                                         <input type="text" value="${vo.not_content }" name="not_content">
@@ -57,6 +62,7 @@
                                     
                               
                                         <button class="main-btn mo" type="submit">수정하기</button>
+                                        <button class="main-btn ma" type="submit">목록으로</button>
                                     </div>
                                 </div>
                             </div>
@@ -77,6 +83,11 @@
 		 // 목록으로 이동
 // 		 location.href="/notice/main";
 		 location.href="/notice/read?not_no=${vo.not_no}";
+	 });
+	 
+	 $(".ma").click(function(){
+		 // 목록으로 이동
+		 location.href="/notice/main";
 	 });
 	 
  });
