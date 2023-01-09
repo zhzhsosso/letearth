@@ -39,12 +39,12 @@
                 <div class="col-lg-4 col-md-6 col-sm-9" style="width: 270px;">
                     <div class="explore-projects-item mt-30">
                         <div class="explore-projects-thumb">
-                            <img src="${endc.pro_thum }" alt="LetEarth">
+                            <img src="${endc.pro_thum }" alt="LetEarth" style="width: 370px; height: 370px;">
                             <a href="/prodetail/info?pro_no=${endc.pro_no}">
                             	<i class="fa fa-heart"></i>
                             </a>
                         </div>
-                        <div class="explore-projects-content">
+                        <div class="explore-projects-content" style="height: 255px;">
                         		
                             <div class="item d-flex align-items-center">
                                 <span>마감</span>
