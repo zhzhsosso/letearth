@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="../resources/assets/css/animate.min.css">
     
     <!--====== Slick css ======-->
-    <link rel="stylesheet" href="../resource/sassets/css/slick.css">
+    <link rel="stylesheet" href="../resources/assets/css/slick.css">
     
     <!--====== Default css ======-->
     <link rel="stylesheet" href="../resources/assets/css/default.css">

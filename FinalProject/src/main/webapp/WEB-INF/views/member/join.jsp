@@ -1,23 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<style>
-.join-btn{
-	width: 165px;
-	height: 70px;
-	background: #606C38; 
-	color: white;
-	border: 0;
-}
-.ccl-btn{
-	width: 165px;
-	height: 70px;
-	background: #FEFAEO; 
-	border: 0;
-}
-</style>
-
-
 
 	<!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
@@ -163,13 +146,13 @@
                                     </div>
                                 </div>
                                
+                                    <div class="input-box mt-20 text-center">
+                                        <button class="main-btn" type="button" onclick="chk();">가입하기</button>
+                                        <button class="main-btn" type="button" onclick="history.back();">이전</button>
+                                    </div>
                                 </div>
                                 
                             </div>
-	                            <div class="btn" style="margin-top: 55px; margin-left: 202px;">
-	                                <button class="join-btn" type="button" onclick="chk();">가입하기</button>
-	                                <button class="ccl-btn" type="button" onclick="history.back();">이전</button>
-	                            </div>
                             </form>
                         </div>
 

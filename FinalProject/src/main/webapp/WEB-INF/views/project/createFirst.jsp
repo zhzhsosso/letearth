@@ -19,10 +19,10 @@
 	                            <div class="project-details-item">
 	                                <div class="item">
 	                                	<br>
-		                           		<p style="font-size: 2.5em; color: black;">ㅇㅇㅇ님, 반갑습니다! </p>
+		                           		<p style="font-size: 2.5em; color: black;">${mem_id }님, 반갑습니다! </p>
 		 								<p>프로젝트 개설을 축하드려요.<br>
 										서포터님들께 제품과 서비스를 드리며 잊지 못할 경험을 선물해 보세요. <br>
-										ㅇㅇㅇ님이 펀딩에 성공할 수 있도록 Let Earth가 함께할게요.<br><br>
+										${mem_id }님이 펀딩에 성공할 수 있도록 Let Earth가 함께할게요.<br><br>
 										그럼 출발 해볼까요?<br><br><br></p>
 	                                </div>
 	                            </div>

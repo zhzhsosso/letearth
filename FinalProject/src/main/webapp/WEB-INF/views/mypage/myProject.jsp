@@ -27,6 +27,19 @@
     margin-right: 10px;
 }
 </style>
+<script type="text/javascript">
+function myProAdmin(num){
+	// 주문내역 조회
+	$.ajax({
+		url:"/mypage/myProAdmin?pro_no="+num,
+		type:"get",
+		datatype:"html",
+		success:function(data){
+			$("#myProject").html(data);
+		}	
+	});
+}
+</script>
 
 <!-- 탭1 : 글 페이지 -->
 	<div class="project-details-content-top">
@@ -43,6 +56,29 @@
 						<div class="explore-projects-content">
 							<div class="item d-flex align-items-center">
 								<span>D - ${pro.left_date}</span>
+							<c:choose>
+								<c:when test="${pro.pro_status == 1}">
+									<span class="user" style="border: none;">임시저장</span>
+								</c:when>
+								<c:when test="${pro.pro_status == 2}">
+									<span class="user" style="border: none;">승인요청</span>
+								</c:when>
+								<c:when test="${pro.pro_status == 3}">
+									<span class="user" style="border: none;">승인</span>
+								</c:when>
+								<c:when test="${pro.pro_status == 4}">
+									<span class="user" style="border: none;">반려</span>
+								</c:when>
+								<c:when test="${pro.pro_status == 5}">
+									<span class="user" style="border: none;">판매중</span>
+								</c:when>
+								<c:when test="${pro.pro_status == 6}">
+									<span class="user" style="border: none;">마감</span>
+								</c:when>
+								<c:when test="${pro.pro_status == 7}">
+									<span class="user" style="border: none;">판매중지</span>
+								</c:when>
+							</c:choose>
 							</div>  <br>
 							<a href="/prodetail/info?pro_no=${pro.pro_no}">
 								<h3>${pro.pro_title }</h3>
@@ -63,6 +99,17 @@
 								달성 금액: <span><fmt:formatNumber value="${pro.pro_tp }" pattern="#,###" /></span> 원 <br>
 								목표 금액: <span><fmt:formatNumber value="${pro.pro_gp }" pattern="#,###" /></span> 원
 							</div> <br>
+							<c:choose>
+								<c:when test="${pro.pro_status == 5}">
+									<button type="button" class="user" style="border: none;" onclick="myProAdmin(${pro.pro_no});">판매 관리</button>
+								</c:when>
+								<c:when test="${pro.pro_status == 6}">
+									<button type="button" class="user" style="border: none;">판매 관리</button>
+								</c:when>
+								<c:when test="${pro.pro_status == 7}">
+									<button type="button" class="user" style="border: none;">판매 관리</button>
+								</c:when>
+							</c:choose>
 						</div>
 					</div>
 				</div>
