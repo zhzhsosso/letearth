@@ -2,8 +2,8 @@ package com.letearth.notice.persistence;
 
 import java.util.List;
 
+import com.letearth.notice.domain.NoticeCriteria;
 import com.letearth.notice.domain.NoticeVO;
-import com.letearth.prodetail.domain.Criteria;
 
 public interface NoticeDAO {
 
@@ -42,17 +42,25 @@ public interface NoticeDAO {
 	// 페이징 처리 구현된 리스트 조회
 	public List<NoticeVO> getListPage(Integer page) throws Exception;
 	
-	public List<NoticeVO> getListPage(Criteria cri) throws Exception;
+	public List<NoticeVO> getListPage(NoticeCriteria cri) throws Exception;
 	
 	// 페이징 처리 구현된 리스트 조회 - 공지
 	public List<NoticeVO> getAllListPage(Integer page) throws Exception;
 	
-	public List<NoticeVO> getAllListPage(Criteria cri) throws Exception;
+	public List<NoticeVO> getAllListPage(NoticeCriteria cri) throws Exception;
 	
 	// 페이징 처리 구현된 리스트 조회 - 이벤트
 	public List<NoticeVO> getEventListPage(Integer page) throws Exception;
 	
-	public List<NoticeVO> getEventListPage(Criteria cri) throws Exception;
+	public List<NoticeVO> getEventListPage(NoticeCriteria cri) throws Exception;
 	
+	// 전체 게시판 글 개수
+	public int totalCnt() throws Exception;
 	
+	// 전체 게시판 글 개수
+	public int totalACnt() throws Exception;
+	
+	// 전체 게시판 글 개수
+	public int totalECnt() throws Exception;
+		
 }

@@ -9,8 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.letearth.notice.domain.NoticeCriteria;
 import com.letearth.notice.domain.NoticeVO;
-import com.letearth.prodetail.domain.Criteria;
 
 @Repository
 public class NoticeDAOImpl implements NoticeDAO {
@@ -99,7 +99,7 @@ public class NoticeDAOImpl implements NoticeDAO {
 	}
 
 	@Override
-	public List<NoticeVO> getListPage(Criteria cri) throws Exception {
+	public List<NoticeVO> getListPage(NoticeCriteria cri) throws Exception {
 		
 		return sqlSession.selectList(NAMESPACE + ".listPage2", cri);
 	}
@@ -118,7 +118,7 @@ public class NoticeDAOImpl implements NoticeDAO {
 	}
 
 	@Override
-	public List<NoticeVO> getAllListPage(Criteria cri) throws Exception {
+	public List<NoticeVO> getAllListPage(NoticeCriteria cri) throws Exception {
 		
 		return sqlSession.selectList(NAMESPACE + ".allListPage2", cri);
 	}
@@ -137,9 +137,28 @@ public class NoticeDAOImpl implements NoticeDAO {
 	}
 
 	@Override
-	public List<NoticeVO> getEventListPage(Criteria cri) throws Exception {
+	public List<NoticeVO> getEventListPage(NoticeCriteria cri) throws Exception {
 		
 		return sqlSession.selectList(NAMESPACE + ".eventListPage2", cri);
+	}
+
+
+	@Override
+	public int totalCnt() throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE + ".countNotice");
+	}
+
+	@Override
+	public int totalACnt() throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE + ".countANotice");
+	}
+
+	@Override
+	public int totalECnt() throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE + ".countENotice");
 	}
 	
 	

@@ -120,7 +120,7 @@
 		]]> 
 	</select>
 	
-	  <!-- 페이징처리 이벤트 게시판목록 -->
+  	<!-- 페이징처리 이벤트 게시판목록 -->
 	<select id="eventListPage2" resultType="NoticeVO">
 	 <![CDATA[
 		select * from notice
@@ -130,7 +130,29 @@
 		]]> 
 	</select>  
   
-  
+	<!-- 게시판 글전체 개수 -->
+ 	<select id="countNotice" resultType="int">
+ 		<![CDATA[
+    	select count(not_no) from notice 
+    	where not_no > 0 and DATE_FORMAT(not_date, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and (not_cat = 1 or not_cat = 2);
+    	]]>
+ 	</select>
+ 	
+ 	<!-- 공지 글전체 개수 -->
+ 	<select id="countANotice" resultType="int">
+ 		<![CDATA[
+    	select count(not_no) from notice 
+    	where not_no > 0 and DATE_FORMAT(not_date, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and not_cat = 1;
+    	]]>
+ 	</select>
+ 	
+ 	<!-- 이벤트 글전체 개수 -->
+ 	<select id="countENotice" resultType="int">
+ 		<![CDATA[
+    	select count(not_no) from notice 
+    	where not_no > 0 and DATE_FORMAT(not_date, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and not_cat = 2;
+    	]]>
+ 	</select>
   
   
   
