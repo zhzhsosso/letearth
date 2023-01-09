@@ -16,6 +16,6 @@ public class MemberVO {
 	private Integer rep_cnt;
 	private Integer mem_status;		/* 0. 구매회원, 1. 판매회원, 2. 관리자*/
 	private String mem_profile;
-	private Timestamp mem_bdate;	/* 회원이 블랙리스트에 추가된 날짜 */
+	private String mem_bdate;	/* 회원이 블랙리스트에 추가된 날짜 */
 
 }

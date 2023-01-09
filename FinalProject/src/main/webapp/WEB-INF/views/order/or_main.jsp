@@ -14,6 +14,7 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 	<script src="https://kit.fontawesome.com/bd939ba5e2.js" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 	
 	<title>LetEarth</title>
@@ -122,42 +123,42 @@ function requestPay() {
 	
 	if(reward_no != 0 ){
 		if(phone.length == 0){
-			alert('연락처를 입력해주세요');
+			swal('연락처를 입력해주세요','','info');
 			$('#phone').focus();
 			
 		 	return;
 		}
 		
 		if(receiver_name.length == 0){
-			alert('받는 분 성함을 입력해주세요');
+			swal('받으시는 분의 이름을 입력해주세요','','info');
 			$('#receiver_name').focus();
 			
 		 	return;
 		}
 		
 		if(address_no.length == 0){
-			alert('주소를 입력해주세요');
+			swal('주소를 입력해주세요','','info');
 			$('#sample6_postcode').focus();
 			
 		 	return;
 		}
 		
 		if(address_detail.length == 0){
-			alert('상세주소를 입력해주세요');
+			swal('상세주소를 입력해주세요','','info');
 			$('#sample6_detailAddress').focus();
 			
 		 	return;
 		}
 		
 		if(receiver_phone.length == 0){
-			alert('받는 분 연락처를 입력해주세요');
+			swal('받는 분 연락처를 입력해주세요','','info');
 			$('#receiver_phone').focus();
 			
 		 	return;
 		}
 		
 		if(hidcheck == 0){
-			alert('연락처 본인 인증을 완료해주세요');
+			swal('연락처 본인 인증을 완료해주세요','','info');
 			$('#phone').focus();
 			
 		 	return;
@@ -166,12 +167,12 @@ function requestPay() {
 	}
 		// 약관 동의 체크
 		if(!agree1[0].checked) {
-			alert("개인정보이용에 동의해주세요");
+			swal('개인정보 및 제3자 이용에  동의해주세요','동의하셔야 후원이 완료됩니다!','info');
 			return;
 		}
 		
 		if(!agree2[0].checked) {
-			alert("후원 유의사항 확인에 동의해주세요");
+			swal('후원 유의사항 확인에 동의해주세요','동의하셔야 후원이 완료됩니다!','info');
 			return;
 		}
 	
@@ -186,10 +187,10 @@ function requestPay() {
       buyer_tel: "010-9554-9537",  //
     }, function (rsp) { // callback
       if (rsp.success) {
-    	  alert('후원이 완료되었습니다.');
+    	  swal('후원이 완료되었습니다!','','info');
     	  document.fr.submit();
       } else {
-          alert('문제가 생겼습니다.');
+          swal('문제가 생겼습니다.','','error');
       }
     });
   }
@@ -415,9 +416,9 @@ function requestPay() {
 	            <div class="explain-list">
 	                <p>${pvo.cat_name }</p>
 	                <h3 style="color:white">${pvo.pro_title }</h3>
-	                <span><b><fmt:formatNumber> ${pvo.pro_tp }</fmt:formatNumber>원</b></span> 
-	                <span style="color:red">${pvo.achievement_rate }%</span> 
-	                <span>${pvo.left_date }일 남음</span> 
+	                <span><b><fmt:formatNumber> ${pvo.pro_tp }</fmt:formatNumber>원</b></span> <br>
+	                <span style="color:red">${pvo.achievement_rate }%</span> <br>
+	                <span>${pvo.left_date }일 남음</span> <br>
 	            </div>
 	        </div>                            
 	    </div>
