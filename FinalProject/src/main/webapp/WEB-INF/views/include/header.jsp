@@ -139,8 +139,14 @@
 	                                	<li><a href="/member/login">회원가입/로그인</a></li>
 	                                </c:when>
 	                                <c:when test="${mem_id != null}">
-	                                	<li><a href="/mypage/mypage">${mem_id } 님, 환영합니다!</a></li>
-	                                	<li><a href="/member/logout">로그아웃</a></li>
+	                                	<c:if test="${mem_id ne 'admin' }">
+		                                	<li><a href="/mypage/mypage">${mem_id } 님, 환영합니다!</a></li>
+		                                	<li><a href="/member/logout">로그아웃</a></li>
+	                                	</c:if>
+	                                	<c:if test="${mem_id eq 'admin' }">
+		                                	<li><a href="/board/adMain">관리자님, 환영합니다!</a></li>
+		                                	<li><a href="/member/logout">로그아웃</a></li>
+	                                	</c:if>
 	                                </c:when>
                                 </c:choose>
 <!--                                 <li><a href="/project/createFirst">프로젝트 만들기</a></li> -->
