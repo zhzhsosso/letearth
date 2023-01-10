@@ -42,6 +42,9 @@ public interface OrderDAO {
 	// 후원만
 	public OrderVO orderInfo2(String order_trade_num) throws Exception;
 	
+	// 주문취소요청
+	public Integer orderCancel(String order_trade_num) throws Exception;
+	
 	// 배송지 변경
 	public Integer shipChange(OrderVO vo) throws Exception;
 	

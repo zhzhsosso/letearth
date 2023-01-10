@@ -82,7 +82,7 @@
 		
 		if(plus0 == 0) {
 			$('#re_no').attr("value",0);
-			$('#re_title').attr("value", null);
+			$('#re_title').attr("value", "선물없이 후원하기");
 			$('#re_price').attr("value", 0);
 			$('#order_plus').attr("value", 1000);
 			$('#re_shipmonth').attr("value",null);
@@ -95,6 +95,7 @@
 			$('#receiver_phone').attr("disabled",true);
 			$('#sample6_postcode').attr("disabled",true);
 			$('#searchPost').attr("disabled",true);
+			$('#searchPost').attr("disabled",true);
 			$('#sample6_address').attr("disabled",true);
 			$('#sample6_detailAddress').attr("disabled",true);
 			$('#shipping_req').attr("disabled",true);
@@ -102,7 +103,7 @@
 			$('#giftMoCl').click();
 		} else {
 			$('#re_no').attr("value",0);
-			$('#re_title').attr("value", null);
+			$('#re_title').attr("value", "선물없이 후원하기");
 			$('#re_price').attr("value", 0);
 			$('#order_plus').attr("value", plus0);
 			$('#re_shipmonth').attr("value",null);
@@ -114,6 +115,7 @@
 			$('#receiver_name').attr("disabled",true);
 			$('#receiver_phone').attr("disabled",true);
 			$('#sample6_postcode').attr("disabled",true);
+			$('#searchPost').attr("disabled",true);
 			$('#searchPost').attr("disabled",true);
 			$('#sample6_address').attr("disabled",true);
 			$('#sample6_detailAddress').attr("disabled",true);
@@ -188,7 +190,7 @@
                 		<div class="tedori" style="padding: 20px; margin: 20px">
                 			<div style="display: flex;">
                 			<h4 style="width:90%">1,000원 +</h4>
-                			<button type="button" id="giftMo-btn" style="margin-top: 0px; background: red; color: white;" onclick="nonegift()">선택</button>
+                			<button type="button" id="giftMo-btn" style="margin-top: 0px; background: #6F7B63; color: white;" onclick="nonegift()">선택</button>
                 			</div>
                 			<a style="font-size: 13px">선물없이 후원하기</a> 
                 			<div>
@@ -210,14 +212,17 @@
                 		</div>
                 		
                 		<c:forEach var="re" items="${rewardList}">
+                		<c:choose>
+                		<c:when test="${re.reward_stock != 0 }">
                 		<div class="tedori" style="padding: 20px; margin: 20px">
                 		  <div>
                 		  	<div style="display: flex;">
                 		  	<input type="hidden" id="re_no" value="${re.reward_no }">
                 			<h4 style="width:90%"><fmt:formatNumber>${re.reward_price }</fmt:formatNumber> +</h4>
-                			<button type="button" id="giftMo-btn" style="margin-top: 0px; background: red; color: white;" onclick="choice(${re.reward_no})">선택</button>
+                			<button type="button" id="giftMo-btn" style="margin-top: 0px; background: #6F7B63; color: white;" onclick="choice(${re.reward_no})">선택</button>
                 			</div>
                 			<p style="font-size: 13px">${re.reward_title }</p>
+                			<p style="font-size: 13px">수량 ${re.reward_stock }</p>
                 			<p style="font-size: 13px">예상 전달일 ${re.reward_shipmonth } ${re.reward_shipdate }</p>
                 		  </div>
                 		<div>
@@ -236,6 +241,27 @@
                 		  </details>
                 		  </div>
                 		</div>
+                		</c:when>
+                		<c:otherwise>
+                			<div class="tedori" style="padding: 20px; margin: 20px; opacity: 0.5">
+                		  <div>
+                		  	<div style="display: flex;">
+                		  	<input type="hidden" id="re_no" value="${re.reward_no }">
+                			<h4 style="width:90%"><fmt:formatNumber>${re.reward_price }</fmt:formatNumber> +</h4>
+                			<button type="button" id="giftMo-btn" style="margin-top: 0px; background: #6F7B63; color: white;" onclick="choice(${re.reward_no})" disabled>품절</button>
+                			</div>
+                			<p style="font-size: 13px">${re.reward_title }</p>
+                			<p style="font-size: 13px">수량 ${re.reward_stock }</p>
+                			<p style="font-size: 13px">예상 전달일 ${re.reward_shipmonth } ${re.reward_shipdate }</p>
+                		  </div>
+                		<div>
+                		  <details>
+                		  	<summary style="color: blue; text-align: center;">추가 후원하기</summary>
+                		  </details>
+                		  </div>
+                		</div>
+                		</c:otherwise>
+                		</c:choose>
                 		</c:forEach>
                 			
                 	</div>

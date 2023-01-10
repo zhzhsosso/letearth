@@ -55,6 +55,11 @@
 		from order_tbl o join project p on o.pro_no = p.pro_no where order_trade_num = #{order_trade_num}
 	</select>
 	
+	<!-- 주문 취소 요청 -->
+	<update id="orderCancel">
+		update order_tbl set order_status=2 where order_trade_num = #{order_trade_num}
+	</update>
+	
 	<!-- 배송지 변경 -->
 	<update id="shipChange">
 		update order_tbl set receiver_name=#{receiver_name}, address_no=#{address_no}, address=#{address}, address_detail=#{address_detail}, 
