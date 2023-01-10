@@ -164,7 +164,7 @@
                             <div class="main-header-menus  d-flex justify-content-between align-items-center">
 
                                 <div class="header-logo">
-                                    <a href="/main/all"><img src="../resources/assets/images/logo.png" alt="logo"></a>
+                                    <a href="/main/all"><img src="../resources/assets/images/LElogo.png" alt="logo"></a>
                                 </div>
 
                                 <div class="header-menu d-none d-lg-block">
@@ -200,6 +200,7 @@
                                             <ul class="sub-menu">
                                                 <li><a href="/notice/all">공지사항</a></li>
                                                 <li><a href="/notice/event">이벤트</a></li>
+                                                <li><a href="/board/adFaqList">FAQ</a></li>
                                             </ul>
                                         </li>
 <!--                                         <li><a href="contact.html">Contact</a></li> -->

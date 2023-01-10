@@ -17,8 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.letearth.notice.domain.NoticeVO;
 import com.letearth.notice.service.NoticeService;
-import com.letearth.prodetail.domain.Criteria;
-import com.letearth.prodetail.domain.PageVO;
+import com.letearth.notice.domain.NoticeCriteria;
+import com.letearth.notice.domain.NoticePageVO;
 
 
 @Controller
@@ -60,38 +60,44 @@ public class NoticeController {
 	/**
 	 * 메인 페이지 - list (main)
 	 */
-	@RequestMapping(value="/main", method=RequestMethod.GET)
-	public String noticeMainGET(HttpSession session, Model model, @ModelAttribute("result") String result) throws Exception{
-	
-		// 세션객체 - 글 조회수 증가 체크정보
-		session.setAttribute("updateCheck", true);
-		
-		List<NoticeVO> noticeList = noticeService.getNoticeList();	
-		
-		model.addAttribute("noticeList", noticeList);
-		
-		return "/notice/main";
-	}
-	
-	/**
-	 * 메인 페이지 - listPage (main)
-	 */
 //	@RequestMapping(value="/main", method=RequestMethod.GET)
-//	public String listPageMainGET(Criteria cri, HttpSession session, Model model, @ModelAttribute("result") String result) throws Exception{
+//	public String noticeMainGET(HttpSession session, Model model, @ModelAttribute("result") String result) throws Exception{
 //	
 //		// 세션객체 - 글 조회수 증가 체크정보
 //		session.setAttribute("updateCheck", true);
 //		
-//		List<NoticeVO> noticeList = noticeService.getListPage(cri);
-//		PageVO pvo = new PageVO();
-//		pvo.setCri(cri);
-//		pvo.setTotalCount(20);
-//		model.addAttribute("pvo", pvo);		
+//		List<NoticeVO> noticeList = noticeService.getNoticeList();	
 //		
 //		model.addAttribute("noticeList", noticeList);
 //		
 //		return "/notice/main";
 //	}
+	
+	/**
+	 * 메인 페이지 - listPage (main)
+	 */
+	@RequestMapping(value="/main", method=RequestMethod.GET)
+	public String listPageMainGET(NoticeCriteria cri, HttpSession session, Model model, @ModelAttribute("result") String result) throws Exception{
+	
+//		String mem_id = (String) session.getAttribute("mem_id");
+		
+		// 세션객체 - 글 조회수 증가 체크정보
+		session.setAttribute("updateCheck", true);
+		
+//		session.setAttribute("mem_id", mem_id);
+		
+		List<NoticeVO> noticeList = noticeService.getListPage(cri);
+//		List<NoticeVO> noticeList = noticeService.getNoticeList();
+		NoticePageVO pvo = new NoticePageVO();
+		pvo.setCri(cri);
+		pvo.setTotalCount(noticeService.totalCnt());
+		model.addAttribute("pvo", pvo);		
+		
+		model.addAttribute("noticeList", noticeList);
+//		model.addAttribute("noticePageList", noticePageList);
+		
+		return "/notice/main";
+	}
 	
 	
 	/**
@@ -147,15 +153,15 @@ public class NoticeController {
 	 * 메인 페이지 - 공지 (all)
 	 */
 	@RequestMapping(value="/all", method=RequestMethod.GET)
-	public void noticeAllGET(Criteria cri, HttpSession session, Model model, @ModelAttribute("result") String result) throws Exception{
+	public void noticeAllGET(NoticeCriteria cri, HttpSession session, Model model, @ModelAttribute("result") String result) throws Exception{
 		
 		// 세션객체 - 글 조회수 증가 체크정보
 		session.setAttribute("updateCheck", true);
 		
 		List<NoticeVO> noticeAllList = noticeService.getAllListPage(cri);
-		PageVO pvo = new PageVO();
+		NoticePageVO pvo = new NoticePageVO();
 		pvo.setCri(cri);
-		pvo.setTotalCount(10);
+		pvo.setTotalCount(noticeService.totalACnt());
 		model.addAttribute("pvo", pvo);
 		
 		model.addAttribute("noticeAllList", noticeAllList);
@@ -166,42 +172,20 @@ public class NoticeController {
 	 * 메인 페이지 - 이벤트 (event)
 	 */
 	@RequestMapping(value="/event", method=RequestMethod.GET)
-	public void noticeEventGET(Criteria cri, HttpSession session, Model model, @ModelAttribute("result") String result) throws Exception{
+	public void noticeEventGET(NoticeCriteria cri, HttpSession session, Model model, @ModelAttribute("result") String result) throws Exception{
 
 		// 세션객체 - 글 조회수 증가 체크정보
 		session.setAttribute("updateCheck", true);
 		
 		List<NoticeVO> noticeEventList = noticeService.getEventListPage(cri);
-		PageVO pvo = new PageVO();
+		NoticePageVO pvo = new NoticePageVO();
 		pvo.setCri(cri);
-		pvo.setTotalCount(10);
+		pvo.setTotalCount(noticeService.totalECnt());
 		model.addAttribute("pvo", pvo);
 		
 		model.addAttribute("noticeEventList", noticeEventList);
 				
 	}
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

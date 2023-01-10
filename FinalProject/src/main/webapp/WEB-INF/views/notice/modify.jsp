@@ -15,13 +15,29 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="section-title text-center">
-                        <span>test</span>
-                        <h3 class="title">수정하기</h3>
+<!--                         <span>test</span> -->
+                        <h3 style="font-weight: bolder;">수정하기</h3>
+                        <hr>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
+                    
+                    <select style="width:120px;height:30px;margin-top:20px;" name="not_cat" id="not_cat">
+						 <option value="${not_cat }" ${not_cat == 'vo.not_cat' ? 'selected="selected"' : '' } disabled>카테고리 선택</option>
+							<c:choose>
+								<c:when test="${vo.not_cat eq 1}">
+									<option value="1" selected>공지사항</option>
+									<option value="2">이벤트</option>
+								</c:when>
+								<c:when test="${vo.not_cat eq 2}">
+									<option value="1">공지사항</option>
+									<option value="2" selected>이벤트</option>
+									
+								</c:when>
+							</c:choose>
+					</select> <br>
                     
                         <div class="conact-form-item">
                             <div class="row">
@@ -31,32 +47,14 @@
                                     </div>
                                 </div>
 
-
-							<select name="not_cat" id="not_cat">
-								 <option value="${not_cat }" ${not_cat == 'vo.not_cat' ? 'selected="selected"' : '' } disabled>카테고리 선택</option>
-									<c:choose>
-										<c:when test="${vo.not_cat eq 1}">
-											<option value="1" selected>공지사항</option>
-											<option value="2">이벤트</option>
-										</c:when>
-										<c:when test="${vo.not_cat eq 2}">
-											<option value="1">공지사항</option>
-											<option value="2" selected>이벤트</option>
-											
-										</c:when>
-									</c:choose>
-							</select>
-
+							
                                 <div class="col-lg-12">
                                     <div class="input-box mt-20">
-                                        <input type="text" value="${vo.not_content }" name="not_content">
+                                        <input type="text" hegiht="300" value="${vo.not_content }" name="not_content">
                                     </div>
                                     <div class="input-box mt-20 text-center">
-                                    
-                                    
-                                    
-                              
-                                        <button class="main-btn mo" type="submit">수정하기</button>
+                                        <button class="mo" style="color:#fff; background:#6f7b63; width:100px; height:40px; margin:5px; border-radius:5px; border:1px solid #fff;"  type="submit">수정하기</button>
+                                        <button class="ma" style="color:#fff; background:#6f7b63; width:100px; height:40px; margin:5px; border-radius:5px; border:1px solid #fff;" type="submit">목록으로</button>
                                     </div>
                                 </div>
                             </div>
@@ -77,6 +75,11 @@
 		 // 목록으로 이동
 // 		 location.href="/notice/main";
 		 location.href="/notice/read?not_no=${vo.not_no}";
+	 });
+	 
+	 $(".ma").click(function(){
+		 // 목록으로 이동
+		 location.href="/notice/main";
 	 });
 	 
  });
