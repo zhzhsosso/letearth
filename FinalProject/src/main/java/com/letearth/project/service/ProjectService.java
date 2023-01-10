@@ -70,7 +70,7 @@ public interface ProjectService {
 	/**
 	 * 대표자 및 정산 정보 등록
 	 */
-	public void updatePartner(ProjectVO proVO) throws Exception;
+	public Integer updatePartner(ProjectVO proVO) throws Exception;
 	
 	/**
 	 * 대표자 조회

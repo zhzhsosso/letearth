@@ -58,7 +58,7 @@ function updatePolicy(seq){
 	
 	var getHtml = editor3.getHTML();
 	contentObj = createFormObject("pro_policy", getHtml);		
-	fr.appendChild(contentObj);		
+// 	fr.appendChild(contentObj);		
 	
 	var pro_policy=$(contentObj).val();
 	
@@ -72,13 +72,12 @@ function updatePolicy(seq){
 	    dataType : "text",
 	    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 	    success : function(resp) {
-	    	alert('등록완료');
 	    	$.ajax({
 				url:"/project/regist",
 				type:"get",
 				datatype:"html",
 				success:function(data){
-					$("#policy").html(data);
+					$("#project").html(data);
 				}	
 			});
 	    },

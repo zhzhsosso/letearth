@@ -113,7 +113,7 @@ $(document).ready(function(){
 		type:"get",
 		datatype:"html",
 		success:function(data){
-			$("#basicInfo").html(data);
+			$("#project").html(data);
 		}	
 	});
 	
@@ -124,7 +124,7 @@ $(document).ready(function(){
 			type:"get",
 			datatype:"html",
 			success:function(data){
-				$("#basicInfo").html(data);
+				$("#project").html(data);
 			}	
 		});
 	});
@@ -136,7 +136,7 @@ $(document).ready(function(){
 			type:"get",
 			datatype:"html",
 			success:function(data){
-				$("#plan").html(data);
+				$("#project").html(data);
 			}	
 		});
 	});
@@ -148,7 +148,7 @@ $(document).ready(function(){
 			type:"get",
 			datatype:"html",
 			success:function(data){
-				$("#reward").html(data);
+				$("#project").html(data);
 			}	
 		});
 	});
@@ -160,7 +160,7 @@ $(document).ready(function(){
 			type:"get",
 			datatype:"html",
 			success:function(data){
-				$("#story").html(data);
+				$("#project").html(data);
 			}	
 		});
 	});
@@ -172,7 +172,7 @@ $(document).ready(function(){
 			type:"get",
 			datatype:"html",
 			success:function(data){
-				$("#policy").html(data);
+				$("#project").html(data);
 			}	
 		});
 	});
@@ -184,7 +184,7 @@ $(document).ready(function(){
 			type:"get",
 			datatype:"html",
 			success:function(data){
-				$("#regist").html(data);
+				$("#project").html(data);
 			}	
 		});
 	});
@@ -235,22 +235,22 @@ $(document).ready(function(){
                         <ul class="nav nav-pills" id="pills-tab" role="tablist">
                         	<!-- 탭 메뉴 -->
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="basicInfo-tab" data-toggle="pill" href="#basicInfo" role="tab" aria-controls="basicInfo" aria-selected="false" style="padding: 0px; margin-left:1em; margin-right:1em; background: none; color: #1b1f2e;">기본 정보</a>
+                                <a class="nav-link" id="basicInfo-tab" data-toggle="pill" href="#project" role="tab" aria-controls="project" aria-selected="false" style="padding: 0px; margin-left:1em; margin-right:1em; background: none; color: #1b1f2e;">기본 정보</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                               <a class="nav-link" id="plan-tab" data-toggle="pill" href="#plan" role="tab" aria-controls="plan" aria-selected="false" style="padding: 0px; margin-left:1em; margin-right:1em; background: none; color: #1b1f2e;">일정</a>
+                               <a class="nav-link" id="plan-tab" data-toggle="pill" href="#project" role="tab" aria-controls="project" aria-selected="false" style="padding: 0px; margin-left:1em; margin-right:1em; background: none; color: #1b1f2e;">일정</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="reward-tab" data-toggle="pill" href="#reward" role="tab" aria-controls="reward" aria-selected="false" style="padding: 0px; margin-left:1em; margin-right:1em; background: none; color: #1b1f2e;">리워드</a>
+                                <a class="nav-link" id="reward-tab" data-toggle="pill" href="#project" role="tab" aria-controls="project" aria-selected="false" style="padding: 0px; margin-left:1em; margin-right:1em; background: none; color: #1b1f2e;">리워드</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="story-tab" data-toggle="pill" href="#story" role="tab" aria-controls="story" aria-selected="false" style="padding: 0px; margin-left:1em; margin-right:1em; background: none; color: #1b1f2e;">스토리</a>
+                                <a class="nav-link" id="story-tab" data-toggle="pill" href="#project" role="tab" aria-controls="project" aria-selected="false" style="padding: 0px; margin-left:1em; margin-right:1em; background: none; color: #1b1f2e;">스토리</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="policy-tab" data-toggle="pill" href="#policy" role="tab" aria-controls="policy" aria-selected="false" style="padding: 0px; margin-left:1em; margin-right:1em; background: none; color: #1b1f2e;">정책</a>
+                                <a class="nav-link" id="policy-tab" data-toggle="pill" href="#project" role="tab" aria-controls="project" aria-selected="false" style="padding: 0px; margin-left:1em; margin-right:1em; background: none; color: #1b1f2e;">정책</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="regist-tab" data-toggle="pill" href="#regist" role="tab" aria-controls="regist" aria-selected="false" style="padding: 0px; margin-left:1em; margin-right:1em; background: none; color: #1b1f2e;">대표자 정보 입력</a>
+                                <a class="nav-link" id="regist-tab" data-toggle="pill" href="#project" role="tab" aria-controls="project" aria-selected="false" style="padding: 0px; margin-left:1em; margin-right:1em; background: none; color: #1b1f2e;">대표자 정보 입력</a>
                             </li>
                         	<!-- 탭 메뉴 -->
                         </ul>
@@ -258,7 +258,7 @@ $(document).ready(function(){
             	 <hr>
                     <div class="tab-content" id="pills-tabContent">
 	                    <!-- 기본 정보 -->
-	                    <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+	                    <div class="tab-pane fade show active" id="project" role="tabpanel" aria-labelledby="project-tab">
 	                    </div>
 	                    <!-- 기본 정보 -->
 	                    <!-- 일정 -->

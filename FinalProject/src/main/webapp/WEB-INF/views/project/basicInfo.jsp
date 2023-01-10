@@ -81,7 +81,7 @@ var input1 = document.querySelector('input[name=pro_tags]'),
 
 // 태그 입력 제어
 tagify1 = new Tagify(input1, {
-	whitelist : [ "펀딩", "렛어스" ],
+	whitelist : [ "펀딩", "렛어스", "비건", "클래스", "지구하자", "친환경", "클래스", "강의", "DIY" ],
 	blacklist : [ "시발", "개좋음" ]
 });
 	
@@ -128,56 +128,59 @@ function checkInfo() {
 		chk_array = chk_array.replaceAll("\\","");
 		
 		$('#tags').attr('value',chk_array);
+		
+		var getHtml = editor.getHTML();
+		contentObj = createFormObject("pro_context", getHtml);		
+		fr.appendChild(contentObj);
 			
-		if(!$('#cat_no > option:selected').val()) {
+		if($('#cat_no').val() < 1) {
 			Swal.fire({
 				title : '카테고리를 선택하세요!',
 				icon : 'error',
 				confirmButtonText : '확인'
 			})
-			document.fr.cat_no.focus();
 			return false;
 		}
-		if(document.fr.pro_title.value == "") {
+		if($('#pro_title').val() == "") {
 			Swal.fire({
 				title : '프로젝트 제목을 입력하세요!',
 				icon : 'error',
 				confirmButtonText : '확인'
 			})
-			document.fr.pro_title.focus();
 			return false;
 		}
-// 		if(document.fr.pro_context.value == "") {
-// 			Swal.fire({
-// 				title : '프로젝트 내용을 입력하세요!',
-// 				icon : 'error',
-// 				confirmButtonText : '확인'
-// 			})
-// 			document.fr.pro_context.focus();
-// 			return false;
-// 		}
-// 		if(document.fr.pro_thum.value == "") {
-// 			Swal.fire({
-// 				title : '사진을 업로드 해주세요!',
-// 				icon : 'error',
-// 				confirmButtonText : '확인'
-// 			})
-// 			document.fr.pro_thum.focus();
-// 			return false;
-// 		}
-		if(document.fr.tags.value == "") {
+		if($('#pro_title').val() == '임시저장글') {
+			Swal.fire({
+				title : '프로젝트 제목을 변경해주세요!',
+				icon : 'error',
+				confirmButtonText : '확인'
+			})
+			return false;
+		}
+		if($(contentObj).val() == null) {
+			Swal.fire({
+				title : '프로젝트 내용을 입력하세요!',
+				icon : 'error',
+				confirmButtonText : '확인'
+			})
+			return false;
+		}
+		if($('#input-file').val() == "") {
+			Swal.fire({
+				title : '사진을 업로드 해주세요!',
+				icon : 'error',
+				confirmButtonText : '확인'
+			})
+			return false;
+		}
+		if($('#tags').val() == "") {
 			Swal.fire({
 				title : '태그를 입력 해주세요!',
 				icon : 'error',
 				confirmButtonText : '확인'
 			})
-			document.fr.tags.focus();
 			return false;
 		}
-			
-		var getHtml = editor.getHTML();
-		contentObj = createFormObject("pro_context", getHtml);		
-		fr.appendChild(contentObj);
 		
 		var pro_context = $(contentObj).val();
 		
@@ -196,13 +199,12 @@ function checkInfo() {
 		    dataType : "text",
 		    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 		    success : function(resp) {
-		    	swal('등록되었습니다.','','info');
 		    	$.ajax({
 					url:"/project/plan",
 					type:"get",
 					datatype:"html",
 					success:function(data){
-						$("#basicInfo").html(data);
+						$("#project").html(data);
 					}	
 				});
 		    },
