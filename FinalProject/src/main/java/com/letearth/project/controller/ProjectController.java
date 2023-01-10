@@ -161,16 +161,25 @@ public class ProjectController {
 	 * 프로젝트 작성
 	 */
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public String createGET(HttpSession session) throws Exception {
+	public String createGET(HttpSession session, ProjectVO proVO) throws Exception {
 		// 로그인 제어
 		String mem_id = (String) session.getAttribute("mem_id");
-		int pro_no = (int) session.getAttribute("pro_no");
+		
+		int pro_no = 0;
+		
+		if(proVO.getPro_no() > 0) {
+			session.setAttribute("pro_no", proVO.getPro_no());
+		} else {
+			pro_no = (int) session.getAttribute("pro_no");
+		}
+		
+		mylog.debug("프로젝트 번호 : " + pro_no );
 		
 		if (mem_id == null) {
 			return "redirect:/member/login";
 		} 
 
-		return "project/create";
+		return "/project/create";
 	}
 
 	// http://localhost:8080/project/basicInfo
@@ -192,7 +201,7 @@ public class ProjectController {
 
 		mylog.debug("basicInfo : 탭 이동");
 
-		return "project/basicInfo";
+		return "/project/basicInfo";
 	}
 
 	/**
@@ -293,7 +302,7 @@ public class ProjectController {
 
 		mylog.debug("reward : 리워드 저장 완료 + 탭 이동");
 
-		return "project/reward";
+		return "/project/reward";
 	}
 
 	/**
@@ -321,13 +330,13 @@ public class ProjectController {
 		mylog.debug("reward : 리워드 생성완료");
 		mylog.debug("reward : 탭 이동");
 
-		return "project/reward";
+		return "/project/reward";
 	}
 
 	/**
 	 * 리워드 삭제 (GET)
 	 */
-	@RequestMapping(value = "/rewardDelete", method = RequestMethod.GET)
+	@RequestMapping(value = "/rewardDelete", method = RequestMethod.POST)
 	public String rewardDelete(HttpSession session, RewardVO rewVO) throws Exception {
 		// 로그인 제어
 		String mem_id = (String) session.getAttribute("mem_id");
@@ -338,12 +347,11 @@ public class ProjectController {
 		}
 
 		// 프로젝트 번호
-		rewVO.setPro_no((int) session.getAttribute("pro_no"));
 		proService.deleteReward(rewVO);
 
 		mylog.debug("rewardDelete : 리워드 삭제 완료! + 탭 이동");
 
-		return "redirect:/project/rewardView";
+		return "/project/reward";
 	}
 
 	// http://localhost:8080/project/story
@@ -366,7 +374,7 @@ public class ProjectController {
 
 		mylog.debug("story : 탭 이동");
 
-		return "project/story";
+		return "/project/story";
 	}
 
 	/**
@@ -449,7 +457,7 @@ public class ProjectController {
 
 		mylog.debug("policy : 탭 이동");
 
-		return "project/policy";
+		return "/project/policy";
 
 	}
 
@@ -516,13 +524,15 @@ public class ProjectController {
 
 		// 프로젝트 번호
 		proVO.setPro_no((int) session.getAttribute("pro_no"));
-		proService.updatePartner(proVO);
+		Integer result = proService.updatePartner(proVO);
 		
-		session.removeAttribute("pro_no");
+		if(result == 1) {
+			session.removeAttribute("pro_no");
+		}
 
 		mylog.debug("regist : 업데이트 완료 ! + 탭 이동");
 
-		return "project/regist";
+		return "/project/regist";
 	}
 
 	/**

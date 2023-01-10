@@ -39,6 +39,16 @@ function myProAdmin(num){
 		}	
 	});
 }
+function myProUpdate(num){
+	$.ajax({
+		url:"/project/create?pro_no="+num,
+		type:"get",
+		datatype:"html",
+		success:function(data){
+			location.href='/project/create';
+		}	
+	});
+}
 </script>
 
 <!-- 탭1 : 글 페이지 -->
@@ -100,13 +110,13 @@ function myProAdmin(num){
 								목표 금액: <span><fmt:formatNumber value="${pro.pro_gp }" pattern="#,###" /></span> 원
 							</div> <br>
 							<c:choose>
+								<c:when test="${pro.pro_status == 1}">
+									<button type="button" class="user" style="border: none;" onclick="myProUpdate(${pro.pro_no});">프로젝트 작성</button>
+								</c:when>
 								<c:when test="${pro.pro_status == 5}">
 									<button type="button" class="user" style="border: none;" onclick="myProAdmin(${pro.pro_no});">판매 관리</button>
 								</c:when>
 								<c:when test="${pro.pro_status == 6}">
-									<button type="button" class="user" style="border: none;">판매 관리</button>
-								</c:when>
-								<c:when test="${pro.pro_status == 7}">
 									<button type="button" class="user" style="border: none;">판매 관리</button>
 								</c:when>
 							</c:choose>

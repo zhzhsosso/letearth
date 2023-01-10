@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="../resources/assets/js/vendor/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="../resources/assets/css/project.css">
-
 <script type="text/javascript">
 function createReward(seq){
 	Swal.fire({
@@ -23,49 +23,73 @@ function createReward(seq){
 	 		    	icon: 'error',
 					title: '구분을 선택해주세요'
 				})
-	 			document.fr.par_cat.focus();
 	 			return false;
 	 		}
-// 	 		if($('#scan').val() == ""){
-// 	 		    Swal.fire({
-// 	 		    	icon: 'error',
-// 					text: '사진을 입력해주세요'
-// 				})
-// 	 			document.fr.scan.focus();
-// 	 			return;
-// 	 		}
-	 		if(document.fr.par_intro.value == ""){
+	 		if($('#input-file').val() == ""){
+	 		    Swal.fire({
+	 		    	icon: 'error',
+	 		    	title: '사진을 입력해주세요'
+				})
+	 			return false;
+	 		}
+	 		if($('#intro').val() == ""){
 	 			Swal.fire({
 	 		    	icon: 'error',
 	 		    	title: '판매자 소개를 입력해주세요'
 				})
-	 			document.fr.par_intro.focus();
 	 			return false;
 	 		}
-	 		if(document.fr.par_acc_name.value == ""){
+	 		if($("input[name='par_cat']:checked").val() == '사업자') {
+				par_num = $('#par_com_num').val();	
+				
+				if($('#par_com_num').val() == ""){
+					 Swal.fire({
+		 		    	icon: 'error',
+		 		    	title: '사업자등록번호를 입력해주세요'
+					})
+		 			return false;
+				}
+	 		} else if($("input[name='par_cat']:checked").val() == '개인') {
+	 			if($('#par_birth').val() == ""){
+					 Swal.fire({
+		 		    	icon: 'error',
+		 		    	title: '생일을 입력해주세요'
+					})
+		 			return false;
+				}
+	 		}
+	 		if($('#par_bank').val() == 0){
+	 			Swal.fire({
+	 		    	icon: 'error',
+	 		    	title: '은행을 선택해주세요'
+				})
+	 			return false;
+	 		}
+	 		if($('#par_acc_name').val() == ""){
 	 			Swal.fire({
 	 		    	icon: 'error',
 	 		    	title: '예금주명을 입력해주세요'
 				})
-	 			document.fr.par_acc_name.focus();
 	 			return false;
 	 		}
-	 		if(document.fr.par_acc.value == ""){
+	 		if($('#par_acc').val() == ""){
 	 			Swal.fire({
 	 		    	icon: 'error',
 	 		    	title: '계좌번호를 입력해주세요'
 				})
-	 			document.fr.par_acc.focus();
 	 			return false;
 	 		}
+	 		var par_num = $('#par_birth').val();
+	 		
+	 		
 	 		$.ajax({
 	 			async : true,
 	 		    type:'post',
 	 		    url:"/project/regist",
 	 		    data: {
-	 		    	par_cat:$("input:radio[name=par_cat]").val(),
+	 		    	par_cat:$("input[name='par_cat']:checked").val(),
 	 		    	par_intro:$("#intro").val(),
-	 		    	par_birth:$('#par_birth').val(),
+	 		    	par_birth:par_num,
 	 		    	par_acc_name:$('#par_acc_name').val(),
 	 		    	par_acc:$('#par_acc').val(),
 	 		    	par_bank:$('#par_bank').val(),
@@ -74,8 +98,10 @@ function createReward(seq){
 	 		    dataType : "text",
 	 		    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 	 		    success : function(resp) {
-	 		    	alert('등록완료');
-	 		    	location.href="/main/all";
+	 		    	swal('저장 되었습니다.','자동으로 메인페이지로 이동합니다.','info');
+		    		setTimeout(function () {
+	 		    		location.href="/main/all";
+		    		}, 2000);
 	 		    },
 	 		    error: function(jqXHR, textStatus, errorThrown) {
 	 		        alert("ERROR : " + textStatus + " : " + errorThrown);
@@ -126,24 +152,20 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<div class="select">
-				<input type="radio" id="select" name="par_cat" value="개인">
-				<label for="select">개인</label>
-				<input type="radio" id="select2" name="par_cat" value="사업자">
-				<label for="select2">사업자</label>
+				<input type="radio" id="select" name="par_cat" value="개인"><label for="select" style="position: inherit;">개인</label>
+				<input type="radio" id="select2" name="par_cat" value="사업자"><label for="select2" style="position: inherit;">사업자</label>
 			</div>
-
-			<label class="btn btn-primary btn-lg" for="input-file" id="scan">
+			
+			<label class="btn btn-primary btn-lg" for="input-file" id="scan" style="position: inherit;">
 				주민등록증 추가 </label>
 			<div style="display: none">
-				<input type="file" id="input-file" name="par_scan" /> <br>
-				<br>
+				<input type="file" id="input-file" name="par_scan" />
 			</div>
 
-			<label class="btn btn-primary btn-lg" for="input-file" id="scan2">
+			<label class="btn btn-primary btn-lg" for="input-file" id="scan2" style="position: inherit;">
 				사업자 등록증 추가 </label>
 			<div style="display: none">
-				<input type="file" id="input-file" name="par_scan" /> <br>
-				<br>
+				<input type="file" id="input-file" name="par_scan" />
 			</div>
 
 			<div class="blog-details__main">
@@ -153,12 +175,11 @@ $(document).ready(function(){
 					</div>
 					<small>창작자 개인이나 팀의 사진을 올려주세요</small>
 				</div>
-			</div>
-			<label class="btn btn-primary btn-lg" for="input-file">
-				사진 업로드 @@@@@@ 멤버 테이블로 넣어야함 </label>
+			<label class="btn btn-primary btn-lg" for="input-file" style="position: inherit;">
+				사진 업로드 </label>
 			<div style="display: none">
-				<input type="file" id="input-file" name="" /> <br>
-				<br>
+				<input type="file" id="input-file" name="" />
+			</div>
 			</div>
 
 			<div class="blog-details__main">
@@ -190,11 +211,11 @@ $(document).ready(function(){
 			</div>
 			<div id="com_num">
 				사업자 등록번호 <br>
-				<input type="text" name="par_com_num" id="par_birth" class="textBox" datetimeonly="true" ${proVO.par_com_num }> <br>
+				<input type="text" name="par_com_num" id="par_com_num" class="textBox" datetimeonly="true" ${proVO.par_com_num }> <br>
 			</div>
 			거래 은행 <br> 
 			<select name="par_bank" class="textBox" id="par_bank">
-				<option value=''>-선택-</option>
+				<option value='0'>-선택-</option>
 				<option value='SC제일은행'>SC제일은행</option>
 				<option value='경남은행'>경남은행</option>
 				<option value='광주은행'>광주은행</option>
@@ -249,7 +270,7 @@ $(document).ready(function(){
 			계좌 번호 <br> 
 			<input type="text" name="par_acc" class="textBox" id="par_acc" onKeyup="this.value=this.value.replace(/[^-0-9]/g,'');" value=${par_acc }>
 			<br>
-			<button type="button" class="main-btn" style="float: right;" onclick="return createReward();">저장</button>
+			<button type="button" class="main-btn" style="float: right;" onclick="createReward();">저장</button>
 		</div>
 	</div>
 </form>

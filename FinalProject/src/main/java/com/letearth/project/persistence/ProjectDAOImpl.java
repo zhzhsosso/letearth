@@ -145,9 +145,9 @@ public class ProjectDAOImpl implements ProjectDAO{
 	 * 대표자 및 정산 정보 등록
 	 */
 	@Override
-	public void updatePartner(ProjectVO proVO) throws Exception{
-		sqlSession.update(NAMESPACE + ".updatePartner", proVO);
+	public Integer updatePartner(ProjectVO proVO) throws Exception{
 		System.out.println(" DAOImpl : 대표자 및 정산 정보 등록 성공! ");	
+		return sqlSession.update(NAMESPACE + ".updatePartner", proVO);
 	}
 
 	/**

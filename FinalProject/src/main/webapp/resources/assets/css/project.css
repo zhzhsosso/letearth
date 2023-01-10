@@ -27,6 +27,20 @@
 	-webkit-box-shadow: none !important;
 	box-shadow: none !important;
 }
+.autoTextArea{
+	border: none;
+	height: 100%;
+	width: 300px;
+	background: #fff !important;
+	color: #212121;
+	border: 1px solid #ced4da;
+	margin:10px;
+	font-size: 15px;
+	padding : 0.375rem 0.75rem;
+	border-radius: 5px;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
 .textArea{
 	border: none;
 	height: 100px;
@@ -85,7 +99,6 @@
 	-webkit-box-shadow: none !important;
 	box-shadow: none !important;
 }
-
 
 /* radio */
 .select {

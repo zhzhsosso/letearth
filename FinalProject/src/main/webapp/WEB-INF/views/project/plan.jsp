@@ -149,7 +149,7 @@ String today = date.format(now);%>
 </script>
 <script type="text/javascript">
 function checkPlan() {
-	if($('#pro_gp').val() < 0) {
+	if($('#pro_gp').val() < 500000) {
 		Swal.fire({
 			icon : 'error',
 			title : '목표금액을 입력해주세요!',
@@ -198,13 +198,12 @@ function checkPlan() {
 	    dataType : "text",
 	    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 	    success : function(resp) {
-	    	alert('등록완료');
 	    	$.ajax({
 				url:"/project/reward",
 				type:"get",
 				datatype:"html",
 				success:function(data){
-					$("#plan").html(data);
+					$("#project").html(data);
 				}	
 			});
 	    },
@@ -230,7 +229,7 @@ function checkPlan() {
 					</div>
 					<div id="gp_div">
 						<input type="text" id="goalP" name="gprice" numberOnlyMinComma="true" koreanCurrency="true" class="textBox" value=${proVO.pro_gp }>원
-						<input type="text" id="pro_gp" name="pro_gp" value="">
+						<input type="hidden" id="pro_gp" name="pro_gp" value="">
 					</div>
 					<div class="field">
 						<span>결제대행 수수료(총 결제액의 3% + VAT)</span>
