@@ -263,6 +263,7 @@ $(function(){
             	<tr>
             		<th id="sh">연락처</th>
             		<td id="sd">${ovo.receiver_phone }</td>
+            		
             	</tr>
             	<tr>
             		<th id="sh">배송 메세지</th>
