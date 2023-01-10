@@ -2,8 +2,8 @@ package com.letearth.notice.service;
 
 import java.util.List;
 
+import com.letearth.notice.domain.NoticeCriteria;
 import com.letearth.notice.domain.NoticeVO;
-import com.letearth.prodetail.domain.Criteria;
 
 public interface NoticeService {
 
@@ -32,13 +32,21 @@ public interface NoticeService {
 	public List<NoticeVO> getNoticeEventList() throws Exception;
 	
 	// 글정보 조회(페이징 처리 cri)
-	public List<NoticeVO> getListPage(Criteria cri) throws Exception;
+	public List<NoticeVO> getListPage(NoticeCriteria cri) throws Exception;
 	
 	// 공지 조회(페이징 처리 cri)
-	public List<NoticeVO> getAllListPage(Criteria cri) throws Exception;
+	public List<NoticeVO> getAllListPage(NoticeCriteria cri) throws Exception;
 	
 	// 이벤트 조회(페이징 처리 cri)
-	public List<NoticeVO> getEventListPage(Criteria cri) throws Exception;
+	public List<NoticeVO> getEventListPage(NoticeCriteria cri) throws Exception;
 	
+	// 글 전체 개수 
+	public int totalCnt() throws Exception;
+	
+	// 글 전체 개수 
+	public int totalACnt() throws Exception;
+	
+	// 글 전체 개수 
+	public int totalECnt() throws Exception;
 	
 }
