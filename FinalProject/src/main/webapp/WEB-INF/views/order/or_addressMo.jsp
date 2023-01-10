@@ -104,13 +104,20 @@
 		
 		
 		$("#shipAddMo-btn").click(function(){
-			var order_no = ${ovo.order_no};
+			var order_no = $("#orderN").val();
 			var receiver_name = $('#receiver_name').val();
 			var address_no = $('#sample6_postcode').val();
 			var address = $('#sample6_address').val();
 			var address_detail = $('#sample6_detailAddress').val();
 			var receiver_phone = $('#receiver_phone').val();
 			var shipping_req = $('#shipping_req').val();
+			var order_status = $("#orderS").val();
+			
+			if(order_status == 2) {
+				alert("후원취소 진행 중이므로 배송지 변경 불가합니다.");
+				
+				return;
+			}
 			
 				
 				if(receiver_name.length == 0){
@@ -246,61 +253,9 @@
 </head>
 <body>
 
-	<!-- Modal -->
-                <div id="shipMo" class="modal">
-                  <div class="screen">
-                  	<div style="margin: 20px 10px;">
-                		<button type="button" id="shipMoCl"><i class="fa-solid fa-circle-xmark"></i></button> 
-                		<h4>배송지 변경</h4>
-                		<hr>
-<!--                 		<div align="right"><button type="button" id="shipAdd">+ 추가</button></div> -->
-                	</div>
-                		<div class="tedori">
-                        <c:choose>
-                        <c:when test="${mvo.mem_adress != null }">
-                        <div class="info2">
-                          <div style="width:80%">
-                          	<input type="text" class="giftTex" id="mem_name" value="${mvo.mem_name }" readonly>
-                          </div>
-                          <div>
-                          	<input type="button" id="ship" value="변경">
-                          </div>
-                        </div>
-                        <div class="info2">
-                        <div style="width:80%">
-                          	<input type="text" class="giftTex" id="mem_adress" value="${mvo.mem_adress }" style="width:30%" readonly>원
-                          </div>
-                           <!--  공간 맞추기용 -->
-                          <div>
-                          	<input type="button" id="gift" value="변경" style="visibility: hidden;">
-                          </div>
-                        </div>
-                        <div class="info2">
-                          <div>
-                          	<input type="text" class="giftTex" id="mem_adress2" value="${mvo.mem_adress2 }" style="width:30%" readonly>원
-                          </div>
-                           <!--  공간 맞추기용 -->
-                          <div>
-                          	<input type="button" id="gift" value="변경" style="visibility: hidden;">
-                          </div>
-                        </div>
-                        </c:when>
-                        <c:otherwise>
-                          <div align="center">
-                        	<button type="button" id="shipAdd" style="font-size: 20px; border: none; background-color: transparent;">+ 배송지 추가</button>
-                          </div>
-                        </c:otherwise>
-                        </c:choose>
-                        </div>
-                		
-<!--                 		<div style="text-align: center; margin: 0px 20px;"> -->
-<!--                 		<button id="shipMo-btn" style="width: 100%; background: red; color: white; margin:0px;">선택하기</button> -->
-<!--                 		</div> -->
-                  </div>
-                </div>
                 
                 
-     <!-- Modal -->
+     	<!-- Modal -->
                 <div id="shipAddMo" class="modal">
                   <div class="screen">
                   	<div style="margin: 20px 10px;">
@@ -316,7 +271,7 @@
                 		  <div class="adress">
                 			<p style="color: black">주소</p>
                 			<input type="text" id="sample6_postcode" placeholder="우편번호" readonly>
-							<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" readonly><br>
+							<input type="button" onclick="sample6_execDaumPostcode()" style="background-color:#6F7B63; color:white; font-size:15px; padding: 5px" value="우편번호 찾기"><br>
 							<input type="text" id="sample6_address" placeholder="주소" style="width:100%" readonly><br>
 							<input type="text" id="sample6_detailAddress" style="width:100%" placeholder="상세주소" >
 						  </div>
@@ -331,7 +286,7 @@
                 		</div>
                 	  
                 		<div style="text-align: center; margin: 0px 20px;">
-                		<button id="shipAddMo-btn" style="width: 100%; background: red; color: white; margin:0px;">변경하기</button>
+                		<button id="shipAddMo-btn" style="width: 100%; background: #6F7B63; color: white; margin:0px; font-size:15px; padding: 5px">변경하기</button>
 <!--                 		<button class="addCancle" id="shipAddMo-btn" style="width: 100%; background: red; color: white; margin:0px;">취소</button> -->
                 		</div>
                   </div>
