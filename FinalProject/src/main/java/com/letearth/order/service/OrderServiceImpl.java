@@ -150,6 +150,13 @@ public class OrderServiceImpl implements OrderService{
 		return dao.orderInfo2(order_trade_num);
 	}
 
+	// 주문 취소 요청
+	@Override
+	public Integer orderCancel(String order_trade_num) throws Exception {
+		mylog.debug("serviceImpl : orderCancel(order_trade_num) 호출");
+		
+		return dao.orderCancel(order_trade_num);
+	}
 
 
 	// 배송지 변경
@@ -159,16 +166,6 @@ public class OrderServiceImpl implements OrderService{
 		
 		return dao.shipChange(vo);
 	}
-	
-	
-	
-	
-	
 
-
-	
-	
-	
-	
 	
 }

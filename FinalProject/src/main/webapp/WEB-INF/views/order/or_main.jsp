@@ -14,7 +14,6 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 	<script src="https://kit.fontawesome.com/bd939ba5e2.js" crossorigin="anonymous"></script>
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 	
 	<title>LetEarth</title>
@@ -123,42 +122,42 @@ function requestPay() {
 	
 	if(reward_no != 0 ){
 		if(phone.length == 0){
-			swal('연락처를 입력해주세요','','info');
+			alert('연락처를 입력해주세요');
 			$('#phone').focus();
 			
 		 	return;
 		}
 		
 		if(receiver_name.length == 0){
-			swal('받으시는 분의 이름을 입력해주세요','','info');
+			alert('받는 분 성함을 입력해주세요');
 			$('#receiver_name').focus();
 			
 		 	return;
 		}
 		
 		if(address_no.length == 0){
-			swal('주소를 입력해주세요','','info');
+			alert('주소를 입력해주세요');
 			$('#sample6_postcode').focus();
 			
 		 	return;
 		}
 		
 		if(address_detail.length == 0){
-			swal('상세주소를 입력해주세요','','info');
+			alert('상세주소를 입력해주세요');
 			$('#sample6_detailAddress').focus();
 			
 		 	return;
 		}
 		
 		if(receiver_phone.length == 0){
-			swal('받는 분 연락처를 입력해주세요','','info');
+			alert('받는 분 연락처를 입력해주세요');
 			$('#receiver_phone').focus();
 			
 		 	return;
 		}
 		
 		if(hidcheck == 0){
-			swal('연락처 본인 인증을 완료해주세요','','info');
+			alert('연락처 본인 인증을 완료해주세요');
 			$('#phone').focus();
 			
 		 	return;
@@ -167,35 +166,105 @@ function requestPay() {
 	}
 		// 약관 동의 체크
 		if(!agree1[0].checked) {
-			swal('개인정보 및 제3자 이용에  동의해주세요','동의하셔야 후원이 완료됩니다!','info');
+			alert("개인정보이용에 동의해주세요");
 			return;
 		}
 		
 		if(!agree2[0].checked) {
-			swal('후원 유의사항 확인에 동의해주세요','동의하셔야 후원이 완료됩니다!','info');
+			alert("후원 유의사항 확인에 동의해주세요");
 			return;
 		}
 	
 		
-   	  IMP.request_pay({
-      pg: "html5_inicis",
-      pay_method: "card",
-      merchant_uid: trade_num,   // 주문번호
-      name: reward_title,
-      amount: total_price,       // 숫자 타입
-      buyer_name: "${session.mem_id}",
-      buyer_tel: "010-9554-9537",  //
-    }, function (rsp) { // callback
-      if (rsp.success) {
-    	  swal('후원이 완료되었습니다!','','info');
-    	  document.fr.submit();
-      } else {
-          swal('문제가 생겼습니다.','','error');
-      }
-    });
+//    	  IMP.request_pay({
+//       pg: "html5_inicis",
+//       pay_method: "card",
+//       merchant_uid: trade_num,   // 주문번호
+//       name: reward_title,
+//       amount: 100,                         // 숫자 타입
+//       buyer_name: "${session.mem_id}",
+//       buyer_tel: "010-9554-9537",  //
+//     }, function (rsp) { // callback
+//       if (rsp.success) {
+//     	  alert('후원 성공!');
+//     	  document.fr.submit();
+//       } else {
+//           alert('후원 실패! 에러 내용: ${rsp.error_msg}');
+//       }
+//     });
+		document.fr.submit();
   }
   
-
+	// 유효성 체크
+	function send(){
+		let reward_no = $('#re_no').val();
+		let phone = $('#phone').val();
+		let receiver_name = $('#receiver_name').val();
+		let receiver_phone = $('#receiver_phone').val();
+		let address_no = $('#sample6_postcode').val();
+		let address_detail = $('#sample6_detailAddress').val();
+		let hidcheck = $('#hidcheak').val();
+		let agree1 = $('#agree1');
+		let agree2 = $('#agree2');
+		
+		
+		if(reward_no != 0 ){
+			if(phone.length == 0){
+				alert('연락처를 입력해주세요');
+				$('#phone').focus();
+				
+			 	return;
+			}
+			
+			if(receiver_name.length == 0){
+				alert('받는 분 성함을 입력해주세요');
+				$('#receiver_name').focus();
+				
+			 	return;
+			}
+			
+			if(address_no.length == 0){
+				alert('주소를 입력해주세요');
+				$('#sample6_postcode').focus();
+				
+			 	return;
+			}
+			
+			if(address_detail.length == 0){
+				alert('상세주소를 입력해주세요');
+				$('#sample6_detailAddress').focus();
+				
+			 	return;
+			}
+			
+			if(receiver_phone.length == 0){
+				alert('받는 분 연락처를 입력해주세요');
+				$('#receiver_phone').focus();
+				
+			 	return;
+			}
+			
+			if(hidcheck == 0){
+				alert('연락처 본인 인증을 완료해주세요');
+				$('#phone').focus();
+				
+			 	return;
+			}
+			
+		}
+			// 약관 동의 체크
+			if(!agree1[0].checked) {
+				alert("개인정보이용에 동의해주세요");
+				return;
+			}
+			
+			if(!agree2[0].checked) {
+				alert("후원 유의사항 확인에 동의해주세요");
+				return;
+			}
+		
+		document.fr.submit();
+	}
 	
 	function getCookie(name) {
 		var value = document.cookie.match('(^|;)?'+name+'=([^;]*)(;|$)');
@@ -232,6 +301,10 @@ function requestPay() {
 }
   
 	$(function(){
+		
+		if(${pvo.left_date<0 }){
+			$("#dark").show();
+		}
 		
 		// 연락처 인증번호 
 		$("#sendPhone").click(function(){
@@ -272,6 +345,7 @@ function requestPay() {
 				data:{"phone":phone, "pro_no":pro_no},
 				success:function(){
 					var code= getCookie("code");
+					alert(code)
 
 					$("#phoneCheck").click(function(){
 						var checkNum = $("#checkNum").val();
@@ -294,9 +368,9 @@ function requestPay() {
 								data:{"phone":phone},
 								success:function(result){
 									if(result == 1){
-										console.log('저장 성공');
+										alert('연락처가 등록되었습니다.');
 									} else {
-										alert('저장 실패. 관리자에게 문의하세요.');
+										alert('실패');
 									}
 								}
 								
@@ -311,7 +385,7 @@ function requestPay() {
 						
 				},
 				error:function(){
-					alert("문제가 생겼습니다.");
+					alert("실패");
 				}
 			});
 		});
@@ -405,7 +479,7 @@ function requestPay() {
     <!--====== PAGE TITLE PART ENDS ======-->
 
     <!--====== PROJECT DETAILS PART START ======-->
-    <div class="container" style="background:#674df0">
+    <div class="container" style="background: #414934; border-radius:3px">
       <div class="row">
                 
 	    <div class="ortitle">
@@ -416,9 +490,16 @@ function requestPay() {
 	            <div class="explain-list">
 	                <p>${pvo.cat_name }</p>
 	                <h3 style="color:white">${pvo.pro_title }</h3>
-	                <span><b><fmt:formatNumber> ${pvo.pro_tp }</fmt:formatNumber>원</b></span> <br>
-	                <span style="color:red">${pvo.achievement_rate }%</span> <br>
-	                <span>${pvo.left_date }일 남음</span> <br>
+	                <span style="color:#EAEAEA"><b><fmt:formatNumber> ${pvo.pro_tp }</fmt:formatNumber>원</b></span> 
+	                <span style="color:#F15F5F">${pvo.achievement_rate }%</span>
+	                <c:choose> 
+	                <c:when test="${pvo.left_date<0 }">
+	                	<span style="color:#EAEAEA">마감된 프로젝트입니다!</span>
+	                </c:when>
+	                <c:otherwise>
+	                	<span style="color:#EAEAEA">${pvo.left_date }일 남음</span>
+	                </c:otherwise>
+	                </c:choose> 
 	            </div>
 	        </div>                            
 	    </div>
@@ -451,7 +532,7 @@ function requestPay() {
                           </c:choose>
                           </div>
                           <div class="blog-btn">
-                          	<input type="button" class="main-btn" id="gift" value="변경" style="line-height:10px; padding:10px">
+                          	<button type="button" class="main-btn" id="gift" style="line-height:10px; padding:10px; background-color:#6F7B63; color:white; border-radius:5px">변경</button>
                           </div>
                          </div>
                          <div class="info2">
@@ -544,9 +625,10 @@ function requestPay() {
 	                          	<input id="checkNum" type="text" placeholder="인증번호를 입력해주세요." style="width:100%; visibility: hidden;">
 	                          </div>
 	                          <div style="margin-bottom:15px; margin-left:10px; text-align:right; width:30%">
-	                          	<button type="button" class="main-btn" id="sendPhone" style="margin-bottom:10px; line-height:10px; padding:10px">인증번호 발송</button><br>
+	                          	<button type="button" class="main-btn" id="sendPhone" style="margin-bottom:10px; line-height:10px; padding:10px; background-color:#6F7B63; color:white; border-radius:5px">인증번호 발송</button><br>
 	                          	<input type="hidden" id="hidcheck" value="0">
-	                          	<span id="timer" style="margin-right: 5px; color: red"></span><button class="main-btn" id="phoneCheck" type="button" style="visibility:hidden; line-height:10px; padding:10px" onclick="check()">인증 확인</button>
+	                          	<span id="timer" style="margin-right: 5px; color: red"></span><button class="main-btn" id="phoneCheck" type="button" style="visibility:hidden; line-height:10px; padding:10px;
+	                          		 background-color:#6F7B63; color:white; border-radius:5px" onclick="check()">인증 확인</button>
 	                          </div>
 	                          </c:otherwise>
 	                          </c:choose>
@@ -583,7 +665,7 @@ function requestPay() {
                         <h3 style="padding:10px 0px; display: inline">배송지</h3> * 리워드 선택 시 필수입력 사항입니다.
                         <div id="shipping">
                       <c:choose>
-                        <c:when test="${rvo.reward_no != null || vo.reward_no != null}">
+                        <c:when test="${rvo.reward_no != null || vo.reward_no != null || param.reward_no != null}">
                         <div class="tedori">
                         <div style="margin: 20px">
                 		  <div style="margin: 20px 0px">
@@ -593,7 +675,7 @@ function requestPay() {
                 		  <div class="adress">
                 			<p style="color: black">주소 *</p>
                 			<input type="text" id="sample6_postcode" name="address_no" style="border: 1px solid gray; margin: 3px 0px; padding: 3px; border-radius:5px;" placeholder="우편번호" readonly>
-							<input type="button" class="main-btn" style="line-height:10px; padding:10px;" id="searchPost" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" readonly><br>
+							<button type="button" class="main-btn" style="line-height:10px; padding:10px; background-color:#6F7B63; color:white; border-radius:5px" id="searchPost" onclick="sample6_execDaumPostcode()">우편번호 찾기</button><br>
 							<input type="text" id="sample6_address" name="address" placeholder="주소" style="width:100%; border: 1px solid gray; margin: 3px 0px; padding: 3px; border-radius:5px;" readonly><br>
 							<input type="text" id="sample6_detailAddress" name="address_detail" style="width:100%; border: 1px solid gray; margin: 3px 0px; padding: 3px; border-radius:5px;" placeholder="상세주소" >
 						  </div>
@@ -619,7 +701,7 @@ function requestPay() {
                 		  <div class="adress">
                 			<p style="color: black">주소 *</p>
                 			<input type="text" id="sample6_postcode" name="address_no" style="border: 1px solid gray; margin: 3px 0px; padding: 3px; border-radius:5px;" placeholder="우편번호" disabled>
-							<input type="button" class="main-btn" style="line-height:10px; padding:10px;" id="searchPost" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" disabled><br>
+							<button type="button" class="main-btn" style="line-height:10px; padding:10px; background-color:#6F7B63; color:white; border-radius:5px" id="searchPost" onclick="sample6_execDaumPostcode()" disabled>우편번호 찾기</button><br>
 							<input type="text" id="sample6_address" name="address" placeholder="주소" style="width:100%; border: 1px solid gray; margin: 3px 0px; padding: 3px; border-radius:5px;" disabled><br>
 							<input type="text" id="sample6_detailAddress" name="address_detail" style="width:100%; border: 1px solid gray; margin: 3px 0px; padding: 3px; border-radius:5px;" placeholder="상세주소" disabled>
 						  </div>
@@ -648,39 +730,39 @@ function requestPay() {
                 
                 <div style="margin-left:20px; width:60%">
                 
-                 <div class="about-introduction-content">
-                        <h3 style="padding:10px 0px">결제수단</h3>
-                        <div class="tedori">
-                          <div>
-                           <div>
-                          	<input type="radio" > 카드 및 계좌
-                          	<input type="radio" > 네이버페이
-                           </div>
-                           <hr>
+<!--                  <div class="about-introduction-content"> -->
+<!--                         <h3 style="padding:10px 0px">결제수단</h3> -->
+<!--                         <div class="tedori"> -->
+<!--                           <div> -->
+<!--                            <div> -->
+<!--                           	<input type="radio" > 카드 및 계좌 -->
+<!--                           	<input type="radio" > 네이버페이 -->
+<!--                            </div> -->
+<!--                            <hr> -->
                            
-                           	<div class="info2" style="margin:10px 0px">
-                        	 <div class="ortitle" style="width:100%; margin-top: 0px">
-						        <div class="proimg" style="margin-right: 10px; padding-left: 0px">
-						            <img src="${pvo.pro_file }" width="100" height="50" alt="">
-						        </div>
-						        <div>
-						            <div class="explain-list">
-						                <span><b>@@카드</b></span> 
-						                <p>************1234</p>
-						            </div>
-						        </div>                            
-						    </div>
-	                          <div>
-	                          	<input type="button" class="main-btn" value="변경" style="line-height:10px; padding:10px;">
-	                          </div>
-						   </div>
-			            <div>
-			            	<input type="checkbox"> 기본 결제수단으로 등록
-			            </div>
+<!--                            	<div class="info2" style="margin:10px 0px"> -->
+<!--                         	 <div class="ortitle" style="width:100%; margin-top: 0px"> -->
+<!-- 						        <div class="proimg" style="margin-right: 10px; padding-left: 0px"> -->
+<%-- 						            <img src="${pvo.pro_file }" width="100" height="50" alt=""> --%>
+<!-- 						        </div> -->
+<!-- 						        <div> -->
+<!-- 						            <div class="explain-list"> -->
+<!-- 						                <span><b>@@카드</b></span>  -->
+<!-- 						                <p>************1234</p> -->
+<!-- 						            </div> -->
+<!-- 						        </div>                             -->
+<!-- 						    </div> -->
+<!-- 	                          <div> -->
+<!-- 	                          	<input type="button" class="main-btn" value="변경" style="line-height:10px; padding:10px;"> -->
+<!-- 	                          </div> -->
+<!-- 						   </div> -->
+<!-- 			            <div> -->
+<!-- 			            	<input type="checkbox"> 기본 결제수단으로 등록 -->
+<!-- 			            </div> -->
 						 
-                          </div>
-                        </div>
-                    </div>
+<!--                           </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
                 
                     <div class="about-introduction-content" style="margin-bottom: 30px">
                     	<div class="info" style="margin-top: 55px; font-size: 20px">
@@ -736,7 +818,7 @@ function requestPay() {
                            	</div>
                            <div>
                            	 <input type="hidden" name="order_no" value="${order_no }">
-                           	 <input type="button" value="후원하기" style="width:100%" onclick="requestPay()">
+                           	 <input type="button" value="후원하기" style="width:100%; background-color:#6F7B63; color:white; border:none; padding:5px; border-radius:5px" onclick="requestPay()">
                            </div>
                          </div>
                         
@@ -749,7 +831,7 @@ function requestPay() {
          </div>
          </div>
                <!-- modal -->
-               <div id="dark"></div>
+               	<div id="dark"></div>
                <%@ include file="or_giftMo.jsp" %>
 <%--                <%@ include file="or_addressMo.jsp" %> --%>
                <%@ include file="or_agreeMo.jsp" %>
