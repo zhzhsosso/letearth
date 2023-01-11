@@ -46,7 +46,7 @@
                     <form id="contact-form" action="" method="">
                         <div class="conact-form-item">
                             <div class="row">
-                            <div class="col-lg-6 col-md-6">
+                            <div class="col-lg-12 col-md-12">
 	                            
 	                            <div>
                                     <span><p style="font-weight: bolder;">

@@ -6,11 +6,6 @@
 	<!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
 
-<!-- <script type="text/javascript"> -->
-
-
-<!-- </script> -->
-
     
     <section class="explore-projects-area explore-projects-page-area" style="padding-bottom: 1000px;">
         <div class="container">
@@ -20,20 +15,10 @@
                     <div class="section-title text-center" style="margin-top: 155px;">
                         <span>Let Earth에서 만날 수 있는</span>
                         <h3 class="title">진행 중 프로젝트</h3>
-                        <div id="list">
-							<p>
-								<a href="javascript:recent()">최신순</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
-								<a href="javascript:aratelist()">달성률순</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
-								<a href="javascript:likelist()">좋아요순</a>
-							</p>
-						</div>
                     </div>
                 </div>
             </div>
             
-            <!-- 정렬하기 최신순, 달성률순, 좋아요순-->
-            
-    
             <div class="row justify-content-center">
             <c:forEach var="now" items="${nowList }">
                 <div class="col-lg-4 col-md-6 col-sm-9" style="width: 270px;">
@@ -45,12 +30,10 @@
                             </a>
                         </div>
                         <div class="explore-projects-content" style="height: 255px;">
-                        	<div class="item d-flex align-items-center">
-                        	<p>마감까지</p>
-                        	</div>	
                             <div class="item d-flex align-items-center">
+                            	<p><i class="fa fa-clock-o"></i></p>
+                        		<p>프로젝트 종료까지</p>&nbsp;
                                 <span>D - ${now.left_date}</span>
-                                <p><i class="fa fa-clock-o"></i></p>
                             </div>                         
                             <a href="/prodetail/info?pro_no=${now.pro_no}">
             					<h3>${now.pro_title }</h3>
@@ -79,7 +62,6 @@
         </div>
     </section>
     
-    <!--====== EXPLORE PROJECTS PART ENDS ======-->
 
 
 	<!-- 푸터 -->

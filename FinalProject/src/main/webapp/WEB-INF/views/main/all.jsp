@@ -41,25 +41,23 @@
 	</style>
 	
 
-	<!--====== PAGE TITLE PART START : 광고 배너 ======-->
-	
-	<section class="page-title-area bg_cover" style="background-image: url(../resources/assets/images/page-title-bg.jpg);">
+	<!-- 광고 배너 -->
+	<section class="page-title-area" style="background-image: url(../resources/assets/images/ad.png);">
 	    <div class="container">
 	        <div class="row">
 	            <div class="col-lg-12">
 	                <div class="page-title-content">
-	                    <h3 class="title">광고 배너 자리</h3>
+<!-- 	                    <h3 class="title">광고 배너 자리</h3> -->
 	                </div>
 	            </div>
 	        </div>
 	    </div>
 	</section>
+    <!-- 광고 배너 -->
 
-    <!--====== PAGE TITLE PART ENDS ======-->
 
-
-    <!--====== EXPLORE PROJECTS PART START : 신규 프로젝트 ======-->
-    <section class="explore-projects-area explore-projects-page-area" style="padding-bottom: 90px;">
+    <!-- 신규 프로젝트 -->
+    <section class="explore-projects-area explore-projects-page-area" style="padding-bottom: 90px; background: white;">
         <div class="container">
         
             <div class="row justify-content-center">
@@ -86,11 +84,11 @@
                         </div>
                         <div class="explore-projects-content" style="height: 280px;">
                         	<div class="item d-flex align-items-center">
-                        	<p><i class="fa fa-clock-o"></i></p><p>마감까지</p>
-                        	</div>	
-                            <div class="item d-flex align-items-center">
+                            	<p><i class="fa fa-clock-o"></i></p>
+                        		<p>프로젝트 종료까지</p>&nbsp;
                                 <span>D - ${pro.left_date}</span>
-                            </div>                         
+                            </div>  	
+                                                   
                             <a href="/prodetail/info?pro_no=${pro.pro_no}">
             					<h3>${pro.pro_title }</h3>
             				</a>
@@ -121,15 +119,11 @@
                </div>   
             </div>
     </section>
-    
-    <!--====== EXPLORE PROJECTS PART ENDS ======-->
+    <!-- 신규 프로젝트 -->
 
 
 
-    <!--====== EXPLORE PROJECTS PART START : 인기 프로젝트 ======-->
-    
-<!--     썸네일. 타이틀 상세정보로 가게 하는 페이지 링크 걸어야 함 @@@ -->  
-    
+    <!-- 인기 프로젝트  -->
     <section class="explore-projects-area explore-projects-page-area" style="padding-bottom: 325px;">
         <div class="container">
             <div class="row justify-content-center">
@@ -154,11 +148,11 @@
                         </div>
                         <div class="explore-projects-content" style="height: 255px;">
                         	<div class="item d-flex align-items-center">
-                        	<p><i class="fa fa-clock-o"></i>마감까지</p>
-                        	</div>		
-                            <div class="item d-flex align-items-center">
+                            	<p><i class="fa fa-clock-o"></i></p>
+                        		<p>프로젝트 종료까지</p>&nbsp;
                                 <span>D - ${pl.left_date}</span>
-                            </div>
+                            </div> 
+                        	
                             <a href="/prodetail/info?pro_no=${pl.pro_no }"><h3>${pl.pro_title }</h3></a>
                             <div class="projects-range">
                                 <div class="projects-range-content">
@@ -182,9 +176,7 @@
               </div>      
             </div>
     </section>
-    
-    <!--====== EXPLORE PROJECTS PART ENDS ======-->
-    
+    <!-- 인기 프로젝트 -->
     
 
 
