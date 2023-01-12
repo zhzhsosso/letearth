@@ -68,15 +68,28 @@ public class AdReportDAOImpl implements AdReportDAO {
 	/**
 	 * 신고 관련
 	 */
-	// 신고 목록 
+	// 신고 목록 전체
 	@Override
-	public List<AdminVO> getListReport(Criteria cri) throws Exception {
+	public List<AdminVO> getListAllReport(Criteria cri) throws Exception {
 		mylog.debug(" getListReport(Criteria cri) 페이징처리 ");
+		
+		return sqlSession.selectList(NAMESPACE + ".listReportAll", cri);
+	}
+	
+	// 신고 목록
+	@Override
+	public List<AdminVO> getListReport(Criteria cri, int rep_cat) throws Exception {
 		
 		return sqlSession.selectList(NAMESPACE + ".listReport", cri);
 	}
 	
-	// 신고전체개수
+	// 신고전체개수 
+	@Override
+	public int totalRepCntAll() throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".countReportAll");
+	}
+	
+	// 신고전체개수 
 	@Override
 	public int totalRepCnt() throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".countReport");

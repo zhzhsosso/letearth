@@ -6,7 +6,7 @@
 <html>
 <head>
 <!-- 어드민 lte -->
-<link href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<%-- <link href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> --%>
 <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> -->
 <!-- <link href="/resources/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" /> -->
 <!-- <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" /> -->
@@ -16,11 +16,18 @@
 <title>1:1문의</title>
 
 <style type="text/css">
+#sbtn {
+	position: absolute;
+	top: 0px;
+	right: -23%;
+	background-color: #A4AC85;
+	height: 35px;
+}
 
 #repSelector {
   width : 15%;
   height : 4px;
-  background-color : #BBE093;
+  background-color : #D7D1B9;
   border : 0;
   
    position: relative;
@@ -35,12 +42,6 @@
    
 }
 
-#sbtn {
-	position: absolute;
-	top: 0px;
-	right: -20%;
-	background-color: #BFCC97;
-}
 
   /*페이징*/
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
@@ -113,6 +114,25 @@
 .select-items div:hover, .same-as-selected {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+
+/*모달 관리자 */
+.form-control1 {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    
+}
 </style>
 </head>
 <body>   
@@ -121,7 +141,7 @@
    
    
    <section class="contact-form-area">
-   <div style="display: flex; font-size: 16px;">
+   <div style="display: flex;">
    <%@ include file="../include/adSide1.jsp" %>	
    
         <div class="container">
@@ -131,26 +151,27 @@
  	<br>        
  	<br>        
    <!-- 어드민 -->		
-						<h2 class="box-title" align="center"><b style="color: #6c757d;"> 관리자 1:1 문의 </b></h2>
+						<h2 class="box-title" align="center"><b style="color: #6F7B63;"> 관리자 1:1 문의 </b></h2>
 						<hr id="repSelector" align="center">
-			<div class="col-xs-12"><br><br>
-				<div style="font-size: 1.5rem;" align="left">
+			<div class="col-xs-12" style="font-size: 16px;"><br><br>
+				<div style="font-size: 1.5rem; cursor: pointer;" align="left" id="aaadiv" >
 					<br>  
 					<hr id="repSelector1">	
 				</div>
 					
 			<!-- 어드민 -->                                                      
-				<div class="box">
+				<div class="box" style="border: none;">
 					<div class="box-header">
 					
 						<div class="box-tools" align="right">
 							<div class="input-group input-group-sm hidden-xs"
-								style="width: 180px;">
-								<input type="text" name="table_search"
-									class="form-control pull-right" placeholder="Search" style="height: 30px; font-size: 1.5rem;"">
-								<div class="input-group-btn" style="position: relative; left: 18%;">
+								style="width: 180px; height: 50px;">
+								<input type="text" name="keyword"
+									class="form-control pull-right" placeholder="Search" 
+											style="height: 35px; width: 60px; font-size: 1rem; border-color: #A4AC85; color:#B6AD90;">
+								<div class="input-group-btn" style="padding-left: 3px;">
 									<button type="submit" class="btn btn-default" id="sbtn">
-										<i class="fa fa-search" ></i>
+										<i class="fa fa-search"></i>
 									</button>
 								</div>
 							</div>
@@ -165,79 +186,123 @@
 					<input type="hidden" name="not_re_seq" value="${vo.not_re_seq }">
 						<table class="table table-hover">
 							<tbody>
-								<tr style="background-color: #EEF5E6">
-									<th>글번호</th>
-									<th>1:1문의 제목</th>
-									<th>작성자</th>
-									<th>작성일</th>
-									<th>조회수</th>
-									<th>관리</th>
+								<tr style="background-color: #EDEAE0;" id="vc">
+									<th style="text-align: center; width: 7%;">#</th>
+									<th style="text-align: center;">1:1문의 제목</th>
+									<th style="text-align: center;">작성자</th>
+									<th style="text-align: center;">작성일</th>
+									<th style="text-align: center;">조회수</th>
+									<th style="text-align: center;">관리</th>
 								</tr>
 				<c:forEach var="vo" items="${adRewriteList }" varStatus="i">
 								<tr>
-									<td>
-									${i.count }
-									<input type="hidden" name="not_no" value="${vo.not_no }">
+									<td style="padding-left: 10px; text-align:center; vertical-align:middle; color: #414934; ">
+										${i.count }
+										<input type="hidden" name="not_no" value="${vo.not_no }">
 									</td>
-									<td> <!-- 문의제목 -->
+									<td style="vertical-align:middle;"> <!-- 문의제목 -->
 										<!-- 관리자일 경우 들여쓰기 -->
 										<c:if test="${vo.not_re_lev > 0 }">
 											<img src="/resources/level.gif" width="${vo.not_re_lev*10 }">
-											<img src="/resources/re.gif">
+											<img src="/resources/re.png" height="10px;" width="25px;">
 										</c:if>		
 <!-- 										상세보기a링크													 -->
 <%-- 										<a href="/board/adRewriteRead?not_no=${vo.not_no }" style="color: gray;"> ${vo.not_title } </a> --%>
-	<!-- 모달 -->
+	<!-- 모달로 본문보기 -->
 										
-								<a data-toggle="modal" href="/board/adRewriteRead?not_no=${vo.not_no }" data-target="#exampleModal${i.index }" data-whatever="작성자" style="cursor: pointer;"> ${vo.not_title }</a>		
+								<a data-toggle="modal" href="/board/adRewriteRead?not_no=${vo.not_no }" data-target="#exampleModal${i.index }" data-whatever="작성자" style="cursor: pointer; color: #414934; font-weight: bold;"> ${vo.not_title }</a>		
 <%-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal${status.index }" data-whatever="@getbootstrap">Open modal for @getbootstrap</button> --%>
 
 <div class="modal fade" id="exampleModal${i.index }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="color: #414934; font-weight: bold;">1:1문의 상세보기</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
 <!--         <form> -->
+		  <div class="form-group">
+            <label for="recipient-name" class="col-form-label" style="color: #414934; font-weight: bold;">문의제목:</label>
+            <input type="text" class="form-control1" id="recipient-name" value="${vo.not_title }" readonly="readonly">
+          </div>
+          <div style="display: flex; justify-content: space-between;">
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <label for="recipient-name" class="col-form-label" style="color: #414934; font-weight: bold;">작성자:</label>
+            <c:choose>
+            	<c:when test="${vo.not_middle == 4 }">
+            			<input type="text" class="form-control1" id="recipient-name" value="관리자" readonly="readonly">
+            	</c:when>
+            	<c:otherwise>
+            			 <input type="text" class="form-control1" id="recipient-name" value="${vo.mem_id }" readonly="readonly">
+            	</c:otherwise>
+            </c:choose>
           </div>
           <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text">${vo.not_content }</textarea>
+            <label for="recipient-name" class="col-form-label" style="color: #414934; font-weight: bold;">작성일:</label>
+            <input type="text" class="form-control1" id="recipient-name" value="<fmt:formatDate value="${vo.not_date }" pattern="yy-MM-dd"/>" readonly="readonly">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label" style="color: #414934; font-weight: bold;">문의내용:</label>
+            <c:choose>
+            	<c:when test="${vo.not_middle == 4 }">
+            			<!-- 뷰어시작 -->
+<%--             			<textarea class="form-control" id="message-text" rows="5">${vo.not_reply }</textarea> --%>
+					
+            			<div id="not_reply" class="form-control1" style="height: 150px;">${vo.not_reply}</div>
+					<div id="viewer" style="display: none"></div>	
+                                <script>
+									var not_content = $("#not_reply")[0].innerHTML;
+									
+									const editor = new toastui.Editor.factory({
+										el: document.querySelector('#viewer'),
+									    previewStyle: 'vertical',
+									    height: '500px',
+									    initialValue: "",
+									    initialEditType : "wysiwyg",
+									    initialValue : not_reply,
+									    viewer: true,
+									    
+									});
+									
+								</script>
+					
+            	</c:when>
+            	<c:otherwise>
+            			 <textarea class="form-control1" id="message-text" rows="5" readonly="readonly" style="height: 150px;">${vo.not_content }</textarea>
+            	</c:otherwise>
+            </c:choose>
           </div>
 <!--         </form> -->
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #6F7B63; border-color:#6F7B63; ">확인</button>
+        <button type="button" class="btn btn-primary"  onclick="location.href='/board/adRewriteRegist?not_no=${vo.not_no }';" style="background-color: #A4AC85; border-color:#A4AC85; ">답글달기</button>
       </div>
     </div>
   </div>
 </div>																		
-<!-- 모달 -->
+<!-- 모달로 본문보기-->
 									</td><!-- /문의제목 -->
-									<td>
+									<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
 									${vo.mem_id }
 									<c:if test="${vo.not_middle == 4 }">
 									관리자
 									</c:if>
 									</td>
-									<td>
+									<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
 										<fmt:formatDate value="${vo.not_date }" pattern="yy-MM-dd"/>
 									</td>
-									<td>${vo.not_viewcnt }</td>
-									<td>
+									<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">${vo.not_viewcnt }</td>
+									<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
 										<c:if test="${vo.not_middle != 4 }">													
-											<a href="/board/adRewriteRegist?not_no=${vo.not_no }" style="color: #8FC951;"> 답글 </a>
-											/
+											<a href="/board/adRewriteRegist?not_no=${vo.not_no }" style="color: #6F7B63; font-weight: bolder;" id="rew"> 답글 </a>
+											<span style="color: #B6AD90; font-weight: bolder;">/</span>
 										</c:if>
-											<a href="/board/adRewriteRemove?not_no=${vo.not_no }" style="color: #8FC951;"> 삭제 </a>
+											<a href="/board/adRewriteRemove?not_no=${vo.not_no }" style="color: #6F7B63; font-weight: bolder;" id="deleteRewrite"> 삭제 </a>
 									</td>
 								</tr>
 								</c:forEach>				
@@ -292,44 +357,61 @@ $('#exampleModal').on('show.bs.modal', function (event) {
 	  modal.find('.modal-body input').val(recipient)
 	})
 </script>
-<script>
 
-   	<script type="text/javascript">
-		var result = '${result}';
-		if(result == '등록완'){
-			alert("답글쓰기 완료!");
-		}
-		
-		if(result == '수정완'){
-			alert("답글수정 완료!");
-		}
-		
-		if(result == '삭제완'){
-			alert("답글삭제 완료!");
-		}
-		
-</script>
 <!-- sweetalert -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script type="text/javascript">
-function deleteRewrite(){
+
+$(document).ready(function(){
+	
+	$("#rew").click(function(){ // get방식
+		
+		Swal.fire({
+			title : '목록으로 돌아가시겠습니까?',
+			html : '<h4>현재 작성하신 내용을 복구할 수 없습니다.</h4>',
+			icon : 'warning',
+			showCancelButton: true,
+		    confirmButtonColor: '#A4AC85',
+		    cancelButtonColor: '#6F7B63',
+		    confirmButtonText: '목록이동',
+		    cancelButtonText: '머무르기'
+		}).then((result) => {
+		if (result.value) {
+		
+	location.href="/board/adRewriteList";
+}
+});
+
+
+});
+	
+	
+
+
+$("#deleteRewrite").click(function(){
+	
+	var not_no = document.fr.not_no.value;
+
+	alert(not_no);
+	
 	 Swal.fire({ 
         title: '정말 삭제하시겠습니까?', 
         icon: 'warning', 
-        html: "<h6>삭제 시 복구되지 않습니다.</h6><h5>메인페이지로 이동합니다.</h5>",
+        html: "<h6>삭제 시 기존 데이터는 복구되지 않습니다.</h6><h5>메인페이지로 이동합니다.</h5>",
         showCancelButton: true,         
-        confirmButtonColor: '#3085d6', 
-        cancelButtonColor: 'grey', 
+        confirmButtonColor: '#A4AC85', 
+        cancelButtonColor: '#6F7B63', 
         confirmButtonText: '삭제하기', 
         cancelButtonText: '머무르기' 
       }).then((result) => { 
         if (result.isConfirmed) {           
              //"취소하기" 버튼을 눌렀을 때 호출할 함수
-       	 location.href="/board/adRewriteRemove?not_no="+${vo.not_no };
+       	 location.href="/board/adRewriteRemove?not_no="+not_no;
         } 
       }) 
-   } 	
+      
+});	
 </script>
 <script type="text/javascript">
 // 셀렉트 꾸미기

@@ -97,30 +97,60 @@ public class AdReportController {
 	 * 신고리스트 -adRepListGET
 	 * 신고상세 - adRepReadGET
 	 */
-	// http://localhost:8080/report/adRepList
-	// 조회 GET
-	@RequestMapping(value = "/adRepList",method = RequestMethod.GET)
-	public String adRepListGET(Criteria cri,HttpSession session,Model model) throws Exception{
+	// 전체 리스트
+	@RequestMapping(value = "/adRepListAll",method = RequestMethod.GET)
+	public String adRepListAllGET(Criteria cri,HttpSession session,Model model) throws Exception{
 		
 		session.setAttribute("updateCheck", true); // => 세션 존재하면 true
 		
-		List<AdminVO> adRepList = adReportService.getListReport(cri);
+			List<AdminVO> adRepList = adReportService.getListAllReport(cri);
+			
+			// 페이징처리 하단부 정보 준비
+			PageVO pvo = new PageVO();
+			pvo.setCri(cri);
+			mylog.debug("totalRepCnt : " + adReportService.totalRepCntAll());
+			pvo.setTotalCount(adReportService.totalRepCntAll()); // 작성되어있는 글 전체 개수
+			
+			model.addAttribute("pvo", pvo);
+			
+			// 연결되어 있는 뷰페이지로 정보 전달 (Model 객체)
+			model.addAttribute("adRepList", adRepList);
+			
+		
+		// 페이지 이동(/report/adRepList)	
+		return "/report/adRepList2";
+		
+	}
+	
+	
+	// http://localhost:8080/report/adRepList
+	// 조회 GET
+	@RequestMapping(value = "/adRepList",method = RequestMethod.GET)
+	public String adRepListGET(Criteria cri, HttpSession session,Model model, @RequestParam("rep_cat") int rep_cat) throws Exception{
+		
+		session.setAttribute("updateCheck", true); // => 세션 존재하면 true
+			
+		mylog.debug("$$$$$$$$$$@@@@@@@@@@@@@@@@@@@@@@@@rep_cat 번호는 => " + rep_cat);
+		
+			List<AdminVO> adRepList = adReportService.getListReport(cri, rep_cat);
 		
 		// 페이징처리 하단부 정보 준비
-		PageVO pvo = new PageVO();
-		pvo.setCri(cri);
-		mylog.debug("totalRepCnt : " + adReportService.totalRepCnt());
-		pvo.setTotalCount(adReportService.totalRepCnt()); // 작성되어있는 글 전체 개수
+				PageVO pvo = new PageVO();
+				pvo.setCri(cri);
+				mylog.debug("totalRepCnt : " + adReportService.totalRepCnt());
+				pvo.setTotalCount(adReportService.totalRepCnt()); // 작성되어있는 글 전체 개수
+				
+				model.addAttribute("pvo", pvo);
+				
+				// 연결되어 있는 뷰페이지로 정보 전달 (Model 객체)
+				model.addAttribute("adRepList", adRepList);
 		
-		model.addAttribute("pvo", pvo);
-		
-		// 연결되어 있는 뷰페이지로 정보 전달 (Model 객체)
-		model.addAttribute("adRepList", adRepList);
-		
+	
 		// 페이지 이동(/report/adRepList)	
 		return "/report/adRepList";
 		
 	}
+
 	
 	// 신고상세GET
 	@RequestMapping(value = "/adRepRead", method = RequestMethod.GET)

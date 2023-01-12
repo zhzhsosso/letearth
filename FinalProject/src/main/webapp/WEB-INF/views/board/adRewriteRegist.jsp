@@ -36,12 +36,13 @@ function createFormObject(tagName, content){
 }
 
 function regRew(seq){
+	
 	Swal.fire({
 	  html: '<h3>답글을 등록하시겠습니까?</h3>',
-	  icon: 'info',
+	  icon: 'success',
 	  showCancelButton: true,
-	  confirmButtonColor: '#3085d6',
-	  cancelButtonColor: 'gray',
+	  confirmButtonColor: '#A4AC85',
+	  cancelButtonColor: '#6F7B63',
 	  confirmButtonText: '등록하기',
 	  cancelButtonText: '취소하기'
 	}).then((result) => {
@@ -51,6 +52,7 @@ function regRew(seq){
 	 		var getHtml = editor.getHTML();
 			contentObj = createFormObject("not_reply", getHtml);		
 			fr.appendChild(contentObj);		
+			     
 			
 	        fr.submit();
 	  }
@@ -62,7 +64,7 @@ function regRew(seq){
 <style>
 /* 에디터 꾸미기 */
 .toastui-editor-defaultUI-toolbar {
-    background-color: #EEF5E6;
+    background-color: #EDEAE0;
     border-bottom: 1px solid #ebedf2;
     border-radius: 3px 3px 0 0;
     display: -ms-flexbox;
@@ -72,7 +74,7 @@ function regRew(seq){
 }
 
 .toastui-editor-defaultUI-toolbar button {
-    border: 1px solid #EEF5E6;
+    border: 1px solid #EDEAE0;
     border-radius: 3px;
     box-sizing: border-box;
     cursor: pointer;
@@ -80,6 +82,37 @@ function regRew(seq){
     margin: 7px 5px;
     padding: 0;
     width: 32px;
+}
+
+/*버튼체인지색상*/
+.main-btn::before {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 0;
+    height: 17px;
+    width: 17px;
+    background: #6F7B63;
+	border-radius:0.25rem;
+    z-index: -1;
+}
+
+.main-btn{
+    border-radius: 0.25rem;
+    background-color: #A4AC85;
+    color: #F2F0E8;
+    font-size: 18px;
+    font-weight: bolder;
+	text-align:center; 
+    vertical-align:middle;
+    line-height:0px;
+    padding:12px;
+    align-content:center;
+    width: 140px;
+    height: 60px;
+    
+    margin: 10px;
+
 }
 </style>
 
@@ -92,7 +125,7 @@ function regRew(seq){
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #495057;
+    color: #414934;
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
@@ -101,7 +134,7 @@ function regRew(seq){
 }
 
 .not_title {
-	background-color: #EEF5E6; 
+	background-color: #EDEAE0; 
 	border-color: transparent  transparent  #BFCC97 transparent transparent; 
 	width: 100%; 
 	padding: 8px 16px; 
@@ -133,7 +166,7 @@ function regRew(seq){
 }
 
 .select-selected {
-  background-color: #BFCC97;
+  background-color: #B6AD90;
 }
 
 /* Style the arrow inside the select element: */
@@ -155,8 +188,8 @@ function regRew(seq){
 }
 
 /* style the items (options), including the selected item: */
-.select-items div,.select-selected {
-  color: #6c757d;
+.select-items div,.select-selected {/*글자색*/
+  color: #F2F0E8;
   padding: 8px 16px;
   border: 1px solid transparent;
   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
@@ -168,7 +201,7 @@ function regRew(seq){
 /* Style items (options): */
 .select-items {
   position: absolute;
-  background-color: #EEF5E6;
+  background-color: #C9C2AC;
   top: 100%;
   left: 0;
   right: 0;
@@ -187,13 +220,13 @@ function regRew(seq){
 
 /*자바스트립트로 표현한 오늘날짜<span>*/
 .date1{
-  color: #BFCC97;
+  color: #B6AD90;
   padding: 8px 16px;
-  border-color: #BFCC97;
+  border-color: #EDEAE0;
   cursor: pointer;
   font-weight: bolder;
   border-radius : 0.25rem;
-  background-color: #EEF5E6; 
+  background-color: #EDEAE0; 
  	width: 200px;
 }
 </style>
@@ -204,9 +237,9 @@ function regRew(seq){
             
         <br><br>
 		<h2 class="box-title" align="center">
-			<b style="color: #6c757d;"> 1:1문의 답글 등록 </b>
+			<b style="color: #414934;"> 1:1문의 답글 등록 </b>
 		</h2>
-		<hr><br><br>
+		<hr style="border-color: #A4AC85;"><br><br>
         
            <form role="form" name="fr" id="contact-form" method="post">
                 <input type="hidden" name="not_no" value="${param.not_no }">
@@ -229,8 +262,8 @@ function regRew(seq){
                   <br> 
                   <div>
                       <input type="text" name="not_title" class="form-control1" placeholder="제목을 입력하세요" value="[관리자 답변] " id="not_title"
-							style="background-color: #EEF5E6; border-color: #BFCC97; width: 100%; padding: 8px 16px; font-weight: bolder;
-							line-height: 1.5; height: 40px;">
+							style="background-color: #EDEAE0; border-color: #C9C2AC; width: 100%; padding: 8px 16px; font-weight: bolder;
+							line-height: 1.5; height: 40px; color: #414934;">
                   </div>
            </div>          
 		        <div class="col-lg-12">
@@ -281,7 +314,7 @@ function regRew(seq){
 					</div> 
                        <div class="input-box mt-20 text-center">
                            <button class="main-btn" type="button" id="listRewrite">목록</button>
-                           <button class="main-btn" type="button" id="registRereply" onclick="return regFaq();">등록</button>
+                           <button class="main-btn" type="button" id="registRereply" onclick="return regRew();">등록</button>
                        </div>
                    </div>
                 </form>
@@ -295,14 +328,29 @@ function regRew(seq){
 		var formObj = $("form[role='form']"); 
 		 
 		$("#listRewrite").click(function(){ // get방식
+			
+				Swal.fire({
+					title : '목록으로 돌아가시겠습니까?',
+					html : '<h4>현재 작성하신 내용을 복구할 수 없습니다.</h4>',
+					icon : 'warning',
+					showCancelButton: true,
+				    confirmButtonColor: '#A4AC85',
+				    cancelButtonColor: '#6F7B63',
+				    confirmButtonText: '목록이동',
+				    cancelButtonText: '머무르기'
+				}).then((result) => {
+				if (result.value) {
+				
 			location.href="/board/adRewriteList";
-		});
+		}
+	});
 		
 // 		$("#registRewrite").click(function(){
 // 			formObj.attr("action", "/board/adRewriteList");
 // 			formObj.submit(); // form태그를 submit방식으로 보내자. => post
 // 		});
 		
+	});
 	});
 </script>
 <script>

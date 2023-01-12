@@ -38,11 +38,11 @@ function createFormObject(tagName, content){
 
 function regFaq(seq){
 	Swal.fire({
-	  html: '<h4>작성하신 FAQ를 등록하시겠습니까?</h4>',
-	  icon: 'info',
+	  title:'작성하신 FAQ를 등록하시겠습니까?',
+	  icon: 'question',
 	  showCancelButton: true,
-	  confirmButtonColor: '#3085d6',
-	  cancelButtonColor: 'grey',
+	  confirmButtonColor: '#A4AC85',
+	  cancelButtonColor: '#6F7B63',
 	  confirmButtonText: '등록하기',
 	  cancelButtonText: '취소하기'
 	}).then((result) => {
@@ -73,7 +73,7 @@ function regFaq(seq){
 <style>
 /* 에디터 꾸미기 */
 .toastui-editor-defaultUI-toolbar {
-    background-color: #EEF5E6;
+    background-color: #EDEAE0;
     border-bottom: 1px solid #ebedf2;
     border-radius: 3px 3px 0 0;
     display: -ms-flexbox;
@@ -83,7 +83,7 @@ function regFaq(seq){
 }
 
 .toastui-editor-defaultUI-toolbar button {
-    border: 1px solid #EEF5E6;
+    border: 1px solid #EDEAE0;
     border-radius: 3px;
     box-sizing: border-box;
     cursor: pointer;
@@ -92,6 +92,38 @@ function regFaq(seq){
     padding: 0;
     width: 32px;
 }
+
+/*버튼체인지색상*/
+.main-btn::before {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 0;
+    height: 1px;
+    width: 1px;
+    background: #6F7B63;
+	border-radius:0.25rem;
+    z-index: -1;
+}
+
+.main-btn{
+    border-radius: 0.25rem;
+    background-color: #A4AC85;
+    color: #F2F0E8;
+    font-size: 18px;
+    font-weight: bolder;
+	text-align:center; 
+    vertical-align:middle;
+    line-height:0px;
+    padding:12px;
+    align-content:center;
+    width: 140px;
+    height: 60px;
+    
+    margin: 10px;
+
+}
+
 </style>
 
 <style>
@@ -103,7 +135,7 @@ function regFaq(seq){
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #495057;
+    color: #414934;
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
@@ -112,7 +144,7 @@ function regFaq(seq){
 }
 
 .not_title {
-	background-color: #EEF5E6; 
+	background-color: #EDEAE0; 
 	border-color: transparent  transparent  #BFCC97 transparent transparent; 
 	width: 100%; 
 	padding: 8px 16px; 
@@ -144,7 +176,7 @@ function regFaq(seq){
 }
 
 .select-selected {
-  background-color: #BFCC97;
+  background-color: #B6AD90;
 }
 
 /* Style the arrow inside the select element: */
@@ -166,8 +198,8 @@ function regFaq(seq){
 }
 
 /* style the items (options), including the selected item: */
-.select-items div,.select-selected {
-  color: #6c757d;
+.select-items div,.select-selected { /*글자색*/
+  color: #F2F0E8;
   padding: 8px 16px;
   border: 1px solid transparent;
   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
@@ -179,7 +211,7 @@ function regFaq(seq){
 /* Style items (options): */
 .select-items {
   position: absolute;
-  background-color: #EEF5E6;
+  background-color: #C9C2AC;
   top: 100%;
   left: 0;
   right: 0;
@@ -208,9 +240,9 @@ function regFaq(seq){
 		<br> <br>
 
 		<h2 class="box-title" align="center">
-			<b style="color: #6c757d;"> 관리자 1:1 문의 </b>
+			<b style="color: #414934;"> 관리자 FAQ 글쓰기 </b>
 		</h2>
-		<hr>
+		<hr style="border-color: #A4AC85;">
 		<br> <br>
 	
 			<form name="fr" id="contact-form" method="post">
@@ -231,8 +263,8 @@ function regFaq(seq){
 
 		<div>
 			<input type="text" name="not_title" class="form-control1" placeholder="제목을 입력하세요" value="" id="not_title"
-				style="background-color: #EEF5E6; border-color: #BFCC97; width: 100%; padding: 8px 16px; font-weight: bolder;
-				line-height: 1.5; height: 40px;">
+				style="background-color: #EDEAE0; border-color: #C9C2AC; width: 100%; padding: 8px 16px; font-weight: bolder;
+				line-height: 1.5; height: 40px; color: #414934;">
 		</div>
 	</div>
 
@@ -282,9 +314,10 @@ function regFaq(seq){
 					});								
 				</script>
 			</div>
-
+			<br><br>
 			<div class="input-box mt-20 text-center">
 				<button class="main-btn" type="button" id="listFaq">목록</button>
+				
 				<button class="main-btn" type="button" id="registFaq"
 					onclick="return regFaq();">등록</button>
 			</div>
@@ -301,8 +334,27 @@ function regFaq(seq){
 		var formObj = $("form[role='form']"); 
 		 
 		$("#listFaq").click(function(){
-			location.href="/board/adFaqList";
-		});
+			
+			Swal.fire({
+				  title : '목록으로 이동하시겠습니까?',
+				  html: '<h4>작성하신 내용이 저장되지 않습니다.</h4>',
+				  icon: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#A4AC85',
+				  cancelButtonColor: '#6F7B63',
+				  confirmButtonText: '목록이동',
+				  cancelButtonText: '머무르기'
+				}).then((result) => {
+				  if (result.value) {
+			        //"등록" 버튼을 눌렀을 때 작업할 내용을 이곳에 넣어주면 된다. 
+						
+					// 목록으로 이동
+					  location.href="/board/adFaqList";
+				  }
+				})
+			
+			
+		});// 목록이동제이쿼리
 		
 // 		$("#registFaq").click(function(){
 // 			formObj.attr("action", "/board/adFaqRegist");
