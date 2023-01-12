@@ -7,7 +7,19 @@
 	<!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
 
-  
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>	
+	<script>
+	$(document).ready(function() {		
+		var tagObj = $(".tags");
+				
+		for(var i=0; i<tagObj.length; i++){
+			var tagText = $(".tags")[i].innerHTML;	
+		    tagText = tagText.replaceAll(',', ' #');
+		    tagText = "#" + tagText;    
+		    $(".tags")[i].innerHTML = tagText;
+		}
+	})
+	</script>  
     
     <section class="explore-projects-area explore-projects-page-area" style="padding-bottom: 500px;">
         <div class="container"> 
@@ -21,7 +33,7 @@
                 </div>
             </div>
     
-            <div class="row justify-content-center">
+            <div class="row">
             
           	<c:forEach var="sch" items="${scheList }" >
 
@@ -33,7 +45,7 @@
                             	<i class="fa fa-heart"></i>
                             </a>
                         </div>
-                        <div class="explore-projects-content" style="height: 255px;">
+                        <div class="explore-projects-content" style="height: 305px;">
                         	<div class="item d-flex align-items-center">
                             	<p><i class="fa fa-clock-o"></i></p>
                             	<p>프로젝트 시작까지</p>&nbsp;
@@ -46,7 +58,18 @@
                             <div class="projects-goal">
                                 <span>목표 금액: <span><fmt:formatNumber value="${sch.pro_gp }" pattern="#,###"/></span> 원</span>
                             </div>
+                            
+                            <div class="tags">
+                                 <span class="tags" style="color: #A4AC85;">${sch.tags }</span>
+                            </div>
+                            
+                            <div style="text-align: center; margin-top: 5%;">
+	                        	<p style="color: #4e5744;">해당 프로젝트의 오픈 예정일은 </p> 
+	                        	<p style="color: #4e5744;"> ${sch.pro_st_dt } 입니다!</p>
+                        	</div>
                         </div>
+                        
+                        
                     </div>
                 </div>
                    </c:forEach>     
