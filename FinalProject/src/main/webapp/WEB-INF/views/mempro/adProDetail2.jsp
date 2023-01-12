@@ -2,7 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 <!-- 헤더 -->
@@ -455,13 +458,13 @@ body {
 						<p style="font-size: 2em;">결제 회원 리스트</p>
 						<br>
 
-						<c:choose>
 							<!-- 결제회원이 없을 때 -->
+						<c:choose>
 							<c:when test="${empty ordList }">
 								<div
 									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
 									style="border-color: rgb(164 172 133/ 40%); display: block;">
-									결제한 회원 내역이 없습니다.
+									<i class="ion-checkmark-round"></i>&nbsp;결제한 회원 내역이 없습니다.
 									<h5 class="title"></h5>
 
 									<table class="table">
@@ -473,15 +476,15 @@ body {
 										<!-- 									</tbody> -->
 										<%-- 								</c:forEach> --%>
 									</table>
+							<!-- 결제회원이 없을 때 -->
 								</div>
 							</c:when>
-							<!-- 결제회원이 없을 때 -->
 
-							<!--  결제회원이 있을 때 -->
 							<c:otherwise>
 								<div
 									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
 									style="border-color: rgb(164 172 133/ 40%);">
+							<!--  결제회원이 있을 때 -->
 									<h5 class="title"></h5>
 
 									<table class="table">
@@ -524,9 +527,9 @@ body {
 									</table>
 								</div>
 							</c:otherwise>
-							<!--  결제회원이 있을 때 -->
 						</c:choose>
 					</div>
+					<!--  결제회원이 있을 때 -->
 					<!-- 결제회원 리스트 -->
 
 
