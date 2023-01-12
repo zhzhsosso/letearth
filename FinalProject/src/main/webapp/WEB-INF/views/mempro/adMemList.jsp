@@ -6,9 +6,9 @@
 <html>
 <head>
 <!-- 어드민 lte -->
-<link
-	href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css" />
+<!-- <link -->
+<%-- 	href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css" --%>
+<!-- 	rel="stylesheet" type="text/css" /> -->
 <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> -->
 <link href="/resources/dist/css/AdminLTE.min.css" rel="stylesheet"
 	type="text/css" />
@@ -38,12 +38,24 @@
 	height: 35px;
 }
 
-hr {
-	width: 70px;
-	height: 30px;
-	background-color: #9dd84b;
-	border: 0;
+#repSelector {
+  width : 10%;
+  height : 3px;
+  background-color : #D7D1B9;
+  border : 0;
+  
+   position: relative;
+   top: -95px; 
+/*    left: 380px;  */
+   left: 45%;
 }
+
+/* hr { */
+/* 	width: 70px; */
+/* 	height: 30px; */
+/* 	background-color: #9dd84b; */
+/* 	border: 0; */
+/* } */
 
 
 /*사이드바*/
@@ -158,14 +170,39 @@ hr {
 
 }
  
-  /*페이징*/
-.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
-    z-index: 2;
-    color: #fff;
-    cursor: default;
-    background-color: #89A378;
-    border-color: #89A378;
-}ㄴ
+/*페이징*/
+.paging {
+    display: inline-block;
+}
+
+.paging a{
+	display: block;
+	text-decoration: none;
+	color: #414934;
+	float: left;
+	line-height: 1.5;
+	border-radius:50%;
+	padding: 8px 16px;
+}
+
+.paging a:hover {
+	background-color: #B6AD90;
+	color: #E8E4D7;
+	
+}
+
+.paging a.active{
+	cursor: default;
+	background-color: #B6AD90;
+	color: #E8E4D7;
+}
+
+.pagination a:active{
+	cursor: default;
+	background-color: #B6AD90;
+	color: #E8E4D7;
+}
+
 
 </style>
 
@@ -190,13 +227,14 @@ hr {
 				<h2 class="box-title" align="center">
 
 					<b style="color: #6c757d;">회원 리스트</b> <br> <br> <br>
-				</h2>
+				</h2><hr id="repSelector" align="center">
 				<div class="col-xs-12">
-					<div style="font-size: 2.2rem;" align="left" class="proList2">
+					<div style="font-size: 1.7rem;" align="left" class="proList2">
 						<span id="hov"> <a id="listAll"
 							style="color: #6F7B63; font-weight: bolder;">전체</a> | <a
 							id="list2" style="color: #B6AD90" >구매회원</a> | <a id="list3" style="color: #B6AD90">판매회원</a> | <a id="list4" style="color: #B6AD90">블랙리스트</a>
 						</span>
+						<hr style="border-color: rgba(164, 172, 133, .5); position: relative; top: -10px; width: 100%; ">
 					</div>
 					<!-- 어드민 -->
 					
@@ -227,40 +265,40 @@ hr {
 								method="post">
 								<table class="table table-hover">
 									<tbody>
-										<tr style="background-color: #EDEAE0">
-											<th style="font-size: 15px; width: 10%; table-layout: fixed;"">회원
+										<tr style="background-color: #EDEAE0" >
+											<th style="font-size: 15px; width: 10%; table-layout: fixed; text-align: center;">회원
 												번호</th>
-											<th style="font-size: 15px;">회원 아이디</th>
-											<th style="font-size: 15px;">회원 이름</th>
-											<th style="font-size: 15px;">회원 연락처</th>
-											<th style="font-size: 15px;">회원 분류</th>
-											<th style="font-size: 15px;">블랙리스트</th>
-											<th style="font-size: 15px;">상세정보</th>
+											<th style="font-size: 15px; width: 15%; table-layout: fixed; text-align: center;">회원 아이디</th>
+											<th style="font-size: 15px; text-align: center;">회원 이름</th>
+											<th style="font-size: 15px; text-align: center;">회원 연락처</th>
+											<th style="font-size: 15px; text-align: center;">회원 분류</th>
+											<th style="font-size: 15px; text-align: center;">블랙리스트</th>
+											<th style="font-size: 15px; text-align: center;">상세정보</th>
 										</tr>
 
 										<c:forEach var="memVO" items="${memList }" varStatus="status">
 											<tr>
-												<td style="font-size: 15px;">${memVO.mem_no }</td>
-												<td style="font-size: 15px;">${memVO.mem_id }</a></td>
-												<td style="font-size: 15px;">${memVO.mem_name }</td>
-												<td style="font-size: 15px;">${memVO.mem_phone }</td>
+												<td style="font-size: 15px; text-align: center;">${memVO.mem_no }</td>
+												<td style="font-size: 15px; text-align: center;">${memVO.mem_id }</td>
+												<td style="font-size: 15px; text-align: center;">${memVO.mem_name }</td>
+												<td style="font-size: 15px; text-align: center; ">${memVO.mem_phone }</td>
 
 												<!-- 회원분류 -->
 												<c:choose>
 													<c:when test="${memVO.mem_status == 0}">
-														<td>
+														<td style="text-align: center;">
 															<button type="button" class="btn btn-primary"
 																style="font-size: 12px; background-color: #B6AD90; border-color: #B6AD90;">구매회원</button>
 														</td>
 													</c:when>
 													<c:when test="${memVO.mem_status == 1}">
-														<td>
+														<td style="text-align: center;">
 															<button type="button" class="btn btn-primary"
 																style="font-size: 12px; background-color: #89A378; border-color: #89A378;">판매회원</button>
 														</td>
 													</c:when>
 													<c:when test="${memVO.mem_status == 3}">
-														<td>
+														<td style="text-align: center;">
 															<button type="button" class="btn btn-primary"
 																style="font-size: 12px; background-color: #BFCC97; border-color: #BFCC97;">블랙리스트</button>
 														</td>
@@ -271,19 +309,20 @@ hr {
 												<!-- 블랙리스트 여부 -->
 												<c:choose>
 													<c:when test="${not empty memVO.mem_bdate }">
-														<td style="font-size: 15px;">Y</td>
+														<td style="font-size: 15px; text-align: center;">Y</td>
 													</c:when>
 													<c:when test="${empty memVO.mem_bdate }">
-														<td style="font-size: 15px;">N</td>
+														<td style="font-size: 15px; text-align: center;">N</td>
 													</c:when>
 												</c:choose>
-												<td>
+												<td style="text-align: center;">
 													<button type="button" class="btn btn-primary"
 														onclick="location.href='/mempro/adMemDetail?mem_id=${memVO.mem_id }';"
-														style="font-size: 12px; background-color: #A4AC85; border-color: #A4AC85;">상세정보</button>
+														style="font-size: 12px; background-color: #A4AC85; border-color: #A4AC85; cursor: pointer;">상세정보</button>
 												</td>
 											</tr>
 										</c:forEach>
+										</tbody>
 								</table>
 							</form>
 						</div>
@@ -296,44 +335,45 @@ hr {
 								<table class="table table-hover">
 									<tbody>
 										<tr style="background-color: #EDEAE0">
-											<th style="font-size: 15px; width: 10%; table-layout: fixed;"">회원
+											<th style="font-size: 15px; width: 10%; table-layout: fixed; text-align: center;">회원
 												번호</th>
-											<th style="font-size: 15px; width: 15%; table-layout: fixed;">회원 아이디</th>
-											<th style="font-size: 15px;">회원 이름</th>
-											<th style="font-size: 15px;">회원 연락처</th>
-											<th style="font-size: 15px;">회원 분류</th>
-											<th style="font-size: 15px;">블랙리스트</th>
-											<th style="font-size: 15px;">상세정보</th>
+											<th style="font-size: 15px; width: 15%; table-layout: fixed; text-align: center;">회원 아이디</th>
+											<th style="font-size: 15px; text-align: center;">회원 이름</th>
+											<th style="font-size: 15px; text-align: center;">회원 연락처</th>
+											<th style="font-size: 15px; text-align: center;">회원 분류</th>
+											<th style="font-size: 15px; text-align: center;">블랙리스트</th>
+											<th style="font-size: 15px; text-align: center;">상세정보</th>
 										</tr>
 
 										<c:forEach var="memVO2" items="${memList }">
 											<c:if test="${memVO2.mem_status == 0}">
 												<tr>
-													<td style="font-size: 15px;">${memVO2.mem_no }</td>
-													<td style="font-size: 15px;">${memVO2.mem_id }</a></td>
-													<td style="font-size: 15px;">${memVO2.mem_name }</td>
-													<td style="font-size: 15px;">${memVO2.mem_phone }</td>
-													<td>
+													<td style="font-size: 15px; text-align: center;">${memVO2.mem_no }</td>
+													<td style="font-size: 15px; text-align: center;">${memVO2.mem_id }</td>
+													<td style="font-size: 15px; text-align: center;">${memVO2.mem_name }</td>
+													<td style="font-size: 15px; text-align: center;">${memVO2.mem_phone }</td>
+													<td style="text-align: center;">
 														<button type="button" class="btn btn-primary"
-															style="font-size: 12px; background-color: #B6AD90; border-color: #B6AD90;">구매회원</button>
+															style="font-size: 12px; background-color: #B6AD90; border-color: #B6AD90; ">구매회원</button>
 													</td>
 													<!-- 블랙리스트 여부 -->
 													<c:choose>
 														<c:when test="${not empty memVO2.mem_bdate }">
-															<td style="font-size: 15px;">Y</td>
+															<td style="font-size: 15px; text-align: center;">Y</td>
 														</c:when>
 														<c:when test="${empty memVO2.mem_bdate }">
-															<td style="font-size: 15px;">N</td>
+															<td style="font-size: 15px; text-align: center;">N</td>
 														</c:when>
 													</c:choose>
-													<td>
+													<td style="text-align: center;">
 														<button type="button" class="btn btn-primary"
 															onclick="location.href='/mempro/adMemDetail?mem_id=${memVO2.mem_id }';"
-															style="font-size: 12px; background-color: #A4AC85; border-color: #A4AC85;">상세정보</button>
+															style="font-size: 12px; background-color: #A4AC85; border-color: #A4AC85; cursor: pointer;">상세정보</button>
 													</td>
 												</tr>
 											</c:if>
 										</c:forEach>
+										</tbody>
 								</table>
 							</form>
 						</div>
@@ -348,46 +388,47 @@ hr {
 								<table class="table table-hover">
 									<tbody>
 										<tr style="background-color: #EDEAE0">
-											<th style="font-size: 15px; width: 10%; table-layout: fixed;"">회원
+											<th style="font-size: 15px; width: 10%; table-layout: fixed; text-align: center;">회원
 												번호</th>
-											<th style="font-size: 15px; width: 15%; table-layout: fixed;">회원 아이디</th>
-											<th style="font-size: 15px;">회원 이름</th>
-											<th style="font-size: 15px;">회원 연락처</th>
-											<th style="font-size: 15px;">회원 분류</th>
-											<th style="font-size: 15px;">블랙리스트</th>
-											<th style="font-size: 15px;">상세정보</th>
+											<th style="font-size: 15px; width: 15%; table-layout: fixed; text-align: center;">회원 아이디</th>
+											<th style="font-size: 15px; text-align: center;">회원 이름</th>
+											<th style="font-size: 15px; text-align: center;">회원 연락처</th>
+											<th style="font-size: 15px; text-align: center;">회원 분류</th>
+											<th style="font-size: 15px; text-align: center;">블랙리스트</th>
+											<th style="font-size: 15px; text-align: center;">상세정보</th>
 										</tr>
 
 										<c:forEach var="memVO3" items="${memList }">
 											<c:if test="${memVO3.mem_status == 1}">
 												<tr>
-													<td style="font-size: 15px;">${memVO3.mem_no }</td>
-													<td style="font-size: 15px;">${memVO3.mem_id }</a></td>
-													<td style="font-size: 15px;">${memVO3.mem_name }</td>
-													<td style="font-size: 15px;">${memVO3.mem_phone }</td>
+													<td style="font-size: 15px; text-align: center;">${memVO3.mem_no }</td>
+													<td style="font-size: 15px; text-align: center;">${memVO3.mem_id }</td>
+													<td style="font-size: 15px; text-align: center;">${memVO3.mem_name }</td>
+													<td style="font-size: 15px; text-align: center;">${memVO3.mem_phone }</td>
 													<!-- 													<td><span -->
 													<!-- 														class="label label-info" style="font-size: 12px;">판매회원</span></td> -->
-													<td>
+													<td style="text-align: center;">
 														<button type="button" class="btn btn-primary"
 															style="font-size: 12px; background-color: #89A378; border-color: #89A378;">판매회원</button>
 													</td>
 													<!-- 블랙리스트 여부 -->
 													<c:choose>
 														<c:when test="${not empty memVO3.mem_bdate }">
-															<td style="font-size: 15px;">Y</td>
+															<td style="font-size: 15px; text-align: center;">Y</td>
 														</c:when>
 														<c:when test="${empty memVO3.mem_bdate }">
-															<td style="font-size: 15px;">N</td>
+															<td style="font-size: 15px; text-align: center;">N</td>
 														</c:when>
 													</c:choose>
-													<td>
+													<td style="text-align: center;">
 														<button type="button" class="btn btn-primary"
 															onclick="location.href='/mempro/adMemDetail?mem_id=${memVO3.mem_id }';"
-															style="font-size: 12px; background-color: #A4AC85; border-color: #A4AC85;">상세정보</button>
+															style="font-size: 12px; background-color: #A4AC85; border-color: #A4AC85; cursor: pointer;">상세정보</button>
 													</td>
 												</tr>
 											</c:if>
 										</c:forEach>
+										</tbody>
 								</table>
 							</form>
 						</div>
@@ -401,26 +442,26 @@ hr {
 								<table class="table table-hover">
 									<tbody>
 										<tr style="background-color: #EDEAE0">
-											<th style="font-size: 15px; width: 10%; table-layout: fixed;"">회원
+											<th style="font-size: 15px; width: 10%; table-layout: fixed; text-align: center;">회원
 												번호</th>
-											<th style="font-size: 15px; width: 15%; table-layout: fixed;">회원 아이디</th>
-											<th style="font-size: 15px;">회원 이름</th>
-											<th style="font-size: 15px;">회원 연락처</th>
-											<th style="font-size: 15px;">회원 분류</th>
-											<th style="font-size: 15px;">블랙리스트</th>
-											<th style="font-size: 15px;">상세정보</th>
+											<th style="font-size: 15px; width: 15%; table-layout: fixed; text-align: center;">회원 아이디</th>
+											<th style="font-size: 15px; text-align: center;">회원 이름</th>
+											<th style="font-size: 15px; text-align: center;">회원 연락처</th>
+											<th style="font-size: 15px; text-align: center;">회원 분류</th>
+											<th style="font-size: 15px; text-align: center;">블랙리스트</th>
+											<th style="font-size: 15px; text-align: center;">상세정보</th>
 										</tr>
 
 										<c:forEach var="memVO4" items="${memList }" varStatus="status">
 											<c:if test="${memVO4.mem_status == 3}">
 												<tr>
-													<td style="font-size: 15px;">${memVO4.mem_no }</td>
-													<td style="font-size: 15px;">${memVO4.mem_id }</a></td>
-													<td style="font-size: 15px;">${memVO4.mem_name }</td>
-													<td style="font-size: 15px;">${memVO4.mem_phone }</td>
+													<td style="font-size: 15px; text-align: center;">${memVO4.mem_no }</td>
+													<td style="font-size: 15px; text-align: center;">${memVO4.mem_id }</td>
+													<td style="font-size: 15px; text-align: center;">${memVO4.mem_name }</td>
+													<td style="font-size: 15px; text-align: center;">${memVO4.mem_phone }</td>
 
 													<!-- 													<td><span class="label label-warning" style="font-size: 12px;">블랙리스트</span></td> -->
-													<td>
+													<td style="text-align: center;">
 														<button type="button" class="btn btn-primary"
 															style="font-size: 12px; background-color: #BFCC97; border-color: #BFCC97;">블랙리스트</button>
 													</td>
@@ -428,20 +469,21 @@ hr {
 													<!-- 블랙리스트 여부 -->
 													<c:choose>
 														<c:when test="${not empty memVO4.mem_bdate }">
-															<td style="font-size: 15px;">Y</td>
+															<td style="font-size: 15px; text-align: center;">Y</td>
 														</c:when>
 														<c:when test="${empty memVO4.mem_bdate }">
-															<td style="font-size: 15px;">N</td>
+															<td style="font-size: 15px; text-align: center;">N</td>
 														</c:when>
 													</c:choose>
-													<td>
+													<td style="text-align: center;">
 														<button type="button" class="btn btn-primary"
 															onclick="location.href='/mempro/adMemDetail?mem_id=${memVO4.mem_id }';"
-															style="font-size: 12px; background-color: #A4AC85; border-color: #A4AC85;">상세정보</button>
+															style="font-size: 12px; background-color: #A4AC85; border-color: #A4AC85; cursor: pointer;">상세정보</button>
 													</td>
 												</tr>
 											</c:if>
 										</c:forEach>
+										</tbody>
 								</table>
 							</form>
 						</div>
@@ -450,23 +492,23 @@ hr {
 
 
 					</div>
-
+<br><br>
 					<!-- 페이징처리 -->
-					<div class="box-footer clearfix" id="paging">
-						<ul class="pagination pagination-sm no-margin pull-left">
+					<div class="pagination" style="position: absolute; right: 45%; border: none;">
+						<ul class="pagination" style="font-size: 18px;">
 							<c:if test="${pvo.prev }">
-								<li><a href="/mempro/adMemList?page=${pvo.startPage-1 }">«</a></li>
+								<li class="paging"><a href="/mempro/adMemList?page=${pvo.startPage-1 }">«</a></li>
 								<!-- 10 -->
 							</c:if>
 
 							<c:forEach var="idx" begin="${pvo.startPage }"
 								end="${pvo.endPage }" step="1">
-								<li <c:out value="${idx == pvo.cri.page? 'class=active':'' }"/>><a
+								<li class="paging" <c:out value="${idx == pvo.cri.page? 'class=active':'' }"/>><a
 									href="/mempro/adMemList?page=${idx }">${idx }</a></li>
 							</c:forEach>
 
 							<c:if test="${pvo.next }">
-								<li><a href=/mempro/adMemList?page=${pvo.endPage+1}">»</a></li>
+								<li class="paging"><a href=/mempro/adMemList?page=${pvo.endPage+1}">»</a></li>
 								<!-- 11 -->
 							</c:if>
 						</ul>
@@ -475,6 +517,7 @@ hr {
 				</div>
 			</div>
 		</div>
+		<br><br><br><br><br>
 	</section>
 
 

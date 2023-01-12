@@ -24,7 +24,7 @@
   padding-bottom : 100px;
 
   position: relative;
-  top: 300px;
+  top: 400px;
   left: 300px; 
 }
 
@@ -103,7 +103,7 @@
 		&nbsp;고객센터 <i class="fa fa-caret-down"></i>
 	</button>
 	<div class="dropdown-container">
-		<a href="/board/adNoticeList">공지사항</a> 
+		<a href="/notice/main">공지사항</a> 
 		<a href="/board/adFaqList">FAQ</a> 
 		<a href="/board/adRewriteList">1:1문의</a>
 	</div>
