@@ -1,9 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
 	<!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
+	
+	
+<style>
+.border1 {
+    background: #e7eaee;
+    height: 1px;
+    position: absolute;
+    left: 0;
+    width: 30%;
+    top: 85%;
+    margin-left: 125px;
+}
+
+.border2 {
+    background: #e7eaee;
+    height: 1px;
+    position: absolute;
+    right: 0;
+    width: 30%;
+    top: 85%;
+    margin-right: 125px;
+}
+</style>	
 	
 	<!-- 카카오 로그인 SDK CDN-->
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
@@ -122,22 +144,17 @@
                             <div class="row" style="display: flex; flex-direction: column; align-items: center;">
                                 <div class="col-lg-6 col-md-6">
                                     <div class="input-box mt-20">
-                                        <input type="text" placeholder="아이디를 입력해주세요" name="mem_id" maxlength="20" style="color: #D7D1B9;">
+                                        <input type="text" placeholder="아이디를 입력해주세요" name="mem_id" maxlength="20" style="color: #1b1f2e;">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="input-box mt-20">
-                                        <input type="password" placeholder="비밀번호를 입력해주세요" name="mem_pw" maxlength="21" style="color: #D7D1B9;">
+                                        <input type="password" placeholder="비밀번호를 입력해주세요" name="mem_pw" maxlength="21" style="color: #1b1f2e;">
                                     </div>
                                 </div>
                                
                                     <div class="input-box mt-20 text-center">
                                         <input type="submit" class="main-btn" value="로그인" style="width: 370px; padding-left: 54px; background: #A4AC85; color: #414934;">
-                                    </div>
-                                    <div>
-                                    <a id="kakao-login-btn" href="javascript:loginWithKakao()">
-  											<img src="../resources/assets/images/kakao_login_medium_wide.png" width="370px"  height="55px;" style="margin-top: 20px;" alt="카카오 로그인"/>
-  										</a>
                                     </div>
                                 </div>
                                 	<div style="text-align: center; margin-top: 20px;">
@@ -148,7 +165,17 @@
                                     	<p>아직 LetEarth의 회원이 아니신가요?</p>
                                     	<a href="/member/beforeJoin" style="color: #8d9f6f;">회원가입 하기</a>
                                     </div>
-                                
+                                    
+                                    <div> 
+                                    	<div class="border1"></div>
+                                    	<span style="justify-content: center; align-items: center; display: flex; margin-top: 30px;">또는</span>
+                                    	<div class="border2"></div>
+                                    </div>
+                                	<div style="text-align: center;">
+                                    	<a id="kakao-login-btn" href="javascript:loginWithKakao()">
+  											<img src="../resources/assets/images/kakao_login_medium_wide.png" width="370px"  height="55px;" style="margin-top: 20px;" alt="카카오 로그인"/>
+  										</a>
+                                    </div>
                             </div>
                             </form>
                         </div>

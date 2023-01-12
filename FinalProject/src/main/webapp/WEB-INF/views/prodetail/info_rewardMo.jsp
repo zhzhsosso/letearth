@@ -46,11 +46,18 @@
 			font-size: 12px;
 		}
 	</style>
-	<script>
 	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script>
 	function chkMoney(){
-		alert("클릭");
-		document.mfr.submit();
+		var mem_id = '<%=session.getAttribute("mem_id")%>';
+		if(mem_id == "null"){
+			swal('로그인 후 이용해주세요!','리워드 구매 혹은 후원은 회원만 가입합니다','warning').then(function(){
+				location.href='/member/login';
+			}) 
+		} else{
+			document.mfr.submit();
+		}
 	}
 	
 	$(function(){
@@ -98,7 +105,7 @@
 	                			</div>
 	                			<div style="text-align: center">
 	                				<button type="button" id="rewardMo-btn" onclick="chkMoney();" 
-	                				style="width: 35%; height: 45px; background: #29f0b4; color: black; margin:25px 0px;">후원하기</button>
+	                				style="width: 35%; height: 45px; background: #6F7B63; color: white; margin:25px 0px;">후원하기</button>
 	                			</div>
                 		</div>
                 		</form>

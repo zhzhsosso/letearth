@@ -21,21 +21,12 @@ public class ProDetailVO {
 	private int pro_tp;
 	private String pro_st_dt;
 	private String pro_ed_dt;
-	private String pro_file;			/* 스토리 사진 */
 	private String pro_story;			/* 스토리 글 */
-	private String pro_file2;			/* 스토리 사진2 */
-	private String pro_story2;			/* 스토리 글 */
 	private String pro_policy;
 	private String tags;
 	private int pro_status;
 	private Timestamp pro_cr_dt;
 	private String del_date;
-//	private String par_birth;
-//	private String par_com_num;
-//	private String par_bank;
-//	private String par_bank_code;
-//	private String par_acc;
-//	private String par_acc_name;
 	private String pro_bdate;
 	private String par_cat;
 	private String par_intro;

@@ -110,7 +110,6 @@ $(document).ready(function() {
     
 });
 
-
 	// 공유하기 - url
 	function clip(){
 	
@@ -130,7 +129,7 @@ $(document).ready(function() {
 	// 판매자공지 폼
 	function sncheck(){
 		if(document.snfr.reply_content.value == ""){
-			alert("내용을 입력하세요");
+			swal("내용을 입력하세요",'','info');
 			return false;
 		}
 		if(confirm("공지를 등록하시겠습니까?") == true){
@@ -142,11 +141,18 @@ $(document).ready(function() {
 	
 	// 사용자댓글 폼
 	function urcheck(){
-		if(document.urfr.reply_content.value == ""){
-			alert("내용을 입력하세요");
-			return false;
+		var mem_id = '<%=session.getAttribute("mem_id") %>';
+		if(mem_id == 'null'){
+			swal('로그인 후 이용해주세요!','댓글 작성은 회원만 가능합니다','info').then(function(){
+				location.href='/member/login';
+			}) 
+		} else{
+			if(document.urfr.reply_content.value == ""){
+				swal("내용을 입력하세요",'','info');
+				return false;
+			}
+			document.urfr.submit();
 		}
-		document.urfr.submit();
 	}
 	
 	
@@ -350,7 +356,7 @@ $(document).ready(function() {
         font-size: 11px;
         font-weight: 500;
         color: #ffffff;
-        background: #674df0;
+        background: #6F7B63;
         line-height: 20px;
         padding: 0 15px;
         text-transform: uppercase;
@@ -419,7 +425,7 @@ $(document).ready(function() {
     -ms-transition: all 0.4s ease-out 0s;
     -o-transition: all 0.4s ease-out 0s;
     transition: all 0.4s ease-out 0s;
-    background-color: #29f0b4;
+    background-color: #A4AC85;
     position: relative;
 }
 
@@ -567,11 +573,11 @@ $(document).ready(function() {
                         </div>
                         <div class="projects-goal">
                             <span>목표금액: 
-                            	<span><fmt:formatNumber>${info[0].pro_gp}</fmt:formatNumber>원</span>
+                            	<span style="color: #A4AC85;"><fmt:formatNumber>${info[0].pro_gp}</fmt:formatNumber>원</span>
                             </span>
                         </div>
                         <div class="projects-goal">
-                            <span style="margin-top: -17px;">펀딩기간: <span><span id="startDt">${info[0].pro_st_dt}</span>~${info[0].pro_ed_dt}</span></span>
+                            <span style="margin-top: -17px;">펀딩기간: <span style="color: #A4AC85;"><span id="startDt" style="color: #A4AC85;">${info[0].pro_st_dt}</span>~${info[0].pro_ed_dt}</span></span>
                         </div>
                         
                         <div class="project-btn mt-25" style="scroll-behavior: smooth;">
@@ -589,7 +595,7 @@ $(document).ready(function() {
                         <div class="project-share d-flex align-items-center" style="margin-top: 7px;">
                             <span>좋아요</span>
 							<div class="icon">
-                            	<a onClick='chkLike("<%=session.getAttribute("mem_id") %>")'><i class="fa fa-heart"></i></a>
+                            	<a onClick='chkLike("<%=session.getAttribute("mem_id") %>")'><i class="fa fa-heart" style="color: #A4AC85;"></i></a>
                         	</div>
                     	</div>
                 </div>
@@ -770,7 +776,7 @@ $(document).ready(function() {
 	                                    <div class="info-updates d-block d-sm-flex justify-content-between align-items-center">
 	                                        <div class="info">
 	                                            <img src="../resources/assets/images/info.jpg" alt="">
-	                                          	 <span>by <span>${pdvo.mem_id }<span>${sn.reply_date }</span></span></span>
+	                                          	 <span>by <span>${pdvo.mem_id }<span style="color: #6F7B63;">${sn.reply_date }</span></span></span>
 	                                  			<div class="panmaeja-btn">
 						                            <span>판매자</span>
 						                        </div>
@@ -810,11 +816,11 @@ $(document).ready(function() {
 								        	
 		                                    <div class="row">
 		                                    	<div class="col-lg-12">
-		                                    		<input type="radio" id="pd_qna" name="reply_category" value="0" checked/>
+		                                    		<input type="radio" id="pd_qna" name="reply_category" value="0" style="accent-color: #A4AC85;" checked/>
 		                                    			<label for="moonee">구매문의</label>&nbsp;&nbsp;&nbsp;
-		                                    		<input type="radio" id="pd_cheer" name="reply_category" value="1"/>
+		                                    		<input type="radio" id="pd_cheer" name="reply_category" value="1" style="accent-color: #A4AC85;"/>
 		                                    			<label for="cheerup">응원글</label>&nbsp;&nbsp;&nbsp;
-		                                    		<input type="radio" id="pd_review" name="reply_category" value="2"/>
+		                                    		<input type="radio" id="pd_review" name="reply_category" value="2" style="accent-color: #A4AC85;"/>
 		                                    			<label for="hookireview">후기</label>&nbsp;&nbsp;&nbsp;
 		                                    	</div>
 		                                    	
@@ -848,30 +854,31 @@ $(document).ready(function() {
 	                                        <img src="../resources/assets/images/comment-2.2.jpg" alt="">
 	                                    </div>
 	                                    <div class="comment-one__content">
-	                                        <h3>${ur.mem_id } <span class="comment-one__date">${ur.reply_date }</span></h3>
+	                                        <h3>${ur.mem_id } <span class="comment-one__date" style="color: #6F7B63;">${ur.reply_date }</span></h3>
 													 
 	                                        <div class="blog-details__content">
 	                                        
 		                                        <c:choose>
 		                                        	<c:when test="${ur.reply_category eq '0' }">
 				                                        <div class="blog-one__meta">
-							                                <a><i class="fa fa-user-o"></i> 구매문의</a>
+							                                <a><i class="fa fa-user-o" style="color: #89af64;"></i> 구매문의</a>
 							                            </div>
 						                            </c:when>
 		                                        	<c:when test="${ur.reply_category eq '1' }">
 				                                        <div class="blog-one__meta">
-							                                <a><i class="fa fa-user-o"></i> 응원글</a>
+							                                <a><i class="fa fa-user-o" style="color: #89af64;"></i> 응원글</a>
 							                            </div>
 						                            </c:when>
 		                                        	<c:when test="${ur.reply_category eq '2' }">
 				                                        <div class="blog-one__meta">
-							                                <a><i class="fa fa-user-o"></i> 후기</a>
+							                                <a><i class="fa fa-user-o" style="color: #89af64;"></i> 후기</a>
 							                            </div>
 						                            </c:when>
 					                            </c:choose>
 					                            <c:choose>
 					                            	<c:when test="${sessionScope.mem_id ne ur.mem_id }">
-						                            	<a href="#" data-toggle="modal" data-target="#reportreplyMo" onclick="javascript:transferPno(${ur.reply_no});">
+					                            		<i class="fa fa-bomb" style="width: 14px;"></i>
+						                            	<a href="#" data-toggle="modal" data-target="#reportreplyMo" onclick="javascript:transferPno(${ur.reply_no});" style="color: #828d77; font-size: 14px;">
 															신고하기
 														</a>
 					                            	</c:when>
@@ -911,7 +918,6 @@ $(document).ready(function() {
 					                                <a href="#"><i class="fa fa-user-o"></i> 답글</a>
 					                            </div>
 				                            </div>
-	                                        <p>${ur.rereply_content }</p>
 	                                    </div>
 	                                </div>
                                 </c:if>
@@ -945,7 +951,7 @@ $(document).ready(function() {
                     <div class="project-details-sidebar">                    
                         <div class="project-details-park mt-30 box" style="text-align: center; padding: 35px; background: #d7d1b9;">
 <!--                         	<div id="blockArea2"></div> -->
-                            <h4 class="title" style="margin-top: 25px; color: white;">리워드 없이 후원하기</h4>
+                            <h4 class="title" style="margin-top: 25px; color: white; height: 30px;">리워드 없이 후원하기</h4>
                             
                             <jsp:useBean id="now" class="java.util.Date" />
 							<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />

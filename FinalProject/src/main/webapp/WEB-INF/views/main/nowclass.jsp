@@ -7,6 +7,35 @@
 	<!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
 
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>	
+	<script>
+	$(document).ready(function() {		
+		var tagObj = $(".tags");
+				
+		for(var i=0; i<tagObj.length; i++){
+			var tagText = $(".tags")[i].innerHTML;	
+		    tagText = tagText.replaceAll(',', ' #');
+		    tagText = "#" + tagText;    
+		    $(".tags")[i].innerHTML = tagText;
+		}
+	})
+	</script>
+	
+	<style>
+		#rangeGraph{
+			height:10px;
+			background:#e9e9ee;
+		}
+	
+		#rangeGraph span{
+			max-width: 100%;
+			height:100%;
+			width:0%;
+			background:#A4AC85;
+		}
+		
+	</style>
+	
     
     <section class="explore-projects-area explore-projects-page-area" style="padding-bottom: 1000;">
         <div class="container">
@@ -20,7 +49,7 @@
                 </div>
             </div>
     
-            <div class="row justify-content-center">
+            <div class="row">
             
             <c:forEach var="nowc" items="${nowclassList }">
 
@@ -32,7 +61,7 @@
                             	<i class="fa fa-heart"></i>
                             </a>
                         </div>
-                        <div class="explore-projects-content" style="height: 255px;">
+                        <div class="explore-projects-content" style="height: 305px;">
                         	<div class="item d-flex align-items-center">
                             	<p><i class="fa fa-clock-o"></i></p>
                         		<p>프로젝트 종료까지</p>&nbsp;
@@ -50,12 +79,17 @@
                                         	${nowc.achievement_rate}%
                                         </li>
                                     </ul>
-                                    <div class="range"></div>
+                                    <div id="rangeGraph">
+                                    	<span style="width:${nowc.achievement_rate}%"></span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="projects-goal">
                                 <span>달성 금액: <span><fmt:formatNumber value="${nowc.pro_tp }" pattern="#,###"/></span> 원</span>
                                 <span>목표 금액: <span><fmt:formatNumber value="${nowc.pro_gp }" pattern="#,###"/></span> 원</span>
+                            </div>
+                            <div>
+                            	<span class="tags" style="color: #A4AC85;">${nowc.tags }</span>
                             </div>
                         </div>
                     </div>
