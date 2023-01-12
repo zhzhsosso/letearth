@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.letearth.admin.domain.AdminVO;
 import com.letearth.admin.domain.MemOrdVO;
 import com.letearth.admin.service.AdMemproService;
 import com.letearth.member.domain.MemberVO;
@@ -78,11 +79,12 @@ public class AdMemproController {
 	 */
 	//http://localhost:8080/mempro/adProDetail1
 	@RequestMapping(value="/adProDetail1", method=RequestMethod.GET)
-	public void adProDetail1GET(Model model, @RequestParam("pro_no") int pro_no, HttpSession session, OrderVO ordVO) throws Exception{
+	public void adProDetail1GET(Model model, @RequestParam("pro_no") int pro_no, HttpSession session, OrderVO ordVO,@RequestParam("mem_id") String mem_id) throws Exception{
 		
 		ProjectVO proVO = adMemproService.getDetailPro1(pro_no);
-		int memOrd = adMemproService.totalMemOrd();
-		int memPro = adMemproService.totalMemPro();
+		int memOrd = adMemproService.totalMemOrd(mem_id);
+		int memPro = adMemproService.totalMemPro(mem_id);
+		System.out.println("나와라@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2 : "+adMemproService.totalMemOrd(mem_id));
 		
 		model.addAttribute("proVO", proVO);
 		model.addAttribute("memOrd", memOrd);
@@ -91,57 +93,6 @@ public class AdMemproController {
 		
 		
 	}
-	
-	
-	
-	/**
-	 * 프로젝트 상세조회 1 + 프로젝트 프리뷰
-	 */
-	//http://localhost:8080/mempro/adProDetail1
-//	@RequestMapping(value="/adProDetail1", method=RequestMethod.GET)
-//	public void adProDetail1GET(RedirectAttributes redirect, HttpServletRequest request, Model model, @RequestParam("pro_no") int pro_no, HttpSession session, OrderVO ordVO) throws Exception{
-//		
-////		//파라미터, 세션값 받기
-////		int pro_no = Integer.parseInt(request.getParameter("pro_no"));
-////		String mem_id = (String)session.getAttribute("mem_id");
-////				
-//		pdservice.getProIntro(pro_no);
-//		pdservice.getProInfo(pro_no);
-//		pdservice.getReward(pro_no);
-//		
-//		//특정 글번호에 해당하는 정보 가져오기
-//		ProDetailVO pdvo = pdservice.getProjectDetail(pro_no);
-//					
-//		//판매자 공지사항, 사용자 댓글, 판매자 답글 정보 가져오기
-//		List<ProReplyVO> sellNoticeList = pdservice.getsnListAll(pro_no);
-//		List<ProReplyVO> userReplyList = pdservice.geturListAll(pro_no);
-//		
-//		
-//		ProjectVO proVO = adMemproService.getDetailPro1(pro_no);
-//		int memOrd = adMemproService.totalMemOrd();
-//		int memPro = adMemproService.totalMemPro();
-//		
-//		
-//		
-//		// 연결된 뷰페이지로 정보 전달(model)	
-//		model.addAttribute("pdvo", pdvo);
-//		model.addAttribute("sellNoticeList", sellNoticeList);
-//		model.addAttribute("userReplyList", userReplyList);
-//		model.addAttribute("pro_no", pro_no);
-//					
-//		model.addAttribute("info", pdservice.getProInfo(pro_no));
-//		model.addAttribute("intro", pdservice.getProIntro(pro_no));
-//		model.addAttribute("reward", pdservice.getReward(pro_no));
-//		
-//		model.addAttribute("proVO", proVO);
-//		model.addAttribute("memOrd", memOrd);
-//		model.addAttribute("memPro", memPro);
-//		
-//		
-//		
-//		
-//		
-//	}
 	
 	
 	
@@ -181,13 +132,13 @@ public class AdMemproController {
 	 */
 
 	@RequestMapping(value="/adProDetail2", method=RequestMethod.GET)
-	public void adProDetail2GET(Model model, @RequestParam("pro_no") int pro_no, HttpSession session, OrderVO ordVO) throws Exception{
+	public void adProDetail2GET(Model model, @RequestParam("pro_no") int pro_no, HttpSession session, OrderVO ordVO, @RequestParam("mem_id") String mem_id) throws Exception{
 		
 		
 		
 		ProjectVO proVO = adMemproService.getDetailPro1(pro_no);
-		int memOrd = adMemproService.totalMemOrd();
-		int memPro = adMemproService.totalMemPro();
+		int memOrd = adMemproService.totalMemOrd(mem_id);
+		int memPro = adMemproService.totalMemPro(mem_id);
 		List<OrderVO> ordList = adMemproService.proOrdMemList(ordVO); // 결제회원 리스트
 		
 		
@@ -210,6 +161,42 @@ public class AdMemproController {
 	public void adShipDetailGET(HttpSession session, Model model,@RequestParam("pro_no") int pro_no) throws Exception{
 		
 	}
+	
+	
+	
+	
+	/**
+	 * 프로젝트 업데이트3
+	 *  adProUp3GET
+	 */
+	
+	@RequestMapping(value = "/adProStatus3", method = RequestMethod.GET)
+	public String adProUp3GET(Model model, RedirectAttributes rttr, ProjectVO proVO) throws Exception{
+
+		adMemproService.updateProStatus3(proVO);
+		rttr.addFlashAttribute("result", "승인완료");
+		model.addAttribute("pro_no", proVO.getPro_no());
+		
+		return "redirect:/mempro/adProList1";
+	}
+	
+	
+	
+	/**
+	 * 프로젝트 업데이트4
+	 *  adProUp4GET
+	 */
+	
+	@RequestMapping(value = "/adProStatus4", method = RequestMethod.GET)
+	public String adProUp4GET(Model model, RedirectAttributes rttr, ProjectVO proVO) throws Exception{
+		
+		adMemproService.updateProStatus4(proVO);
+		rttr.addFlashAttribute("result", "반려완료");
+		model.addAttribute("pro_no", proVO.getPro_no());
+		
+		return "redirect:/mempro/adProList1";
+	}
+	
 	
 	
 	//------------------------------------------------------------------------------------------------------------------------
@@ -259,8 +246,8 @@ public class AdMemproController {
 		MemberVO memVO = adMemproService.getMemDetail(mem_id);
 		List<MemOrdVO> ordList = adMemproService.memOrdList(moVO);
 		List<ProjectVO> proList = adMemproService.memProList(proVO);
-		int memOrd = adMemproService.totalMemOrd();
-		int memPro = adMemproService.totalMemPro();
+		int memOrd = adMemproService.totalMemOrd(mem_id);
+		int memPro = adMemproService.totalMemPro(mem_id);
 		
 //		mylog.debug("memVO : 매퍼에서 다 넣어졌는지 확인해보기 " + memVO);
 //		System.out.println("proVO : 매퍼에서 다 넣어졌는지 확인해보기 " + memVO);
@@ -296,43 +283,7 @@ public class AdMemproController {
 	
 	
 	
-	/**
-	 * prodetailGET
-	 * 프로젝트 소개
-	 * 
-	 * Prodetailcontroller 에서 가져오기
-	 * 
-	 */
-	@RequestMapping(value="/infoPreview", method=RequestMethod.GET)
-	public String infoPreviewGET(RedirectAttributes redirect, HttpSession session, Model model, HttpServletRequest request) throws Exception {		
-		// 프로젝트 번호에 해당하는 정보들이 보여짐!
-		//파라미터, 세션값 받기
-		int pro_no = Integer.parseInt(request.getParameter("pro_no"));
-		String mem_id = (String)session.getAttribute("mem_id");
-		
-		pdservice.getProIntro(pro_no);
-		pdservice.getProInfo(pro_no);
-		pdservice.getReward(pro_no);
-		
-		//특정 글번호에 해당하는 정보 가져오기
-		ProDetailVO pdvo = pdservice.getProjectDetail(pro_no);
-					
-		//판매자 공지사항, 사용자 댓글, 판매자 답글 정보 가져오기
-		List<ProReplyVO> sellNoticeList = pdservice.getsnListAll(pro_no);
-		List<ProReplyVO> userReplyList = pdservice.geturListAll(pro_no);
-		
-		// 연결된 뷰페이지로 정보 전달(model)	
-		model.addAttribute("pdvo", pdvo);
-		model.addAttribute("sellNoticeList", sellNoticeList);
-		model.addAttribute("userReplyList", userReplyList);
-		model.addAttribute("pro_no", pro_no);
-					
-		model.addAttribute("info", pdservice.getProInfo(pro_no));
-		model.addAttribute("intro", pdservice.getProIntro(pro_no));
-		model.addAttribute("reward", pdservice.getReward(pro_no));
-		
-		return "/mempro/infoPreview";
-	}
+
 	
 		
 	

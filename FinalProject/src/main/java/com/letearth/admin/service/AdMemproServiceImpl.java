@@ -80,6 +80,15 @@ public class AdMemproServiceImpl implements AdMemproService {
 		return admemproDAO.totalPro2();
 	}
 	
+	@Override
+	public Integer updateProStatus3(ProjectVO proVO) throws Exception {
+		return admemproDAO.updateProStatus3(proVO);
+	}
+	
+	@Override
+	public Integer updateProStatus4(ProjectVO proVO) throws Exception {
+		return admemproDAO.updateProStatus4(proVO);
+	}
 	
 	
 	
@@ -121,14 +130,16 @@ public class AdMemproServiceImpl implements AdMemproService {
 	
 	
 	@Override
-	public int totalMemOrd() throws Exception {
-		return admemproDAO.totalMemOrd();
+	public int totalMemOrd(String mem_id) throws Exception {
+		int memOrd= admemproDAO.totalMemOrd(mem_id);
+		return memOrd;
 	}
 	
 	
 	@Override
-	public int totalMemPro() throws Exception {
-		return admemproDAO.totalMemPro();
+	public int totalMemPro(String mem_id) throws Exception {
+		int memPro= admemproDAO.totalMemPro(mem_id);
+		return memPro;
 	}
 	
 	

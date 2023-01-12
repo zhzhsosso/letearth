@@ -37,6 +37,12 @@ public interface AdMemproService {
 	// 프로젝트2 전체 개수
 	public int totalPro2() throws Exception;
 	
+	// 프로젝트 상태변경 (승인요청(2) -> 승인(3)으로 변경
+	public Integer updateProStatus3(ProjectVO proVO) throws Exception;
+	
+	// 프로젝트 상태변경 (승인요청(2) -> 반려(4)으로 변경
+	public Integer updateProStatus4(ProjectVO proVO) throws Exception;
+	
 	
 	
 	
@@ -59,10 +65,10 @@ public interface AdMemproService {
 	public List<ProjectVO> memProList(ProjectVO proVO);
 	
 	// 총합 : 구매내역
-	public int totalMemOrd() throws Exception;
+	public int totalMemOrd(String mem_id) throws Exception;
 	
 	// 총합 : 판매내역
-	public int totalMemPro() throws Exception;
+	public int totalMemPro(String mem_id) throws Exception;
 	
 	// 회원 탈퇴
 	public void deleteMem(MemberVO memVO);

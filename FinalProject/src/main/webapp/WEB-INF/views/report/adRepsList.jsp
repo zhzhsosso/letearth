@@ -190,7 +190,7 @@
 			<form role="form" name="fr" id="contact-form" action="" method="post">
 						<table class="table table-hover">
 							<tbody>
-								<tr style="background-color: #EEF5E6" id="vc">
+								<tr style="background-color: #EDEAE0" id="vc">
 									<th>신고번호</th>
 									<th>신고자</th>
 									<th>유형</th>
@@ -269,7 +269,7 @@
 <!-- 			<form role="form" name="fr" id="contact-form" action="" method="post"> -->
 						<table class="table table-hover">
 							<tbody>
-								<tr style="background-color: #EEF5E6">
+								<tr style="background-color: #EDEAE0">
 									<th>신고번호</th>
 									<th>신고자</th>
 									<th>유형</th>
@@ -341,7 +341,7 @@
 <!-- 			<form role="form" name="fr" id="contact-form" action="" method="post"> -->
 						<table class="table table-hover">
 							<tbody>
-								<tr style="background-color: #EEF5E6">
+								<tr style="background-color: #EDEAE0">
 									<th>신고번호</th>
 									<th>신고자</th>
 									<th>유형</th>

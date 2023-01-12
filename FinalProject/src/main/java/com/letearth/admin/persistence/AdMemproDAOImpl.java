@@ -110,6 +110,25 @@ public class AdMemproDAOImpl implements AdMemproDAO {
 	public int totalPro2() throws Exception {
 		return sqlSession.selectOne(NAMESPACE+".totalPro2");
 	}
+
+
+	// 프로젝트 상태변경 (승인요청(2) -> 승인(3)으로 변경
+	@Override
+	public Integer updateProStatus3(ProjectVO proVO) throws Exception {
+		return sqlSession.update(NAMESPACE+".updatePro3",proVO);
+	}
+	
+	
+	// 프로젝트 상태변경 (승인요청(2) -> 반려(4)으로 변경
+	@Override
+	public Integer updateProStatus4(ProjectVO proVO) throws Exception {
+		return sqlSession.update(NAMESPACE+".updatePro4",proVO);
+	}
+	
+	
+	
+	
+	
 	
 	
 	/**
@@ -148,15 +167,15 @@ public class AdMemproDAOImpl implements AdMemproDAO {
 	
 	// 총합 : 구매내역
 	@Override
-	public int totalMemOrd() throws Exception  {
-		return sqlSession.selectOne(NAMESPACE+".totalMemOrd");
+	public int totalMemOrd(String mem_id) throws Exception  {
+		return sqlSession.selectOne(NAMESPACE+".totalMemOrd",mem_id);
 	}
 	
 	
 	// 총합 : 판매내역
 	@Override
-	public int totalMemPro() throws Exception  {
-		return sqlSession.selectOne(NAMESPACE+".totalMemPro");
+	public int totalMemPro(String mem_id) throws Exception  {
+		return sqlSession.selectOne(NAMESPACE+".totalMemPro",mem_id);
 	}
 	
 

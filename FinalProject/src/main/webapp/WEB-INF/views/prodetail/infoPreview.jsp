@@ -3,8 +3,59 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
-    <!-- 헤더 -->
- 	<%@ include file="../include/header.jsp" %>
+<!--     헤더 -->
+<%--  	<%@ include file="../include/header.jsp" %> --%>
+
+
+
+
+
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!--====== Title ======-->
+    <title>LET EARTH</title>
+    
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="../resources/assets/images/favicon.ico" type="image/png">
+
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="../resources/assets/css/bootstrap.min.css">
+    
+    <!--====== flaticon css ======-->
+    <link rel="stylesheet" href="../resources/assets/css/flaticon.css">
+    
+    <!--====== odometer css ======-->
+    <link rel="stylesheet" href="../resources/assets/css/odometer.min.css">
+    
+    <!--====== magnific popup css ======-->
+    <link rel="stylesheet" href="../resources/assets/css/magnific-popup.css">
+    
+    <!--====== Fontawesome css ======-->
+    <link rel="stylesheet" href="../resources/assets/css/font-awesome.min.css">
+    
+    <!--====== animate css ======-->
+    <link rel="stylesheet" href="../resources/assets/css/animate.min.css">
+    
+    <!--====== Slick css ======-->
+    <link rel="stylesheet" href="../resources/assets/css/slick.css">
+    
+    <!--====== Default css ======-->
+    <link rel="stylesheet" href="../resources/assets/css/default.css">
+    
+    <!--====== Style css ======-->
+    <link rel="stylesheet" href="../resources/assets/css/style.css">
+
+
+
+
+
+
+
+
  	
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -26,6 +77,217 @@
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script>
   
+<script type="text/javascript">
+
+
+// 공유하기 - Kakao
+function shareKakao() {
+    Kakao.init('d34848fa1deecaf897fe27c8be1709c3');        
+ 
+    Kakao.Link.createDefaultButton({
+        container : '#btnKakao',
+        objectType : 'text',
+        text:
+        	// 지금은 text 타입으로 했으나 로고 이미지 생성 후 이미지 있는 타입으로 변경하기
+            'Let Earth 지구하자',
+          link: {
+            // mobileWebUrl: 'https://developers.kakao.com',
+            webUrl: 'http://localhost:8080/prodetail/info?pro_no=2',
+          }
+    });
+}
+
+// 공유하기 -Twitter
+function shareTwitter() {
+	alert('twitter');
+    var sendText = "LET EARTH" 
+    var sendUrl = "http://localhost:8080/prodetail/info?pro_no=2"
+    window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);  //Twitter에 전송 정보 파라미터 삽입
+}
+ 
+// 공유하기 - Facebook
+function shareFacebook() {
+	alert('facebook');
+    var sendUrl = "http://localhost:8080/prodetail/info?pro_no=2";    
+    window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);       //Facebook에 전송 정보 파라미터 삽입
+} 
+ 
+$(document).ready(function() {
+    //button click action
+    $("#btnTwitter").click(function() {    
+        shareTwitter();
+    });
+    
+    $("#btnFacebook").click(function() {
+        shareFacebook();
+    });
+    
+    $("#btnKakao").click(function() {
+    	shareKakao();
+    });
+    
+    //console.log(${info[0].achievement_rate})
+    
+    if(${info[0].achievement_rate} >= 100){
+    	 $("#rangeGraph span").css("width", "100%")
+    }
+    else{
+    	 $("#rangeGraph span").css("width", ${info[0].achievement_rate}+"%")
+    }
+    
+ 	// 마감된 프로젝트
+    if(${info[0].left_date } <= 0){
+    	$("#blockArea").css("display", "block")
+    	$("#blockArea2").css("display", "block")
+    	$("#blockArea4").css("display", "block")
+    	$("#blockArea")[0].innerHTML = "마감된 프로젝트 입니다!";    	
+    	$("#blockArea3").css("display", "block")
+    } 
+
+    // 오픈예정 프로젝트
+    var startPjtDt = new Date($("#startDt")[0].innerHTML);
+    var today = new Date();
+    
+    if(startPjtDt > today){
+    	$("#blockArea").css("display", "block")
+    	$("#blockArea2").css("display", "block")
+    	$("#blockArea4").css("display", "block")
+    	$("#blockArea")[0].innerHTML = "오픈 예정인 프로젝트 입니다!";    	
+    }
+    
+});
+
+
+	// 공유하기 - url
+	function clip(){
+	
+	    var url = '';   
+	    var textarea = document.createElement("textarea");  
+	    
+	    document.body.appendChild(textarea); 
+	    url = window.document.location.href; 
+	    textarea.value = url; 
+	    textarea.select();
+	    document.execCommand("copy");
+	    document.body.removeChild(textarea);
+	    
+	    swal('주소가 복사되었습니다!',"",'success');
+	}
+	
+	// 판매자공지 폼
+	function sncheck(){
+		if(document.snfr.reply_content.value == ""){
+			alert("내용을 입력하세요");
+			return false;
+		}
+		if(confirm("공지를 등록하시겠습니까?") == true){
+			document.snfr.submit();
+		}else{
+			return false;
+		}
+	}
+	
+	// 사용자댓글 폼
+	function urcheck(){
+		if(document.urfr.reply_content.value == ""){
+			alert("내용을 입력하세요");
+			return false;
+		}
+		document.urfr.submit();
+	}
+	
+	
+	
+	// 모달창 데이터 전달 - 답글
+	function transferRno(reply_no){
+		$('.modal-body #reply_no').val(reply_no);
+	}
+	
+	//모달창 데이터 전달 - 댓글 신고하기
+	function transferPno(reply_no){
+		$('#reportreplyMo #reply_no').val(reply_no);
+	}
+	
+	//판매자답글 폼
+	function rrcheck(){
+		if(document.rrfr.rereply_content.value == ""){
+			alert("내용을 입력하세요");
+			return false;
+		}
+		if(confirm("답글을 등록 하시겠습니까?") == true){
+			document.rrfr.submit();
+		}else{
+			return false;
+		}
+	}
+
+	// 좋아요 
+	function chkLike(mem_id){	
+		alert('좋아요 클릭');
+		if(mem_id !== "null"){		
+			var pro_no = $("#pro_no")[0].innerHTML;			
+			$.ajax({
+				url:"/prodetail/findLike?pro_no="+pro_no+"&mem_id="+mem_id,
+				type:'get',
+				dataType: "html",
+				async: false,			// ajax에서 강제로 순서대로 처리하게 만드는...?
+				success:function(result){
+						if(result == 1){
+							swal('좋아하는 프로젝트에서 삭제되었습니다!','','info');
+							deleteLikey(pro_no, mem_id);
+						}
+						else{
+							// likey 테이블에 Insert
+							swal('좋아하는 프로젝트에 추가되었습니다!','좋아하는 프로젝트 리스트는 마이페이지에서 확인해주세요','success');
+							insertLikey(pro_no, mem_id);							
+						}
+				},
+				error:function(){
+					alert("실패");
+				}
+			});
+		}
+		else{
+			// 로그인 안한 경우
+			swal('로그인 후 이용 가능합니다','','warning').then(function(){
+				location.href="/member/login"				
+			});
+
+		}
+		
+	}
+	
+	function insertLikey(pro_no, mem_id){
+		$.ajax({
+			url:"/prodetail/insertLike?pro_no="+pro_no+"&mem_id="+mem_id,
+			type:'get',
+			dataType: "html",
+			async: false,			// ajax에서 강제로 순서대로 처리하게 만드는...?
+			success:function(result){
+				//alert("좋아요 눌러짐......");
+			},
+			error:function(){
+				alert("실패");
+			}
+		});
+	}
+	
+	function deleteLikey(pro_no, mem_id){
+		$.ajax({
+			url:"/prodetail/deleteLike?pro_no="+pro_no+"&mem_id="+mem_id,
+			type: 'get',
+			dataType: "html",
+			async: false,
+			success:function(result){
+				//alert("좋아요 취소 완");
+			},
+			error:function(){
+				alert("에러");
+			}
+		});
+	}
+	
+</script>          
           
 <style>
 #dark {
@@ -307,40 +569,69 @@
     border-radius: 5px;
 }
 
+/*버튼체인지색상*/
+.main-btn::before {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 0;
+    height: 17px;
+    width: 17px;
+    background: #6F7B63;
+	border-radius:0.25rem;
+    z-index: -1;
+}
+
+.main-btn{
+    border-radius: 0.25rem;
+    background-color: #A4AC85;
+    color: #F2F0E8;
+    font-size: 18px;
+    font-weight: bolder;
+	text-align:center; 
+    vertical-align:middle;
+    line-height:0px;
+    padding:12px;
+    align-content:center;
+    width: 140px;
+    height: 60px;
+    
+    margin: 10px;
+
+}
+
 </style>
 
 	<!-- prodetail info -->
-	<section class="project-details-area pt-120 pb-190" style="padding-top: 200px;">
+	<section class="project-details-area pt-120 pb-190" style="width:90%; height:90%;">
+<!-- 	width:1140px; height:800px; -->
 	<div id="pro_no" style="display: none">${pro_no}</div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-7">
                     <div class="project-details-thumb">
                         <img src="../resources/assets/images/single-project-thumb.jpg" alt="project_thumb"> 
-                        <div class="icon">
-                            <i class="fa fa-heart"></i>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-5">
                     <div class="project-details-content">
                           <h3 class="title" >${info[0].pro_title }</h3> 
                           <div id="blockArea">이미 마감된 프로젝트입니다!</div>
-                        <div class="project-details-item">
-                            <div class="item text-center">
-                                <h5 class="title">
-                                	<fmt:formatNumber>${info[0].pro_tp }</fmt:formatNumber>원</h5>
-                                <span>총 후원금액</span>
-                            </div>
-                            <div class="item text-center">
-                                <h5 class="title">${info[0].supporterCnt}명</h5>
-                                <span>후원자</span>
-                            </div>
-                            <div class="item text-center">
-                                <h5 class="title">${info[0].left_date }일</h5>
-                                <span>남은 기간</span>
-                            </div>
-                        </div>
+<!--                         <div class="project-details-item" > -->
+<!--                             <div class="item text-center"> -->
+<!--                                 <h5 class="title"> -->
+<%--                                 	<fmt:formatNumber>${info[0].pro_tp }</fmt:formatNumber>원</h5> --%>
+<!--                                 <span>총 후원금액</span> -->
+<!--                             </div> -->
+<!--                             <div class="item text-center"> -->
+<%--                                 <h5 class="title">${info[0].supporterCnt}명</h5> --%>
+<!--                                 <span>후원자</span> -->
+<!--                             </div> -->
+<!--                             <div class="item text-center"> -->
+<%--                                 <h5 class="title">${info[0].left_date }일</h5> --%>
+<!--                                 <span>남은 기간</span> -->
+<!--                             </div> -->
+<!--                         </div> -->
                         <div class="projects-range">
                             <div class="projects-range-content">
                                 <ul>
@@ -362,7 +653,8 @@
                             <span style="margin-top: -17px;">펀딩기간: <span><span id="startDt">${info[0].pro_st_dt}</span>~${info[0].pro_ed_dt}</span></span>
                         </div>
                         <div class="project-btn mt-25" style="scroll-behavior: smooth;">
-                            <a class="main-btn" href="#funding">프로젝트 후원하기</a>
+                            <a class="main-btn" href="#funding" >프로젝트 후원하기</a>
+<!--                             <a class="main-btn" href="#funding" style="width: 250px; text-align: center" >프로젝트 후원하기</a> -->
                         </div>
                         <div class="project-share d-flex align-items-center">
                             <span>공유</span>
@@ -373,12 +665,12 @@
                                 <li><a href="#" id="btnKakao">KAKAO</a></li>
                             </ul>
                         </div>
-<!--                         <div class="project-share d-flex align-items-center" style="margin-top: 7px;"> -->
-<!--                             <span>좋아요</span> -->
-<!--                             <ul> -->
-<%--                                 <li><input type="button" value="♥" id="LikeBtn" onClick='chkLike("<%=session.getAttribute("mem_id") %>")'><i class="fa-duotone fa-heart"></i></li> --%>
-<!--                             </ul> -->
-<!--                         </div> -->
+                        <div class="project-share d-flex align-items-center" style="margin-top: 7px;">
+                            <span>좋아요</span>
+							<div class="icon">
+                            	<a onClick='chkLike("<%=session.getAttribute("mem_id") %>")'><i class="fa fa-heart"></i></a>
+                        	</div>                   
+                        </div>
                     </div>
                 </div>
             </div>
@@ -389,32 +681,10 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="tab-btns" id="funding">
-                    	<div id="blockArea3"></div>
-                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">프로젝트 소개</a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">알림</a>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="pills-4-tab" data-toggle="pill" href="#pills-4" role="tab" aria-controls="pills-4" aria-selected="false">커뮤니티</a>
-                            </li>
-                        </ul>
-                    </div>
                     
                     <!-- 프로젝트 소개 -->
                     <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                        	<div class="infoBtn">
-                        		<a href="#story">스토리 소개</a>
-                        		<a href="#budget">예산</a>
-                        		<a href="#date">일정</a>
-                        		<a href="#team">팀 소개</a>
-                        		<a href="#reward">리워드 소개</a>
-                        		<a href="#policy">프로젝트 정책</a>
-                        	</div>
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab" style="background: white"> 
                         	<div class="project-details-content-top">
                                 <p style="color: black; font-size: 25px; padding-bottom: 0px;" id="intro">프로젝트 소개</p>
                                 <!-- 뷰어 시작 -->
@@ -456,20 +726,21 @@
 									
 								</script>
                             </div>
+                            
                             <div class="project-details-item">
                                 <p style="color: black; font-size: 25px;" id="budget">프로젝트 예산</p>
                                 <div class="item">
                                     <i class="flaticon-checkmark"></i>
-                                    <h5 class="title">One Power Bank for Every Wrist Car</h5>
-                                    <p>Lorem Ipsum nibh vel velit auctor aliquet. Aenean sollic tudin, lorem is simply free text quis bibendum.</p>
+                                    <h5 class="title">예산 소개</h5>
+                                    <p>예산 소개는 여기</p>
                                 </div>
                                 <div class="item mt-45 mb-50">
                                     <i class="flaticon-checkmark"></i>
-                                    <h5 class="title">One Power Bank for Every Wrist Car</h5>
-                                    <p>Lorem Ipsum nibh vel velit auctor aliquet. Aenean sollic tudin, lorem is simply free text quis bibendum.</p>
+                                    <h5 class="title">예산</h5>
+                                    <p>예산 소개</p>
                                 </div>
-                                <p class="text">Nulla in ex at mi viverra sagittis ut non erat raesent nec congue elit. Nunc arcu odio, convallis a lacinia ut, tristique id eros. Suspendisse leo erat, pellentesque et commodo vel, varius in felis. Nulla mollis turpis porta justo eleifend volutpat. Cras malesuada nec magna eu blandit. Nam sed efficitur ante. Quisque lobortis sodales risus, eu dapibus dolor porta vitae. Vestibulum eu ex auctor, scelerisque velit sit amet, vehicula sapien.</p>
                             </div>
+                            
                             
                             <div class="project-details-content-top">
                                 <p style="color: black; font-size: 25px;" id="date">프로젝트 일정</p>
@@ -594,6 +865,7 @@
                             <div class="comment-one mt-50">
                            	
                            		<!-- 댓글 작성하기 -->
+                           		<c:if test="${sessionScope.mem_id ne null }">
                            			 <div class="comment-form">
 		                                <form role="form" class="contact-one__form" name="urfr" method="post">
 		                                
@@ -632,6 +904,7 @@
 		                                    </div>
 		                                </form>
 		                           	</div>
+		                           	</c:if>
 		                       	<!-- 댓글 작성하기 --> 
 		                       	
 		                       	<!-- 회원댓글 -->
@@ -663,31 +936,34 @@
 							                            </div>
 						                            </c:when>
 					                            </c:choose>
-					                            <c:choose>
-					                            	<c:when test="${sessionScope.mem_id ne ur.mem_id }">
-						                            	<a href="#" data-toggle="modal" data-target="#reportreplyMo" onclick="javascript:transferPno(${ur.reply_no});">
-															신고하기
-														</a>
-					                            	</c:when>
-					                            	<c:when test="${sessionScope.mem_id eq ur.mem_id }">
-					                            		 <div class="blog-one__meta">
-						                            		<a>내가 쓴 댓글</a>
-						                            	</div>
-					                            	</c:when>
-					                            	
-					                            </c:choose>
-					                           
+					                            <c:if test="${sessionScope.mem_id ne null }">
+						                            <c:choose>
+						                            	<c:when test="${sessionScope.mem_id ne ur.mem_id }">
+							                            	<a href="#" data-toggle="modal" data-target="#reportreplyMo" onclick="javascript:transferPno(${ur.reply_no});">
+																신고하기
+															</a>
+						                            	</c:when>
+						                            	<c:when test="${sessionScope.mem_id eq ur.mem_id }">
+						                            		 <div class="blog-one__meta">
+							                            		<a>내가 쓴 댓글</a>
+							                            	</div>
+						                            	</c:when>
+						                            	
+						                            </c:choose>
+					                          	 </c:if>
 				                            </div>
 	                                        <p>${ur.reply_content }</p>
 	                                    </div>
 	                                    
-		                                <!-- 답글쓰기 버튼 관리자만 보이게 -->
-	                                    <div class="blog-btn">
-<!-- 	                                        <a href="javascript:onDisplay()" class="main-btn">답글쓰기 </a> -->
-	                                        <a href="#" class="rereplymd main-btn" data-toggle="modal" data-target="#moaModal" onclick="javascript:transferRno(${ur.reply_no});">
-												답글쓰기
-											</a>
-	                                    </div>
+		                                <!-- 답글쓰기 버튼 판매자만 보이게 -->
+		                                <c:if test="${sessionScope.mem_id eq pdvo.mem_id }">
+		                                    <div class="blog-btn">
+	<!-- 	                                        <a href="javascript:onDisplay()" class="main-btn">답글쓰기 </a> -->
+		                                        <a href="#" class="rereplymd main-btn" data-toggle="modal" data-target="#moaModal" onclick="javascript:transferRno(${ur.reply_no});">
+													답글쓰기
+												</a>
+		                                    </div>
+	                                    </c:if>
 		                                <!-- 답글쓰기 버튼 관리자만 보이게 -->
 	                                </div>
 	                                
@@ -724,36 +1000,38 @@
                      <!-- 커뮤니티 -->
                      
                      </div>
-                     <div class="singorp">
-	                     <img src="../resources/assets/images/singo.png" alt="reportsingo">
-	                     <a href="#" id="rePort">이 프로젝트 신고하기</a>
-                     </div>
+                     <c:if test="${sessionScope.mem_id ne null }">
+	                     <div class="singorp">
+		                     <img src="../resources/assets/images/singo.png" alt="reportsingo">
+		                     <a href="#" id="rePort">이 프로젝트 신고하기</a>
+	                     </div>
+                     </c:if>
                 </div>
                 
-				<!-- 사이드바 - 리워드 선택 reward -->
-                <div class="col-lg-4 col-md-7 col-sm-9">                	
-                    <div class="project-details-sidebar">                    
-                        <div class="project-details-park mt-30 box" style="text-align: center; padding: 35px;">
-                        	<div id="blockArea2"></div>
-                            <h4 class="title" style="margin-top: 25px;">리워드 없이 후원하기</h4>
-                            <a class="main-btn" id="withoutReward" style="width: 155px;">후원하기</a>
-                        </div>	
+<!-- 				사이드바 - 리워드 선택 reward -->
+<!--                 <div class="col-lg-4 col-md-7 col-sm-9">                	 -->
+<!--                     <div class="project-details-sidebar">                     -->
+<!--                         <div class="project-details-park mt-30 box" style="text-align: center; padding: 35px;"> -->
+<!--                         	<div id="blockArea2"></div> -->
+<!--                             <h4 class="title" style="margin-top: 25px;">리워드 없이 후원하기</h4> -->
+<!--                             <a class="main-btn" id="withoutReward" style="width: 155px;">후원하기</a> -->
+<!--                         </div>	 -->
                        
-                        <c:forEach var="reward" items="${reward}" step="1">
-                        	<div id="blockArea4"></div>
-	                        <div class="project-details-park mt-30 box" style="text-align: center; padding: 35px;">
-	                            <h4 class="title">${reward.reward_title}</h4>
-	                            <ul>
-	                                <li>${reward.reward_content}</li>
-	                                <li><span>가격</span> ${reward.reward_price}원</li>
-	                                <li><span>재고</span> ${reward.reward_stock}개</li>
-	                            </ul>
-	                            <a class="main-btn" href="/order/or_main?pro_no=${reward.pro_no }&reward_no=${reward.reward_no}" style="width: 155px;">선택</a>
-	                        </div>
-                        </c:forEach>                      
-                    </div>
-                </div>
-				<!-- 사이드바 - 리워드 선택 -->
+<%--                         <c:forEach var="reward" items="${reward}" step="1"> --%>
+<!--                         	<div id="blockArea4"></div> -->
+<!-- 	                        <div class="project-details-park mt-30 box" style="text-align: center; padding: 35px;"> -->
+<%-- 	                            <h4 class="title">${reward.reward_title}</h4> --%>
+<!-- 	                            <ul> -->
+<%-- 	                                <li>${reward.reward_content}</li> --%>
+<%-- 	                                <li><span>가격</span> ${reward.reward_price}원</li> --%>
+<%-- 	                                <li><span>재고</span> ${reward.reward_stock}개</li> --%>
+<!-- 	                            </ul> -->
+<%-- 	                            <a class="main-btn" href="/order/or_main?pro_no=${reward.pro_no }&reward_no=${reward.reward_no}" style="width: 155px;">선택</a> --%>
+<!-- 	                        </div> -->
+<%--                         </c:forEach>                       --%>
+<!--                     </div> -->
+<!--                 </div> -->
+<!-- 				사이드바 - 리워드 선택 -->
             </div>
         </div>
     </section>

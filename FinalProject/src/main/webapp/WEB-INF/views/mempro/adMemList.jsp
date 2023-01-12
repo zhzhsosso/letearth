@@ -30,9 +30,12 @@
 	font-size: 15px;
 }
 
-#sbtn {
+#sbtn { /*검색버튼*/
 	position: absolute;
-	top: -4px;
+	top: 0px;
+	
+	background-color: #A4AC85;
+	height: 35px;
 }
 
 hr {
@@ -42,6 +45,8 @@ hr {
 	border: 0;
 }
 
+
+/*사이드바*/
 /* Fixed sidenav, full height */
 .sidenav {
 	height: 100%;
@@ -50,11 +55,11 @@ hr {
 	z-index: 1;
 	/*    top: 30%;  */
 	/*    left: 20%;  */
-	background-color: #EEF6E6;
+	background-color: #EDEAE0;
 	overflow-x: hidden;
 	padding-top: 30px;
 	padding-bottom: 100px;
-	position: relative;
+	
 	top: 300px;
 	left: 250px;
 }
@@ -64,7 +69,7 @@ hr {
 	padding: 6px 8px 6px 16px;
 	text-decoration: none;
 	font-size: 17px;
-	color: #818181;
+	color: #414934;
 	display: block;
 	border: none;
 	background: none;
@@ -76,7 +81,7 @@ hr {
 
 /* On mouse-over */
 .sidenav a:hover, .dropdown-btn:hover {
-	color: #ACCC97;
+  color: #B6AD90;
 }
 
 /* Main content */
@@ -90,15 +95,15 @@ hr {
 }
 
 /* Add an active class to the active dropdown button */
-.active {
-	background-color: #D8E9C5;
-	color: white;
+.active1 {
+  background-color: #D7D1B9; 
+  color: white;
 }
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
 	display: none;
-	background-color: #EEF5E6;
+	background-color: #EDEAE0;
 	padding-left: 8px;
 }
 
@@ -110,24 +115,60 @@ hr {
 
 /* Some media queries for responsiveness */
 @media screen and (max-height: 450px) {
-	.sidenav {
-		padding-top: 15px;
-	}
-	.sidenav a {
-		font-size: 18px;
-	}
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }
 
 /*hover*/
-#hov a:hover{
-  color : green;
-  transition : 0s;
-  font-weight: bolder;
-  /*text-decoration: underline;*/
+#hov a:hover {
+	color: green;
+	transition: 0s;
+	font-weight: bolder;
+	/*text-decoration: underline;*/
 }
 
+/*버튼체인지색상*/
+.main-btn::before {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 0;
+    height: 17px;
+    width: 17px;
+    background: #6F7B63;
+	border-radius:0.25rem;
+    z-index: -1;
+}
+
+.main-btn{
+    border-radius: 0.25rem;
+    background-color: #A4AC85;
+    color: #F2F0E8;
+    font-size: 18px;
+    font-weight: bolder;
+	text-align:center; 
+    vertical-align:middle;
+    line-height:0px;
+    padding:12px;
+    align-content:center;
+    width: 140px;
+    height: 60px;
+    
+    margin: 10px;
+
+}
+ 
+  /*페이징*/
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #89A378;
+    border-color: #89A378;
+}ㄴ
 
 </style>
+
 </head>
 <body>
 
@@ -140,6 +181,7 @@ hr {
 
 			<!-- 사이드바 -->
 			<%@ include file="../include/adSide.jsp"%>
+			<!-- 사이드바 -->
 
 			<div class="container">
 				<br> <br> <br> <br> <br> <br>
@@ -150,24 +192,25 @@ hr {
 					<b style="color: #6c757d;">회원 리스트</b> <br> <br> <br>
 				</h2>
 				<div class="col-xs-12">
-					<div style="font-size: 2.2rem;" align="left">
-						<span id="hov">
-						<a id="listAll">전체</a> | <a id="list2">구매회원</a> | <a id="list3">판매회원</a>
-						| <a id="list4">블랙리스트</a>
+					<div style="font-size: 2.2rem;" align="left" class="proList2">
+						<span id="hov"> <a id="listAll"
+							style="color: #6F7B63; font-weight: bolder;">전체</a> | <a
+							id="list2" style="color: #B6AD90" >구매회원</a> | <a id="list3" style="color: #B6AD90">판매회원</a> | <a id="list4" style="color: #B6AD90">블랙리스트</a>
 						</span>
 					</div>
 					<!-- 어드민 -->
-					<br>
-					<div class="box">
-						<br>
+					
+					<!-- 검색기능 -->
+
+					<div class="box" style="border-top: none;">
 						<div class="box-header">
-							<br>
 							<div class="box-tools" align="right">
 								<div class="input-group input-group-sm hidden-xs"
-									style="width: 150px;">
-									<input type="text" name="table_search"
-										class="form-control pull-right" placeholder="Search">
-									<div class="input-group-btn">
+									style="width: 180px; height: 50px;">
+									<input type="text" name="keyword"
+										class="form-control pull-right" placeholder="Search"
+										style="height: 35px; width: 60px; font-size: 1rem;">
+									<div class="input-group-btn" style="padding-left: 3px;">
 										<button type="submit" class="btn btn-default" id="sbtn">
 											<i class="fa fa-search"></i>
 										</button>
@@ -175,6 +218,8 @@ hr {
 								</div>
 							</div>
 						</div>
+					<!-- 검색기능 -->
+						<br>
 						<br>
 						<!-- memAll -->
 						<div class="box-body table-responsive no-padding" id="memAll">
@@ -182,9 +227,10 @@ hr {
 								method="post">
 								<table class="table table-hover">
 									<tbody>
-										<tr style="background-color: #EEF5E6">
-											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">회원 번호</th>
-											<th style="font-size: 15px;" >회원 아이디</th>
+										<tr style="background-color: #EDEAE0">
+											<th style="font-size: 15px; width: 10%; table-layout: fixed;"">회원
+												번호</th>
+											<th style="font-size: 15px;">회원 아이디</th>
 											<th style="font-size: 15px;">회원 이름</th>
 											<th style="font-size: 15px;">회원 연락처</th>
 											<th style="font-size: 15px;">회원 분류</th>
@@ -195,23 +241,29 @@ hr {
 										<c:forEach var="memVO" items="${memList }" varStatus="status">
 											<tr>
 												<td style="font-size: 15px;">${memVO.mem_no }</td>
-												<td style="font-size: 15px;"><a href="/mempro/adMemDetail?mem_id=${memVO.mem_id }">${memVO.mem_id }</a></td>
+												<td style="font-size: 15px;">${memVO.mem_id }</a></td>
 												<td style="font-size: 15px;">${memVO.mem_name }</td>
 												<td style="font-size: 15px;">${memVO.mem_phone }</td>
 
 												<!-- 회원분류 -->
 												<c:choose>
 													<c:when test="${memVO.mem_status == 0}">
-														<td style="font-size: 15px;"><span
-															class="label label-success">구매회원</span></td>
+														<td>
+															<button type="button" class="btn btn-primary"
+																style="font-size: 12px; background-color: #B6AD90; border-color: #B6AD90;">구매회원</button>
+														</td>
 													</c:when>
 													<c:when test="${memVO.mem_status == 1}">
-														<td style="font-size: 15px;"><span
-															class="label label-info">판매회원</span></td>
+														<td>
+															<button type="button" class="btn btn-primary"
+																style="font-size: 12px; background-color: #89A378; border-color: #89A378;">판매회원</button>
+														</td>
 													</c:when>
 													<c:when test="${memVO.mem_status == 3}">
-														<td style="font-size: 15px;"><span
-															class="label label-warning">블랙리스트</span></td>
+														<td>
+															<button type="button" class="btn btn-primary"
+																style="font-size: 12px; background-color: #BFCC97; border-color: #BFCC97;">블랙리스트</button>
+														</td>
 													</c:when>
 												</c:choose>
 
@@ -219,14 +271,17 @@ hr {
 												<!-- 블랙리스트 여부 -->
 												<c:choose>
 													<c:when test="${not empty memVO.mem_bdate }">
-														<td>Y</td>
+														<td style="font-size: 15px;">Y</td>
 													</c:when>
 													<c:when test="${empty memVO.mem_bdate }">
-														<td>N</td>
+														<td style="font-size: 15px;">N</td>
 													</c:when>
 												</c:choose>
-												<td style="font-size: 15px;"><a
-													href="/mempro/adMemDetail?mem_id=${memVO.mem_id }">상세정보</a>
+												<td>
+													<button type="button" class="btn btn-primary"
+														onclick="location.href='/mempro/adMemDetail?mem_id=${memVO.mem_id }';"
+														style="font-size: 12px; background-color: #A4AC85; border-color: #A4AC85;">상세정보</button>
+												</td>
 											</tr>
 										</c:forEach>
 								</table>
@@ -240,9 +295,10 @@ hr {
 								method="post">
 								<table class="table table-hover">
 									<tbody>
-										<tr style="background-color: #EEF5E6">
-											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">회원 번호</th>
-											<th style="font-size: 15px;">회원 아이디</th>
+										<tr style="background-color: #EDEAE0">
+											<th style="font-size: 15px; width: 10%; table-layout: fixed;"">회원
+												번호</th>
+											<th style="font-size: 15px; width: 15%; table-layout: fixed;">회원 아이디</th>
 											<th style="font-size: 15px;">회원 이름</th>
 											<th style="font-size: 15px;">회원 연락처</th>
 											<th style="font-size: 15px;">회원 분류</th>
@@ -250,15 +306,17 @@ hr {
 											<th style="font-size: 15px;">상세정보</th>
 										</tr>
 
-										<c:forEach var="memVO2" items="${memList }" >
+										<c:forEach var="memVO2" items="${memList }">
 											<c:if test="${memVO2.mem_status == 0}">
 												<tr>
 													<td style="font-size: 15px;">${memVO2.mem_no }</td>
-													<td style="font-size: 15px;"><a href="/mempro/adMemDetail?mem_id=${memVO2.mem_id }">${memVO2.mem_id }</a></td>
+													<td style="font-size: 15px;">${memVO2.mem_id }</a></td>
 													<td style="font-size: 15px;">${memVO2.mem_name }</td>
 													<td style="font-size: 15px;">${memVO2.mem_phone }</td>
-													<td style="font-size: 15px;"><span
-														class="label label-success">구매회원</span></td>
+													<td>
+														<button type="button" class="btn btn-primary"
+															style="font-size: 12px; background-color: #B6AD90; border-color: #B6AD90;">구매회원</button>
+													</td>
 													<!-- 블랙리스트 여부 -->
 													<c:choose>
 														<c:when test="${not empty memVO2.mem_bdate }">
@@ -268,8 +326,11 @@ hr {
 															<td style="font-size: 15px;">N</td>
 														</c:when>
 													</c:choose>
-													<td style="font-size: 15px;"><a
-														href="/mempro/adMemDetail?mem_id=${memVO2.mem_id }">상세정보</a>
+													<td>
+														<button type="button" class="btn btn-primary"
+															onclick="location.href='/mempro/adMemDetail?mem_id=${memVO2.mem_id }';"
+															style="font-size: 12px; background-color: #A4AC85; border-color: #A4AC85;">상세정보</button>
+													</td>
 												</tr>
 											</c:if>
 										</c:forEach>
@@ -286,9 +347,10 @@ hr {
 								method="post">
 								<table class="table table-hover">
 									<tbody>
-										<tr style="background-color: #EEF5E6">
-											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">회원 번호</th>
-											<th style="font-size: 15px;">회원 아이디</th>
+										<tr style="background-color: #EDEAE0">
+											<th style="font-size: 15px; width: 10%; table-layout: fixed;"">회원
+												번호</th>
+											<th style="font-size: 15px; width: 15%; table-layout: fixed;">회원 아이디</th>
 											<th style="font-size: 15px;">회원 이름</th>
 											<th style="font-size: 15px;">회원 연락처</th>
 											<th style="font-size: 15px;">회원 분류</th>
@@ -296,16 +358,19 @@ hr {
 											<th style="font-size: 15px;">상세정보</th>
 										</tr>
 
-										<c:forEach var="memVO3" items="${memList }" >
+										<c:forEach var="memVO3" items="${memList }">
 											<c:if test="${memVO3.mem_status == 1}">
 												<tr>
 													<td style="font-size: 15px;">${memVO3.mem_no }</td>
-													<td style="font-size: 15px;"><a href="/mempro/adMemDetail?mem_id=${memVO3.mem_id }">${memVO3.mem_id }</a></td>
+													<td style="font-size: 15px;">${memVO3.mem_id }</a></td>
 													<td style="font-size: 15px;">${memVO3.mem_name }</td>
 													<td style="font-size: 15px;">${memVO3.mem_phone }</td>
-													<td style="font-size: 15px;"><span
-														class="label label-info">판매회원</span></td>
-
+													<!-- 													<td><span -->
+													<!-- 														class="label label-info" style="font-size: 12px;">판매회원</span></td> -->
+													<td>
+														<button type="button" class="btn btn-primary"
+															style="font-size: 12px; background-color: #89A378; border-color: #89A378;">판매회원</button>
+													</td>
 													<!-- 블랙리스트 여부 -->
 													<c:choose>
 														<c:when test="${not empty memVO3.mem_bdate }">
@@ -315,8 +380,11 @@ hr {
 															<td style="font-size: 15px;">N</td>
 														</c:when>
 													</c:choose>
-													<td style="font-size: 15px;"><a
-														href="/mempro/adMemDetail?mem_id=${memVO3.mem_id }">상세정보</a>
+													<td>
+														<button type="button" class="btn btn-primary"
+															onclick="location.href='/mempro/adMemDetail?mem_id=${memVO3.mem_id }';"
+															style="font-size: 12px; background-color: #A4AC85; border-color: #A4AC85;">상세정보</button>
+													</td>
 												</tr>
 											</c:if>
 										</c:forEach>
@@ -332,9 +400,10 @@ hr {
 								method="post">
 								<table class="table table-hover">
 									<tbody>
-										<tr style="background-color: #EEF5E6">
-											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">회원 번호</th>
-											<th style="font-size: 15px;">회원 아이디</th>
+										<tr style="background-color: #EDEAE0">
+											<th style="font-size: 15px; width: 10%; table-layout: fixed;"">회원
+												번호</th>
+											<th style="font-size: 15px; width: 15%; table-layout: fixed;">회원 아이디</th>
 											<th style="font-size: 15px;">회원 이름</th>
 											<th style="font-size: 15px;">회원 연락처</th>
 											<th style="font-size: 15px;">회원 분류</th>
@@ -346,11 +415,15 @@ hr {
 											<c:if test="${memVO4.mem_status == 3}">
 												<tr>
 													<td style="font-size: 15px;">${memVO4.mem_no }</td>
-													<td style="font-size: 15px;"><a href="/mempro/adMemDetail?mem_id=${memVO4.mem_id }">${memVO4.mem_id }</a></td>
+													<td style="font-size: 15px;">${memVO4.mem_id }</a></td>
 													<td style="font-size: 15px;">${memVO4.mem_name }</td>
 													<td style="font-size: 15px;">${memVO4.mem_phone }</td>
 
-													<td><span class="label label-warning">블랙리스트</span></td>
+													<!-- 													<td><span class="label label-warning" style="font-size: 12px;">블랙리스트</span></td> -->
+													<td>
+														<button type="button" class="btn btn-primary"
+															style="font-size: 12px; background-color: #BFCC97; border-color: #BFCC97;">블랙리스트</button>
+													</td>
 
 													<!-- 블랙리스트 여부 -->
 													<c:choose>
@@ -361,8 +434,11 @@ hr {
 															<td style="font-size: 15px;">N</td>
 														</c:when>
 													</c:choose>
-													<td style="font-size: 15px;"><a
-														href="/mempro/adMemDetail?mem_id=${memVO4.mem_id }">상세정보</a>
+													<td>
+														<button type="button" class="btn btn-primary"
+															onclick="location.href='/mempro/adMemDetail?mem_id=${memVO4.mem_id }';"
+															style="font-size: 12px; background-color: #A4AC85; border-color: #A4AC85;">상세정보</button>
+													</td>
 												</tr>
 											</c:if>
 										</c:forEach>
@@ -390,7 +466,7 @@ hr {
 							</c:forEach>
 
 							<c:if test="${pvo.next }">
-								<li><a href=/mempro/adMemList?page=${pvo.endPage+1 }">»</a></li>
+								<li><a href=/mempro/adMemList?page=${pvo.endPage+1}">»</a></li>
 								<!-- 11 -->
 							</c:if>
 						</ul>
@@ -419,76 +495,136 @@ hr {
 		$("#mem3").hide();
 		$("#mem4").hide();
 
-		$("#listAll").css("color", "green");
+		$("#listAll").css("color", "#6F7B63");
 		$("#listAll").css("font-weight", "bolder");
 
-		$("#listAll").click(function() { // 전체
+		$("#listAll").hover(function() { // 전체
 			$("#memAll").show();
 			$("#mem2").hide();
 			$("#mem3").hide();
 			$("#mem4").hide();
 
-			$("#listAll").css("color", "green");
+			$("#listAll").css("color", "#6F7B63");
 			$("#listAll").css("font-weight", "bolder");
-			$("#list2").css("color", "grey");
+			$("#list2").css("color", "#B6AD90");
 			$("#list2").css("font-weight", "normal");
-			$("#list3").css("color", "grey");
+			$("#list3").css("color", "#B6AD90");
 			$("#list3").css("font-weight", "normal");
-			$("#list4").css("color", "grey");
+			$("#list4").css("color", "#B6AD90");
 			$("#list4").css("font-weight", "normal");
 
 		});
 
-		$("#list2").click(function() { // 구매회원
+		$("#list2").hover(function() { // 구매회원
 			$("#memAll").hide();
 			$("#mem2").show();
 			$("#mem3").hide();
 			$("#mem4").hide();
 
-			$("#list2").css("color", "green");
+			$("#list2").css("color", "#6F7B63");
 			$("#list2").css("font-weight", "bolder");
-			$("#listAll").css("color", "grey");
+			$("#listAll").css("color", "#B6AD90");
 			$("#listAll").css("font-weight", "normal");
-			$("#list3").css("color", "grey");
+			$("#list3").css("color", "#B6AD90");
 			$("#list3").css("font-weight", "normal");
-			$("#list4").css("color", "grey");
+			$("#list4").css("color", "#B6AD90");
 			$("#list4").css("font-weight", "normal");
+
 		});
 
-		$("#list3").click(function() { // 판매회원
+		$("#list3").hover(function() { // 판매회원
 			$("#memAll").hide();
 			$("#mem2").hide();
 			$("#mem3").show();
 			$("#mem4").hide();
 
-			$("#list3").css("color", "green");
+			$("#list3").css("color", "#6F7B63");
 			$("#list3").css("font-weight", "bolder");
-			$("#list2").css("color", "grey");
+			$("#list2").css("color", "#B6AD90");
 			$("#list2").css("font-weight", "normal");
-			$("#listAll").css("color", "grey");
+			$("#listAll").css("color", "#B6AD90");
 			$("#listAll").css("font-weight", "normal");
-			$("#list4").css("color", "grey");
+			$("#list4").css("color", "#B6AD90");
 			$("#list4").css("font-weight", "normal");
 		});
 
-		$("#list4").click(function() { // 블랙리스트
+		$("#list4").hover(function() { // 블랙리스트
 			$("#memAll").hide();
 			$("#mem2").hide();
 			$("#mem3").hide();
 			$("#mem4").show();
 
-			$("#list4").css("color", "green");
+			$("#list4").css("color", "#6F7B63");
 			$("#list4").css("font-weight", "bolder");
-			$("#list2").css("color", "grey");
+			$("#list2").css("color", "#B6AD90");
 			$("#list2").css("font-weight", "normal");
-			$("#listAll").css("color", "grey");
+			$("#listAll").css("color", "#B6AD90");
 			$("#listAll").css("font-weight", "normal");
-			$("#list3").css("color", "grey");
+			$("#list3").css("color", "#B6AD90");
 			$("#list3").css("font-weight", "normal");
 		});
 
 	});
+
+	$("#listAll").hover(function() {
+		$(this).css('color', '#6F7B63'); // 마우스 오버 시
+		$(this).css('font-weight', 'bolder');
+	}, function() {
+		$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+		$(this).css('font-weight', 'normal');
+	});
+
+	$("#list2").hover(function() {
+		$(this).css('color', '#6F7B63'); // 마우스 오버 시
+		$(this).css('font-weight', 'bolder');
+	}, function() {
+		$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+		$(this).css('font-weight', 'normal');
+	});
+
+	$("#list3").hover(function() {
+		$(this).css('color', '#6F7B63'); // 마우스 오버 시
+		$(this).css('font-weight', 'bolder');
+	}, function() {
+		$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+		$(this).css('font-weight', 'normal');
+	});
+
+	$("#list4").hover(function() {
+		$(this).css('color', '#6F7B63'); // 마우스 오버 시
+		$(this).css('font-weight', 'bolder');
+	}, function() {
+		$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+		$(this).css('font-weight', 'normal');
+	});
 </script>
+
+
+<!-- 검색기능 -->
+ <script type="text/javascript">
+ function fun1(){
+	 
+ if(document.fr.type.value==""){
+	 
+	 Swal.fire({   
+         title : '검색유형을 선택하세요!',
+          icon: 'info',
+         confirmButtonText: '확인'
+      })
+		document.fr.type.focus();
+		return false;
+	}
+ 
+	$(document).ready(function(){
+			 
+		$("#sbtn").click(function(){ // get방식
+			location.href="/mempro/adMemList";
+		});
+		
+	});
+
+ }
+ </script>
 
 </html>
 

@@ -181,5 +181,43 @@ public class Prodetailcontroller {
 	
 	
 	
+	/**
+	 * prodetailGET
+	 * 프로젝트 소개
+	 * @param pro_no
+	 * @throws Exception
+	 */
+	// http://localhost:8080/prodetail/infoPreview?pro_no=2
+	@RequestMapping(value="/infoPreview", method=RequestMethod.GET)
+	public String infoPreviewGET(RedirectAttributes redirect, HttpSession session, Model model, HttpServletRequest request) throws Exception {		
+		
+		//파라미터, 세션값 받기
+		Integer pro_no = Integer.parseInt(request.getParameter("pro_no"));
+		String mem_id = (String)session.getAttribute("mem_id");
+		
+		pdservice.getProIntro(pro_no);
+		pdservice.getProInfo(pro_no);
+		pdservice.getReward(pro_no);
+		
+		//특정 글번호에 해당하는 정보 가져오기
+		ProDetailVO pdvo = pdservice.getProjectDetail(pro_no);
+					
+		//판매자 공지사항, 사용자 댓글, 판매자 답글 정보 가져오기
+		List<ProReplyVO> sellNoticeList = pdservice.getsnListAll(pro_no);
+		List<ProReplyVO> userReplyList = pdservice.geturListAll(pro_no);
+		
+		// 연결된 뷰페이지로 정보 전달(model)	
+		model.addAttribute("pdvo", pdvo);
+		model.addAttribute("sellNoticeList", sellNoticeList);
+		model.addAttribute("userReplyList", userReplyList);
+		model.addAttribute("pro_no", pro_no);
+					
+		model.addAttribute("info", pdservice.getProInfo(pro_no));
+		model.addAttribute("intro", pdservice.getProIntro(pro_no));
+		model.addAttribute("reward", pdservice.getReward(pro_no));
+		
+		return "prodetail/infoPreview";
+	}
+	
 	
 }
