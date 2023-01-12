@@ -6,26 +6,20 @@
 	<!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
 	
-<script
-  src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-  crossorigin="anonymous"></script>
-  
-<script type="text/javascript">
-// 	$(document).ready(function(){
-
-// 	var rate = document.getElementById("rate").innerHTML.split(".")[0];
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>	
+	<script>
+	$(document).ready(function() {		
+		var tagObj = $(".tags");
+				
+		for(var i=0; i<tagObj.length; i++){
+			var tagText = $(".tags")[i].innerHTML;	
+		    tagText = tagText.replaceAll(',', ' #');
+		    tagText = "#" + tagText;    
+		    $(".tags")[i].innerHTML = tagText;
+		}
+	})
+	</script>
 	
-// 	if(rate >= 100){
-// 	   	 $("#rangeGraph span").css("width", "100%")
-// 	} else{
-// 	   	 $("#rangeGraph span").css("width", rate+"%")
-// 	}
-		
-// 	});
-		
-</script>
-
 	<style>
 		#rangeGraph{
 			height:10px;
@@ -33,9 +27,10 @@
 		}
 	
 		#rangeGraph span{
+			max-width: 100%;
 			height:100%;
 			width:0%;
-			background:#29f0b4;
+			background:#A4AC85;
 		}
 		
 	</style>
@@ -69,7 +64,7 @@
                 </div>
             </div>
     
-            <div class="row justify-content-center">
+            <div class="row">
 
 			<c:forEach var="i" begin="0" end="5" step="1">
          	   	<c:set var="pro" value="${projectList[i] }"/>
@@ -82,7 +77,7 @@
                             	<i class="fa fa-heart"></i>
                             </a>
                         </div>
-                        <div class="explore-projects-content" style="height: 280px;">
+                        <div class="explore-projects-content" style="height: 305px;">
                         	<div class="item d-flex align-items-center">
                             	<p><i class="fa fa-clock-o"></i></p>
                         		<p>프로젝트 종료까지</p>&nbsp;
@@ -100,9 +95,8 @@
                                         <li id="rate">${pro.achievement_rate}%</li>
                                     </ul>
                                     <div id="rangeGraph">
-                                		<span></span>
+                                		<span style="width:${pro.achievement_rate}%"></span>
                                		</div>
-<!--                                     <div class="range"></div> -->
                                 </div>
                             </div>
                             <div class="projects-goal">
@@ -110,7 +104,7 @@
                                 <span>목표 금액: <span><fmt:formatNumber value="${pro.pro_gp }" pattern="#,###"/></span> 원</span>
                             </div>
                             <div>
-                            	<span>태그 : #${pro.tags }</span>
+                            	<span class="tags" style="color: #A4AC85;">${pro.tags }</span>
                             </div>
                         </div>
                     </div>
@@ -129,13 +123,13 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="section-title text-center">
-                        <span>Let Earth에서 만날 수 있는</span>
+                        <span style="color: #414934;">Let Earth에서 만날 수 있는</span>
                         <h3 class="title">인기 프로젝트</h3>
                     </div>
                 </div>
             </div>
             
-            <div class="row justify-content-center">
+            <div class="row">
             
             <c:forEach var="i" begin="0" end="5" step="1">
          	   	<c:set var="pl" value="${popularList[i] }"/>
@@ -153,7 +147,9 @@
                                 <span>D - ${pl.left_date}</span>
                             </div> 
                         	
-                            <a href="/prodetail/info?pro_no=${pl.pro_no }"><h3>${pl.pro_title }</h3></a>
+                            <a href="/prodetail/info?pro_no=${pl.pro_no }">
+                            	<h3 style="font-size: 26px;">${pl.pro_title }</h3>
+                            </a>
                             <div class="projects-range">
                                 <div class="projects-range-content">
                                     <ul>
@@ -161,13 +157,16 @@
                                         <li id="rate">${pl.achievement_rate}%</li>
                                     </ul>
                                     <div id="rangeGraph">
-                                		<span></span>
+                                		<span style="width:${pl.achievement_rate}%"></span>
                                		</div>
                                 </div>
                             </div>
                             <div class="projects-goal">
                                 <span>달성 금액: <span><fmt:formatNumber value="${pl.pro_tp }" pattern="#,###"/></span> 원</span>
                                 <span>목표 금액: <span><fmt:formatNumber value="${pl.pro_gp }" pattern="#,###"/></span> 원</span>
+                            </div>
+                            <div>
+                            	<span class="tags" style="color: #A4AC85;">${pl.tags }</span>
                             </div>
                         </div>
                     </div>

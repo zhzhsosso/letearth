@@ -25,14 +25,15 @@
 		}
 		
 		#reportMoCl {
-			background: none;
-			border: 1;
+			background: white;
+			border: 0;
 			position: absolute;
 			right: 10px;
 			top: 10px;
 			font-size: 20px;
 			margin-top: 20px;
 			margin-right: 18px;
+			cursor: pointer;
 		}
 		
 		#reportMo-btn {
@@ -42,8 +43,8 @@
 			border: 0px;
 			border-style: solid;
 			border-radius: 5px;
-			background: #29f0b4;
-			color: black;
+			background: #6F7B63;
+			color: white;
 			font-size: 12px;
 		}
 	</style>
@@ -74,17 +75,25 @@
 	
 	
 	function rpcheck(){
-		if(document.rpfr.rep_reason.value == ""){
-			swal('신고사유를 선택하세요','','warning');
-			return false;
+		var mem_id = '<%=session.getAttribute("mem_id")%>';
+		alert(mem_id);
+		if(mem_id == "null"){
+			swal('로그인 후 이용해주세요!','프로젝트 신고하기는 회원만 가입합니다','info').then(function(){
+				location.href='/member/login';
+			}) 
+		} else{
+			if(document.rpfr.rep_reason.value == ""){
+				swal('신고사유를 선택하세요','','warning');
+				return false;
+			}
+			if(document.rpfr.rep_content.value == ""){
+				swal('신고내용을 입력하세요','','warning');
+				return false;
+			}
+			swal('신고가 정상적으로 접수 되었습니다','','info').then(function(){
+				document.rpfr.submit();
+			});
 		}
-		if(document.rpfr.rep_content.value == ""){
-			swal('신고내용을 입력하세요','','warning');
-			return false;
-		}
-		swal('신고가 정상적으로 접수 되었습니다','','info').then(function(){
-			document.rpfr.submit();
-		});
 	}
 	</script>
 </head>
@@ -101,17 +110,17 @@
                  	<div class="screen">
                   	<div style="margin: 20px 10px;">
                 		<button type="button" id="reportMoCl">Ｘ</button> 
-                		<h4>신고하기</h4>
+                		<h4 style="color: #414934;">신고하기</h4>
                 		<hr>
                 	</div>
                 		<div class="tedori" style="padding: 20px; margin: 20px">
                 			<div style="text-align: center">
-								<p style="font-size: 18px; margin-bottom: 10px;">작성자</p>
-								<input type="text" value="${sessionScope.mem_id }" placeholder="제목을 입력해주세요" class="longTextBox" 
+								<p style="font-size: 18px; margin-bottom: 10px; color: #414934;">작성자</p>
+								<input type="text" value="${sessionScope.mem_id }" class="longTextBox" 
 								style="height: 42px; width: 285px; margin-top: -3px;" readonly>
                 			</div>
 							<div class="blog-author__content" style="text-align: center; padding-left: 0px;">
-								<p style="font-size: 18px; margin-bottom: -8px;">신고사유</p>
+								<p style="font-size: 18px; margin-bottom: -8px; color: #414934;">신고사유</p>
                 				<select name="rep_reason" class="textBox" style="padding-top: -12px; margin-bottom: -39px; width: 290px;">
                 					<option value="" selected disabled="hidden">신고사유를 선택해주세요</option>
                 					<option value="욕설">욕설</option>
@@ -122,14 +131,14 @@
                 				</select>
                 			</div>
 							<div style="text-align: center; margin-top: 67px;">
-								<p style="font-size: 18px; margin-bottom: 10px;">상세내용</p>
+								<p style="font-size: 18px; margin-bottom: 10px; color: #414934;">상세내용</p>
 								<div>
 									<textarea class="bigTextArea" name="rep_content" style="resize: none; width: 450px; height: 220px;" placeholder="상세내용을 작성해주세요."></textarea>
 								</div>
                 			</div>
                 			<div style="text-align: center">
-                				<button id="reportMo-btn" style="width: 35%; height: 45px; background: #a2a8a6; color: black; margin:25px 0px;">닫기</button>
-                				<button type="button" id="reportMo-btn" style="width: 35%; height: 45px; background: #29f0b4; color: black; margin:25px 0px;" onclick="rpcheck();">제출</button>
+                				<button id="reportMo-btn" style="width: 35%; height: 45px; background: #D7D1B9; color: black; margin:25px 0px;">닫기</button>
+                				<button type="button" id="reportMo-btn" style="width: 35%; height: 45px; background: #6F7B63; color: white; margin:25px 0px;" onclick="rpcheck();">제출</button>
                 			</div>
                 		</div>
                   	</div>

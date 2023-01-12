@@ -14,7 +14,7 @@
 			return false;
 		}
 		if(document.rprpfr.rep_content.value == ""){
-			alert('신고내용을 입력하세요','','warning');
+			swal('신고내용을 입력하세요','','warning');
 			return false;
 		}
 		swal('신고가 정상적으로 접수 되었습니다','','info').then(function(){
@@ -27,7 +27,7 @@
 		.rrbtn {
 		width: 125px;
 	    border: 0px;
-	    background: #aadb86bd;
+	    background: #A4AC85;
 	    height: 45px;
 	    border-radius: 5px;
 	}
@@ -35,7 +35,7 @@
 	.ccbtn {
 		width: 125px;
 	    border: 0px;
-	    background: #ecf3ec;
+	    background: #D7D1B9;
 	    height: 45px;
 	    border-radius: 5px;
 	}

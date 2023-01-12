@@ -19,7 +19,7 @@
 		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
 		from project
 		<![CDATA[
-		where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d")
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and pro_status != '7'
 		]]>
 		order by pro_st_dt desc
 	</select>
@@ -31,115 +31,115 @@
 		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
 		from project
 		<![CDATA[
-		where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d")
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and pro_status != '7'
 		]]>
 		order by truncate(pro_tp / pro_gp, 2) * 100 desc
 	</select>
   
     <!-- 오픈예정 프로젝트 정보 가져오기 : main/scheall -->
 	<select id="getScheList" resultType="ProDetailVO">
-		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt, tags,  
 		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
 		DATEDIFF(DATE_FORMAT(pro_st_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
 		from project
 		<![CDATA[
-		where DATE_FORMAT(pro_st_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d")
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and pro_status != '7'
 		]]>
 		order by pro_st_dt asc
 	</select>
 
     <!-- 오픈예정 클래스 정보 가져오기 : main/scheclass -->
 	<select id="getScheclassList" resultType="ProDetailVO">
-		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt, tags,   
 		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
 		DATEDIFF(DATE_FORMAT(pro_st_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
 		from project
 		<![CDATA[
-		where DATE_FORMAT(pro_st_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 1
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 1 and pro_status != '7'
 		]]>
 		order by pro_st_dt asc
 	</select>
 	
     <!-- 오픈예정 상품 정보 가져오기 : main/scheprod -->
 	<select id="getScheprodList" resultType="ProDetailVO">
-		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt, tags,   
 		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
 		DATEDIFF(DATE_FORMAT(pro_st_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
 		from project
 		<![CDATA[
-		where DATE_FORMAT(pro_st_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 2
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 2 and pro_status != '7'
 		]]>
 		order by pro_st_dt asc
 	</select>  
   
    	<!-- 최신순으로 정렬한 진행 중 프로젝트 정보 가져오기 : main/nowall -->
 	<select id="getNowList" resultType="ProDetailVO">
-		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt, tags,
 		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
 		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
 		from project
 		<![CDATA[
-		where DATE_FORMAT(pro_st_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d")
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and pro_status != '7'
 		]]>
 		order by pro_st_dt desc
 	</select>
 	
    	<!-- 최신순으로 정렬한 진행 중 클래스 정보 가져오기 : main/nowclass -->
 	<select id="getNowclassList" resultType="ProDetailVO">
-		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt, tags,
 		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
 		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
 		from project
 		<![CDATA[
-		where DATE_FORMAT(pro_st_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 1
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 1 and pro_status != '7'
 		]]>
 		order by pro_st_dt desc
 	</select>
 	
    	<!-- 최신순으로 정렬한 진행 중 상품 정보 가져오기 : main/nowprod -->
 	<select id="getNowprodList" resultType="ProDetailVO">
-		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt, tags,
 		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
 		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
 		from project
 		<![CDATA[
-		where DATE_FORMAT(pro_st_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 2
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 2 and pro_status != '7'
 		]]>
 		order by pro_st_dt desc
 	</select>
   
    	<!-- 최근마감된 순으로 정렬한 프로젝트 정보 가져오기 : main/endall -->
 	<select id="getEndList" resultType="ProDetailVO">
-		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt, tags,
 		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
 		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
 		from project
 		<![CDATA[
-		where DATE_FORMAT(pro_ed_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d")
+		where DATE_FORMAT(pro_ed_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and pro_status != '7'
 		]]>
 		order by pro_ed_dt asc
 	</select>
 
    	<!-- 최근마감된 순으로 정렬한 클래스 정보 가져오기 : main/endclass -->
 	<select id="getEndclassList" resultType="ProDetailVO">
-		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt, tags,
 		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
 		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
 		from project
 		<![CDATA[
-		where DATE_FORMAT(pro_ed_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and cat_no = 1
+		where DATE_FORMAT(pro_ed_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and cat_no = 1 and pro_status != '7'
 		]]>
 		order by pro_ed_dt asc
 	</select>
 	
    	<!-- 최근마감된 순으로 정렬한 상품 정보 가져오기 : main/endprod -->
 	<select id="getEndprodList" resultType="ProDetailVO">
-		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt, tags,  
 		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
 		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
 		from project
 		<![CDATA[
-		where DATE_FORMAT(pro_ed_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and cat_no = 2
+		where DATE_FORMAT(pro_ed_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and cat_no = 2 and pro_status != '7'
 		]]>
 		order by pro_ed_dt asc
 	</select>
@@ -160,7 +160,7 @@
   	
   	<!-- <프로젝트 소개 탭> getProIntro 소개, 예산, 일정, 팀소개, 리워드 소개, 프로젝트 정책 -->
   	<select id="getProIntro" parameterType="int" resultType="ProDetailVO">
-  		select project.pro_no, pro_story, pro_file, pro_story2, pro_file2, pro_context, par_intro reward_title, reward_content, reward_price, pro_policy
+  		select project.pro_no, pro_story, pro_context, par_intro reward_title, reward_content, reward_price, pro_policy
 		from project, reward
 		where project.pro_no = reward.pro_no 
 		and project.pro_no = #{pro_no}
