@@ -5,7 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<link href="/resources/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+<link href="/resources/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+<!-- 어드민 lte -->
 <meta charset="UTF-8">
 <title>블랙리스트</title>
 <style type="text/css">
@@ -44,13 +47,47 @@
   
  } 
  
-  /*페이징*/
-.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
-    z-index: 2;
-    color: #fff;
-    cursor: default;
-    background-color: #89A378;
-    border-color: #89A378;
+/*페이징*/
+.paging {
+    display: inline-block;
+}
+
+.paging a{
+	display: block;
+	text-decoration: none;
+	color: #414934;
+	float: left;
+	line-height: 1.5;
+	border-radius:50%;
+	padding: 8px 16px;
+}
+
+.paging a:hover {
+	background-color: #B6AD90;
+	color: #E8E4D7;
+	
+}
+
+.paging a.active{
+	cursor: default;
+	background-color: #B6AD90;
+	color: #E8E4D7;
+}
+
+.pagination a:active{
+	cursor: default;
+	background-color: #B6AD90;
+	color: #E8E4D7;
+}
+
+.blacktb a{
+	color: 	#414934;
+	
+}
+.blacktb a:hover{
+  color : #B6AD90;
+  transition : 0s;
+  font-weight: bolder;
 }
 
 </style>
@@ -68,7 +105,9 @@
         <div class="container">    
     <br> 
     <br>
- 	<br>        
+ 	<br>
+ 	<br> 
+    <br>   
    <!-- 어드민 -->		
 		<h2 class="box-title" align="center"><b style="color: #6F7B63;">관리자 블랙리스트</b></h2>
 		<hr id="repSelector" align="center">
@@ -100,7 +139,7 @@
 							</div>
 						</div>
 					</div>
-					<br>
+					<div style="padding-top: 30px; padding-bottom: 30px;"></div>
 <!-- tableAll -->
 					<div class="box-body table-responsive no-padding" id="tableAll">
 			<form role="form" name="fr" id="contact-form" action="" method="post">
@@ -114,18 +153,18 @@
 									<th style="text-align: center; color: #414934; font-weight: bold;">등록날짜</th>
 								</tr>
 								<c:forEach var="vo" items="${adBlackList }" varStatus="status">
-									<tr>
+									<tr class="blacktb">
 										<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
 											${status.count }
 											<input type="hidden" value="${vo.black_no }">
 										</td>
 										
 										<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
-										${vo.mem_id }
+											<a href="/mempro/adMemDetail?mem_id=${vo.mem_id }">${vo.mem_id }</a>
 										</td>
 										
 										<td style="vertical-align:middle; color: #414934; width : 45%; table-layout: fixed; font-weight: bold;">
-											${vo.projectVO.pro_title }
+											<a href="/mempro/adProDetail1?pro_no=${vo.pro_no }&mem_id=${vo.mem_id}">${vo.projectVO.pro_title }</a>
 											<c:if test="${empty vo.projectVO.pro_title }">
 												무분별한 댓글사용으로 신고가 들어온 회원입니다.
 											</c:if>										
@@ -162,7 +201,7 @@
 								</tr>
 								<c:forEach var="vo" items="${adBlackList }" varStatus="status">
 								<c:if test="${vo.black_type == 1}">
-									<tr>
+									<tr class="blacktb">
 										<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
 											${status.count }
 											<input type="hidden" value="${vo.black_no }">
@@ -206,7 +245,7 @@
 								</tr>
 								<c:forEach var="vo" items="${adBlackList }" varStatus="status">
 								<c:if test="${vo.black_type == 2}">
-									<tr>
+									<tr class="blacktb">
 										<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
 											${status.count }
 											<input type="hidden" value="${vo.black_no }">
@@ -239,20 +278,20 @@
        
        <br><br><br>
         <!-- 페이징처리 -->
-<div class="box-footer clearfix" style="position: absolute; right: 45%; border: none;">
-		<ul class="pagination pagination-sm no-margin pull-center">
+<div class="pagination" style="position: absolute; right: 45%; border: none;">
+		<ul class="pagination" style="font-size: 18px;">
 			<c:if test="${pvo.prev }">
-				<li><a href="/report/adBlackList?page=${pvo.startPage-1 }">«</a></li> <!-- 10 -->
+				<li class="paging"><a href="/report/adBlackList?page=${pvo.startPage-1 }">«</a></li> <!-- 10 -->
 			</c:if>
 			
 			<c:forEach var="idx" begin="${pvo.startPage }" end="${pvo.endPage }" step="1">
-				<li 				
+				<li class="paging"					
 				<c:out value="${idx == pvo.cri.page? 'class=active':'' }"/> 				
 				><a href="/report/adBlackList?page=${idx }">${idx }</a></li>
 			</c:forEach>
 			
 			<c:if test="${pvo.next }">
-				<li><a href="/report/adBlackList?page=${pvo.endPage+1 }">»</a></li> <!-- 11 -->
+				<li class="paging"><a href="/report/adBlackList?page=${pvo.endPage+1 }">»</a></li> <!-- 11 -->
 			</c:if>
 		</ul>
 	</div>

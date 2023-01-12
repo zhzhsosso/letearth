@@ -6,9 +6,9 @@
 <html>
 <head>
 <!-- 어드민 lte -->
-<link
-	href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css" />
+<!-- <link -->
+<%-- 	href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css" --%>
+<!-- 	rel="stylesheet" type="text/css" /> -->
 <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> -->
 <link href="/resources/dist/css/AdminLTE.min.css" rel="stylesheet"
 	type="text/css" />
@@ -31,14 +31,15 @@
 	height: 35px;
 }
 #repSelector {
-	width: 20%;
-	height: 3px;
-	background-color: #BBE093;
-	border: 0;
-	position: relative;
-	top: -15px;
-	/*    left: 380px;  */
-	left: 40%;
+  width : 10%;
+  height : 3px;
+  background-color : #D7D1B9;
+  border : 0;
+  
+   position: relative;
+   top: -95px; 
+/*    left: 380px;  */
+   left: 45%;
 }
 
 #repSelector1 {
@@ -85,7 +86,38 @@
 
 }
 
+/*페이징*/
+.paging {
+    display: inline-block;
+}
 
+.paging a{
+	display: block;
+	text-decoration: none;
+	color: #414934;
+	float: left;
+	line-height: 1.5;
+	border-radius:50%;
+	padding: 8px 16px;
+}
+
+.paging a:hover {
+	background-color: #B6AD90;
+	color: #E8E4D7;
+	
+}
+
+.paging a.active{
+	cursor: default;
+	background-color: #B6AD90;
+	color: #E8E4D7;
+}
+
+.pagination a:active{
+	cursor: default;
+	background-color: #B6AD90;
+	color: #E8E4D7;
+}
 </style>
 
 </head>
@@ -105,13 +137,14 @@
 				<!-- 어드민 -->
 				<h2 class="box-title" align="center">
 					<b style="color: #6c757d;">프로젝트 목록</b> <br> <br> <br>
-				</h2>
+				</h2><hr id="repSelector" align="center">
 				<div class="col-xs-12">
-					<div style="font-size: 2.2rem;" align="left">
+					<div style="font-size: 1.7rem;" align="left">
 						<span id="hov"><a id="listAll"
 							style="color: #6F7B63; font-weight: bolder;">전체</a> | <a id="list5" style="color: #B6AD90" >판매중</a>
 							| <a id="list6" style="color: #B6AD90" >마감</a> | <a id="list7" style="color: #B6AD90" >판매중지</a>
 						</span>
+						<hr style="border-color: rgba(164, 172, 133, .5); position: relative; top: -10px; width: 100%; ">
 					</div>
 					<br>
 					<!-- 어드민 -->
@@ -145,9 +178,9 @@
 								<table class="table table-hover">
 									<tbody>
 										<tr style="background-color: #EDEAE0">
-											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">프로젝트 번호</th>
-											<th style="font-size: 15px; width: 35%; table-layout: fixed">프로젝트 이름</th>
-											<th style="font-size: 15px; width: 15%; table-layout: fixed;">아이디</th>
+											<th style="font-size: 15px; width : 10%; table-layout: fixed;">프로젝트 번호</th>
+											<th style="font-size: 15px; width: 38%; table-layout: fixed">프로젝트 이름</th>
+											<th style="font-size: 15px; width: 12%; table-layout: fixed;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
 											<th style="font-size: 15px;">목표금액</th>
 											<th style="font-size: 15px;">달성률</th>
@@ -155,7 +188,7 @@
 										</tr>
 										<c:forEach var="proVO" items="${proList }">
 											<tr>
-												<td style="font-size: 15px;">${proVO.pro_no }</td>
+												<td style="font-size: 15px; text-align: center;">${proVO.pro_no }</td>
 												<td style="font-size: 15px;"><a
 													href="/mempro/adProDetail2?pro_no=${proVO.pro_no }&mem_id=${proVO.mem_id}"
 													style="color: green"> ${proVO.pro_title } </a></td>
@@ -167,19 +200,19 @@
 														value="${proVO.pro_tp / proVO.pro_gp }" type="percent" /></td>
 												<c:choose>
 													<c:when test="${proVO.pro_status == 5}">
-														<td>
+														<td style="text-align: center;">
 															<button type="button" class="btn btn-primary"
 																style="font-size: 12px; background-color: #B6AD90; border-color: #B6AD90;">판매중</button>
 														</td>
 													</c:when>
 													<c:when test="${proVO.pro_status == 6}">
-														<td>
+														<td style="text-align: center;">
 															<button type="button" class="btn btn-primary"
 																style="font-size: 12px; background-color: #BFCC97; border-color: #BFCC97;">마감</button>
 														</td>
 													</c:when>
 													<c:when test="${proVO.pro_status == 7}">
-														<td>
+														<td style="text-align: center;">
 															<button type="button" class="btn btn-primary"
 																style="font-size: 12px; background-color: #89A378; border-color: #89A378;">판매중지</button>
 														</td>
@@ -199,9 +232,9 @@
 								<table class="table table-hover">
 									<tbody>
 										<tr style="background-color: #EDEAE0">
-											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">프로젝트 번호</th>
-											<th style="font-size: 15px; width: 35%; table-layout: fixed">프로젝트 이름</th>
-											<th style="font-size: 15px; width: 15%; table-layout: fixed;">아이디</th>
+											<th style="font-size: 15px; width : 10%; table-layout: fixed;">프로젝트 번호</th>
+											<th style="font-size: 15px; width: 38%; table-layout: fixed">프로젝트 이름</th>
+											<th style="font-size: 15px; width: 12%; table-layout: fixed;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
 											<th style="font-size: 15px;">목표금액</th>
 											<th style="font-size: 15px;">달성률</th>
@@ -210,7 +243,7 @@
 										<c:forEach var="proVO5" items="${proList }">
 											<c:if test="${proVO5.pro_status == 5}">
 												<tr>
-													<td style="font-size: 15px;">${proVO5.pro_no }</td>
+													<td style="font-size: 15px; text-align: center;">${proVO5.pro_no }</td>
 													<td style="font-size: 15px;"><a
 														href="/mempro/adProDetail2?pro_no=${proVO5.pro_no }&mem_id=${proVO5.mem_id}"
 														style="color: green"> ${proVO5.pro_title } </a></td>
@@ -220,7 +253,7 @@
 															value="${proVO5.pro_tp }" />원</td>
 													<td style="font-size: 15px;"><fmt:formatNumber
 															value="${proVO5.pro_tp / proVO5.pro_gp }" type="percent" /></td>
-													<td>
+													<td style="text-align: center;">
 															<button type="button" class="btn btn-primary"
 																style="font-size: 12px; background-color: #B6AD90; border-color: #B6AD90;">판매중</button>
 														</td>
@@ -240,9 +273,9 @@
 								<table class="table table-hover">
 									<tbody>
 										<tr style="background-color: #EDEAE0">
-											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">프로젝트 번호</th>
-											<th style="font-size: 15px; width: 35%; table-layout: fixed">프로젝트 이름</th>
-											<th style="font-size: 15px; width: 15%; table-layout: fixed;">아이디</th>
+											<th style="font-size: 15px; width : 10%; table-layout: fixed;">프로젝트 번호</th>
+											<th style="font-size: 15px; width: 38%; table-layout: fixed">프로젝트 이름</th>
+											<th style="font-size: 15px; width: 12%; table-layout: fixed;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
 											<th style="font-size: 15px;">목표금액</th>
 											<th style="font-size: 15px;">달성률</th>
@@ -251,7 +284,7 @@
 										<c:forEach var="proVO6" items="${proList }">
 											<c:if test="${proVO6.pro_status == 6}">
 												<tr>
-													<td style="font-size: 15px;">${proVO6.pro_no }</td>
+													<td style="font-size: 15px; text-align: center;">${proVO6.pro_no }</td>
 													<td style="font-size: 15px;"><a
 														href="/mempro/adProDetail2?pro_no=${proVO6.pro_no }&mem_id=${proVO6.mem_id}"
 														style="color: green"> ${proVO6.pro_title } </a></td>
@@ -261,7 +294,7 @@
 															value="${proVO6.pro_tp }" />원</td>
 													<td style="font-size: 15px;"><fmt:formatNumber
 															value="${proVO6.pro_tp / proVO6.pro_gp }" type="percent" /></td>
-													<td>
+													<td style="text-align: center;">
 															<button type="button" class="btn btn-primary"
 																style="font-size: 12px; background-color: #BFCC97; border-color: #BFCC97;">마감</button>
 														</td>
@@ -280,11 +313,11 @@
 								<table class="table table-hover">
 									<tbody>
 										<tr style="background-color: #EDEAE0">
-											<th style="font-size: 15px; width: 10%; table-layout: fixed;"">프로젝트
+											<th style="font-size: 15px; width: 10%; table-layout: fixed;">프로젝트
 												번호</th>
-											<th style="font-size: 15px; width: 35%; table-layout: fixed">프로젝트
+											<th style="font-size: 15px; width: 38%; table-layout: fixed">프로젝트
 												이름</th>
-											<th style="font-size: 15px; width: 15%; table-layout: fixed;">아이디</th>
+											<th style="font-size: 15px; width: 12%; table-layout: fixed;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
 											<th style="font-size: 15px;">목표금액</th>
 											<th style="font-size: 15px;">달성률</th>
@@ -293,7 +326,7 @@
 										<c:forEach var="proVO7" items="${proList }">
 											<c:if test="${proVO7.pro_status == 7}">
 												<tr>
-													<td style="font-size: 15px;">${proVO7.pro_no }</td>
+													<td style="font-size: 15px; text-align: center;">${proVO7.pro_no }</td>
 													<td style="font-size: 15px;"><a
 														href="/mempro/adProDetail2?pro_no=${proVO7.pro_no }&mem_id=${proVO7.mem_id}"
 														style="color: green"> ${proVO7.pro_title } </a></td>
@@ -303,7 +336,7 @@
 															value="${proVO7.pro_tp }" />원</td>
 													<td style="font-size: 15px;"><fmt:formatNumber
 															value="${proVO7.pro_tp / proVO7.pro_gp }" type="percent" /></td>
-													<td>
+													<td style="text-align: center;">
 														<button type="button" class="btn btn-primary"
 															style="font-size: 12px; background-color: #89A378; border-color: #89A378;">판매중지</button>
 													</td>
@@ -321,29 +354,29 @@
 					</div>
 
 				</div>
-
+<br><br>
 				<!-- 페이징처리 -->
-				<div class="box-footer clearfix" id="paging">
-					<ul class="pagination pagination-sm no-margin pull-left">
+				<div class="pagination" style="position: absolute; right: 45%; border: none;">
+						<ul class="pagination" style="font-size: 18px;">
 						<c:if test="${pvo.prev }">
-							<li><a href="/mempro/adProList2?page=${pvo.startPage-1 }">«</a></li>
+							<li class="paging"><a href="/mempro/adProList2?page=${pvo.startPage-1 }">«</a></li>
 							<!-- 10 -->
 						</c:if>
 
 						<c:forEach var="idx" begin="${pvo.startPage }"
 							end="${pvo.endPage }" step="1">
-							<li <c:out value="${idx == pvo.cri.page? 'class=active':'' }"/>><a
+							<li class="paging" <c:out value="${idx == pvo.cri.page? 'class=active':'' }"/>><a
 								href="/mempro/adProList2?page=${idx }">${idx }</a></li>
 						</c:forEach>
 
 						<c:if test="${pvo.next }">
-							<li><a href="/mempro/adProList2?page=${pvo.endPage+1 }">»</a></li>
+							<li class="paging"><a href="/mempro/adProList2?page=${pvo.endPage+1 }">»</a></li>
 							<!-- 11 -->
 						</c:if>
 					</ul>
 				</div>
 				<!-- 페이징처리 -->
-			</div>
+			</div><br><br><br><br><br>
 	</section>
 
 	<!-- 푸터 -->

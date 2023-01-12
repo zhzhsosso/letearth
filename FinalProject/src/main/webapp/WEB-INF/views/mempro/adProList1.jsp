@@ -35,12 +35,24 @@
 	height: 35px;
 }
 
-hr {
-	width: 70px;
-	height: 30px;
-	background-color: #9dd84b;
-	border: 0;
+#repSelector {
+  width : 10%;
+  height : 3px;
+  background-color : #D7D1B9;
+  border : 0;
+  
+   position: relative;
+   top: -95px; 
+/*    left: 380px;  */
+   left: 45%;
 }
+
+/* hr { */
+/* 	width: 70px; */
+/* 	height: 30px; */
+/* 	background-color: #9dd84b; */
+/* 	border: 0; */
+/* } */
 
 /*hover*/
 #hov a:hover {
@@ -78,6 +90,39 @@ hr {
 	height: 60px;
 	margin: 10px;
 }
+
+/*페이징*/
+.paging {
+    display: inline-block;
+}
+
+.paging a{
+	display: block;
+	text-decoration: none;
+	color: #414934;
+	float: left;
+	line-height: 1.5;
+	border-radius:50%;
+	padding: 8px 16px;
+}
+
+.paging a:hover {
+	background-color: #B6AD90;
+	color: #E8E4D7;
+	
+}
+
+.paging a.active{
+	cursor: default;
+	background-color: #B6AD90;
+	color: #E8E4D7;
+}
+
+.pagination a:active{
+	cursor: default;
+	background-color: #B6AD90;
+	color: #E8E4D7;
+}
 </style>
 </head>
 <body>
@@ -97,9 +142,9 @@ hr {
 				<!-- 어드민 -->
 				<h2 class="box-title" align="center">
 					<b style="color: #6c757d;">프로젝트 승인</b> <br> <br> <br>
-				</h2>
+				</h2><hr id="repSelector" align="center">
 				<div class="col-xs-12">
-					<div style="font-size: 2.2em" align="left"
+					<div style="font-size: 1.7rem" align="left"
 						class="proList1">
 						<span id="hov"> <a id="listAll"
 							style="color: #6F7B63; font-weight: bolder;">전체</a> | <a
@@ -107,7 +152,7 @@ hr {
 							style="color: #B6AD90">승인</a> | <a id="list4"
 							style="color: #B6AD90">반려</a>
 						</span>
-						<hr style="border-color: #A4AC85; position: relative; top: -10px;">
+						<hr style="border-color: rgba(164, 172, 133, .5); position: relative; top: -10px; width: 100%; ">
 					</div>
 					<br>
 					<!-- 어드민 -->
@@ -120,7 +165,7 @@ hr {
 								<div class="input-group input-group-sm hidden-xs"
 									style="width: 180px; height: 50px;">
 									<input type="text" name="keyword"
-										class="form-control pull-right" placeholder="검색어를 입력해주세요"
+										class="form-control pull-right" placeholder="Search"
 										style="height: 35px; width: 60px; font-size: 1rem;">
 									<div class="input-group-btn" style="padding-left: 3px;">
 										<button type="submit" class="btn btn-default" id="sbtn">
@@ -144,9 +189,9 @@ hr {
 										<tr style="background-color: #EDEAE0">
 											<th style="font-size: 15px; width: 10%; table-layout: fixed;">프로젝트
 												번호</th>
-											<th style="font-size: 15px; width: 35%; table-layout: fixed;">프로젝트
+											<th style="font-size: 15px; width: 38%; table-layout: fixed;">프로젝트
 												이름</th>
-											<th style="font-size: 15px; width: 15%; table-layout: fixed;">아이디</th>
+											<th style="font-size: 15px; width: 12%; table-layout: fixed;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
 											<th style="font-size: 15px;">목표금액</th>
 											<th style="font-size: 15px;">승인상태</th>
@@ -154,7 +199,7 @@ hr {
 
 										<c:forEach var="proVO" items="${proList }">
 											<tr>
-												<td style="font-size: 15px;">${proVO.pro_no }</td>
+												<td style="font-size: 15px; text-align: center;">${proVO.pro_no }</td>
 												<td style="font-size: 15px;"><a
 													<%-- 													href="/mempro/adProDetail1?pro_no=${proVO.pro_no }" --%>
 													href="/mempro/adProDetail1?pro_no=${proVO.pro_no }&mem_id=${proVO.mem_id}"
@@ -165,19 +210,19 @@ hr {
 														value="${proVO.pro_gp }" />원</td>
 												<c:choose>
 													<c:when test="${proVO.pro_status == 2}">
-														<td>
+														<td style="text-align: center;">
 															<button type="button" class="btn btn-primary"
 																style="font-size: 12px; background-color: #89A378; border-color: #89A378;">승인요청</button>
 														</td>
 													</c:when>
 													<c:when test="${proVO.pro_status == 3}">
-														<td>
+														<td style="text-align: center;">
 															<button type="button" class="btn btn-primary"
 																style="font-size: 12px; background-color: #B6AD90; border-color: #B6AD90;">승인</button>
 														</td>
 													</c:when>
 													<c:when test="${proVO.pro_status == 4}">
-														<td>
+														<td style="text-align: center;">
 															<button type="button" class="btn btn-primary"
 																style="font-size: 12px; background-color: #BFCC97; border-color: #BFCC97;">반려</button>
 														</td>
@@ -200,9 +245,9 @@ hr {
 										<tr style="background-color: #EDEAE0">
 											<th style="font-size: 15px; width: 10%; table-layout: fixed;">프로젝트
 												번호</th>
-											<th style="font-size: 15px; width: 35%; table-layout: fixed;">프로젝트
+											<th style="font-size: 15px; width: 38%; table-layout: fixed;">프로젝트
 												이름</th>
-											<th style="font-size: 15px; width: 15%; table-layout: fixed;">아이디</th>
+											<th style="font-size: 15px; width: 12%; table-layout: fixed;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
 											<th style="font-size: 15px;">목표금액</th>
 											<th style="font-size: 15px;">승인상태</th>
@@ -210,7 +255,7 @@ hr {
 										<c:forEach var="proVO2" items="${proList }">
 											<c:if test="${proVO2.pro_status == 2}">
 												<tr>
-													<td style="font-size: 15px;">${proVO2.pro_no }</td>
+													<td style="font-size: 15px; text-align: center;">${proVO2.pro_no }</td>
 													<td style="font-size: 15px;"><a
 														<%-- 														href="/mempro/adProDetail1?pro_no=${proVO2.pro_no }" --%>
 														href="/mempro/adProDetail1?pro_no=${proVO2.pro_no }&mem_id=${proVO2.mem_id}"
@@ -219,7 +264,7 @@ hr {
 													<td style="font-size: 15px;">${proVO2.pro_st_dt }</td>
 													<td style="font-size: 15px;"><fmt:formatNumber
 															value="${proVO2.pro_gp }" />원</td>
-													<td>
+													<td style="text-align: center;">
 														<button type="button" class="btn btn-primary"
 															style="font-size: 12px; background-color: #89A378; border-color: #89A378;">승인요청</button>
 													</td>
@@ -242,9 +287,9 @@ hr {
 										<tr style="background-color: #EDEAE0">
 											<th style="font-size: 15px; width: 10%; table-layout: fixed;">프로젝트
 												번호</th>
-											<th style="font-size: 15px; width: 35%; table-layout: fixed;">프로젝트
+											<th style="font-size: 15px; width: 38%; table-layout: fixed;">프로젝트
 												이름</th>
-											<th style="font-size: 15px; width: 15%; table-layout: fixed;">아이디</th>
+											<th style="font-size: 15px; width: 12%; table-layout: fixed;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
 											<th style="font-size: 15px;">목표금액</th>
 											<th style="font-size: 15px;">승인상태</th>
@@ -252,7 +297,7 @@ hr {
 										<c:forEach var="proVO3" items="${proList }">
 											<c:if test="${proVO3.pro_status == 3}">
 												<tr>
-													<td style="font-size: 15px;">${proVO3.pro_no }</td>
+													<td style="font-size: 15px; text-align: center;">${proVO3.pro_no }</td>
 													<td style="font-size: 15px;"><a
 														<%-- 														href="/mempro/adProDetail1?pro_no=${proVO3.pro_no }" --%>
 														href="/mempro/adProDetail1?pro_no=${proVO3.pro_no }&mem_id=${proVO3.mem_id}"
@@ -261,7 +306,7 @@ hr {
 													<td style="font-size: 15px;">${proVO3.pro_st_dt }</td>
 													<td style="font-size: 15px;"><fmt:formatNumber
 															value="${proVO3.pro_gp }" />원</td>
-													<td>
+													<td style="text-align: center;">
 														<button type="button" class="btn btn-primary"
 															style="font-size: 12px; background-color: #B6AD90; border-color: #B6AD90;">승인</button>
 													</td>
@@ -283,9 +328,9 @@ hr {
 										<tr style="background-color: #EDEAE0">
 											<th style="font-size: 15px; width: 10%; table-layout: fixed;">프로젝트
 												번호</th>
-											<th style="font-size: 15px; width: 35%; table-layout: fixed;">프로젝트
+											<th style="font-size: 15px; width: 38%; table-layout: fixed;">프로젝트
 												이름</th>
-											<th style="font-size: 15px; width: 15%; table-layout: fixed;">아이디</th>
+											<th style="font-size: 15px; width: 12%; table-layout: fixed;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
 											<th style="font-size: 15px;">목표금액</th>
 											<th style="font-size: 15px;">승인상태</th>
@@ -293,7 +338,7 @@ hr {
 										<c:forEach var="proVO4" items="${proList }">
 											<c:if test="${proVO4.pro_status == 4}">
 												<tr>
-													<td style="font-size: 15px;">${proVO4.pro_no }</td>
+													<td style="font-size: 15px; text-align: center;">${proVO4.pro_no }</td>
 													<td style="font-size: 15px;"><a
 														<%-- 														href="/mempro/adProDetail1?pro_no=${proVO4.pro_no }" --%>
 														href="/mempro/adProDetail1?pro_no=${proVO4.pro_no }&mem_id=${proVO4.mem_id}"
@@ -302,7 +347,7 @@ hr {
 													<td style="font-size: 15px;">${proVO4.pro_st_dt }</td>
 													<td style="font-size: 15px;"><fmt:formatNumber
 															value="${proVO4.pro_gp }" />원</td>
-													<td>
+													<td style="text-align: center;">
 														<button type="button" class="btn btn-primary"
 															style="font-size: 12px; background-color: #BFCC97; border-color: #BFCC97;">반려</button>
 													</td>
@@ -318,29 +363,29 @@ hr {
 
 					</div>
 				</div>
-
+<br><br>
 				<!-- 페이징처리 -->
-				<div class="box-footer clearfix" id="paging">
-					<ul class="pagination pagination-sm no-margin pull-left">
+					<div class="pagination" style="position: absolute; right: 45%; border: none;">
+						<ul class="pagination" style="font-size: 18px;">
 						<c:if test="${pvo.prev }">
-							<li><a href="/mempro/adProList1?page=${pvo.startPage-1 }">«</a></li>
+							<li class="paging"><a href="/mempro/adProList1?page=${pvo.startPage-1 }">«</a></li>
 							<!-- 10 -->
 						</c:if>
 
 						<c:forEach var="idx" begin="${pvo.startPage }"
 							end="${pvo.endPage }" step="1">
-							<li <c:out value="${idx == pvo.cri.page? 'class=active':'' }"/>><a
+							<li class="paging" <c:out value="${idx == pvo.cri.page? 'class=active':'' }"/>><a
 								href="/mempro/adProList1?page=${idx }">${idx }</a></li>
 						</c:forEach>
 
 						<c:if test="${pvo.next }">
-							<li><a href="/mempro/adProList1?page=${pvo.endPage+1 }">»</a></li>
+							<li class="paging"><a href="/mempro/adProList1?page=${pvo.endPage+1 }">»</a></li>
 							<!-- 11 -->
 						</c:if>
 					</ul>
 				</div>
 				<!-- 페이징처리 -->
-			</div>
+			</div><br><br><br><br><br>
 	</section>
 
 
