@@ -56,6 +56,21 @@ public interface MemberService {
 	public void myDelete(MemberVO memVO) throws Exception;
 	
 	/**
+	 * 마이페이지 이동 (판매자 프로젝트)
+	 */
+	public List<PlusVO> getProject(PlusVO plusVO) throws Exception;
+	
+	/**
+	 * 주문 목록
+	 */
+	public List<PlusVO> getMyOrder(PlusVO plusVO) throws Exception;
+	
+	/**
+	 * 배송 상태 업데이트
+	 */
+	public Integer updateMyOrder(OrderVO ordVO) throws Exception;
+	
+	/**
 	 * 마이페이지 이동 (주문내역)
 	 */
 	public List<PlusVO> getOrder(PlusVO plusVO) throws Exception;
@@ -66,19 +81,14 @@ public interface MemberService {
 	public OrderVO detailOrder(OrderVO ordVO) throws Exception;
 	
 	/**
+	 * 배송지 변경
+	 */
+	public void changeAddr(OrderVO ordVO) throws Exception;
+	
+	/**
 	 * 주문 취소
 	 */
 	public void deleteOrder(OrderVO ordVO) throws Exception;
-	
-	/**
-	 * 마이페이지 이동 (판매자 프로젝트)
-	 */
-	public List<PlusVO> getProject(PlusVO plusVO) throws Exception;
-	
-	/**
-	 * 주문 목록
-	 */
-	public List<PlusVO> getMyOrder(PlusVO plusVO) throws Exception;
 	
 	/**
 	 * 관심 프로젝트 불러오기

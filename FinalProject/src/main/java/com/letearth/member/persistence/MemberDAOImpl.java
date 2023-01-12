@@ -117,6 +117,14 @@ public class MemberDAOImpl implements MemberDAO {
 	public OrderVO detailOrder(OrderVO ordVO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".detailOrder", ordVO);
 	}
+	
+	/**
+	 * 배송지 변경
+	 */
+	@Override
+	public void changeAddr(OrderVO ordVO) throws Exception {
+		sqlSession.update(NAMESPACE + ".changeAddr", ordVO);
+	}
 
 	/**
 	 * 주문 취소
@@ -140,6 +148,14 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public List<PlusVO> getMyOrder(PlusVO plusVO) throws Exception {
 		return sqlSession.selectList(NAMESPACE + ".getMyOrder", plusVO);
+	}
+	
+	/**
+	 * 배송 상태 업데이트
+	 */
+	@Override
+	public Integer updateMyOrder(OrderVO ordVO) throws Exception {
+		return sqlSession.update(NAMESPACE + ".updateMyOrder", ordVO);
 	}
 
 	/**
