@@ -274,7 +274,7 @@ $(function(){
 
            </div>
             <div align="center">
-           	 	<a href="https://wwfkorea.campaignus.me/fy21polarbear_emforce?utm_medium=blog&utm_source=influencer&utm_campaign=fy21polarbear&utm_content=11%EC%9B%94_%EB%B6%81%EA%B7%B9%EA%B3%B0" target="_blank">
+           	 	<a href="https://wwfkorea.campaignus.me/fy21polarbear_emforce?utm_source=naver_bs_pc&utm_medium=brand&utm_campaign=fy21polarbear&utm_content=thum1_polarbearB&utm_term=WWF&NaPm=ct%3Dlcss8bzc%7Cci%3D0ya0002TIpXx2Yk3rL2l%7Ctr%3Dbrnd%7Chk%3Da910af6c0b919ac32bfaf16066bde6411d36386b" target="_blank">
            	 	<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMTlfMTMz%2FMDAxNjQyNTI3NDEwOTY2.pqnGJY4Btq51DPgSSpdnp8UffxYWuTjYly5Nlm9MWscg.EysUzecTV_8vWq-jJxcmjcZZX3tEsZ5yYKBZx7m89wsg.JPEG.studio_namoo%2F8.jpg&type=sc960_832"
            	 	 width="100%" height="300" style="padding: 20px"></a>
            	 </div>
