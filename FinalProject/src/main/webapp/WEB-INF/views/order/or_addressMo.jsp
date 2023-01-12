@@ -62,11 +62,11 @@
 	}
 	
 	#shipAddMo-btn {
+		box-shadow: 1px 1px 3px 1px black;
 		padding: 5px;
 		margin: 10px;
 		width: 20%;
 		border: 1px;
-		border-style: solid;
 		border-radius: 5px;
 		background: white;
 		color: black;
@@ -260,7 +260,7 @@
                   <div class="screen">
                   	<div style="margin: 20px 10px;">
                 		<button type="button" id="shipAddMoCl"><i class="fa-solid fa-circle-xmark"></i></button> 
-                		<h4>배송지 추가</h4>
+                		<h4><b>배송지 추가</b></h4>
                 		<hr>
                 	</div>
                 		<div style="margin: 20px">
@@ -271,7 +271,7 @@
                 		  <div class="adress">
                 			<p style="color: black">주소</p>
                 			<input type="text" id="sample6_postcode" placeholder="우편번호" readonly>
-							<input type="button" onclick="sample6_execDaumPostcode()" style="background-color:#6F7B63; color:white; font-size:15px; padding: 5px" value="우편번호 찾기"><br>
+							<button type="button" onclick="sample6_execDaumPostcode()" style="background-color:#6F7B63; color:white; font-size:15px; padding: 5px; width:25%" id="shipAddMo-btn">우편번호 찾기</button><br>
 							<input type="text" id="sample6_address" placeholder="주소" style="width:100%" readonly><br>
 							<input type="text" id="sample6_detailAddress" style="width:100%" placeholder="상세주소" >
 						  </div>

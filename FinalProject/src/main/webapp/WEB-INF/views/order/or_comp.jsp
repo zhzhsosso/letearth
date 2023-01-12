@@ -202,7 +202,7 @@ $(function(){
 					<td id="sd" style="border: none; color:red;">예상전달일 ${ovo.reward_shipmonth } ${ovo.reward_shipdate }</td>
 				</tr>
 				<tr>
-					<td id="sd" style="border: none;"><fmt:formatNumber>${ovo.total_price}</fmt:formatNumber> 원 결제 완료</td>
+					<td id="sd" style="border: none;"><b><fmt:formatNumber>${ovo.total_price}</fmt:formatNumber> 원 결제 완료</b></td>
 				</tr>
 				<tr>
 					<td id="sd" style="visibility: hidden; border-top: none; border-left: none;">안녕 공간차지용이에요</td>
@@ -219,7 +219,7 @@ $(function(){
 					<td id="sd" style="border: none; font-size: 13px;">결제완료일 ${ovo2.o_date } │ 주문번호 ${ovo2.order_trade_num }</td>
 				</tr>
 				<tr>
-					<td id="sd" style="border: none; font-size:25px;"><b style="color:green">${mvo.mem_name }</b>님의 소중한 후원이 전달되었습니다.</td>
+					<td id="sd" style="border: none; font-size:25px; font-weight: bold;"><b style="color:green">${mvo.mem_name }</b>님의 소중한 후원이 전달되었습니다.</td>
 				</tr>
 				<tr>
 					<td id="sd" style="border: none;">후원은 창작자에게 큰 힘이 됩니다!</td>
@@ -228,7 +228,7 @@ $(function(){
 					<td id="sd" style="border: none; color:red;"></td>
 				</tr>
 				<tr>
-					<td id="sd" style="border: none;"><fmt:formatNumber>${ovo2.total_price}</fmt:formatNumber> 원 결제 완료</td>
+					<td id="sd" style="border: none;"><b><fmt:formatNumber>${ovo2.total_price}</fmt:formatNumber> 원 결제 완료</b></td>
 				</tr>
 				<tr>
 					<td id="sd" style="visibility: hidden; border-top: none; border-left: none;">안녕 공간차지용이에요</td>
@@ -240,11 +240,10 @@ $(function(){
            
            
           <div style="padding: 20px">
-          <c:choose>
-          	<c:when test="${ovo2.reward_no != 0 }">
+          	<c:if test="${ovo2.reward_no != 0 }">
           	<div style="background-color: #A4AC85;">
            <h5 style="padding:10px 5px; background-color:transparent; color: white; display: inline;">배송지 정보</h5>
-           <button type="button" class="btn" id="shipChange" style="color:blue">변경</button>
+           <button type="button" class="btn" id="shipChange" style="color:blue; cursor: pointer;">변경</button>
            </div>
            <div id="shipInfo" >
             <table id="ship" border="1" >
@@ -271,20 +270,19 @@ $(function(){
             	</tr>
             </table>
            </div> 
-           </c:when>
-           <c:otherwise>
-           	 <div align="center">
+            </c:if>
+
+           </div>
+            <div align="center">
            	 	<a href="https://wwfkorea.campaignus.me/fy21polarbear_emforce?utm_medium=blog&utm_source=influencer&utm_campaign=fy21polarbear&utm_content=11%EC%9B%94_%EB%B6%81%EA%B7%B9%EA%B3%B0" target="_blank">
            	 	<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMTlfMTMz%2FMDAxNjQyNTI3NDEwOTY2.pqnGJY4Btq51DPgSSpdnp8UffxYWuTjYly5Nlm9MWscg.EysUzecTV_8vWq-jJxcmjcZZX3tEsZ5yYKBZx7m89wsg.JPEG.studio_namoo%2F8.jpg&type=sc960_832"
-           	 	 width="100%" height="300"></a>
+           	 	 width="100%" height="300" style="padding: 20px"></a>
            	 </div>
-           </c:otherwise>
-           </c:choose>
-           </div>
+            
             
            <div align="center">
-           		<button class="main-btn" id="orderCancel" style="line-height:10px; padding:10px; margin:10px; background-color:#6F7B63; color:white; font-size: 15px" id="shipCancel" type="button">후원 취소</button>
-           		<button class="main-btn" style="line-height:10px; padding:10px; margin:10px; background-color:#6F7B63; color:white; font-size: 15px" type=button
+           		<button class="main-btn" id="orderCancel" style="line-height:10px; padding:10px; margin:10px; background-color:#6F7B63; color:white; font-size: 15px; box-shadow: 1px 1px 3px 1px black;" id="shipCancel" type="button">후원 취소</button>
+           		<button class="main-btn" style="line-height:10px; padding:10px; margin:10px; background-color:#6F7B63; color:white; font-size: 15px; box-shadow: 1px 1px 3px 1px black;" type=button
            		 onclick="location.href='/main/all';">메인으로</button>
            </div>
             

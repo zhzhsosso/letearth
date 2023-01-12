@@ -85,6 +85,13 @@
 	
 	#gift {
 		margin: 5px;
+		box-shadow: 1px 1px 3px 1px black;
+		line-height:10px; 
+		padding:10px; 
+		background-color:#6F7B63; 
+		color:white; 
+		border-radius:5px;
+		
 	}
 	
 	.giftTex {
@@ -176,23 +183,22 @@ function requestPay() {
 		}
 	
 		
-//    	  IMP.request_pay({
-//       pg: "html5_inicis",
-//       pay_method: "card",
-//       merchant_uid: trade_num,   // 주문번호
-//       name: reward_title,
-//       amount: 100,                         // 숫자 타입
-//       buyer_name: "${session.mem_id}",
-//       buyer_tel: "010-9554-9537",  //
-//     }, function (rsp) { // callback
-//       if (rsp.success) {
-//     	  alert('후원 성공!');
-//     	  document.fr.submit();
-//       } else {
-//           alert('후원 실패! 에러 내용: ${rsp.error_msg}');
-//       }
-//     });
-		document.fr.submit();
+   	  IMP.request_pay({
+      pg: "html5_inicis",
+      pay_method: "card",
+      merchant_uid: trade_num,   // 주문번호
+      name: reward_title,
+      amount: 100,                         // 숫자 타입
+      buyer_name: "${session.mem_id}",
+      buyer_tel: "010-9554-9537",  //
+    }, function (rsp) { // callback
+      if (rsp.success) {
+    	  alert('후원 성공!');
+    	  document.fr.submit();
+      } else {
+          alert('후원 실패! 에러 내용: ${rsp.error_msg}');
+      }
+    });
   }
   
 	// 유효성 체크
@@ -345,7 +351,7 @@ function requestPay() {
 				data:{"phone":phone, "pro_no":pro_no},
 				success:function(){
 					var code= getCookie("code");
-					alert(code)
+// 					alert(code)
 
 					$("#phoneCheck").click(function(){
 						var checkNum = $("#checkNum").val();
@@ -479,7 +485,7 @@ function requestPay() {
     <!--====== PAGE TITLE PART ENDS ======-->
 
     <!--====== PROJECT DETAILS PART START ======-->
-    <div class="container" style="background: #414934; border-radius:3px">
+    <div class="container" style="background: #D7D1B9; border-radius:3px; box-shadow: 3px 3px 5px;">
       <div class="row">
                 
 	    <div class="ortitle">
@@ -489,15 +495,15 @@ function requestPay() {
 	        <div class="explain">
 	            <div class="explain-list">
 	                <p>${pvo.cat_name }</p>
-	                <h3 style="color:white">${pvo.pro_title }</h3>
-	                <span style="color:#EAEAEA"><b><fmt:formatNumber> ${pvo.pro_tp }</fmt:formatNumber>원</b></span> 
-	                <span style="color:#F15F5F">${pvo.achievement_rate }%</span>
+	                <h3 style="color:black">${pvo.pro_title }</h3>
+	                <span style="color:gray"><b><fmt:formatNumber> ${pvo.pro_tp }</fmt:formatNumber>원</b></span> 
+	                <span style="color:#F15F5F"><b>${pvo.achievement_rate }%</b></span>
 	                <c:choose> 
 	                <c:when test="${pvo.left_date<0 }">
-	                	<span style="color:#EAEAEA">마감된 프로젝트입니다!</span>
+	                	<span style="color:gray"><b>마감된 프로젝트입니다!</b></span>
 	                </c:when>
 	                <c:otherwise>
-	                	<span style="color:#EAEAEA">${pvo.left_date }일 남음</span>
+	                	<span style="color:gray">${pvo.left_date }일 남음</span>
 	                </c:otherwise>
 	                </c:choose> 
 	            </div>
@@ -513,11 +519,11 @@ function requestPay() {
         	<div class="orinfo">
                 <div style="width:80%;">
                     <div class="about-introduction-content" style="margin-bottom: 30px">
-                      <h3 style="padding:10px 0px">리워드정보</h3>
+                      <h3 style="padding:10px 0px"><b>리워드정보</b></h3>
                        <div class="tedori">
                         <div class="info2">
                           <div style="width:20%">
-                          	<p>리워드 구성</p>
+                          	<p style="color:black; ">리워드 구성</p>
                           </div>
                           <div style="width:80%">
                           <c:choose>
@@ -532,20 +538,20 @@ function requestPay() {
                           </c:choose>
                           </div>
                           <div class="blog-btn">
-                          	<button type="button" class="main-btn" id="gift" style="line-height:10px; padding:10px; background-color:#6F7B63; color:white; border-radius:5px">변경</button>
+                          	<button type="button" class="main-btn" id="gift">변경</button>
                           </div>
                          </div>
                          <div class="info2">
                           <div style="width:20%">
-                          	<p>리워드 금액</p>
+                          	<p style="color:black; ">리워드 금액</p>
                           </div>
                           <div style="width:80%">
                           <c:choose>
                            <c:when test="${rvo.reward_no != null }">
-                          	<input type="text" class="giftTex" id="re_price" name="order_price" value="${rvo.reward_price }" style="width:30%;" readonly>원
+                          	<input type="text" class="giftTex" id="re_price" name="order_price" value="${rvo.reward_price }" style="width:30%;" readonly><font color="black">원</font>
                           	 </c:when>
                            <c:otherwise>
-                           	<input type="text" class="giftTex" id="re_price" name="order_price" value="0" style="width:30%;" readonly>원
+                           	<input type="text" class="giftTex" id="re_price" name="order_price" value="0" style="width:30%;" readonly><font color="black">원</font>
                             </c:otherwise>
                           </c:choose>
                           </div>
@@ -557,15 +563,15 @@ function requestPay() {
                          </div>
                          <div class="info2">
                           <div style="width:20%">
-                          	<p>추가 후원금</p>
+                          	<p style="color:black; ">추가 후원금</p>
                           </div>
                           <div style="width:80%">
                           <c:choose>
                            <c:when test="${rvo.reward_no != null }">
-                          	<input type="text" class="giftTex" id="order_plus" name="order_plus" value="0" style="width:30%; " readonly>원
+                          	<input type="text" class="giftTex" id="order_plus" name="order_plus" value="0" style="width:30%; " readonly><font color="black">원</font>
                            </c:when>
                            <c:otherwise>
-                            <input type="text" class="giftTex" id="order_plus" name="order_plus" value="${param.mny }" style="width:30%; " readonly>원
+                            <input type="text" class="giftTex" id="order_plus" name="order_plus" value="${param.mny }" style="width:30%; " readonly><font color="black">원</font>
                            </c:otherwise>
                           </c:choose>
                           </div>
@@ -577,7 +583,7 @@ function requestPay() {
                          </div>
                          <div class="info2">
                           <div style="width:20%">
-                          	<p>예상 전달일</p>
+                          	<p style="color:black; ">예상 전달일</p>
                           </div>
                           <div style="width:80%">
                           	<input type="text" class="giftTex" id="re_shipmonth" value="${rvo.reward_shipmonth }" style="width:15%" readonly>
@@ -595,7 +601,7 @@ function requestPay() {
                     </div>
                     
                     <div class="about-introduction-content" style="margin-bottom: 30px">
-                        <h3 style="padding:10px 0px">후원자 정보</h3>
+                        <h3 style="padding:10px 0px"><b>후원자 정보</b></h3>
                         <div class="tedori">
                         
                          <div class="info2">
@@ -625,10 +631,10 @@ function requestPay() {
 	                          	<input id="checkNum" type="text" placeholder="인증번호를 입력해주세요." style="width:100%; visibility: hidden;">
 	                          </div>
 	                          <div style="margin-bottom:15px; margin-left:10px; text-align:right; width:30%">
-	                          	<button type="button" class="main-btn" id="sendPhone" style="margin-bottom:10px; line-height:10px; padding:10px; background-color:#6F7B63; color:white; border-radius:5px">인증번호 발송</button><br>
+	                          	<button type="button" class="main-btn" id="sendPhone" style="margin-bottom:10px; line-height:10px; padding:10px; background-color:#6F7B63; color:white; border-radius:5px; box-shadow: 1px 1px 3px 1px black;">인증번호 발송</button><br>
 	                          	<input type="hidden" id="hidcheck" value="0">
-	                          	<span id="timer" style="margin-right: 5px; color: red"></span><button class="main-btn" id="phoneCheck" type="button" style="visibility:hidden; line-height:10px; padding:10px;
-	                          		 background-color:#6F7B63; color:white; border-radius:5px" onclick="check()">인증 확인</button>
+	                          	<span id="timer" style="margin-right: 5px; color: red; font-weight: bold;"></span><button class="main-btn" id="phoneCheck" type="button" style="visibility:hidden; line-height:10px; padding:10px;
+	                          		 background-color:#6F7B63; color:white; border-radius:5px; box-shadow: 1px 1px 3px 1px black;" onclick="check()">인증 확인</button>
 	                          </div>
 	                          </c:otherwise>
 	                          </c:choose>
@@ -662,7 +668,7 @@ function requestPay() {
                       
                       
                       <div class="about-introduction-content" style="margin-bottom: 30px">
-                        <h3 style="padding:10px 0px; display: inline">배송지</h3> * 리워드 선택 시 필수입력 사항입니다.
+                        <h3 style="padding:10px 0px; display: inline"><b>배송지</b></h3> * 리워드 선택 시 필수입력 사항입니다.
                         <div id="shipping">
                       <c:choose>
                         <c:when test="${rvo.reward_no != null || vo.reward_no != null || param.reward_no != null}">
@@ -675,7 +681,7 @@ function requestPay() {
                 		  <div class="adress">
                 			<p style="color: black">주소 *</p>
                 			<input type="text" id="sample6_postcode" name="address_no" style="border: 1px solid gray; margin: 3px 0px; padding: 3px; border-radius:5px;" placeholder="우편번호" readonly>
-							<button type="button" class="main-btn" style="line-height:10px; padding:10px; background-color:#6F7B63; color:white; border-radius:5px" id="searchPost" onclick="sample6_execDaumPostcode()">우편번호 찾기</button><br>
+							<button type="button" class="main-btn" style="line-height:10px; padding:10px; background-color:#6F7B63; color:white; border-radius:5px; box-shadow: 1px 1px 3px 1px black;" id="searchPost" onclick="sample6_execDaumPostcode()">우편번호 찾기</button><br>
 							<input type="text" id="sample6_address" name="address" placeholder="주소" style="width:100%; border: 1px solid gray; margin: 3px 0px; padding: 3px; border-radius:5px;" readonly><br>
 							<input type="text" id="sample6_detailAddress" name="address_detail" style="width:100%; border: 1px solid gray; margin: 3px 0px; padding: 3px; border-radius:5px;" placeholder="상세주소" >
 						  </div>
@@ -701,7 +707,7 @@ function requestPay() {
                 		  <div class="adress">
                 			<p style="color: black">주소 *</p>
                 			<input type="text" id="sample6_postcode" name="address_no" style="border: 1px solid gray; margin: 3px 0px; padding: 3px; border-radius:5px;" placeholder="우편번호" disabled>
-							<button type="button" class="main-btn" style="line-height:10px; padding:10px; background-color:#6F7B63; color:white; border-radius:5px" id="searchPost" onclick="sample6_execDaumPostcode()" disabled>우편번호 찾기</button><br>
+							<button type="button" class="main-btn" style="line-height:10px; padding:10px; background-color:#6F7B63; color:white; border-radius:5px; box-shadow: 1px 1px 3px 1px black;" id="searchPost" onclick="sample6_execDaumPostcode()" disabled>우편번호 찾기</button><br>
 							<input type="text" id="sample6_address" name="address" placeholder="주소" style="width:100%; border: 1px solid gray; margin: 3px 0px; padding: 3px; border-radius:5px;" disabled><br>
 							<input type="text" id="sample6_detailAddress" name="address_detail" style="width:100%; border: 1px solid gray; margin: 3px 0px; padding: 3px; border-radius:5px;" placeholder="상세주소" disabled>
 						  </div>
@@ -730,40 +736,6 @@ function requestPay() {
                 
                 <div style="margin-left:20px; width:60%">
                 
-<!--                  <div class="about-introduction-content"> -->
-<!--                         <h3 style="padding:10px 0px">결제수단</h3> -->
-<!--                         <div class="tedori"> -->
-<!--                           <div> -->
-<!--                            <div> -->
-<!--                           	<input type="radio" > 카드 및 계좌 -->
-<!--                           	<input type="radio" > 네이버페이 -->
-<!--                            </div> -->
-<!--                            <hr> -->
-                           
-<!--                            	<div class="info2" style="margin:10px 0px"> -->
-<!--                         	 <div class="ortitle" style="width:100%; margin-top: 0px"> -->
-<!-- 						        <div class="proimg" style="margin-right: 10px; padding-left: 0px"> -->
-<%-- 						            <img src="${pvo.pro_file }" width="100" height="50" alt=""> --%>
-<!-- 						        </div> -->
-<!-- 						        <div> -->
-<!-- 						            <div class="explain-list"> -->
-<!-- 						                <span><b>@@카드</b></span>  -->
-<!-- 						                <p>************1234</p> -->
-<!-- 						            </div> -->
-<!-- 						        </div>                             -->
-<!-- 						    </div> -->
-<!-- 	                          <div> -->
-<!-- 	                          	<input type="button" class="main-btn" value="변경" style="line-height:10px; padding:10px;"> -->
-<!-- 	                          </div> -->
-<!-- 						   </div> -->
-<!-- 			            <div> -->
-<!-- 			            	<input type="checkbox"> 기본 결제수단으로 등록 -->
-<!-- 			            </div> -->
-						 
-<!--                           </div> -->
-<!--                         </div> -->
-<!--                     </div> -->
-                
                     <div class="about-introduction-content" style="margin-bottom: 30px">
                     	<div class="info" style="margin-top: 55px; font-size: 20px">
                     		<div style="width:30%; margin-right: 30px">
@@ -773,10 +745,10 @@ function requestPay() {
                     			<input type="hidden" id="prono" name="pro_no" value="${pvo.pro_no }">
                     			<c:choose>
                     			 <c:when test="${rvo.reward_no != null }">
-                    				<input type="text" id="totalRe" name="total_price" value="${rvo.reward_price }" style="width:80%; text-align: right; padding-right: 15px; border:none" readonly >원
+                    				<input type="text" id="totalRe" name="total_price" value="${rvo.reward_price }" style="width:80%; text-align: right; padding-right: 15px; border:none; font-weight: bold;" readonly ><span style="color:black; font-weight: bold;" >원</span>
                     			 </c:when>	
                     			 <c:otherwise>
-                    			 	<input type="text" id="totalRe" name="total_price" value="${param.mny}" style="width:80%; text-align: right; padding-right: 15px; border:none" readonly >원
+                    			 	<input type="text" id="totalRe" name="total_price" value="${param.mny}" style="width:80%; text-align: right; padding-right: 15px; border:none; font-weight: bold;" readonly ><span style="color:black; font-weight: bold;" >원</span>
                     			 </c:otherwise>
                     			</c:choose>
                     		</div>
@@ -784,24 +756,24 @@ function requestPay() {
                        </div>
                          
                          <div style="padding-bottom: 20px">
-                         <p>프로젝트가 무산되거나 중단된 경우, 예약된 결제는 자동으로 취소됩니다.</p>
+                         <p style="color:black">프로젝트가 무산되거나 중단된 경우, 예약된 결제는 자동으로 취소됩니다.</p>
                          </div>
                          
                          <div>
                            <div>
-                             <div style="display:inline-block; width: 85%">
+                             <div style="display:inline-block; width: 85%; color: black">
                            	 <input type="checkbox" id="agree1"> 개인정보 제 3자 동의
                            	 </div>
                            	 <div style="display:inline-block;">
-                           	 	<button type="button" id="agree" style="border:none; background-color: transparent; color: blue"> 내용보기 </button>
+                           	 	<button type="button" id="agree" style="border:none; background-color: transparent; color: blue; cursor: pointer;" > 내용보기 </button>
                            	 </div>
                            </div>
                            <div>
-                            <div style="display:inline-block; width: 85%">
+                            <div style="display:inline-block; width: 85%; color: black">
                            	 <input type="checkbox" id="agree2"> 후원 유의사항 확인
                            	</div>
                            	<div style="display:inline-block;">
-                           		<input id="read" type="button" value="열기 ▼" style="border:none; background-color: transparent;">
+                           		<input id="read" type="button" value="열기 ▼" style="border:none; background-color: transparent; cursor: pointer;">
                            	</div>
                            	<div class="readme" style="display: none; margin: 10px 0px;">
                            		<p style="font-size: 14px; color:black">* 후원은 구매가 아닌 창의적인 계획에 자금을 지원하는 일입니다.</p>
@@ -818,7 +790,7 @@ function requestPay() {
                            	</div>
                            <div>
                            	 <input type="hidden" name="order_no" value="${order_no }">
-                           	 <input type="button" value="후원하기" style="width:100%; background-color:#6F7B63; color:white; border:none; padding:5px; border-radius:5px" onclick="requestPay()">
+                           	 <input type="button" value="후원하기" style="width:100%; background-color:#6F7B63; color:white; border:none; padding:5px; border-radius:5px; box-shadow: 1px 1px 3px 1px black;" onclick="requestPay()">
                            </div>
                          </div>
                         
