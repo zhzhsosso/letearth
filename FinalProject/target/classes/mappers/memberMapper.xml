@@ -67,6 +67,13 @@
 		where order_no=#{order_no}
 	</select>
 	
+	<!-- 배송지 변경 -->
+	<update id="changeAddr">
+		update order_tbl
+		set address_no=#{address_no}, address=#{address}, address_detail=#{address_detail}
+		where order_no=#{order_no}
+	</update>
+	
 	<!-- 주문 취소 -->
 	<delete id="deleteOrder">
 		delete from order_tbl
@@ -84,7 +91,7 @@
 	
 	<!-- 주문 내역 조회 -->
 	<select id="getMyOrder" resultType="PlusVO">
-		select *
+		select *, date_format(order_date, '%Y-%m-%d %H:%i') as create_date
 		from order_tbl ord
 		join project pro
 		on ord.pro_no=pro.pro_no
@@ -93,6 +100,13 @@
 		where ord.pro_no=#{pro_no}
 		order by order_no desc;
 	</select>
+	
+	<!-- 배송 상태 업데이트 -->
+	<update id="updateMyOrder">
+		update order_tbl
+		set shipping_status=#{shipping_status}, shipping_com=#{shipping_com}, shipping_no=#{shipping_no}
+		where order_no=#{order_no}
+	</update>
 	
 	<!-- 회원정보 수정 -->
 	<update id="myModify">
@@ -117,7 +131,7 @@
 	<!-- 관심 프로젝트 불러오기 -->
 	<select id="getLikey" resultType="PlusVO">
 		select *,
-		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
+		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate",
 		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
 		from likey lik
 		join project pro

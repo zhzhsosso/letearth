@@ -89,16 +89,8 @@
     -ms-border-radius: 50%;
     border-radius: 50%;
 }
-.user {
-	background: #674df0;
-    line-height: 30px;
-    padding: 0 15px;
-    font-size: 11px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #fff;
-    margin-right: 10px;
+.pb-190 {
+	padding-bottom: 90px;
 }
 only screen and (min-width: 768px) and (max-width: 991px)
 .project-details-content-area .tab-btns .nav li a {

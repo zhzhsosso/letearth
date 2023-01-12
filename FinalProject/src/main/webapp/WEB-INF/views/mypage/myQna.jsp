@@ -18,17 +18,6 @@
     width:0%;
     background:#29f0b4;
 }
-.btn {
-	background: #674df0;
-    line-height: 30px;
-    padding: 0 15px;
-    font-size: 11px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #fff;
-    margin-right: 10px;
-}
 .qna {
 	rap: wrap;
 	flex-wrap: wrap;
@@ -43,7 +32,7 @@
 </style>
 <script>
 function insertQna(){
-	if(document.fr.not_middle.value == 0) {
+	if($('#not_middle').val() == 0) {
 		Swal.fire({
 			title : '카테고리를 선택해주세요!',
 			icon : 'error',
@@ -52,7 +41,7 @@ function insertQna(){
 		document.fr.not_middle.focus();
 		return false;
 	}
-	if(document.fr.not_title.value == "") {
+	if($('#not_title').val() == "") {
 		Swal.fire({
 			title : '제목을 입력해주세요!',
 			icon : 'error',
@@ -61,7 +50,7 @@ function insertQna(){
 		document.fr.not_title.focus();
 		return false;
 	}
-	if(document.fr.not_content.value == "") {
+	if($('#not_content').val() == "") {
 		Swal.fire({
 			title : '내용을 입력해주세요!',
 			icon : 'error',
@@ -84,16 +73,15 @@ function insertQna(){
 	    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 	    success : function(resp) {
 	    	swal('등록되었습니다.','','info');
-    		setTimeout(function () {
-		    	$.ajax({
-					url:"/mypage/myQna",
-					type:"get",
-					datatype:"html",
-					success:function(data){
-						$("#myQna").html(data);
-					}	
-				});
-    		}, 2000);
+	    	$.ajax({
+				url:"/mypage/myQna",
+				type:"get",
+				datatype:"html",
+				success:function(data){
+					$('html, body').scrollTop(0);
+					$("#myQna").html(data);
+				}	
+			});
 	    },
 	    error: function(jqXHR, textStatus, errorThrown) {
 	        alert("ERROR : " + textStatus + " : " + errorThrown);
@@ -145,8 +133,8 @@ function deleteQna(not_no) {
 }
 </script>
 
-<div class="comment-one mt-50" style="padding-left: 5em; padding-right: 5em;">
-	<h3 class="comment-one__block-title">${cnt } 개의 글</h3>
+<div class="comment-one mt-50" style="padding-left: 15em; padding-right: 15em;">
+	<h3 class="comment-one__block-title" style="color: #414934;">${cnt } 개의 글</h3>
 	<c:forEach var="notVO" items="${notVO }">
 		<c:choose>
 			<c:when test="${notVO.not_re_lev == 1 }">
@@ -154,9 +142,9 @@ function deleteQna(not_no) {
 					<div class="comment-one__single_">
 						<div class="comment-one__content">
 							<div class="qna">
-							<span class="btn">답글</span>
-							<span class="comment-one__date"><fmt:formatDate value="${notVO.not_date }"/></span>
-							<span style="float: right; font-weight: bold">답변 완료</span>
+							<span class="myBtn4">답글</span>
+							<span class="comment-one__date" style="color: #414934;"><fmt:formatDate value="${notVO.not_date }" pattern="yyyy-MM-dd"/></span>
+							<span style="float: right; font-weight: bold; color: #414934;">답변 완료</span>
 							</div>
 							<p>${notVO.not_title }</p>
 							<p>${notVO.not_reply }</p>
@@ -170,25 +158,25 @@ function deleteQna(not_no) {
 						<div class="qna">
 						<c:choose>
 							<c:when test="${notVO.not_middle == 1 }">
-								<span class="btn">구매</span>
+								<span class="myBtn">구매</span>
 							</c:when>
 							<c:when test="${notVO.not_middle == 2 }">
-								<span class="btn">후원</span>
+								<span class="myBtn2">후원</span>
 							</c:when>
 							<c:when test="${notVO.not_middle == 3 }">
-								<span class="btn">판매</span>
+								<span class="myBtn3">판매</span>
 							</c:when>
 						</c:choose>
-						<span class="comment-one__date"><fmt:formatDate value="${notVO.not_date }"/></span>
+						<span class="comment-one__date" style="color: #414934;"><fmt:formatDate value="${notVO.not_date }" pattern="yyyy-MM-dd"/></span>
 						<c:choose>
 							<c:when test="${notVO.not_count == 1 }">
-								<span style="float: right; font-weight: bold">답변 대기</span>
+								<span style="float: right; font-weight: bold;">답변 대기</span>
 							</c:when>
 							<c:when test="${notVO.not_count == 2 }">
-								<span style="float: right; font-weight: bold">답변 완료</span>
+								<span style="float: right; font-weight: bold; color: #414934;">답변 완료</span>
 							</c:when>
 						</c:choose>
-						<a style="float: right;" onclick="deleteQna(${notVO.not_no });">삭제ㅤ</a>
+						<button style="float: right;" onclick="deleteQna(${notVO.not_no });">삭제ㅤ</button>
 						</div>
 						<p>${notVO.not_title }</p>
 						<p>${notVO.not_content }</p>
@@ -199,7 +187,7 @@ function deleteQna(not_no) {
 	</c:forEach>
 </div>
 <!-- 질문 폼 --> 
-<div class="comment-form" style="padding-left: 10em; padding-right: 10em;">
+<div class="comment-form" style="padding-left: 15em; padding-right: 15em;">
 	<h3 class="comment-one__block-title">1:1 문의</h3>
 	<p>작성하신 내용은 관리자만 확인 가능합니다.</p> <br>
 	<form  action="/mypage/myQna" method="post" class="contact-one__form" name="fr">
@@ -224,13 +212,13 @@ function deleteQna(not_no) {
 		<tr>
 			<td id="tbl">내용</td>
 			<td id="cont">
-				<textarea name="not_content" class="textArea" id="not_content"></textarea>
+				<textarea name="not_content" class="autoTextArea2" id="not_content"></textarea>
 			</td>
 		</tr>
 	</table>
 		<div class="col-lg-12 text-left">
 			<div class="input-box">
-				<button type="button" class="btn btn-primary btn-lg" onclick="insertQna();" style="float: right; margin-right: 5em;">문의하기</button>
+				<button type="button" class="btn btn-primary btn-lg" onclick="insertQna();" style="float: right; margin-right: 5em; background-color: #A4AC85; border: none;">문의하기</button>
 			</div>
 		</div>
 	</form>

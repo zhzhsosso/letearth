@@ -18,17 +18,6 @@
     width:0%;
     background:#29f0b4;
 }
-.btn {
-	background: #674df0;
-    line-height: 30px;
-    padding: 0 15px;
-    font-size: 11px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #fff;
-    margin-right: 10px;
-}
 .qna {
 	rap: wrap;
 	flex-wrap: wrap;
@@ -99,8 +88,8 @@ function deleteMyReply(reply_no, reply_category) {
 }
 </script>
 
-<div class="comment-one mt-50" style="padding-left: 5em; padding-right: 5em;">
-	<h3 class="comment-one__block-title">${cnt } 개의 글</h3>
+<div class="comment-one mt-50" style="padding-left: 15em; padding-right: 15em;">
+	<h3 class="comment-one__block-title" style="color: #414934;">${cnt } 개의 글</h3>
 	<c:forEach var="reply" items="${reply }">
 		<c:choose>
 			<c:when test="${empty reply.rereply_content }">
@@ -109,16 +98,16 @@ function deleteMyReply(reply_no, reply_category) {
 						<div class="qna">
 						<c:choose>
 							<c:when test="${reply.reply_category == 1 }">
-								<span class="btn">응원글</span>
+								<span class="myBtn">응원글</span>
 							</c:when>
 							<c:when test="${reply.reply_category == 2 }">
-								<span class="btn">후기</span>
+								<span class="myBtn2">후기</span>
 							</c:when>
 							<c:when test="${reply.reply_category == 3 }">
-								<span class="btn">공지</span>
+								<span class="myBtn3">공지</span>
 							</c:when>
 						</c:choose>
-						<span class="comment-one__date"><fmt:formatDate value="${reply.reply_date }"/></span>
+						<span class="comment-one__date" style="color: #414934;"><fmt:formatDate value="${reply.reply_date }" pattern="yyyy-MM-dd"/></span>
 						<c:choose>
 							<c:when test="${reply.reply_classify == 0 }">
 								<span style="float: right;">댓글</span>
@@ -140,24 +129,16 @@ function deleteMyReply(reply_no, reply_category) {
 						<div class="qna">
 						<c:choose>
 							<c:when test="${reply.reply_category == 1 }">
-								<span class="btn">응원글</span>
+								<span class="myBtn">응원글</span>
 							</c:when>
 							<c:when test="${reply.reply_category == 2 }">
-								<span class="btn">후기</span>
+								<span class="myBtn2">후기</span>
 							</c:when>
 							<c:when test="${reply.reply_category == 3 }">
-								<span class="btn">공지</span>
+								<span class="myBtn3">공지</span>
 							</c:when>
 						</c:choose>
-						<span class="comment-one__date"><fmt:formatDate value="${reply.reply_date }"/></span>
-						<c:choose>
-							<c:when test="${reply.reply_classify == 0 }">
-								<span style="float: right;">댓글</span>
-							</c:when>
-							<c:when test="${reply.reply_classify == 1 }">
-								<span style="float: right;">답글</span>
-							</c:when>
-						</c:choose>
+						<span class="comment-one__date" style="color: #414934;"><fmt:formatDate value="${reply.reply_date }" pattern="yyyy-MM-dd"/></span>
 						<span style="float: right;" onclick="deleteMyReply(${reply.reply_no },${reply.reply_category });">삭제ㅤ</span>
 						</div>
 						<p onclick="project(${reply.pro_no});">${reply.pro_title }</p>
@@ -168,8 +149,8 @@ function deleteMyReply(reply_no, reply_category) {
 				<div class="comment-one__single_">
 					<div class="comment-one__content">
 						<div class="qna">
-							<span class="btn">답변</span>
-						<span class="comment-one__date"><fmt:formatDate value="${reply.reply_date }"/></span>
+							<span class="myBtn4">답변</span>
+						<span class="comment-one__date" style="color: #414934;"><fmt:formatDate value="${reply.reply_date }" pattern="yyyy-MM-dd"/></span>
 						<c:choose>
 							<c:when test="${reply.reply_classify == 0 }">
 								<span style="float: right;">댓글</span>
@@ -178,7 +159,6 @@ function deleteMyReply(reply_no, reply_category) {
 								<span style="float: right;">답글</span>
 							</c:when>
 						</c:choose>
-						<span style="float: right;" onclick="deleteMyReply(${reply.pro_no },${reply.reply_category });">삭제ㅤ</span>
 						</div>
 						<p>${reply.pro_title }</p>
 						<p>${reply.rereply_content }</p>

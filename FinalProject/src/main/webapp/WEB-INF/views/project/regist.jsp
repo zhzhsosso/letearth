@@ -58,27 +58,6 @@ function createReward(seq){
 		 			return false;
 				}
 	 		}
-	 		if($('#par_bank').val() == 0){
-	 			Swal.fire({
-	 		    	icon: 'error',
-	 		    	title: '은행을 선택해주세요'
-				})
-	 			return false;
-	 		}
-	 		if($('#par_acc_name').val() == ""){
-	 			Swal.fire({
-	 		    	icon: 'error',
-	 		    	title: '예금주명을 입력해주세요'
-				})
-	 			return false;
-	 		}
-	 		if($('#par_acc').val() == ""){
-	 			Swal.fire({
-	 		    	icon: 'error',
-	 		    	title: '계좌번호를 입력해주세요'
-				})
-	 			return false;
-	 		}
 	 		var par_num = $('#par_birth').val();
 	 		
 	 		
@@ -90,17 +69,14 @@ function createReward(seq){
 	 		    	par_cat:$("input[name='par_cat']:checked").val(),
 	 		    	par_intro:$("#intro").val(),
 	 		    	par_birth:par_num,
-	 		    	par_acc_name:$('#par_acc_name').val(),
-	 		    	par_acc:$('#par_acc').val(),
-	 		    	par_bank:$('#par_bank').val(),
 	 		    	par_scan:$('input[name=par_scan]').val(),
 	 			},
 	 		    dataType : "text",
 	 		    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 	 		    success : function(resp) {
-	 		    	swal('저장 되었습니다.','자동으로 메인페이지로 이동합니다.','info');
+	 		    	swal('저장 되었습니다.','마이페이지에서 정산 계좌를 등록해주세요.','info');
 		    		setTimeout(function () {
-	 		    		location.href="/main/all";
+	 		    		location.href="/mypage/mypage";
 		    		}, 2000);
 	 		    },
 	 		    error: function(jqXHR, textStatus, errorThrown) {
@@ -156,13 +132,13 @@ $(document).ready(function(){
 				<input type="radio" id="select2" name="par_cat" value="사업자"><label for="select2" style="position: inherit;">사업자</label>
 			</div>
 			
-			<label class="btn btn-primary btn-lg" for="input-file" id="scan" style="position: inherit;">
+			<label class="btn btn-primary" for="input-file" id="scan" style="background-color: #414934; position: inherit; border: none;">
 				주민등록증 추가 </label>
 			<div style="display: none">
 				<input type="file" id="input-file" name="par_scan" />
 			</div>
 
-			<label class="btn btn-primary btn-lg" for="input-file" id="scan2" style="position: inherit;">
+			<label class="btn btn-primary" for="input-file" id="scan2" style="background-color: #414934; position: inherit; border: none;">
 				사업자 등록증 추가 </label>
 			<div style="display: none">
 				<input type="file" id="input-file" name="par_scan" />
@@ -175,7 +151,7 @@ $(document).ready(function(){
 					</div>
 					<small>창작자 개인이나 팀의 사진을 올려주세요</small>
 				</div>
-			<label class="btn btn-primary btn-lg" for="input-file" style="position: inherit;">
+			<label class="btn btn-primary" for="input-file" style="background-color: #414934; position: inherit; border: none;">
 				사진 업로드 </label>
 			<div style="display: none">
 				<input type="file" id="input-file" name="" />
@@ -197,9 +173,9 @@ $(document).ready(function(){
 			<div class="blog-details__main">
 				<div class="blog-details__meta">
 					<div class="blog-details__tags">
-						<span>입금 계좌</span>
+						<span>판매자 정보</span>
 					</div>
-					<small>후원금을 전달받을 계좌를 등록해주세요. <br> 법인사업자는 법인계좌로만 정산받을 수 있습니다.
+					<small>개인 판매자는 생년월일, 사업자는 사업자 등록번호를 입력해주세요.
 					</small>
 				</div>
 			</div>
@@ -213,64 +189,10 @@ $(document).ready(function(){
 				사업자 등록번호 <br>
 				<input type="text" name="par_com_num" id="par_com_num" class="textBox" datetimeonly="true" ${proVO.par_com_num }> <br>
 			</div>
-			거래 은행 <br> 
-			<select name="par_bank" class="textBox" id="par_bank">
-				<option value='0'>-선택-</option>
-				<option value='SC제일은행'>SC제일은행</option>
-				<option value='경남은행'>경남은행</option>
-				<option value='광주은행'>광주은행</option>
-				<option value='국민은행'>국민은행</option>
-				<option value='굿모닝신한증권'>굿모닝신한증권</option>
-				<option value='기업은행'>기업은행</option>
-				<option value='농협중앙회'>농협중앙회</option>
-				<option value='농협회원조합'>농협회원조합</option>
-				<option value='대구은행'>대구은행</option>
-				<option value='대신증권'>대신증권</option>
-				<option value='대우증권'>대우증권</option>
-				<option value='동부증권'>동부증권</option>
-				<option value='동양종합금융증권'>동양종합금융증권</option>
-				<option value='메리츠증권'>메리츠증권</option>
-				<option value='미래에셋증권'>미래에셋증권</option>
-				<option value='뱅크오브아메리카(BOA)'>뱅크오브아메리카(BOA)</option>
-				<option value='부국증권'>부국증권</option>
-				<option value='부산은행'>부산은행</option>
-				<option value='산림조합중앙회'>산림조합중앙회</option>
-				<option value='산업은행'>산업은행</option>
-				<option value='삼성증권'>삼성증권</option>
-				<option value='상호신용금고'>상호신용금고</option>
-				<option value='새마을금고'>새마을금고</option>
-				<option value='수출입은행'>수출입은행</option>
-				<option value='수협중앙회'>수협중앙회</option>
-				<option value='신영증권'>신영증권</option>
-				<option value='신한은행'>신한은행</option>
-				<option value='신협중앙회'>신협중앙회</option>
-				<option value='에스케이증권'>에스케이증권</option>
-				<option value='에이치엠씨투자증권'>에이치엠씨투자증권</option>
-				<option value='엔에이치투자증권'>엔에이치투자증권</option>
-				<option value='엘아이지투자증권'>엘아이지투자증권</option>
-				<option value='외환은행'>외환은행</option>
-				<option value='우리은행'>우리은행</option>
-				<option value='우리투자증권'>우리투자증권</option>
-				<option value='우체국'>우체국</option>
-				<option value='유진투자증권'>유진투자증권</option>
-				<option value='전북은행'>전북은행</option>
-				<option value='제주은행'>제주은행</option>
-				<option value='키움증권'>키움증권</option>
-				<option value='하나대투증권'>하나대투증권</option>
-				<option value='하나은행'>하나은행</option>
-				<option value='하이투자증권'>하이투자증권</option>
-				<option value='한국씨티은행'>한국씨티은행</option>
-				<option value='한국투자증권'>한국투자증권</option>
-				<option value='한화증권'>한화증권</option>
-				<option value='현대증권'>현대증권</option>
-				<option value='홍콩상하이은행'>홍콩상하이은행</option>
-			</select> <br> 
-			예금주명 <br> 
-			<input type="text" name="par_acc_name" class="textBox" id="par_acc_name" value="${proVO.par_acc_name }"> <br>
-			계좌 번호 <br> 
-			<input type="text" name="par_acc" class="textBox" id="par_acc" onKeyup="this.value=this.value.replace(/[^-0-9]/g,'');" value=${par_acc }>
 			<br>
-			<button type="button" class="main-btn" style="float: right;" onclick="createReward();">저장</button>
+			<div class="text-center">
+				<button type="button" class="main-btn" onclick="createReward();" style="background-color: #A4AC85; border: none;">저장</button>
+			</div>
 		</div>
 	</div>
 </form>

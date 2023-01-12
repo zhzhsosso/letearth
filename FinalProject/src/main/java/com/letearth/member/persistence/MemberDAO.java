@@ -59,6 +59,11 @@ public interface MemberDAO {
 	public OrderVO detailOrder(OrderVO ordVO) throws Exception;
 	
 	/**
+	 * 배송지 변경
+	 */
+	public void changeAddr(OrderVO ordVO) throws Exception;
+	
+	/**
 	 * 취소
 	 */
 	public void deleteOrder(OrderVO ordVO) throws Exception;
@@ -72,6 +77,11 @@ public interface MemberDAO {
 	 * 주문 목록
 	 */
 	public List<PlusVO> getMyOrder(PlusVO plusVO) throws Exception;
+	
+	/**
+	 * 배송 상태 업데이트
+	 */
+	public Integer updateMyOrder(OrderVO ordVO) throws Exception;
 	
 	/**
 	 * 관심 프로젝트 불러오기

@@ -23,10 +23,13 @@ public class PlusVO {
 	
 	private int order_no;
 	private String order_trade_num;
+	private String create_date;
 	private Timestamp order_date;
 	private Integer order_count;
 	private Integer total_price;
 	private Integer shipping_status;
+	private String shipping_no;
+	private String shipping_com;
 	
 	private String reward_title;
 	private Integer reward_no;
