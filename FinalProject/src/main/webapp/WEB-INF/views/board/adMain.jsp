@@ -79,6 +79,7 @@
   color: white;
 }
 
+
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
   display: none;
@@ -211,16 +212,16 @@ google.load('visualization','1',{
  
 <!-- 사이드바 -->
 <div class="sidenav">	
-	<a href="/board/adMain">
-	<i class="fa fa-solid fa-leaf"></i>
-	<span style="position: relative; left: 2px; bottom: 3px; font-weight: bolder;">관리자메인</span>
-	</a>
+	<div class="adminall"><a href="/board/adMain">
+	<i class="fa fa-solid fa-leaf" id="admain"></i>
+	<span class="admain" style="position: relative; left: 2px; bottom: 3px; font-weight: bolder;">관리자메인</span>
+	</a></div>
 	<button class="dropdown-btn">
 	<i class="fa fa-solid fa-paper-plane"></i>
 		&nbsp;고객센터 <i class="fa fa-caret-down"></i>
 	</button>
 	<div class="dropdown-container">
-		<a href="/board/adNoticeList">공지사항</a> 
+		<a href="/notice/main">공지사항</a> 
 		<a href="/board/adFaqList">FAQ</a> 
 		<a href="/board/adRewriteList">1:1문의</a>
 	</div>
@@ -342,6 +343,8 @@ google.load('visualization','1',{
 </body>
 
 <script type="text/javascript">
+
+
 $(".accrodion-title").on('click',function(){
 	  $(this).next(".accrodion-content").slideUp(100); // slideToggle
 	})

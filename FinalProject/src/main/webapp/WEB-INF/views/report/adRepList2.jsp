@@ -8,9 +8,9 @@
 <!-- 어드민 lte -->
 <%-- <link href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> --%>
 <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> -->
-<!-- <link href="/resources/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" /> -->
-<!-- <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" /> -->
-<!-- <link href="/resources/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" /> -->
+<link href="/resources/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+<link href="/resources/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
 <!-- 어드민 lte -->
 <meta charset="UTF-8">
 <title>신고</title>
@@ -71,14 +71,40 @@
   
  }
  
-   /*페이징*/
-.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
-    z-index: 2;
-    color: #fff;
-    cursor: default;
-    background-color: #89A378;
-    border-color: #89A378;
+ 
+/*페이징*/
+.paging {
+    display: inline-block;
 }
+
+.paging a{
+	display: block;
+	text-decoration: none;
+	color: #414934;
+	float: left;
+	line-height: 1.5;
+	border-radius:50%;
+	padding: 8px 16px;
+}
+
+.paging a:hover {
+	background-color: #B6AD90;
+	color: #E8E4D7;
+	
+}
+
+.paging a.active{
+	cursor: default;
+	background-color: #B6AD90;
+	color: #E8E4D7;
+}
+
+.pagination a:active{
+	cursor: default;
+	background-color: #B6AD90;
+	color: #E8E4D7;
+}
+
 
 /*셀렉트 꾸미기*/
 /* The container must be positioned relative: */
@@ -142,6 +168,14 @@
 .select-items div:hover, .same-as-selected {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+.reptb a:hover{
+  color : #B6AD90;
+  transition : 0s;
+  font-weight: bolder;
+}
+
+
 </style>
 </head>
 <body>   
@@ -154,8 +188,10 @@
    <%@ include file="../include/adSide1.jsp" %>	
       
         <div class="container">     
-    <br>
+   <br>
  	<br>        
+ 	<br>   
+ 	<br> 
  	<br>        
    <!-- 어드민 -->		
 						<h2 class="box-title" align="center"><b style="color: #6F7B63;"> 관리자 신고접수 목록 </b></h2>
@@ -201,8 +237,8 @@
 						</div>
 					</div>
 			<!-- 검색 -->
-					<br>
-<!-- tableAll --><div class="box" style="border: none; ">
+				<div style="padding-top: 30px; padding-bottom: 30px;"></div>
+<!-- tableAll --><div class="box" style="border: none;">
 					<div class="box-body table-responsive no-padding" id="tableAll" >
 			<form role="form" name="fr" id="contact-form" action="" method="post">
 						<table class="table table-hover">
@@ -218,7 +254,7 @@
 									<th style="text-align: center;">상세보기</th>											
 								</tr>
 								<c:forEach var="vo" items="${adRepList }" varStatus="vs">
-												<tr>
+												<tr class="reptb">
 													<td style="padding: 8px; text-align: center; vertical-align:middle; color: #414934; ">
 														<input type="hidden" id="rep_no" value="${vo.rep_no }">
 														${vo.rep_no }
@@ -228,7 +264,9 @@
 														<c:if test="${vo.rep_cat == 1}">회원</c:if>
 														<c:if test="${vo.rep_cat == 2}">프로젝트</c:if>
 													</td>													
-													<td style="vertical-align:middle; padding: 8px; text-align:center;">${vo.reped_id }</td>
+													<td style="vertical-align:middle; padding: 8px; text-align:center;">
+														<a href="/prodetail/info?pro_no=${vo.pro_no }" style="color: #414934;">${vo.reped_id }</a>
+													</td>
 													<td style="vertical-align:middle; padding: 8px; width : 30%; table-layout: fixed;"">
 														${vo.rep_reason }
 													</td>
@@ -284,20 +322,20 @@
    </div>
    <br><br><br>
 <!-- 페이징처리 -->
-	<div class="box-footer clearfix" style="position: absolute; right: 45%; border: none;">
-		<ul class="pagination pagination-sm no-margin pull-left">
+	<div class="pagination" style="position: absolute; right: 45%; border: none;">
+		<ul class="pagination" style="font-size: 18px;">
 			<c:if test="${pvo.prev }">
-				<li><a href="/report/adRepListAll?page=${pvo.startPage-1 }">«</a></li> <!-- 10 -->
+				<li class="paging"><a href="/report/adRepListAll?page=${pvo.startPage-1 }" >«</a></li> <!-- 10 -->
 			</c:if>
 			
 			<c:forEach var="idx" begin="${pvo.startPage }" end="${pvo.endPage }">
-				<li 				
+				<li class="paging"				
 				<c:out value="${idx == pvo.cri.page? 'class=active':'' }"/> 				
 				><a href="/report/adRepListAll?page=${idx }">${idx }</a></li>
 			</c:forEach>
 			
 			<c:if test="${pvo.next }">
-				<li><a href="/report/adRepListAll?page=${pvo.endPage+1 }">»</a></li> <!-- 11 -->
+				<li class="paging"><a href="/report/adRepListAll?page=${pvo.endPage+1 }">»</a></li> <!-- 11 -->
 			</c:if>
 		</ul>
 	</div>

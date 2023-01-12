@@ -50,7 +50,7 @@
 			        
 				<div class="row justify-content-center">
 					<div class="col-lg-8">
-						<div class="section-title text-center">
+						<div class="section-title text-center" style="padding-bottom: 0px;">
 							<h3 class="title">Join</h3>
 			                <span>회원가입 전 약관에 동의해주세요!</span>
 			            </div>
@@ -67,7 +67,7 @@
                         <div class="tab-pane fade active show" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                             <div class="project-details-updates">
                                 <div class="project-details-updates-top" style="padding-bottom: 0px;">
-                                    <h3 class="title"><input type="checkbox" id="ckbx1" style="zoom: 1.5; accent-color: green;"> 개인정보 처리방침(필수)</h3>
+                                    <h3 class="title"><input type="checkbox" id="ckbx1" style="zoom: 1.5; accent-color: #A4AC85;"> 개인정보 처리방침(필수)</h3>
                                 </div>
                                 <div id="contentArea">  
                                 <div class="project-details-updates-content">
@@ -130,7 +130,7 @@
                             </div>
                             <div class="project-details-updates">
                                 <div class="project-details-updates-top" style="padding-bottom: 0px;">
-                                    <h3 class="title"><input type="checkbox" id="ckbx2" style="zoom: 1.5; accent-color: green;"> 필수약관 동의(필수)</h3>
+                                    <h3 class="title"><input type="checkbox" id="ckbx2" style="zoom: 1.5; accent-color: #A4AC85;"> 필수약관 동의(필수)</h3>
                                 </div>
                                 <div id="contentArea"> 
 	                                <div class="project-details-updates-content">
@@ -142,7 +142,7 @@
 	                                    <b>제2조 용어의 정의</b> <br>
 										① 이 약관에서 사용하는 용어의 정의는 다음과 같습니다. <br>
 										<br>
-										- "회사"라 함은 텀블벅 주식회사를 지칭하며 사이트 내에서 창조적인 분야를 총 망라하는 온라인 크라우드 펀딩 플랫폼을 서비스를 제공하는 주체를 의미합니다.<br>
+										- "회사"라 함은 렛어스(Let Earth)를 지칭하며 사이트 내에서 창조적인 분야를 총 망라하는 온라인 크라우드 펀딩 플랫폼을 서비스를 제공하는 주체를 의미합니다.<br>
 										
 										- "회원"이라 함은 사이트에 접속하여 본 약관에 동의함으로써 회사에 회원등록을 하고 회사가 제공하는 서비스를 지속해서 이용할 수 있는 이용자를 의미합니다.<br>
 										
@@ -186,8 +186,8 @@
                         </div>
                     </div>
                     <div class="btn" style="margin-top: 70px;">
-		            	<input type="button" value="확인" style="width: 370px; height: 50px; background: #6F7B63; border: 0;" onclick="return chkbtn();">
-		            	<input type="button" value="취소" style="width: 370px; height: 50px; background: #A4AC85; border: 0;" onclick="location.href='/member/main'">
+		            	<input type="button" value="동의하고 가입하기" style="width: 370px; height: 55px; background: #6F7B63; border: 0; color: white; margin-left: 163px;" onclick="return chkbtn();">
+<!-- 		            	<input type="button" value="취소" style="width: 370px; height: 50px; background: #A4AC85; border: 0;" onclick="location.href='/member/main'"> -->
             		</div>    
                 </div>
             </div>

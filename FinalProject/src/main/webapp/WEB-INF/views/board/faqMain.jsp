@@ -111,10 +111,11 @@
     
     <section class="page-title-area1 bg_cover1">
         <div >
-            <img alt="" src="/resources/faq.jpg" >
+            <img alt="" src="/resources/faqPage.png"  height="" style="position: relative; left: 5%; top: 20%">
         </div>
     </section>
-    
+    <br><br><br><br><br><br>
+	<div style="padding-top: 30px; padding-bottom: 30px;"></div>
     <!--====== PAGE TITLE PART ENDS ======-->
 
     <!--====== FAQ TITLE PART START ======-->
@@ -305,13 +306,13 @@
    
 
    
+   
+<!-- 푸터 -->
+	<%@ include file="../include/footer.jsp"%>
+<!-- 푸터 -->
 <!-- 아코디언 -->   
 <script type="text/javascript">
 $(".accrodion-title").on('click',function(){
 	  $(this).next(".accrodion-content").slideUp(100); // slideToggle
 	})
 </script>
-   
-<!-- 푸터 -->
-	<%@ include file="../include/footer.jsp"%>
-<!-- 푸터 -->

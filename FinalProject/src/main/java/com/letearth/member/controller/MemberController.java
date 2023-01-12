@@ -86,12 +86,11 @@ public class MemberController {
 	 */
 	@RequestMapping(value="/findId", method=RequestMethod.GET)
 	public void findIdGET() throws Exception{
-		 System.out.println("findIdGET()@@@@@@@@@@@@");
-	
+
 	}
+	
 	@RequestMapping(value="/findId", method=RequestMethod.POST)
 	public String findIdPOST(HttpServletRequest request, MemberVO vo, Model model, RedirectAttributes rttr) throws Exception{
-		System.out.println("findIdPOST()@@@@@@@@@@@@");
 		String name = request.getParameter("mem_name");
 		String email = request.getParameter("mem_email");
 		
@@ -199,7 +198,6 @@ public class MemberController {
 		System.out.println(result + "@@@@@@@@@@@@@@@@");
 		model.addAttribute("result", result);
 		
-		//이게맞는지는 확인이 필요합니다...................ㅠㅠㅠㅠㅠ
 		if(result) {
 			session.setAttribute("mem_id", kid);
 		}

@@ -8,9 +8,9 @@
 <!-- 어드민 lte -->
 <%-- <link href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> --%>
 <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> -->
-<!-- <link href="/resources/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" /> -->
+<link href="/resources/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
 <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-<!-- <link href="/resources/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" /> -->
+<link href="/resources/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
 <!-- 어드민 lte -->
 <meta charset="UTF-8">
 <title>LetEarth</title>
@@ -134,13 +134,37 @@
   
  } 
  
-  /*페이징*/
-.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
-    z-index: 2;
-    color: #fff;
-    cursor: default;
-    background-color: #89A378;
-    border-color: #89A378;
+/*페이징*/
+.paging {
+    display: inline-block;
+}
+
+.paging a{
+	display: block;
+	text-decoration: none;
+	color: #414934;
+	float: left;
+	line-height: 1.5;
+	border-radius:50%;
+	padding: 8px 16px;
+}
+
+.paging a:hover {
+	background-color: #B6AD90;
+	color: #E8E4D7;
+	
+}
+
+.paging a.active{
+	cursor: default;
+	background-color: #B6AD90;
+	color: #E8E4D7;
+}
+
+.pagination a:active{
+	cursor: default;
+	background-color: #B6AD90;
+	color: #E8E4D7;
 }
 </style>
 </head>
@@ -382,20 +406,20 @@
   </div>    
   <br><br>
 <!-- 페이징처리 -->
-<div class="box-footer clearfix" style="position: absolute; right: 45%; border: none;">
-		<ul class="pagination pagination-sm no-margin pull-center">
+<div class="pagination" style="position: absolute; right: 45%; border: none;">
+		<ul class="pagination" style="font-size: 18px;">
 			<c:if test="${pvo.prev }">
-				<li><a href="/board/adFaqList?page=${pvo.startPage-1 }">«</a></li> <!-- 10 -->
+				<li class="paging"><a href="/board/adFaqList?page=${pvo.startPage-1 }">«</a></li> <!-- 10 -->
 			</c:if>
 			
 			<c:forEach var="idx" begin="${pvo.startPage }" end="${pvo.endPage }">
-				<li 				
+				<li class="paging"				
 				<c:out value="${idx == pvo.cri.page? 'class=active':'' }"/> 				
 				><a href="/board/adFaqList?page=${idx }">${idx }</a></li>
 			</c:forEach>
 			
 			<c:if test="${pvo.next }">
-				<li><a href="/board/adFaqList?page=${pvo.endPage+1 }">»</a></li> <!-- 11 -->
+				<li class="paging"><a href="/board/adFaqList?page=${pvo.endPage+1 }">»</a></li> <!-- 11 -->
 			</c:if>
 		</ul>
  </div> 
