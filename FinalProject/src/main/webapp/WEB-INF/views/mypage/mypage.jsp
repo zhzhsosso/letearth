@@ -28,17 +28,6 @@
     -ms-border-radius: 50%;
     border-radius: 50%;
 }
-.user {
-	background: #674df0;
-    line-height: 30px;
-    padding: 0 15px;
-    font-size: 11px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #fff;
-    margin-right: 10px;
-}
 only screen and (min-width: 768px) and (max-width: 991px)
 .project-details-content-area .tab-btns .nav li a {
 	color: #1b1f2e;
@@ -53,6 +42,7 @@ $(document).ready(function(){
 		type:"get",
 		datatype:"html",
 		success:function(data){
+			$('html, body').scrollTop(0);
 			$("#myInfo").html(data);
 		}	
 	});
@@ -145,10 +135,10 @@ $(document).ready(function(){
 		           		<span style="font-size: 2em; vertical-align: middle; padding-left: 0.5em;">${memVO.mem_name } 님ㅤ</span>
 		           		<c:choose>
 		           			<c:when test="${memVO.mem_status == 0 }">
-								<span class="user">구매회원</span>
+								<span class="myBtn">구매회원</span>
 		           			</c:when>
 		           			<c:when test="${memVO.mem_status == 1 }">
-								<span class="user">판매회원</span>
+								<span class="myBtn">판매회원</span>
 		           			</c:when>
 		           		</c:choose>
 	           		</div>

@@ -8,10 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.letearth.notice.domain.NoticeCriteria;
 import com.letearth.notice.controller.NoticeController;
 import com.letearth.notice.domain.NoticeVO;
 import com.letearth.notice.persistence.NoticeDAO;
-import com.letearth.prodetail.domain.Criteria;
 
 @Service
 public class NoticeServiceImpl implements NoticeService {
@@ -73,22 +73,43 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<NoticeVO> getListPage(Criteria cri) throws Exception {
+	public List<NoticeVO> getListPage(NoticeCriteria cri) throws Exception {
 		
 		return notDAO.getListPage(cri);
 	}
 
 	@Override
-	public List<NoticeVO> getAllListPage(Criteria cri) throws Exception {
+	public List<NoticeVO> getAllListPage(NoticeCriteria cri) throws Exception {
 		
 		return notDAO.getAllListPage(cri);
 	}
 
 	@Override
-	public List<NoticeVO> getEventListPage(Criteria cri) throws Exception {
+	public List<NoticeVO> getEventListPage(NoticeCriteria cri) throws Exception {
 		
 		return notDAO.getEventListPage(cri);
 	}
+
+	@Override
+	public int totalCnt() throws Exception {
+		
+		return notDAO.totalCnt();
+	}
+
+	@Override
+	public int totalACnt() throws Exception {
+		
+		return notDAO.totalACnt();
+	}
+
+	@Override
+	public int totalECnt() throws Exception {
+		
+		return notDAO.totalECnt();
+	}
+
+
+	
 	
 	
 }

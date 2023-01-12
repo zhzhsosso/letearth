@@ -141,10 +141,10 @@ public class ProjectServiceImpl implements ProjectService{
 	 * 대표자 및 정산 정보 등록
 	 */
 	@Override
-	public void updatePartner(ProjectVO proVO) throws Exception {
+	public Integer updatePartner(ProjectVO proVO) throws Exception {
 		mylog.debug("updatePartner(ProjectVO proVO) -> DAO ");
 		
-		proDAO.updatePartner(proVO);
+		return proDAO.updatePartner(proVO);
 	}
 	
 	/**

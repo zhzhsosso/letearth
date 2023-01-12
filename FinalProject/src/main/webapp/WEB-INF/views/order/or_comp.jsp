@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <script src="https://kit.fontawesome.com/bd939ba5e2.js" crossorigin="anonymous"></script>
 
+
 <title>LetEarth</title>
 
 <style>
@@ -59,11 +60,7 @@
 		text-align: center;
 	}
 	
-	.bttn {
-		padding: 5px;
-		margin: 10px;
-	}
-	
+
 	#dark {
 		width: 100%;
 		height: 100%;
@@ -78,26 +75,59 @@
 </style>
 
 <script>
+
+
 $(function(){
 	
-	$("#shipCancel").click(function(){
-		var order_no = ${ovo.order_no};
+// 	$("#shipCancel").click(function(){
+// 		var order_no = $("#orderN").val();
+		
+// 		$.ajax({
+// 			url:'${pageContext.request.contextPath}/order/shipChange',
+// 			type:'post',
+// 			data: {"order_no":order_no},
+// 			success:function(){
+				
+// 			}, 
+// 			error:function(){
+// 				alert("실패");
+// 			}
+// 		});
+// 	});
+	
+	
+	$("#orderCancel").click(function() {
+		var order_trade_num = $("#tradeNum").val();
+		var order_status = $("#orderS").val();
+		
+		if(order_status == 2) {
+			alert("이미 취소요청 진행 중인 후원입니다.");
+			
+			return;
+		}
+		
 		
 		$.ajax({
-			url:'${pageContext.request.contextPath}/order/shipChange',
+			url:'${pageContext.request.contextPath}/order/orderCancel',
 			type:'post',
-			data: {"order_no":order_no},
-			success:function(){
-				
-			}, 
-			error:function(){
-				alert("실패");
+			data:{"order_trade_num":order_trade_num},
+			success:function(result){
+				if(result == 1){
+					alert('취소요청이 정상 처리 되었습니다.\n취소 처리까지 카드 영업일 기준 최대 3~5일 소요됩니다. ');
+					$('#cmsg').html("취소 요청");
+				} else {
+					alert('실패');
+				}
 			}
+			
 		});
 	});
 	
-	
 });
+
+
+		
+		
 </script>
 </head>
 <body>
@@ -113,6 +143,7 @@ $(function(){
     <section class="page-title-area bg_cover" style="background-image: url(assets/images/page-title-bg.jpg);">
 
     </section>
+    <br>
     
     <!--====== PAGE TITLE PART ENDS ======-->
 
@@ -121,15 +152,36 @@ $(function(){
     
    <div class="container" align="center">
    	<div class="about-introduction-content" style="margin-bottom: 30px" >
-       <h3 style="padding:10px 0px">후원 완료</h3>
+       <h2 style="padding:20px 0px; color:black; text-decoration: underline; text-underline-offset:12px; text-decoration-thickness:4px; text-decoration-color: #D7D1B9 ">후 원 완 료</h2>
     </div>
    </div>
     
     <div class="container" align="center">
-    	<div class="about-introduction-content" style="margin-bottom: 30px; width:55%" align="justify">
+    	<div class="about-introduction-content" style="margin-bottom: 30px; width:60%" align="justify">
     	  <div style="padding: 20px">
-           <h5 style="padding:10px 0px">상품 정보</h5>
-<%--            <input type="hidden" id="or_no" value="${ovo.order_ }"> --%>
+    	  <div style="background-color: #A4AC85; height: 40px">
+           <h5 style="padding:10px 5px; background-color:transparent; color: white; display: inline;">상품 정보</h5>
+           <font id="cmsg" color="red" size="4"></font>
+           <c:if test="${ovo.order_status==2 || ovo2.order_status==2 }">
+           <font color="red" size="4">취소 요청</font>
+           </c:if>
+           <!-- 공간용 -->
+           <button type="button" class="btn" style="color:blue; visibility: hidden;">변경</button>
+           <!-- 공간용 -->
+           </div>
+           <input type="hidden" id="tradeNum" value="${param.or_tr_n }">
+           <c:choose>
+          	<c:when test="${ovo2.reward_no != 0 }">
+          		<input type="hidden" id="orderN" value="${ovo.order_no }">
+          		<input type="hidden" id="orderS" value="${ovo.order_status }">
+           		<input type="hidden" id="totalP" value="${ovo.total_price }">
+            </c:when>
+            <c:otherwise>
+            	<input type="hidden" id="totalP" value="${ovo2.total_price }">
+            	<input type="hidden" id="orderN" value="${ovo2.order_no }">
+            	<input type="hidden" id="orderS" value="${ovo2.order_status }">
+            </c:otherwise>
+           </c:choose>
 			<c:choose>
           	<c:when test="${ovo2.reward_no != 0 }">
            	 <table id="ship" border="1">
@@ -150,7 +202,7 @@ $(function(){
 					<td id="sd" style="border: none; color:red;">예상전달일 ${ovo.reward_shipmonth } ${ovo.reward_shipdate }</td>
 				</tr>
 				<tr>
-					<td id="sd" style="border: none;"><fmt:formatNumber>${ovo.total_price}</fmt:formatNumber> 원 결제 완료</td>
+					<td id="sd" style="border: none;"><b><fmt:formatNumber>${ovo.total_price}</fmt:formatNumber> 원 결제 완료</b></td>
 				</tr>
 				<tr>
 					<td id="sd" style="visibility: hidden; border-top: none; border-left: none;">안녕 공간차지용이에요</td>
@@ -167,16 +219,16 @@ $(function(){
 					<td id="sd" style="border: none; font-size: 13px;">결제완료일 ${ovo2.o_date } │ 주문번호 ${ovo2.order_trade_num }</td>
 				</tr>
 				<tr>
-					<td id="sd" style="border: none; font-size:25px;"><b>후원 해주셔서 감사합니다!</b></td>
+					<td id="sd" style="border: none; font-size:25px; font-weight: bold;"><b style="color:green">${mvo.mem_name }</b>님의 소중한 후원이 전달되었습니다.</td>
 				</tr>
 				<tr>
 					<td id="sd" style="border: none;">후원은 창작자에게 큰 힘이 됩니다!</td>
 				</tr>
 				<tr>
-					<td id="sd" style="border: none; color:red;">♡</td>
+					<td id="sd" style="border: none; color:red;"></td>
 				</tr>
 				<tr>
-					<td id="sd" style="border: none;"><fmt:formatNumber>${ovo2.total_price}</fmt:formatNumber> 원 결제 완료</td>
+					<td id="sd" style="border: none;"><b><fmt:formatNumber>${ovo2.total_price}</fmt:formatNumber> 원 결제 완료</b></td>
 				</tr>
 				<tr>
 					<td id="sd" style="visibility: hidden; border-top: none; border-left: none;">안녕 공간차지용이에요</td>
@@ -188,10 +240,11 @@ $(function(){
            
            
           <div style="padding: 20px">
-          <c:choose>
-          	<c:when test="${ovo2.reward_no != 0 }">
-           <h5 style="padding:10px 0px; display: inline;">배송지 정보</h5>
-           <button type="button" class="btn" id="shipChange" style="color:blue">변경</button>
+          	<c:if test="${ovo2.reward_no != 0 }">
+          	<div style="background-color: #A4AC85;">
+           <h5 style="padding:10px 5px; background-color:transparent; color: white; display: inline;">배송지 정보</h5>
+           <button type="button" class="btn" id="shipChange" style="color:blue; cursor: pointer;">변경</button>
+           </div>
            <div id="shipInfo" >
             <table id="ship" border="1" >
             	<tr>
@@ -209,6 +262,7 @@ $(function(){
             	<tr>
             		<th id="sh">연락처</th>
             		<td id="sd">${ovo.receiver_phone }</td>
+            		
             	</tr>
             	<tr>
             		<th id="sh">배송 메세지</th>
@@ -216,17 +270,20 @@ $(function(){
             	</tr>
             </table>
            </div> 
-           </c:when>
-           <c:otherwise>
-           	 <div align="center">후원 해주셔서 감사합니다!<br>
-           	 후원은 창작자에게 큰 힘이 됩니다!</div>
-           </c:otherwise>
-           </c:choose>
+            </c:if>
+
            </div>
+            <div align="center">
+           	 	<a href="https://wwfkorea.campaignus.me/fy21polarbear_emforce?utm_source=naver_bs_pc&utm_medium=brand&utm_campaign=fy21polarbear&utm_content=thum1_polarbearB&utm_term=WWF&NaPm=ct%3Dlcss8bzc%7Cci%3D0ya0002TIpXx2Yk3rL2l%7Ctr%3Dbrnd%7Chk%3Da910af6c0b919ac32bfaf16066bde6411d36386b" target="_blank">
+           	 	<img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjAxMTlfMTMz%2FMDAxNjQyNTI3NDEwOTY2.pqnGJY4Btq51DPgSSpdnp8UffxYWuTjYly5Nlm9MWscg.EysUzecTV_8vWq-jJxcmjcZZX3tEsZ5yYKBZx7m89wsg.JPEG.studio_namoo%2F8.jpg&type=sc960_832"
+           	 	 width="100%" height="300" style="padding: 20px"></a>
+           	 </div>
+            
             
            <div align="center">
-           		<button class="bttn" id="shipCancel" type=button>후원 취소</button>
-           		<button class="bttn" type=button>메인으로</button>
+           		<button class="main-btn" id="orderCancel" style="line-height:10px; padding:10px; margin:10px; background-color:#6F7B63; color:white; font-size: 15px; box-shadow: 1px 1px 3px 1px black;" id="shipCancel" type="button">후원 취소</button>
+           		<button class="main-btn" style="line-height:10px; padding:10px; margin:10px; background-color:#6F7B63; color:white; font-size: 15px; box-shadow: 1px 1px 3px 1px black;" type=button
+           		 onclick="location.href='/main/all';">메인으로</button>
            </div>
             
             

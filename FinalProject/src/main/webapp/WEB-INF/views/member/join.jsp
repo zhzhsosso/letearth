@@ -145,15 +145,15 @@
                                         <input type="email" placeholder="이메일을 입력해주세요" id="mem_email" name="mem_email">
                                     </div>
                                 </div>
-                               
-                                    <div class="input-box mt-20 text-center">
-                                        <button class="main-btn" type="button" onclick="chk();">가입하기</button>
-                                        <button class="main-btn" type="button" onclick="history.back();">이전</button>
-                                    </div>
-                                </div>
+                             </div>
                                 
                             </div>
-                            </form>
+                            <div class="input-box mt-20 text-center">
+                                <button class="main-btn" type="button" onclick="chk();" style="width: 180px; background: #6F7B63">가입하기</button>
+                                <button class="main-btn" type="button" onclick="history.back();" style="width: 180px; background: #D7D1B9">이전</button>
+                            </div>
+                            
+                       </form>
                         </div>
 
                 </div>

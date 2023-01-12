@@ -1,25 +1,22 @@
-
-    <!--====== FOOTER PART START ======-->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     
-    <footer class="footer-area bg_cover" style="background-image: url(../resources/assets/images/footer-bg.jpg);">
+    
+    <!--====== FOOTER PART START ======-->
+    <footer class="footer-area bg_cover" style="background: #D7D1B9; height: 75%;">
+    <!-- 푸터 색상 임시로 변경했어요! -->
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-8">
                     <div class="footer-about mt-30">
-                        <a href="index.html"><img src="../resources/assets/images/logo-2.png" alt=""></a>
+                        <a href="index.html"><img src="../resources/assets/images/LElogo-2.png" alt=""></a>
                         <p>Lorem quas utamur delicata qui, vix ei prima mentitum omnesque. Duo corrumpit cotidieque ne.</p>
-                        <ul>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-facebook-official"></i></a></li>
-                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                        </ul>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-6 col-sm-6">
                     <div class="footer-list mt-30">
                         <div class="footer-title">
-                            <h4 class="title">Company</h4>
+                            <h4 class="title">회사 소개</h4>
                             <ul>
                                 <li><a href="#">About us</a></li>
                                 <li><a href="#">How It Works</a></li>
@@ -47,7 +44,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-8">
                     <div class="footer-newsletter mt-30">
                         <div class="footer-title">
-                            <h4 class="title">Newsletter</h4>
+                            <h4 class="title">문의하기</h4>
                         </div>
                         <form action="#">
                             <div class="input-box">
@@ -55,14 +52,14 @@
                                 <button><i class="fa fa-envelope"></i></button>
                             </div>
                         </form>
-                        <p>Sign up for our latest news & articles. We won’t give you spam mails.</p>
+                        <p>Sign up for our latest news & articles. We wonât give you spam mails.</p>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="footer-copyright text-center">
-                        <p>© Copyright 2020 by Layerdrops.com</p>
+                        <p>© Copyright 2023 by LET EARTH</p>
                     </div>
                 </div>
             </div>
@@ -71,11 +68,9 @@
             <img src="../resources/assets/images/footer-shape.png" alt="">
         </div>
     </footer>
-    
     <!--====== FOOTER PART ENDS ======-->
     
     <!--====== GO TO TOP PART START ======-->
-    
     <div class="go-top-area">
         <div class="go-top-wrap">
             <div class="go-top-btn-wrap">
@@ -86,7 +81,6 @@
             </div>
         </div>
     </div>
-    
     <!--====== GO TO TOP PART ENDS ======-->
 
 

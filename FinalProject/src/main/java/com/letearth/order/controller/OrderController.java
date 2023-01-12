@@ -1,13 +1,10 @@
 package com.letearth.order.controller;
 
-
-
 import java.util.List;
 import java.util.Random;
 
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -61,27 +58,23 @@ public class OrderController {
 	 */
 	// http://localhost:8080/order/or_main?pro_no=15
 	@GetMapping(value="/or_main")
-	public String ormainGET(HttpSession session, @RequestParam("pro_no") int pro_no, Model model, @RequestParam("reward_no") Integer reward_no) throws Exception {
+	public String ormainGET(HttpSession session,@RequestParam("pro_no") int pro_no, Model model,Integer reward_no) throws Exception {
 		String mem_id = (String)session.getAttribute("mem_id");
-		if(mem_id == null) {
-			
-			return "redirect:/member/login";
-		}
-		
-		
 		ProDetailVO pvo = service.proInfo(pro_no);
 		MemberVO mvo = service.memInfo(mem_id);
 		List<RewardVO> rewardList = service.rewardList(pro_no);
 		RewardVO rvo = service.getReward(reward_no);
 		int order_no = service.maxOrderno();
 		
-		
-//		if(pro_no != rvo.getPro_no()) {
-//			rs.sendRedirect("/main.all");
-//		}
+		if(mem_id == null) {
+			return "redirect:/member/login";
+		} else if(reward_no != null) {
+			if(pro_no != rvo.getPro_no()) {
+				return "redirect:/main/all";
+			}
+		}
 		
 		System.out.println(order_no);
-//		System.out.println(mvo);
 		
 		model.addAttribute("pvo", pvo);
 		model.addAttribute("mvo", mvo);
@@ -89,19 +82,18 @@ public class OrderController {
 		model.addAttribute("order_no", order_no);
 		model.addAttribute("rvo", rvo);
 		
-		mylog.debug("여기까진 왔는지~~~~~~~~~~~~~~~~~~~~~~~~~~~!~!!~!~!~!~!~!!!!!!!");
-		
 		return "/order/or_main";
 	}
+	
 	
 	/**
 	 * 구매 메인 Post
 	 */
 	@PostMapping(value="/or_main")
-	public String ormainPOST(OrderVO vo, HttpSession session, @ModelAttribute("reward_no") Integer reward_no) throws Exception {
-		mylog.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+	public String ormainPOST(OrderVO vo, HttpSession session, Integer reward_no) throws Exception {
 		String mem_id = (String)session.getAttribute("mem_id");
 		vo.setMem_id(mem_id);
+		vo.setOrder_status(1);
 		mylog.debug(reward_no + "");
 		
 		mylog.debug(mem_id+"");
@@ -197,28 +189,46 @@ public class OrderController {
 	 * @throws Exception
 	 */
 	@GetMapping(value="/or_comp")
-	public void or_compGET(HttpSession session,@ModelAttribute("or_tr_n") String order_trade_num,Model model) throws Exception {
+	public String or_compGET(HttpSession session,@ModelAttribute("or_tr_n") String order_trade_num,Model model) throws Exception {
 		String mem_id = (String)session.getAttribute("mem_id");
 		
 		MemberVO mvo = service.memInfo(mem_id);
-		
-		OrderVO ovo = service.orderInfo(order_trade_num);
 		OrderVO ovo2 = service.orderInfo2(order_trade_num);
+		OrderVO ovo = service.orderInfo(order_trade_num);
+
+		System.out.println(mvo);
+//		System.out.println(ovo);
+//		System.out.println(ovo2);
 		
-//		System.out.println(order_trade_num);
-		System.out.println(mem_id);
-		System.out.println(mvo.getMem_id());
-		
-//		if(mem_id != mvo.getMem_id()) {
-//			return "redirect:/member/login";
-//		}
-		
-//		mylog.debug(ovo+"");
-//		mylog.debug(ovo2+"ov2");
+		if(ovo != null) {
+			if(mem_id == null || !mem_id.equals(ovo.getMem_id())) {
+				return "redirect:/main/all";
+			}
+		} else if(ovo2 != null) {
+			if(mem_id == null || !mem_id.equals(ovo2.getMem_id())) {
+				return "redirect:/main/all";
+			}
+		}
 		
 		model.addAttribute("ovo", ovo);
 		model.addAttribute("ovo2", ovo2);
+		model.addAttribute("mvo", mvo);
 		
+		return "/order/or_comp";
+		
+	}
+	
+	
+	/**
+	 * 주문 취소 요청
+	 */
+	@PostMapping(value="/orderCancel")
+	@ResponseBody
+	public Integer orderCancel(String order_trade_num) throws Exception {
+		
+		int cancelResult = service.orderCancel(order_trade_num);
+		
+		return cancelResult;
 	}
 	
 	/**

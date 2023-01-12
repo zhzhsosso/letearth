@@ -53,6 +53,7 @@ a {
 
 .board_list > div.top {
     border-bottom: 1px solid #999;
+    width: auto;
 }
 
 .board_list > div:last-child {
@@ -75,17 +76,17 @@ a {
 
 
 .board_list .num { /*notice list*/
-    width: 10%;
+    width: 25%;
 }
 .board_list .num1 { /*notice list*/
-    width: 12%;
+    width: 15%;
 }
 .board_list .bo_cate { /*notice list*/
     width: 15%;
 }
 
 .board_list .title {/*notice list*/
-    width: 45%;
+    width: 60%;
     text-align: center;
 }
 .board_list .title3 {/*a_notice list*/
@@ -110,7 +111,6 @@ a {
 
 .board_list .top .title {
     text-align: center;
-    
 }
 
 .board_list .writer {
@@ -127,6 +127,8 @@ a {
 .board_list .date3 { /*a_notice list*/
     width: 30%;
     text-align: center;
+    font-weight: bold;
+    color: #414934;
 }
 
 .board_list .count {/*notice list*/

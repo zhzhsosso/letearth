@@ -37,64 +37,50 @@ function createFormObject(tagName, content){
 }
 
 function createReward(seq){
-	Swal.fire({
-	  title: '저장하시겠습니까?',
-	  icon: 'info',
-	  showCancelButton: true,
-	  confirmButtonColor: '#3085d6',
-	  cancelButtonColor: 'grey',
-	  confirmButtonText: '저장',
-	  cancelButtonText: '취소'
-	}).then((result) => {
-	  if (result.value) {
-        //"등록" 버튼을 눌렀을 때 작업할 내용을 이곳에 넣어주면 된다. 
-		if(document.getElementById("result").value == ""){
-			Swal.fire({
-		    icon: 'error',
-			title: '광고 심의 가이드 라인을 확인해주세요'
-		})
-			return false;
-		}
-		
-		if($("input:checkbox[id='check']").is(":checked") != true){
-			Swal.fire({
-		    icon: 'error',
-			title: '광고 심의 가이드 라인 동의에 체크 해주세요.'
-		})
-			return false;
-		}
-	 		
- 		var getHtml = editor2.getHTML();
-		contentObj = createFormObject("pro_story", getHtml);		
-		fr.appendChild(contentObj);		
-		
-		var pro_story=$(contentObj).val();
-		$.ajax({
-			async : true,
-		    type:'post',
-		    url:"/project/story",
-		    data: {
-		    	pro_story:pro_story,
-			},
-		    dataType : "text",
-		    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-		    success : function(resp) {
-		    	alert('등록완료');
-		    	$.ajax({
-					url:"/project/policy",
-					type:"get",
-					datatype:"html",
-					success:function(data){
-						$("#story").html(data);
-					}	
-				});
-		    },
-		    error: function(jqXHR, textStatus, errorThrown) {
-		        alert("ERROR : " + textStatus + " : " + errorThrown);
-		    }        
-		});
-	  }
+	if(document.getElementById("result").value == ""){
+		Swal.fire({
+	    icon: 'error',
+		title: '광고 심의 가이드 라인을 확인해주세요'
 	})
+		return false;
+	}
+	
+	if($("input:checkbox[id='check']").is(":checked") != true){
+		Swal.fire({
+	    icon: 'error',
+		title: '광고 심의 가이드 라인 동의에 체크 해주세요.'
+	})
+		return false;
+	}
+ 		
+	var getHtml = editor2.getHTML();
+	contentObj = createFormObject("pro_story", getHtml);		
+	
+	var pro_story=$(contentObj).val();
+	$.ajax({
+		async : true,
+	    type:'post',
+	    url:"/project/story",
+	    data: {
+	    	pro_story:pro_story,
+		},
+	    dataType : "text",
+	    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+	    success : function(resp) {
+	    	$.ajax({
+				url:"/project/policy",
+				type:"get",
+				datatype:"html",
+				success:function(data){
+					$('html, body').scrollTop(0);
+					$("#project").html(data);
+				}	
+			});
+	    },
+	    error: function(jqXHR, textStatus, errorThrown) {
+	        alert("ERROR : " + textStatus + " : " + errorThrown);
+	    }        
+	});
 }
 
 </script>
@@ -162,7 +148,7 @@ function createReward(seq){
 						<small>스토리를 작성하기 전 렛어스에서 제공하는 광고 심의 가이드를 반드시 확인해주세요</small>
 					</div>
 				</div>
-				<div class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="btn">가이드 라인 확인</div>
+				<div class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="btn" style="background-color: #414934; position: inherit; border: none;">가이드 라인 확인</div>
 				<br> <br> <input type="checkbox" value="agree" id="check">
 				동의하기
 
@@ -179,9 +165,10 @@ function createReward(seq){
 							<div class="modal-body">
 								<p style="color: black; font-size: 20px;">&#128172;공통 표시·광고 가이드 라인</p>
 								<br>
-								<p>가이드라인 가이드라인 가이드라인 가이드라인 가이드라인 가이드라인 가이드라인 가이드라인 가이드라인
-									가이드라인 가이드라인 가이드라인 가이드라인 가이드라인 가이드라인 가이드라인 가이드라인 가이드라인 가이드라인
-									가이드라인 가이드라인 가이드라인 가이드라인</p>
+								<p>- 다른 제품을 비방하는 표시 또는 광고 또는 직·간접적으로
+									비교하여 다른 업체의 제품보다 우수한 것으로 오인할 수 있는 표시 · 광고 <br> - 객관적 근거 없이
+									본인 또는 리워드를 다른 영업자나 식품 등과 부당하게 비교하는 표시 또는 광고 <br> - 사행심을
+									조장하거나 음란한 표현을 사용하여 공중도덕이나 사회윤리를 현저하게 침해하는 표시 또는 광고 <br></p>
 								<br>
 								<p style="color: black; font-size: 20px;">&#128172;식품 표시·광고 가이드 라인</p>
 								<br>
@@ -215,9 +202,10 @@ function createReward(seq){
 								<br>
 								<p style="color: black; font-size: 20px;">&#128172;건강보조기구 표시·광고 가이드 라인</p>
 								<br>
-								<p>가이드라인 가이드라인 가이드라인 가이드라인 가이드라인 가이드라인 가이드라인 가이드라인 가이드라인
-									가이드라인 가이드라인 가이드라인 가이드라인 가이드라인 가이드라인 가이드라인 가이드라인 가이드라인 가이드라인
-									가이드라인 가이드라인 가이드라인 가이드라인</p>
+								<p>*인체를 청결ㆍ미화하여 매력을 더하고 용모를 밝게 변화시키거나
+									피부ㆍ모발의 건강을 유지 또는 증진하기 위하여 인체에 바르고 문지르거나 뿌리는 등 이와 유사한 방법으로 사용되는
+									물품으로 서 인체에 대한 작용이 경미한 것 <br> - 사실 유무에 관계없이 다른 제품을 비방하는 표시
+									· 광고 <br>/p>
 								<br>
 							</div>
 							<button type="button" class="close" data-dismiss="modal"
@@ -228,7 +216,10 @@ function createReward(seq){
 				<!-- 모달영역 끝 -->
 
 				<input type="hidden" name="result" value="" id="result">
-				<button type="button" class="main-btn" style="float: right;" onclick="createReward();">다음</button>
+				<div class="text-center">
+					<button type="button" class="main-btn" onclick="createReward();" style="background-color: #A4AC85; border: none;">다음</button>
+				</div>
+				<br>
 			</div>
 		</div>
 	</div>

@@ -45,40 +45,11 @@
     1. COMMON css 
 ===========================*/
 @font-face {
- font-family: 'NanumBarunGothic';
- font-style: normal;
- font-weight: 400;
- src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
- src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+     font-family: 'S-CoreDream-3Light';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
 }
-
-@font-face {
- font-family: 'NanumBarunGothic';
- font-style: normal;
- font-weight: 700;
- src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot');
- src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.ttf') format('truetype')
-}
-
-@font-face {
- font-family: 'NanumBarunGothic';
- font-style: normal;
- font-weight: 300;
- src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot');
- src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebLight.ttf') format('truetype');
-}
-
-.nanumbarungothic * {
- font-family: 'NanumBarunGothic', sans-serif;
-}
-
-@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Roboto:wght@300;400;500;700;900&display=swap");
-body {
-  font-family: "NanumBarunGothic", sans-serif;
-  font-weight: normal;
-  font-style: normal;
-  color: #838694;
-  overflow-x: hidden; }
 
 * {
   margin: 0;
@@ -112,7 +83,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "NanumBarunGothic", cursive;
+  font-family: "S-CoreDream-3Light", cursive;
   font-weight: 400;
   color: #1b1f2e;
   margin: 0px; }
@@ -729,7 +700,7 @@ p {
         color: #838694; }
       .main-header .main-header-item .header-info .info .title {
         font-size: 20px;
-        font-family: "NanumBarunGothic", sans-serif; }
+        font-family: "S-CoreDream-3Light", sans-serif; }
       .main-header .main-header-item .header-info .info img {
         position: absolute;
         left: 0;
@@ -3454,12 +3425,12 @@ p {
       .faq-accrodion .accrodion .accrodion-title h4 {
         margin: 0;
         color: #fff;
-        font-family: "NanumBarunGothic", sans-serif;
+        font-family: "S-CoreDream-3Light", sans-serif;
         font-size: 18px;
         font-weight: 500; }
         .faq-accrodion .accrodion .accrodion-title h4 span {
           color: #29f0b4;
-          font-family: "NanumBarunGothic", cursive; }
+          font-family: "S-CoreDream-3Light", cursive; }
     .faq-accrodion .accrodion .accrodion-content .inner {
       padding: 0 38px;
       padding-right: 50px;
@@ -4176,7 +4147,7 @@ p {
     border-radius: 50%;
     font-size: 20px;
     color: #fff;
-    font-family: "NanumBarunGothic", cursive;
+    font-family: "S-CoreDream-3Light", cursive;
     z-index: 11;
     position: relative;
     -webkit-transition: all 0.3s ease-out 0s;
@@ -4795,7 +4766,7 @@ p {
 .blog-details__tags span {
   color: #1b1f2e;
   font-size: 24px;
-  font-family: "NanumBarunGothic", cursive;
+  font-family: "S-CoreDream-3Light", cursive;
   font-weight: 400;
   text-transform: capitalize;
   margin: 0;
@@ -4978,7 +4949,7 @@ p {
     font-size: 16px;
     font-weight: 400;
     margin: 0;
-    font-family: "NanumBarunGothic", sans-serif;
+    font-family: "S-CoreDream-3Light", sans-serif;
     display: inline;
     padding-left: 5px; }
     @media (max-width: 767px) {
@@ -5101,7 +5072,7 @@ p {
   line-height: 26px;
   font-weight: 400;
   color: #838999;
-  font-family: "NanumBarunGothic", sans-serif; }
+  font-family: "S-CoreDream-3Light", sans-serif; }
 
 .sidebar__post-title a {
   -webkit-transition: all .4s ease;

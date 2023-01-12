@@ -3,22 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<title>nowprod</title>
-
-<!-- 헤더 -->
+	<!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
 
-	<!--====== PAGE TITLE PART START : 광고 배너 자리 : 나중에 추가하기 - 지금은 이상하게 보여서 그냥 지워둠 ======-->
-	
-
-
-    <!--====== PAGE TITLE PART ENDS : 데이터 불러오기 우선 !!!!! ======-->
-
-
-
-    <!--====== EXPLORE PROJECTS PART START : 신규 프로젝트 ======-->
-
-	<!--     썸네일. 타이틀 상세정보로 가게 하는 페이지 링크 걸어야 함 @@@ -->   
     
     <section class="explore-projects-area explore-projects-page-area" style="padding-bottom: 1000px;">
         <div class="container">
@@ -46,12 +33,10 @@
                         </div>
                         <div class="explore-projects-content" style="height: 255px;">
                         	<div class="item d-flex align-items-center">
-                        	<p>마감까지</p>
-                        	</div>	
-                            <div class="item d-flex align-items-center">
+                            	<p><i class="fa fa-clock-o"></i></p>
+                        		<p>프로젝트 종료까지</p>&nbsp;
                                 <span>D - ${nowp.left_date}</span>
-                                <p><i class="fa fa-clock-o"></i></p>
-                            </div>                         
+                            </div> 
                             <a href="/prodetail/info?pro_no=${nowp.pro_no}">
             					<h3>${nowp.pro_title }</h3>
             				</a>
@@ -79,7 +64,7 @@
         </div>
     </section>
     
-    <!--====== EXPLORE PROJECTS PART ENDS ======-->
+
 
 
 	<!-- 푸터 -->
