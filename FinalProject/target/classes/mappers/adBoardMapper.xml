@@ -195,7 +195,7 @@
  	
  	
  	<!-- 신고접수 목록 -->
- 	<select id="listReport" resultType="AdminVO">
+ 	<select id="listReportAll" resultType="AdminVO">
 	  	<![CDATA[
 	  	select * from report
 	  	where rep_no > 0
@@ -204,9 +204,24 @@
 	  	]]>
   	</select>
   	
+  	<select id="listReport" resultType="AdminVO">
+	  	<![CDATA[
+	  	select * from report
+	  	where rep_cat=#{rep_cat} and rep_no > 0
+	  	order by rep_no desc, rep_date desc
+	  	limit #{pageStart},#{perPageNum}
+	  	]]>
+  	</select>
+  	
  	<!-- 신고접수 전체글개수 -->
+	<select id="countReportAll" resultType="int">
+	  	select count(rep_no) from report
+	</select>
+	
+	<!-- 신고접수 부분적전체글개수 -->
 	<select id="countReport" resultType="int">
 	  	select count(rep_no) from report
+	  	where rep_cat=#{rep_cat}
 	</select>
  	
  	<!-- 신고상세내역 -->
@@ -216,19 +231,69 @@
 	</select>
  	
  	
+ <!-- 어드민메인 -->
+   <!-- 신고 최신꺼 4개 가져오기 -->
+    <select id="mainRep" resultType="AdminVO">
+       <![CDATA[
+        select * from report
+        where rep_no > 0
+        order by rep_no desc, rep_date desc
+        limit 0,4
+        ]]>
+    </select>
+    
+    
+    <!-- 승인요청 최신꺼 4개 가져오기 -->	
+ 	<select id="mainPro2" resultType="projectVO">
+ 		<![CDATA[
+ 		select * from project
+ 		where pro_no > 0
+ 		and pro_status = 2
+ 		order by pro_cr_dt desc
+ 		limit 0,4
+ 		]]>
+ 	</select>
  	
-
+ 
+  <!-- 사용자 faq 최신 리스트 4개만-->	
+  <!-- 구매자1번 / 후원자2번 / 판매자3번 -->
+  <select id="faqMainList1" resultType="AdminVO">
+	  	<![CDATA[
+	  	select * from notice
+	  	where not_no > 0 and not_cat =3 and not_middle=1
+	  	order by not_no desc, not_date desc
+	  	limit 0,4
+	  	]]>
+  	</select>
+  	<select id="faqMainList2" resultType="AdminVO">
+	  	<![CDATA[
+	  	select * from notice
+	  	where not_no > 0 and not_cat =3 and not_middle=2
+	  	order by not_no desc, not_date desc
+	  	limit 0,4
+	  	]]>
+  	</select>
+  	<select id="faqMainList3" resultType="AdminVO">
+	  	<![CDATA[
+	  	select * from notice
+	  	where not_no > 0 and not_cat =3 and not_middle=3
+	  	order by not_no desc, not_date desc
+	  	limit 0,4
+	  	]]>
+  	</select>
  	
  	
  	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
+ 	<!-- 구글차트 최근 판매중인 프로젝트의 목표금액과 달성금액비교 -->
+ 	<select id="pjchart" resultType="projectVO">
+	  	<![CDATA[
+	  	select pro_title, pro_gp, pro_tp
+		from project
+		where pro_no > 0 and pro_status = 5
+		order by pro_cr_dt desc
+		limit 0,5
+	  	]]>
+  	</select>
  	
  	
  	

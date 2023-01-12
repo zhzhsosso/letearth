@@ -60,18 +60,32 @@ public class AdReportServiceImpl implements AdReportService {
 	/**
 	 * 신고접수 관련 오버라이딩
 	 */
+	// 신고 목록 조회 전체
+	@Override
+	public List<AdminVO> getListAllReport(Criteria cri) throws Exception {
+		
+		return adReportDAO.getListAllReport(cri);
+	}
+	
 	// 신고 목록 조회
 	@Override
-	public List<AdminVO> getListReport(Criteria cri) throws Exception {
+	public List<AdminVO> getListReport(Criteria cri, int rep_cat) throws Exception {
 		
-		return adReportDAO.getListReport(cri);
+		return adReportDAO.getListReport(cri, rep_cat);
 	}
 	
 	// 신고 글 전체개수
 	@Override
+	public int totalRepCntAll() throws Exception {
+		return adReportDAO.totalRepCntAll();
+	}
+	
+	// 신고 글 부분전체개수
+	@Override
 	public int totalRepCnt() throws Exception {
 		return adReportDAO.totalRepCnt();
 	}
+	
 	
 	// 신고상세
 	@Override

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.letearth.admin.domain.AdminVO;
 import com.letearth.prodetail.domain.Criteria;
+import com.letearth.project.domain.ProjectVO;
 
 @Repository
 public class AdBoardDAOImpl implements AdBoardDAO {
@@ -134,6 +135,61 @@ public class AdBoardDAOImpl implements AdBoardDAO {
 	public void deleteRewrite(Integer not_no) throws Exception {
 		sqlSession.delete(NAMESPACE+".deleteRewrite", not_no);
 	}
+	
+	
+	
+	
+	
+	
+	/**
+	 * 메인
+	 */
+	// 신고 최근 4개 들고오기
+	@Override
+	public List<AdminVO> adMainRepList() throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".mainRep");
+	}
+	
+	// 승인요청 최근 4개 들고오기
+	@Override
+	public List<ProjectVO> adMainPro2() throws Exception {
+		return sqlSession.selectList(NAMESPACE+".mainPro2");
+	}
+	
+	
+	/**
+	 * 사용자용 faq 최신리스트4개
+	 */
+	@Override
+	public List<AdminVO> faqMainList1() throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".faqMainList1");
+	}
+	@Override
+	public List<AdminVO> faqMainList2() throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".faqMainList2");
+	}
+	@Override
+	public List<AdminVO> faqMainList3() throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".faqMainList3");
+	}
+	
+	/**
+	 * 구글차트 : 프로젝트상태
+	 */
+	@Override
+	public List<ProjectVO> pjChart() throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".pjchart");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

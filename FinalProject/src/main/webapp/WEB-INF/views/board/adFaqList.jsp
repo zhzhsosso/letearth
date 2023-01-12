@@ -6,19 +6,32 @@
 <html>
 <head>
 <!-- 어드민 lte -->
-<link href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<%-- <link href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> --%>
 <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> -->
-<link href="/resources/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+<!-- <link href="/resources/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" /> -->
 <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-<link href="/resources/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+<!-- <link href="/resources/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" /> -->
 <!-- 어드민 lte -->
 <meta charset="UTF-8">
-<title>FAQ</title>
+<title>LetEarth</title>
 <style type="text/css">
+.label {
+    display: inline;
+    padding: 0.2em 0.6em 0.3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25em;
+}
+
 #listBtn {
-	position: absolute;
-	right: 17px;
-	top: 40px;
+	position: relative;
+	right: -92%;
+	bottom : 70px;
 	font-size: 15px;
 }
 
@@ -26,7 +39,8 @@
 	position: absolute;
 	top: 0px;
 	
-	background-color: #BFCC97;
+	background-color: #A4AC85;
+	height: 35px;
 }
 
 
@@ -53,7 +67,7 @@
   z-index: 1;
 /*    top: 30%;  */
 /*    left: 20%;  */
-  background-color: #EEF6E6;
+  background-color: #EDEAE0;
   overflow-x: hidden;
   padding-top: 30px;
   padding-bottom : 100px;
@@ -68,7 +82,7 @@
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 17px;
-  color: #818181;
+  color: #414934;
   display: block;
   border: none;
   background: none;
@@ -80,20 +94,20 @@
 
 /* On mouse-over */
 .sidenav a:hover, .dropdown-btn:hover {
-  color: #ACCC97;
+  color: #B6AD90;
 }
 
 
 /* Add an active class to the active dropdown button */
 .active1 {
-  background-color: #D8E9C5; 
+  background-color: #D7D1B9; 
   color: white;
 }
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
   display: none;
-  background-color: #EEF5E6;
+  background-color: #EDEAE0;
   padding-left: 8px;
 }
 
@@ -170,25 +184,23 @@
 		&nbsp;회원관리 <i class="fa fa-caret-down"></i>
 	</button>
 	<div class="dropdown-container">
-		<a href="/report/adRepList">신고접수관리</a> 
+		<a href="/report/adRepListAll">신고접수관리</a> 
 		<a href="/mempro/adMemList">회원목록</a> 
 		<a href="/report/adBlackList">블랙리스트</a>
 	</div>
 </div>
 <!-- 사이드바 -->  
   
-  
-  
-  
+
   
         <div class="container"> 
  	<br>
- 	<br>        
+ 	<br> 	<br>        	<br>               
    <!-- 어드민 -->	
-   <div align="center"><img src="/resources/faqPage.png" width="50%"></div>	
+   <div align="center"><img src="/resources/faq.jpg" width="80%" height="5%;"></div>	<br><br>
 <!-- 						<h3 class="box-title" align="center">관리자 FAQ 리스트</h3> -->
-			<div class="col-xs-12"><br><br><br>
-				<div style="font-size: 2.5rem; cursor: pointer;" align="left" class="faqL">
+			<div class="col-xs-12" style="font-size: 16px;"><br><br>
+				<div style="font-size: 1.7rem; cursor: pointer;" align="left" class="faqL">
 					<span id="hov"> 
 					<a id="faqAll" style="">전체</a> 
 					| 
@@ -198,20 +210,20 @@
 					| 
 					<a id="faqSp">후원자</a>
 					</span>
-					<hr>
+					<hr style="border-color: #A4AC85; position: relative; top: -10px;">
 				</div>
-					<button type="button" class="btn" id="listBtn" onclick="" style="background-color: #C3DAB4; color: white;">FAQ글쓰기</button>
+					<button type="button" class="btn" id="listBtn" onclick="" style="background-color: #6F7B63; color: #F2F0E8;">FAQ글쓰기</button>
 			<!-- 어드민 -->                                                      
 <!-- 				<div class="box"> -->
-					<br>
+					
 					<div class="box-header">
-						<br><br>
+						
 						<div class="box-tools" align="right">
 							<div class="input-group input-group-sm hidden-xs"
 								style="width: 200px; height: 50px;">
-								<input type="text" name="table_search"
-									class="form-control pull-right" placeholder="Search" style="height: 30px; font-size: 1.5rem;">
-								<div class="input-group-btn">
+								<input type="text" name="keyword" class="form-control pull-right" placeholder="Search" 
+									style="height: 35px; width: 60px; font-size: 1rem; border-color: #A4AC85; color:#B6AD90; border-radius:0.25rem; ">
+								<div class="input-group-btn" style="padding-left: 3px;">
 									<button type="submit" class="btn btn-default" id="sbtn">
 										<i class="fa fa-search"></i>
 									</button>
@@ -219,40 +231,43 @@
 							</div>
 						</div>
 					</div>
-		<br>
 <!-- faq1 -->			
-		<div class="box-body table-responsive no-padding" style="font-size: 1.5rem;" id="faq1">
+		<div class="box-body table-responsive no-padding" id="faq1">
 		<br>
-		<i class="fa fa-question-circle fa-2x"></i>
-		<span style="font-size: 2rem; font-weight: bolder; position: relative; bottom: 6px; left: 3px;">
+		<i class="fa fa-question-circle fa-2x" style="color: #6F7B63;"></i>
+		<span style="font-size: 1.5rem; font-weight: bolder; position: relative; bottom: 4px; left: 3px; color: #6F7B63;">
 		 구매자
 		</span>		
 			<form role="form" name="fr" id="contact-form" action="" method="post">
 						<table class="table table-hover">
 							<tbody>
-								<tr style="background-color: #EEF5E6;">
-									<th>　</th>
-									<th style="width : 45%; table-layout: fixed;">FAQ제목</th>
-									<th>카테고리</th>
-									<th>작성일</th>
-									<th>조회수</th>
+								<tr style="background-color: #EDEAE0;">
+									<th style="padding: 0.6rem; width: 7%;">　</th>
+									<th style="width : 45%; table-layout: fixed; padding: 0.6rem; text-align: center;">FAQ제목</th>
+									<th style="padding: 0.6rem; text-align: center;">카테고리</th>
+									<th style="padding: 0.6rem; text-align: center;">작성일</th>
+									<th style="padding: 0.6rem; text-align: center;">조회수</th>
 								</tr>
 							
 								<c:forEach var="vo1" items="${adFaqList }" varStatus="status1">
 								<c:if test="${vo1.not_middle == 1}">
 									<tr>
-										<td >
+										<td style="padding: 0.6rem; text-align: center; vertical-align:middle; color: #414934;">
 										<input type="hidden" value="${status1.count }">
 											<input type="hidden" name="not_no" value="${vo1.not_no }">
 										</td>
-										<td>
-											<a href="/board/adFaqRead?not_no=${vo1.not_no }" style="color: green"> ${vo1.not_title } </a>
+										<td style="padding: 0.6rem; vertical-align:middle; color: #414934;">
+											<a href="/board/adFaqRead?not_no=${vo1.not_no }" style="color: #6F7B63; font-weight: bold;"> ${vo1.not_title } </a>
 										</td>
-										<td><span class="label label-warning" style="background-color: #C3DAB4;">구매자</span></td>
-										<td>
+										<td style="padding: 0.6rem; text-align: center; vertical-align:middle; color: #414934;">
+										<span class="label label-warning" style="background-color: #B6AD90;">구매자</span>
+										</td>
+										<td style="padding: 0.6rem; text-align: center; vertical-align:middle; color: #414934;">
 											<fmt:formatDate value="${vo1.not_date }" pattern="yy-MM-dd"/>
 										</td>
-										<td><span>${vo1.not_viewcnt }</span></td>
+										<td style="padding: 0.6rem; text-align: center; vertical-align:middle; color: #414934;">
+										<span>${vo1.not_viewcnt }</span>
+										</td>
 									</tr>
 									</c:if>
 								</c:forEach>	
@@ -262,38 +277,44 @@
 						</form>
 				</div>
 <!-- faq1 -->
-<br>
 <!-- faq2 -->
-				<div class="box-body table-responsive no-padding" style="font-size: 1.5rem;" id="faq2">
-				<i class="fa fa-question-circle fa-2x"></i>
-					<span style="font-size: 2rem; font-weight: bolder; position: relative; bottom: 6px; left: 3px;">
+				<div class="box-body table-responsive no-padding" id="faq2">
+				<br>
+				<i class="fa fa-question-circle fa-2x" style="color: #6F7B63;"></i>
+					<span style="font-size: 1.5rem; font-weight: bolder; position: relative; bottom: 4px; left: 3px; color: #6F7B63;">
 					 후원자
 					</span>	
 				<form role="form" name="fr" id="contact-form" action="" method="post">
 						<table class="table table-hover">
 							<tbody>
-								<tr style="background-color: #EEF5E6;">
-									<th>　</th>
-									<th style="width : 45%; table-layout: fixed;">FAQ제목</th>
-									<th>카테고리</th>
-									<th>작성일</th>
-									<th>조회수</th>
+								<tr style="background-color: #EDEAE0;">
+									<tr style="background-color: #EDEAE0;">
+									<th style="padding: 0.6rem; width: 7%;">　</th>
+									<th style="width : 45%; table-layout: fixed; padding: 0.6rem; text-align: center;">FAQ제목</th>
+									<th style="padding: 0.6rem; text-align: center;">카테고리</th>
+									<th style="padding: 0.6rem; text-align: center;">작성일</th>
+									<th style="padding: 0.6rem; text-align: center;">조회수</th>
 								</tr>
+								
 								<c:forEach var="vo2" items="${adFaqList }" varStatus="status2">
 								<c:if test="${vo2.not_middle == 2}">
 									<tr>
-										<td >
+										<td style="padding: 0.6rem; text-align: center; vertical-align:middle; color: #414934;">
 										<input type="hidden" value="${status2.count }">
 											<input type="hidden" name="not_no" value="${vo2.not_no }">
 										</td>
-										<td>
-											<a href="/board/adFaqRead?not_no=${vo2.not_no }" style="color: green"> ${vo2.not_title } 　</a>
+										<td style="padding: 0.6rem; vertical-align:middle; color: #414934;">
+											<a href="/board/adFaqRead?not_no=${vo2.not_no }" style="color: #6F7B63; font-weight: bold;"> ${vo2.not_title } 　</a>
 										</td>
-										<td><span class="label label-warning" style="background-color: #89A378;">후원자</span></td>
-										<td>
+										<td style="padding: 0.6rem; text-align: center; vertical-align:middle; color: #414934;">
+											<span class="label label-warning" style="background-color: #89A378;">후원자</span>
+										</td>
+										<td style="padding: 0.6rem; text-align: center; vertical-align:middle; color: #414934;">
 											<fmt:formatDate value="${vo2.not_date }" pattern="yy-MM-dd"/>
 										</td>
-										<td><span>${vo2.not_viewcnt }</span></td>
+										<td style="padding: 0.6rem; text-align: center; vertical-align:middle; color: #414934;">
+											<span>${vo2.not_viewcnt }</span>
+										</td>
 									</tr>
 									</c:if>
 								</c:forEach>	
@@ -303,38 +324,43 @@
 				</div>
 
 <!-- faq2 -->
-<br>
 <!-- faq3 -->
-			<div class="box-body table-responsive no-padding" style="font-size: 1.5rem;" id="faq3">
-			<i class="fa fa-question-circle fa-2x"></i>
-			<span style="font-size: 2rem; font-weight: bolder; position: relative; bottom: 6px; left: 3px;">
+			<div class="box-body table-responsive no-padding" id="faq3">
+			<br>
+			<i class="fa fa-question-circle fa-2x" style="color: #6F7B63;"></i>
+			<span style="font-size: 1.5rem; font-weight: bolder; position: relative; bottom: 4px; left: 3px; color: #6F7B63;">
 			 판매자
 			</span>
 			<form role="form" name="fr" id="contact-form" action="" method="post">
 						<table class="table table-hover" >
 							<tbody>
-								<tr style="background-color: #EEF5E6;">
-									<th>　</th>
-									<th style="width : 45%; table-layout: fixed;">FAQ제목</th>
-									<th>카테고리</th>
-									<th>작성일</th>
-									<th>조회수</th>
+								<tr style="background-color: #EDEAE0;">
+									<tr style="background-color: #EDEAE0;">
+									<th style="padding: 0.6rem; width: 7%;">　</th>
+									<th style="width : 45%; table-layout: fixed; padding: 0.6rem; text-align: center;">FAQ제목</th>
+									<th style="padding: 0.6rem; text-align: center;">카테고리</th>
+									<th style="padding: 0.6rem; text-align: center;">작성일</th>
+									<th style="padding: 0.6rem; text-align: center;">조회수</th>
 								</tr>
 								<c:forEach var="vo3" items="${adFaqList }" varStatus="status3">
 								<c:if test="${vo3.not_middle == 3}">
 									<tr>
-										<td >
+										<td style="padding: 0.6rem; text-align: center; vertical-align:middle; color: #414934;">
 											<input type="hidden" name="not_no" value="${vo3.not_no }">
 											<input type="hidden" value="${status3.count }">
 										</td>
-										<td>
-											<a href="/board/adFaqRead?not_no=${vo3.not_no }" style="color: green"> ${vo3.not_title }</a>
+										<td style="padding: 0.6rem; vertical-align:middle; color: #414934;">
+											<a href="/board/adFaqRead?not_no=${vo3.not_no }" style="color: #6F7B63; font-weight: bold;"> ${vo3.not_title }</a>
 										</td>
-										<td><span class="label label-warning" style="background-color: #BFCC97;">판매자</span></td>
-										<td>
+										<td style="padding: 0.6rem; text-align: center; vertical-align:middle; color: #414934;">
+											<span class="label label-warning" style="background-color: #BFCC97;">판매자</span>
+										</td>
+										<td style="padding: 0.6rem; text-align: center; vertical-align:middle; color: #414934;">
 											<fmt:formatDate value="${vo3.not_date }" pattern="yy-MM-dd"/>
 										</td>
-										<td><span>${vo3.not_viewcnt }</span></td>
+										<td style="padding: 0.6rem; text-align: center; vertical-align:middle; color: #414934;">
+											<span>${vo3.not_viewcnt }</span>
+										</td>
 									</tr>
 									</c:if>
 								</c:forEach>	
@@ -397,22 +423,91 @@
 <script type="text/javascript">
 	
 $(document).ready(function(){
-	$("#faqAll").css("color","green");
+	$("#faqAll").css("color","#6F7B63");
 	$("#faqAll").css("font-weight","bolder");
+	$("#faqC").css("color","#B6AD90");
+	$("#faqC").css("font-weight","normal");
+	$("#faqS").css("color","#B6AD90");
+	$("#faqS").css("font-weight","normal");
+	$("#faqSp").css("color","#B6AD90");
+	$("#faqSp").css("font-weight","normal");
+
+	// 마우스 오버 시작
+	$("#faqAll").hover(function(){
+		$(this).css('color', '#6F7B63'); // 마우스 오버 시
+		$(this).css('font-weight', 'bolder'); 
+	});
+	
+	$("#faqC").hover(function(){
+		$(this).css('color', '#6F7B63'); // 마우스 오버 시
+		$(this).css('font-weight', 'bolder'); 
+	}, function(){
+		$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+		$(this).css('font-weight', 'normal'); 
+	});
+	
+	$("#faqS").hover(function(){
+		$(this).css('color', '#6F7B63'); // 마우스 오버 시
+		$(this).css('font-weight', 'bolder'); 
+	}, function(){
+		$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+		$(this).css('font-weight', 'normal'); 
+	});
+	
+	$("#faqSp").hover(function(){
+		$(this).css('color', '#6F7B63'); // 마우스 오버 시
+		$(this).css('font-weight', 'bolder'); 
+	}, function(){
+		$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+		$(this).css('font-weight', 'normal'); 
+	});
+	// 마우스오버끝
+	
 	
 	$("#faqAll").click(function(){
 		$("#faq1").show();
 		$("#faq2").show();
 		$("#faq3").show();
 		
-		$("#faqAll").css("color","green");
+		$("#faqAll").css("color","#6F7B63");
 		$("#faqAll").css("font-weight","bolder");
-		$("#faqC").css("color","grey");
+		$("#faqC").css("color","#B6AD90");
 		$("#faqC").css("font-weight","normal");
-		$("#faqS").css("color","grey");
+		$("#faqS").css("color","#B6AD90");
 		$("#faqS").css("font-weight","normal");
-		$("#faqSp").css("color","grey");
+		$("#faqSp").css("color","#B6AD90");
 		$("#faqSp").css("font-weight","normal");
+
+		// 마우스 오버 시작
+		$("#faqAll").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		});
+		
+		$("#faqC").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		}, function(){
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal'); 
+		});
+		
+		$("#faqS").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		}, function(){
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal'); 
+		});
+		
+		$("#faqSp").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		}, function(){
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal'); 
+		});
+		// 마우스오버끝
 
 	});
 	
@@ -421,14 +516,46 @@ $(document).ready(function(){
 		$("#faq2").hide();
 		$("#faq3").hide();
 		
-		$("#faqC").css("color","green");
+		$("#faqC").css("color","#6F7B63");
 		$("#faqC").css("font-weight","bolder");
-		$("#faqAll").css("color","grey");
+		$("#faqAll").css("color","#B6AD90");
 		$("#faqAll").css("font-weight","normal");
-		$("#faqS").css("color","grey");
+		$("#faqS").css("color","#B6AD90");
 		$("#faqS").css("font-weight","normal");
-		$("#faqSp").css("color","grey");
+		$("#faqSp").css("color","#B6AD90");
 		$("#faqSp").css("font-weight","normal");
+
+		// 마우스 오버 시작
+		$("#faqC").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		});
+		
+		$("#faqAll").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		}, function(){
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal'); 
+		});
+		
+		$("#faqS").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		}, function(){
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal'); 
+		});
+		
+		$("#faqSp").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		}, function(){
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal'); 
+		});
+		// 마우스오버끝
+		
 	});
 	
 	$("#faqSp").click(function(){ // 후원자 2번
@@ -436,14 +563,45 @@ $(document).ready(function(){
 		$("#faq2").show();
 		$("#faq3").hide();
 		
-		$("#faqSp").css("color","green");
+		$("#faqSp").css("color","#6F7B63");
 		$("#faqSp").css("font-weight","bolder");
-		$("#faqC").css("color","grey");
-		$("#faqC").css("font-weight","normal");
-		$("#faqAll").css("color","grey");
+		$("#faqAll").css("color","#B6AD90");
 		$("#faqAll").css("font-weight","normal");
-		$("#faqS").css("color","grey");
+		$("#faqC").css("color","#B6AD90");
+		$("#faqC").css("font-weight","normal");
+		$("#faqS").css("color","#B6AD90");
 		$("#faqS").css("font-weight","normal");
+
+		// 마우스 오버 시작
+		$("#faqSp").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		});
+		
+		$("#faqAll").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		}, function(){
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal'); 
+		});
+		
+		$("#faqC").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		}, function(){
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal'); 
+		});
+		
+		$("#faqS").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		}, function(){
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal'); 
+		});
+		// 마우스오버끝
 	});
 	
 	$("#faqS").click(function(){ // 판매자 3번
@@ -451,14 +609,45 @@ $(document).ready(function(){
 		$("#faq2").hide();
 		$("#faq3").show();
 		
-		$("#faqS").css("color","green");
+		$("#faqS").css("color","#6F7B63");
 		$("#faqS").css("font-weight","bolder");
-		$("#faqC").css("color","grey");
-		$("#faqC").css("font-weight","normal");
-		$("#faqAll").css("color","grey");
+		$("#faqAll").css("color","#B6AD90");
 		$("#faqAll").css("font-weight","normal");
-		$("#faqSp").css("color","grey");
+		$("#faqC").css("color","#B6AD90");
+		$("#faqC").css("font-weight","normal");
+		$("#faqSp").css("color","#B6AD90");
 		$("#faqSp").css("font-weight","normal");
+
+		// 마우스 오버 시작
+		$("#faqS").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		});
+		
+		$("#faqAll").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		}, function(){
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal'); 
+		});
+		
+		$("#faqC").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		}, function(){
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal'); 
+		});
+		
+		$("#faqSp").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		}, function(){
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal'); 
+		});
+		// 마우스오버끝
 	});
 });
 </script>

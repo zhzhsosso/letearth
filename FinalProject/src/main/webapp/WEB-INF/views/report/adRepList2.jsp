@@ -13,7 +13,7 @@
 <!-- <link href="/resources/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" /> -->
 <!-- 어드민 lte -->
 <meta charset="UTF-8">
-<title>LetEarth</title>
+<title>신고</title>
 
 
 <style type="text/css">
@@ -46,7 +46,30 @@
    position: relative;
    top: -15px; 
 }
+
+/*a 태그 상태 css*/
+#hov a:link{
+  color : #D7D1B9;
+  font-weight: normal;
+  /*text-decoration: underline;*/
+  
+ }
+
+#hov a:hover{
+  color : #6F7B63;
+  transition : 0s;
+  font-weight: bolder;
+  /*text-decoration: underline;*/
+  
+ }
  
+ #hov a:active{
+  color : #6F7B63;
+  transition : 0s;
+  font-weight: bolder;
+  /*text-decoration: underline;*/
+  
+ }
  
    /*페이징*/
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
@@ -138,9 +161,9 @@
 						<h2 class="box-title" align="center"><b style="color: #6F7B63;"> 관리자 신고접수 목록 </b></h2>
 						<hr id="repSelector" align="center">
 			<div class="col-xs-12" style="font-size: 16px;"><br><br>
-				<div style="font-size: 1.7rem; cursor: pointer;" align="left" id="aaadiv" >
-				<span id="aaa"> 
-					<a href="/report/adRepListAll" id="listAll">전체</a> 
+				<div style="font-size: 1.7rem; cursor: pointer;" align="left">
+				<span id="hov"> 
+					<a href="/report/adRepListAll" id="listAll" style="color: #6F7B63; font-weight: bolder;">전체</a> 
 					| 
 					<a href="/report/adRepList?rep_cat=1" id="listMem">회원</a>
 					| 
@@ -151,11 +174,12 @@
 					
 			<!-- 어드민 -->
 			<!-- 검색 -->                                                      
-				<div class="box" style="border: none;">
+<!-- 				<div class="box" style="border: none;"> -->
+			
 					<div class="box-header">
 						<div class="box-tools" align="right">
 							<div class="input-group input-group-sm hidden-xs"
-								style="width: 180px; height: 50px;">
+								style="width: 180px; height: 50px; ">
 <!-- 				<form role="searchForm" method="get" onsubmit="return fun1()"> -->
 <!-- 					<div class="fcntr" style="width:200px;"> -->
 <!--                    		 <select name="type" id="type" style="width: 50%;"> -->
@@ -178,8 +202,8 @@
 					</div>
 			<!-- 검색 -->
 					<br>
-<!-- tableAll -->
-					<div class="box-body table-responsive no-padding" id="tableAll">
+<!-- tableAll --><div class="box" style="border: none; ">
+					<div class="box-body table-responsive no-padding" id="tableAll" >
 			<form role="form" name="fr" id="contact-form" action="" method="post">
 						<table class="table table-hover">
 							<tbody>
@@ -191,7 +215,7 @@
 									<th style="text-align: center;">사유</th>
 									<th style="text-align: center;">신고날짜</th>
 									<th style="text-align: center;">상태</th>											
-									<th style="text-align: center;">상세보기</th>										
+									<th style="text-align: center;">상세보기</th>											
 								</tr>
 								<c:forEach var="vo" items="${adRepList }" varStatus="vs">
 												<tr>
@@ -205,7 +229,7 @@
 														<c:if test="${vo.rep_cat == 2}">프로젝트</c:if>
 													</td>													
 													<td style="vertical-align:middle; padding: 8px; text-align:center;">${vo.reped_id }</td>
-													<td style="vertical-align:middle; padding: 8px; width : 30%; table-layout: fixed;">
+													<td style="vertical-align:middle; padding: 8px; width : 30%; table-layout: fixed;"">
 														${vo.rep_reason }
 													</td>
 													<td style="vertical-align:middle; padding: 8px; text-align:center;">
@@ -254,26 +278,26 @@
 
 				</div>
 			</div>
+			</div>
 
 	
-   </div>
    </div>
    <br><br><br>
 <!-- 페이징처리 -->
 	<div class="box-footer clearfix" style="position: absolute; right: 45%; border: none;">
 		<ul class="pagination pagination-sm no-margin pull-left">
 			<c:if test="${pvo.prev }">
-				<li><a href="/report/adRepList?rep_cat=${vo.rep_cat }&page=${pvo.startPage-1 }">«</a></li> <!-- 10 -->
+				<li><a href="/report/adRepListAll?page=${pvo.startPage-1 }">«</a></li> <!-- 10 -->
 			</c:if>
 			
 			<c:forEach var="idx" begin="${pvo.startPage }" end="${pvo.endPage }">
 				<li 				
 				<c:out value="${idx == pvo.cri.page? 'class=active':'' }"/> 				
-				><a href="/report/adRepList?rep_cat=${vo.rep_cat }&page=${idx }">${idx }</a></li>
+				><a href="/report/adRepListAll?page=${idx }">${idx }</a></li>
 			</c:forEach>
 			
 			<c:if test="${pvo.next }">
-				<li><a href="/report/adRepList?rep_cat=${vo.rep_cat }&page=${pvo.endPage+1 }">»</a></li> <!-- 11 -->
+				<li><a href="/report/adRepListAll?page=${pvo.endPage+1 }">»</a></li> <!-- 11 -->
 			</c:if>
 		</ul>
 	</div>
@@ -285,7 +309,38 @@
    <!-- 푸터 -->
    <%@ include file="../include/footer.jsp" %>
 </body>
-	<!-- jQuery-->  
+
+<!-- jQuery-->  
+<script type="text/javascript">
+
+$(document).ready(function(){	
+
+	$("#listMem").hover(function(){
+		$(this).css('color', '#6F7B63'); // 마우스 오버 시
+		$(this).css('font-weight', 'bolder'); 
+	}, function(){
+		$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+		$(this).css('font-weight', 'normal'); 
+	});
+	
+	$("#listPro").hover(function(){
+		$(this).css('color', '#6F7B63'); // 마우스 오버 시
+		$(this).css('font-weight', 'bolder'); 
+	}, function(){
+		$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+		$(this).css('font-weight', 'normal'); 
+	});
+	
+		// 평상시 상태
+		$("#listMem").css("color", "#B6AD90"); 
+		$("#listMem").css("font-weight","normal");
+		$("#listPro").css("color","#B6AD90");
+		$("#listPro").css("font-weight","normal");
+
+	
+});
+</script>	
+	
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
    	<script type="text/javascript">
 		var result = '${result}';
@@ -303,83 +358,7 @@
 		
 </script>
 
-<script type="text/javascript">
 
-$(document).ready(function(){	
-	
-var url_href = window.location.href;
-var url = new URL(url_href); // URL 객체 선언
-var rep_cat = url.searchParams.get("rep_cat");
-
-	//alert(rep_cat);
-	
-	if(rep_cat = 1){ // 1번이면 회원
-		$("#listAll").css("color", "#B6AD90");
-		$("#listAll").css("font-weight","normal");
-		$("#listMem").css("color", "#6F7B63");
-		$("#listMem").css("font-weight","bolder");
-		$("#listPro").css("color","#B6AD90");
-		$("#listPro").css("font-weight","normal");
-		
-		// 마우스 오버 시작
-		$("#listAll").hover(function(){
-			$(this).css('color', '#6F7B63'); // 마우스 오버 시
-			$(this).css('font-weight', 'bolder'); 
-		}, function(){
-			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
-			$(this).css('font-weight', 'normal'); 
-		});
-		
-		$("#listPro").hover(function(){
-			$(this).css('color', '#6F7B63'); // 마우스 오버 시
-			$(this).css('font-weight', 'bolder'); 
-		}, function(){
-			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
-			$(this).css('font-weight', 'normal'); 
-		});
-		
-		$("#listMem").hover(function(){
-			$(this).css('color', '#6F7B63'); // 마우스 오버 시
-			$(this).css('font-weight', 'bolder'); 
-		});
- 
-	} 
-	
-	if(rep_cat = 2){ // 2번이면 프로젝트
-		$("#listAll").css("color", "#B6AD90");
-		$("#listAll").css("font-weight","normal");
-		$("#listMem").css("color","#B6AD90");
-		$("#listMem").css("font-weight","normal");
-		$("#listPro").css("color","#6F7B63");
-		$("#listPro").css("font-weight","bolder");
-		
-		
-		// 마우스 오버 시작
-		$("#listMem").hover(function(){
-			$(this).css('color', '#6F7B63'); // 마우스 오버 시
-			$(this).css('font-weight', 'bolder'); 
-		}, function(){
-			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
-			$(this).css('font-weight', 'normal'); 
-		});
-		
-		$("#listAll").hover(function(){
-			$(this).css('color', '#6F7B63'); // 마우스 오버 시
-			$(this).css('font-weight', 'bolder'); 
-		}, function(){
-			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
-			$(this).css('font-weight', 'normal'); 
-		});
-		
-		$("#listPro").hover(function(){
-			$(this).css('color', '#6F7B63'); // 마우스 오버 시
-			$(this).css('font-weight', 'bolder'); 
-		});
-		// 마우스오버끝
-	}
-	
-});
-</script>
 <script type="text/javascript">
 // 셀렉트 꾸미기
 var x, i, j, l, ll, selElmnt, a, b, c;

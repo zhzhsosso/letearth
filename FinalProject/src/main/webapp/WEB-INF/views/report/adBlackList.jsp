@@ -5,13 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 어드민 lte -->
-<link href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> -->
-<link href="/resources/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
-<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-<link href="/resources/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
-<!-- 어드민 lte -->
+
 <meta charset="UTF-8">
 <title>블랙리스트</title>
 <style type="text/css">
@@ -20,13 +14,14 @@
 	position: absolute;
 	top: 0px;
 	
-	background-color: #BFCC97;
+	background-color: #A4AC85;
+		height: 35px;
 }
 
 #repSelector {
   width : 16%;
   height : 3px;
-  background-color : #BBE093;
+  background-color : #D7D1B9;
   border : 0;
   
    position: relative;
@@ -42,7 +37,7 @@
 
 /*hover*/
 #hov a:hover{
-  color : green;
+  color : #6F7B63;
   transition : 0s;
   font-weight: bolder;
   /*text-decoration: underline;*/
@@ -75,10 +70,10 @@
     <br>
  	<br>        
    <!-- 어드민 -->		
-		<h2 class="box-title" align="center"><b style="color: #6c757d;">관리자 블랙리스트</b></h2>
+		<h2 class="box-title" align="center"><b style="color: #6F7B63;">관리자 블랙리스트</b></h2>
 		<hr id="repSelector" align="center">
 			<div class="col-xs-12" style="font-size: 16px;"><br><br>
-				<div style="font-size: 2.5rem; cursor: pointer;" align="left">
+				<div style="font-size: 1.7rem; cursor: pointer;" align="left">
 				<span id="hov"> 
 					<a id="listAll">전체</a> 
 					| 
@@ -94,10 +89,10 @@
 					<div class="box-header">
 						<div class="box-tools" align="right">
 							<div class="input-group input-group-sm hidden-xs"
-								style="width: 200px; height: 50px;">
-								<input type="text" name="table_search"
-									class="form-control pull-right" placeholder="Search" style="height: 30px; font-size: 1.5rem;">
-								<div class="input-group-btn">
+								style="width: 180px; height: 50px;">
+								<input type="text" name="keyword" class="form-control pull-right" placeholder="Search" 
+									style="height: 35px; width: 60px; font-size: 1rem; border-color: #A4AC85; color:#B6AD90; border-radius:0.25rem; ">
+								<div class="input-group-btn" style="padding-left: 3px;">
 									<button type="submit" class="btn btn-default" id="sbtn">
 										<i class="fa fa-search"></i>
 									</button>
@@ -105,38 +100,47 @@
 							</div>
 						</div>
 					</div>
-					<br><br>
+					<br>
 <!-- tableAll -->
 					<div class="box-body table-responsive no-padding" id="tableAll">
 			<form role="form" name="fr" id="contact-form" action="" method="post">
 						<table class="table table-hover">
 							<tbody>
-								<tr style="background-color: #EEF5E6">
-									<th>번호</th>
-									<th>회원아이디</th>
-									<th>프로젝트이름</th>
-									<th>유형</th>
-									<th>등록날짜</th>
+								<tr style="background-color: #EDEAE0;">
+									<th style="text-align: center; width: 7%; color: #414934; font-weight: bold;">#</th>
+									<th style="text-align: center; color: #414934; font-weight: bold;">회원아이디</th>
+									<th style="text-align: center; color: #414934; font-weight: bold;">프로젝트이름</th>
+									<th style="text-align: center; color: #414934; font-weight: bold;">유형</th>
+									<th style="text-align: center; color: #414934; font-weight: bold;">등록날짜</th>
 								</tr>
 								<c:forEach var="vo" items="${adBlackList }" varStatus="status">
 									<tr>
-										<td >
+										<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
 											${status.count }
 											<input type="hidden" value="${vo.black_no }">
 										</td>
-										<td>${vo.mem_id }</td>
-										<td>${vo.projectVO.pro_title }
+										
+										<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
+										${vo.mem_id }
+										</td>
+										
+										<td style="vertical-align:middle; color: #414934; width : 45%; table-layout: fixed; font-weight: bold;">
+											${vo.projectVO.pro_title }
 											<c:if test="${empty vo.projectVO.pro_title }">
 												무분별한 댓글사용으로 신고가 들어온 회원입니다.
 											</c:if>										
 										</td>
+										
 										<c:if test="${vo.black_type == 1}">
-											<td>회원신고</td>
+											<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">회원신고</td>
 										</c:if>
 										<c:if test="${vo.black_type == 2}">
-											<td>프로젝트신고</td>
+											<td style="text-align: center; vertical-align:middle; color: #B6AD90; font-weight: bold;">프로젝트신고</td>
 										</c:if>
-										<td><fmt:formatDate value="${vo.black_date}" pattern="yyyy-MM-dd"/></td>
+										
+										<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
+											<fmt:formatDate value="${vo.black_date}" pattern="yyyy-MM-dd"/>
+										</td>
 									</tr>
 								</c:forEach>	
 							</tbody>
@@ -149,28 +153,37 @@
 			<form role="form" name="fr" id="contact-form" action="" method="post">
 						<table class="table table-hover">
 							<tbody>
-								<tr style="background-color: #EEF5E6">
-									<th>번호</th>
-									<th>회원아이디</th>
-									<th>프로젝트이름</th>
-									<th>유형</th>
-									<th>등록날짜</th>
+								<tr style="background-color: #EDEAE0;">
+									<th style="text-align: center; width: 7%; color: #414934; font-weight: bold;">#</th>
+									<th style="text-align: center; color: #414934; font-weight: bold;">회원아이디</th>
+									<th style="text-align: center; color: #414934; font-weight: bold;">프로젝트이름</th>
+									<th style="text-align: center; color: #414934; font-weight: bold;">유형</th>
+									<th style="text-align: center; color: #414934; font-weight: bold;">등록날짜</th>
 								</tr>
 								<c:forEach var="vo" items="${adBlackList }" varStatus="status">
 								<c:if test="${vo.black_type == 1}">
 									<tr>
-										<td >
+										<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
 											${status.count }
 											<input type="hidden" value="${vo.black_no }">
 										</td>
-										<td>${vo.mem_id }</td>
-										<td>${vo.projectVO.pro_title }
+										
+										<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
+										${vo.mem_id }
+										</td>
+										
+										<td style="vertical-align:middle; color: #414934; width : 45%; table-layout: fixed; font-weight: bold;">
+											${vo.projectVO.pro_title }
 											<c:if test="${empty vo.projectVO.pro_title }">
 												무분별한 댓글사용으로 신고가 들어온 회원입니다.
 											</c:if>										
 										</td>
-											<td><input type="hidden" name="black_type" value="${vo.black_type == 1}"> 회원신고</td>
-										<td><fmt:formatDate value="${vo.black_date}" pattern="yyyy-MM-dd"/></td>
+											<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
+												<input type="hidden" name="black_type" value="${vo.black_type == 1}"> 회원신고
+											</td>
+										<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
+											<fmt:formatDate value="${vo.black_date}" pattern="yyyy-MM-dd"/>
+										</td>
 									</tr>
 									</c:if>
 								</c:forEach>	
@@ -184,28 +197,28 @@
 			<form role="form" name="fr" id="contact-form" action="" method="post">
 						<table class="table table-hover">
 							<tbody>
-								<tr style="background-color: #EEF5E6">
-									<th>번호</th>
-									<th>회원아이디</th>
-									<th>프로젝트이름</th>
-									<th>유형</th>
-									<th>등록날짜</th>
+								<tr style="background-color: #EDEAE0;">
+									<th style="text-align: center; width: 7%; color: #414934; font-weight: bold;">#</th>
+									<th style="text-align: center; color: #414934; font-weight: bold;">회원아이디</th>
+									<th style="text-align: center; color: #414934; font-weight: bold;">프로젝트이름</th>
+									<th style="text-align: center; color: #414934; font-weight: bold;">유형</th>
+									<th style="text-align: center; color: #414934; font-weight: bold;">등록날짜</th>
 								</tr>
 								<c:forEach var="vo" items="${adBlackList }" varStatus="status">
 								<c:if test="${vo.black_type == 2}">
 									<tr>
-										<td >
+										<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
 											${status.count }
 											<input type="hidden" value="${vo.black_no }">
 										</td>
-										<td>${vo.mem_id }</td>
-										<td>${vo.projectVO.pro_title }
+										<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">${vo.mem_id }</td>
+										<td style="vertical-align:middle; color: #414934; width : 45%; table-layout: fixed; font-weight: bold;">${vo.projectVO.pro_title }
 											<c:if test="${empty vo.projectVO.pro_title }">
 												무분별한 댓글사용으로 신고가 들어온 회원입니다.
 											</c:if>										
 										</td>
-											<td><input type="hidden" name="black_type" value="${vo.black_type == 1}"> 회원신고</td>
-										<td><fmt:formatDate value="${vo.black_date}" pattern="yyyy-MM-dd"/></td>
+											<td style="text-align: center; vertical-align:middle; color: #B6AD90; font-weight: bold;"><input type="hidden" name="black_type" value="${vo.black_type == 2}"> 프로젝트신고</td>
+										<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;"><fmt:formatDate value="${vo.black_date}" pattern="yyyy-MM-dd"/></td>
 									</tr>
 									</c:if>
 								</c:forEach>	
@@ -223,6 +236,8 @@
 
 	</div>
        </div>    
+       
+       <br><br><br>
         <!-- 페이징처리 -->
 <div class="box-footer clearfix" style="position: absolute; right: 45%; border: none;">
 		<ul class="pagination pagination-sm no-margin pull-center">
@@ -268,53 +283,156 @@
 <script type="text/javascript" src="jquery-3.6.3.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	  
+	
+	/*기본페이지 전체조회*/
 	$("#tableAll").show();
 	$("#tableMem").hide();
 	$("#tablePro").hide();
 	
-	$("#listAll").css("color","green");
+	$("#listAll").css("color","#6F7B63");
 	$("#listAll").css("font-weight","bolder");
+	$("#listMem").css("color","#B6AD90");
+	$("#listMem").css("font-weight","normal");
+	$("#listPro").css("color","#B6AD90");
+	$("#listPro").css("font-weight","normal");
 
+	// 마우스 오버 시작
+	$("#listAll").hover(function(){
+		$(this).css('color', '#6F7B63'); // 마우스 오버 시
+		$(this).css('font-weight', 'bolder'); 
+	});
+	
+	$("#listMem").hover(function(){
+		$(this).css('color', '#6F7B63'); // 마우스 오버 시
+		$(this).css('font-weight', 'bolder'); 
+	}, function(){
+		$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+		$(this).css('font-weight', 'normal'); 
+	});
+	
+	$("#listPro").hover(function(){
+		$(this).css('color', '#6F7B63'); // 마우스 오버 시
+		$(this).css('font-weight', 'bolder'); 
+	}, function(){
+		$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+		$(this).css('font-weight', 'normal'); 
+	});
+	// 마우스오버끝
+	
+	
+	
 	$("#listAll").click(function(){
 		$("#tableAll").show();
 		$("#tableMem").hide();
 		$("#tablePro").hide();
 		
-		$("#listAll").css("color","green");
+		$("#listAll").css("color","#6F7B63");
 		$("#listAll").css("font-weight","bolder");
-		$("#listMem").css("color","grey");
+		$("#listMem").css("color","#B6AD90");
 		$("#listMem").css("font-weight","normal");
-		$("#listPro").css("color","grey");
+		$("#listPro").css("color","#B6AD90");
 		$("#listPro").css("font-weight","normal");
-
+		
+		// 마우스 오버 시작
+		$("#listAll").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		});
+		
+		$("#listMem").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		}, function(){
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal'); 
+		});
+		
+		$("#listPro").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		}, function(){
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal'); 
+		});
+		// 마우스오버끝
 	});
+	
+	
 	
 	$("#listMem").click(function(){
 		$("#tableAll").hide();
 		$("#tableMem").show();
 		$("#tablePro").hide()
 		
-		$("#listAll").css("color","grey");
+		$("#listAll").css("color","#B6AD90");
 		$("#listAll").css("font-weight","normal");
-		$("#listMem").css("color","green");
+		$("#listMem").css("color","#6F7B63");
 		$("#listMem").css("font-weight","bolder");
-		$("#listPro").css("color","grey");
+		$("#listPro").css("color","#B6AD90");
 		$("#listPro").css("font-weight","normal");
+		
+		// 마우스 오버 시작
+		$("#listMem").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		});
+		
+		$("#listAll").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		}, function(){
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal'); 
+		});
+		
+		$("#listPro").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		}, function(){
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal'); 
+		});
+		// 마우스오버끝
 	});
+	
+	
 	
 	$("#listPro").click(function(){
 		$("#tableAll").hide();
 		$("#tableMem").hide();
 		$("#tablePro").show();
 		
-		$("#listAll").css("color","grey");
+		$("#listAll").css("color","#B6AD90");
 		$("#listAll").css("font-weight","normal");
-		$("#listMem").css("color","grey");
+		$("#listMem").css("color","#B6AD90");
 		$("#listMem").css("font-weight","normal");
-		$("#listPro").css("color","green");
+		$("#listPro").css("color","#6F7B63");
 		$("#listPro").css("font-weight","bolder");
+		
+		// 마우스 오버 시작
+		$("#listPro").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		});
+		
+		$("#listMem").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		}, function(){
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal'); 
+		});
+		
+		$("#listAll").hover(function(){
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder'); 
+		}, function(){
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal'); 
+		});
+		// 마우스오버끝
 	});
+	
 });
 </script>
 

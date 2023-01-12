@@ -27,10 +27,16 @@ public interface AdReportService {
 	/**
 	 * 신고관련 메서드 
 	 */
+	// 신고접수 목록전체
+	public List<AdminVO> getListAllReport(Criteria cri) throws Exception;
+	
 	// 신고접수 목록
-	public List<AdminVO> getListReport(Criteria cri) throws Exception;
+	public List<AdminVO> getListReport(Criteria cri, int rep_cat) throws Exception;
 	
 	// 신고접수 전체개수
+	public int totalRepCntAll() throws Exception;
+	
+	// 신고접수 부분전체개수
 	public int totalRepCnt() throws Exception;
 	
 	// 신고상세
