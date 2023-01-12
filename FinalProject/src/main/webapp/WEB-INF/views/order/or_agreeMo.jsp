@@ -42,6 +42,7 @@
 	}
 	
 	.tab {
+		font-weight: bold;
 		margin: 10px 10px;
 		border-top: 1px;
 		border-top-style: solid;
@@ -50,6 +51,7 @@
 	}
 	
 	.tabd {
+		font-weight: bold;
 		border-bottom: 1px;
 		border-bottom-style: solid;
 		padding: 5px;
@@ -87,7 +89,7 @@
                   <div class="screen">
                   	<div style="margin: 20px 10px;">
                 		<button type="button" id="agreeMoCl"><i class="fa-solid fa-circle-xmark"></i></button> 
-                		<h4>개인정보 제3자 제공 동의</h4>
+                		<h4><b>개인정보 제3자 제공 동의</b></h4>
                 	</div>
                		<div style="margin: 20px 10px;">
                			<p style="font-size: 14px; color: black">회원의 개인정보는 당사의 개인정보 취급방침에 따라 안전하게 보호됩니다. '회사'는 이용자들의

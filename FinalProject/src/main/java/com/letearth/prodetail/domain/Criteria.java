@@ -3,6 +3,20 @@ package com.letearth.prodetail.domain;
 public class Criteria {
 
 	//	페이징처리에 필요한 정보를 저장 (페이지 시작정보, 사이즈)
+	
+	// 관리자 신고접수할때 필요
+	private int rep_cat; 
+	
+	public int getRep_cat() {
+		return rep_cat;
+	}
+
+	public void setRep_cat(int rep_cat) {
+		this.rep_cat = rep_cat;
+	}
+	// 관리자 신고접수할때 필요
+
+	
 	private int page; // 시작페이지 정보
 	private int perPageNum; // 페이지 개수
 	
@@ -65,4 +79,7 @@ public class Criteria {
 		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + "]";
 	}
 	
+	
+	
 }
+

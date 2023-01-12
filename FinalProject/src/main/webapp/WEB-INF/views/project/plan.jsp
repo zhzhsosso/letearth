@@ -14,7 +14,7 @@
 <style>
 .plan {
 	text-align: left;
-	color: #6C9FFF;
+	background-color: #A4AC85;
 	margin-bottom: 30px;
 }
 
@@ -70,11 +70,11 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#goalP').one('click', function(){
-		$('#gp_div').append('50만원 이상부터 입력이 가능해요');
+		$('#gp_div').append('<small>50만원 이상부터 입력이 가능해요</small>');
 	});
 	
 	$('#del_date').one('click', function(){
-		$('#del_div').append('대략적인 배송일을 입력해주세요');
+		$('#del_div').append('대략적인 배송일을 입력해주세요 (ex. 2023년 3월 경)');
 	});
 });
 </script>
@@ -149,7 +149,7 @@ String today = date.format(now);%>
 </script>
 <script type="text/javascript">
 function checkPlan() {
-	if($('#pro_gp').val() < 0) {
+	if($('#pro_gp').val() < 500000) {
 		Swal.fire({
 			icon : 'error',
 			title : '목표금액을 입력해주세요!',
@@ -198,13 +198,13 @@ function checkPlan() {
 	    dataType : "text",
 	    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 	    success : function(resp) {
-	    	alert('등록완료');
 	    	$.ajax({
 				url:"/project/reward",
 				type:"get",
 				datatype:"html",
 				success:function(data){
-					$("#plan").html(data);
+					$('html, body').scrollTop(0);
+					$("#project").html(data);
 				}	
 			});
 	    },
@@ -224,13 +224,11 @@ function checkPlan() {
 						<div class="blog-details__tags">
 							<span>모금 금액</span>
 						</div>
-						<small>프로젝트를 완성하기 위해 필요한 금액을 설정해주세요. 목표금액 설정시 꼭 알아두세요. <br>
-							1. 어쩌구 블라블라 <br> 2. 어쩌구 블라블라 <br> 3. 어쩌구 블라블 <br>
-						</small>
+						<small>프로젝트를 완성하기 위해 필요한 금액을 설정해주세요. 목표금액 설정시 꼭 알아두세요. </small>
 					</div>
 					<div id="gp_div">
 						<input type="text" id="goalP" name="gprice" numberOnlyMinComma="true" koreanCurrency="true" class="textBox" value=${proVO.pro_gp }>원
-						<input type="text" id="pro_gp" name="pro_gp" value="">
+						<input type="hidden" id="pro_gp" name="pro_gp" value="">
 					</div>
 					<div class="field">
 						<span>결제대행 수수료(총 결제액의 3% + VAT)</span>
@@ -333,5 +331,7 @@ function checkPlan() {
 			</div>
 		</div>
 	</div>
-	<button type="button" class="main-btn" style="float: right;" onclick="checkPlan();">다음</button>
 </form>
+		<div class="text-center">
+			<button type="button" class="main-btn" onclick="checkPlan();" style="background-color: #A4AC85; border: none;">다음</button>
+		</div>

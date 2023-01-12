@@ -52,7 +52,7 @@ function myFunDetail(num){
 				<div class="date3"><a href="/prodetail/info?pro_no=${ordList.pro_no}">${ordList.pro_title }</a></div>
 				<div class="date3"><fmt:formatDate value="${ordList.order_date }"/></div>
 				<div class="date3">${ordList.reward_title }</div>
-				<div class="date3">${ordList.total_price }</div>
+				<div class="date3"><fmt:formatNumber value="${ordList.total_price }" pattern="##,### 원"/></div>
 				<div class="date3">
 				<c:choose>
 					<c:when test="${ordList.shipping_status == 1 }">
@@ -62,7 +62,7 @@ function myFunDetail(num){
 						배송준비중
 					</c:when>
 					<c:when test="${ordList.shipping_status == 3 }">
-						배송시작
+						<a href="#">배송시작</a>
 					</c:when>
 					<c:when test="${ordList.shipping_status == 4 }">
 						배송완료

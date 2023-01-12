@@ -4,6 +4,10 @@
 <%@ taglib prefix="fmt" uri ="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" href="../resources/assets/css/project.css">
 <script src="../resources/assets/js/vendor/jquery-3.5.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+
 <style>
 #rangeGraph{
     height:10px;
@@ -11,38 +15,14 @@
 }
 
 #rangeGraph span{
+	max-width: 100%;
     height:100%;
     width:0%;
-    background:#29f0b4;
-}
-.user {
-	background: #674df0;
-    line-height: 30px;
-    padding: 0 15px;
-    font-size: 11px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #fff;
-    margin-right: 10px;
+    background:#A4AC85;
 }
 </style>
 
 <script type="text/javascript">
-$(document).ready(function(){
-	console.log(document.getElementById("achi_rate").innerHTML.split(".")[0]);
-	var rate = document.getElementById("achi_rate").innerHTML.split(".")[0];
-	
-	if(rate >= 100){
-	   	 $("#rangeGraph span").css("width", "100%")
-	} else{
-	   	 $("#rangeGraph span").css("width", rate+"%")
-	}
-		
-	});
-});
-
-
 function deleteLike(like_no) {
 	Swal.fire({
 		title: '좋아요를 삭제하시겠습니까?',
@@ -96,12 +76,12 @@ function deleteLike(like_no) {
 						<div class="explore-projects-thumb">
 							<img src="${likey.pro_thum }" alt="LetEarth" width="100px;" height="300px;"> 
 							<a onclick="deleteLike(${likey.like_no});">
-								<i class="fa fa-heart"></i>
+							<i class="fa fa-heart"></i>
 							</a>
 						</div>
 						<div class="explore-projects-content">
 							<div class="item d-flex align-items-center">
-								<span>D - ${likey.left_date}</span>
+								<span style="background: #6F7B63;">D - ${likey.left_date}</span>
 							</div>  <br>
 							<a href="/prodetail/info?pro_no=${likey.pro_no}">
 								<h3>${likey.pro_title }</h3>
@@ -111,10 +91,10 @@ function deleteLike(like_no) {
 								<div class="projects-range-content">
 									<ul>
 										<li>달성률:</li>
-										<li id="achi_rate">${likey.achievement_rate}%</li>
+										<li id="rate">${likey.achievement_rate}%</li>
 									</ul>
 									<div id="rangeGraph">
-										<span></span>
+										<span style="width: ${likey.achievement_rate}%"></span>
 									</div>
 								</div>
 							</div>

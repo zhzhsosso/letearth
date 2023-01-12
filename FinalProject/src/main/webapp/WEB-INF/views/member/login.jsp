@@ -5,29 +5,26 @@
 	<!-- 헤더 -->
 	<%@ include file="../include/header.jsp" %>
 	
-	<!--  카카오 로그인 SDK CDN-->
+	<!-- 카카오 로그인 SDK CDN-->
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	
 	<script src="../resources/assets/js/vendor/jquery-3.5.1.min.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">
-	
 		$(document).ready(function(){
-	 		// 1. 카카오 로그인 기능을 사용하기 위해 초기화
 	 		Kakao.init('53490119206f1f43ee2b89e08f72694b'); // 본인의 앱 key
 	 		Kakao.isInitialized();
-	 		
 	 	})
 	 	
 	 	function loginWithKakao(){	
- 		Kakao.Auth.login({	// 로그인 성공 여부
+ 		Kakao.Auth.login({	
 	        scope: 'profile_nickname, account_email', 
 	        success: function(response) {  
 	        	
-	        	window.Kakao.API.request({ 			// 사용자 정보 가져오기 
+	        	window.Kakao.API.request({ 			
 	                url: '/v2/user/me',
 	                success: function(res){
-	               		var kakaoAccountInfo = res; // res : 카카오 계정 응답값 - 카카오에서 제공              	  
+	               		var kakaoAccountInfo = res;              	  
 	              		
 	              	  	checkMemberExist(kakaoAccountInfo);                	
 	                }
@@ -39,19 +36,14 @@
  		}
 		
 		function checkMemberExist(kakaoAcountInfo){
-	 		console.log(kakaoAcountInfo)	// 확인
-	 		console.log(kakaoAcountInfo.id)
-	 		
-	 		// 2. 카카오계정이 있는가 확인
 	 		$.ajax({
 	        type: "GET",
 	        url: "/member/checkKakaoAccountExist?kid="+kakaoAcountInfo.id,
 	        async: false,
 	        success: function(res) {        	
-	            
 	            if(res == "true"){
 	            	// 회원정보가 있음 -> 로그인
-	            	alert("로그인을 진행합니다");
+	            	swal("카카오 로그인 정보가 있습니다!",'로그인을 진행합니다','success');
 	            	location.href="/main/all"
 	            }
 	            else{
@@ -80,11 +72,10 @@
 	 		var user_name = kakaoAcountInfo.properties.nickname;
 	 		var email = kakaoAcountInfo.kakao_account.email;
 	 		
-	 		// 카카오 회원가입 
 	 		$.ajax({
 	 	        type: "GET",
 	 	        url: "/member/insertKakaoMember?kid="+kakaoAcountInfo.id+"&user_name="+user_name+"&email="+email,
-	 	        async:false,
+	 	        async: false,
 	 	        success: function(res) {
 	 	        	location.href="/main/all"
 	 	        },
@@ -108,7 +99,7 @@
 				return false;
 			}
 		}
-	
+		
 	</script>
 	
 	 <section class="contact-form-area">
@@ -131,30 +122,31 @@
                             <div class="row" style="display: flex; flex-direction: column; align-items: center;">
                                 <div class="col-lg-6 col-md-6">
                                     <div class="input-box mt-20">
-                                        <input type="text" placeholder="아이디를 입력해주세요" name="mem_id">
+                                        <input type="text" placeholder="아이디를 입력해주세요" name="mem_id" maxlength="20" style="color: #D7D1B9;">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="input-box mt-20">
-                                        <input type="password" placeholder="비밀번호를 입력해주세요" name="mem_pw" maxlength="21">
+                                        <input type="password" placeholder="비밀번호를 입력해주세요" name="mem_pw" maxlength="21" style="color: #D7D1B9;">
                                     </div>
                                 </div>
                                
                                     <div class="input-box mt-20 text-center">
-                                        <input type="submit" class="main-btn" value="로그인" style="width: 370px; background: #c3f3d163">
+                                        <input type="submit" class="main-btn" value="로그인" style="width: 370px; padding-left: 54px; background: #A4AC85; color: #414934;">
                                     </div>
                                     <div>
                                     <a id="kakao-login-btn" href="javascript:loginWithKakao()">
-  										<img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="150" style="margin-top: 20px;" alt="카카오 로그인"/></a>
+  											<img src="../resources/assets/images/kakao_login_medium_wide.png" width="370px"  height="55px;" style="margin-top: 20px;" alt="카카오 로그인"/>
+  										</a>
                                     </div>
                                 </div>
                                 	<div style="text-align: center; margin-top: 20px;">
                                     	<p>로그인 정보를 잊으셨나요?</p>
-                                    	<a href="/member/findId">아이디 / 비밀번호 찾기</a>
+                                    	<a href="/member/findId" style="color: #8d9f6f;">아이디 / 비밀번호 찾기</a>
                                     </div>
                                     <div style="text-align: center; margin-top: 10px;">
                                     	<p>아직 LetEarth의 회원이 아니신가요?</p>
-                                    	<a href="/member/beforeJoin">회원가입 하기</a>
+                                    	<a href="/member/beforeJoin" style="color: #8d9f6f;">회원가입 하기</a>
                                     </div>
                                 
                             </div>

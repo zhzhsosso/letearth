@@ -48,18 +48,6 @@ label{ position:absolute; top:10px; right:10px; cursor:pointer; font:600 .8em Ar
 
 </style>
 <script type="text/javascript">
-// if(('#name').val() != null){
-// 	if($('#cat_no option:selected').val() == 1){
-// 		$("#cat_name option").remove();
-// 	   	$("#cat_name").append("<option>쿠킹</option>");
-// 	   	$("#cat_name").append("<option>강의</option>");
-// 	} else {
-// 	   	$("#cat_name option").remove();
-// 	   	$("#cat_name").append("<option>비건</option>");
-// 	   	$("#cat_name").append("<option>친환경</option>");
-// 	}
-// }
-
 $("#cat_no").change(function(){
     var cat_no=$(this).val();
     if(cat_no == 1){
@@ -81,7 +69,7 @@ var input1 = document.querySelector('input[name=pro_tags]'),
 
 // 태그 입력 제어
 tagify1 = new Tagify(input1, {
-	whitelist : [ "펀딩", "렛어스" ],
+	whitelist : [ "펀딩", "렛어스", "비건", "클래스", "지구하자", "친환경", "클래스", "강의", "DIY" ],
 	blacklist : [ "시발", "개좋음" ]
 });
 	
@@ -128,56 +116,59 @@ function checkInfo() {
 		chk_array = chk_array.replaceAll("\\","");
 		
 		$('#tags').attr('value',chk_array);
+		
+		var getHtml = editor.getHTML();
+		contentObj = createFormObject("pro_context", getHtml);		
+		fr.appendChild(contentObj);
 			
-		if(!$('#cat_no > option:selected').val()) {
+		if($('#cat_no').val() < 1) {
 			Swal.fire({
 				title : '카테고리를 선택하세요!',
 				icon : 'error',
 				confirmButtonText : '확인'
 			})
-			document.fr.cat_no.focus();
 			return false;
 		}
-		if(document.fr.pro_title.value == "") {
+		if($('#pro_title').val() == "") {
 			Swal.fire({
 				title : '프로젝트 제목을 입력하세요!',
 				icon : 'error',
 				confirmButtonText : '확인'
 			})
-			document.fr.pro_title.focus();
 			return false;
 		}
-// 		if(document.fr.pro_context.value == "") {
-// 			Swal.fire({
-// 				title : '프로젝트 내용을 입력하세요!',
-// 				icon : 'error',
-// 				confirmButtonText : '확인'
-// 			})
-// 			document.fr.pro_context.focus();
-// 			return false;
-// 		}
-// 		if(document.fr.pro_thum.value == "") {
-// 			Swal.fire({
-// 				title : '사진을 업로드 해주세요!',
-// 				icon : 'error',
-// 				confirmButtonText : '확인'
-// 			})
-// 			document.fr.pro_thum.focus();
-// 			return false;
-// 		}
-		if(document.fr.tags.value == "") {
+		if($('#pro_title').val() == '임시저장글') {
+			Swal.fire({
+				title : '프로젝트 제목을 변경해주세요!',
+				icon : 'error',
+				confirmButtonText : '확인'
+			})
+			return false;
+		}
+		if($(contentObj).val() == null) {
+			Swal.fire({
+				title : '프로젝트 내용을 입력하세요!',
+				icon : 'error',
+				confirmButtonText : '확인'
+			})
+			return false;
+		}
+		if($('#input-file').val() == "") {
+			Swal.fire({
+				title : '사진을 업로드 해주세요!',
+				icon : 'error',
+				confirmButtonText : '확인'
+			})
+			return false;
+		}
+		if($('#tags').val() == "") {
 			Swal.fire({
 				title : '태그를 입력 해주세요!',
 				icon : 'error',
 				confirmButtonText : '확인'
 			})
-			document.fr.tags.focus();
 			return false;
 		}
-			
-		var getHtml = editor.getHTML();
-		contentObj = createFormObject("pro_context", getHtml);		
-		fr.appendChild(contentObj);
 		
 		var pro_context = $(contentObj).val();
 		
@@ -196,13 +187,13 @@ function checkInfo() {
 		    dataType : "text",
 		    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 		    success : function(resp) {
-		    	swal('등록되었습니다.','','info');
 		    	$.ajax({
 					url:"/project/plan",
 					type:"get",
 					datatype:"html",
 					success:function(data){
-						$("#basicInfo").html(data);
+						$('html, body').scrollTop(0);
+						$("#project").html(data);
 					}	
 				});
 		    },
@@ -322,13 +313,10 @@ function checkInfo() {
 					</div>
 				</div>
 
-				<div class="container">
-					<label class="main-btn" for="input-file">
-						사진 업로드
-  					</label>
-                        	<div style="display:none;">
-					<input type="file" id="input-file" name="pro_thum"/> <br><br>
-         					</div>
+        		<label class="btn btn-primary" for="input-file" id="scan" style="background-color: #414934; position: inherit; border: none;">
+				사진 업로드 </label>
+				<div style="display: none">
+					<input type="file" id="input-file" name="pro_thum" /> <br><br>
 				</div>
 
 				<!-- 프로젝트 대표 이미지-->
@@ -339,17 +327,16 @@ function checkInfo() {
 						<div class="blog-details__tags">
 							<span>태그</span>
 						</div>
-						<small> 잠재 후원자의 관심사를 고려한 검색 태그를 입력해주세요. 외부 검색엔진이나 텀블벅에서
-							해당 태그로 검색한 후원자가 프로젝트를 발견할 수 있습니다. </small>
+						<small> 잠재 후원자의 관심사를 고려한 검색 태그를 입력해주세요. </small>
 					</div>
 				</div>
 					<input type="text" name='pro_tags' placeholder="태그를 입력해주세요" value="${proVO.tags }" class="tagBox" id="pro_tags">
 					<input type="hidden" name="tags" id="tags">
 					<!-- 검색태그 -->
-				<br>
-				<!-- 버튼 -->
+				<br> <br>
+				<!-- 버튼 --> 
 				<div class="blog-btn" align="center">
-					<input type="button" class="main-btn" value="다음" onclick="checkInfo();">
+					<input type="button" class="main-btn" value="다음" onclick="checkInfo();" style="background-color: #A4AC85; border: none;">
 				</div>
 				<!-- 버튼 -->
 			</div>

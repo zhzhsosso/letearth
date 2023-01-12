@@ -5,18 +5,23 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.letearth.admin.domain.AdminVO;
 import com.letearth.prodetail.domain.Criteria;
 import com.letearth.prodetail.domain.PageVO;
+import com.letearth.project.domain.ProjectVO;
 import com.letearth.admin.service.AdBoardService;
 
 
@@ -30,16 +35,6 @@ public class AdBoardController {
 	@Inject
 	private AdBoardService adBoardService;
 	
-	
-	// http://localhost:8080/board/adMain
-	
-	/**
-	 * 관리자메인 GET
-	 */
-	@RequestMapping(value = "/adMain", method = RequestMethod.GET)
-	public void adMainGET() throws Exception{
-		mylog.debug("관리자메인페이지이동");
-	}
 	
 	
 	/**
@@ -294,14 +289,64 @@ public class AdBoardController {
 	
 	
 	
+	/**
+	 * 사용자들이 보는 FAQ => faqMain
+	 * 구매자1번 / 후원자2번 / 판매자3번
+	 */
+	// GET
+	@RequestMapping(value = "/faqMain", method = RequestMethod.GET)
+	public void faqMainGET(Model model) throws Exception{
+		
+		// 최신 list 에서 4개만
+		// 구매자1번 / 후원자2번 / 판매자3번
+		List<AdminVO> faqMainList1 = adBoardService.faqMainList1();
+		model.addAttribute("faqMainList1", faqMainList1);
+		
+		List<AdminVO> faqMainList2 = adBoardService.faqMainList2();
+		model.addAttribute("faqMainList2", faqMainList2);
+		
+		List<AdminVO> faqMainList3 = adBoardService.faqMainList3();
+		model.addAttribute("faqMainList3", faqMainList3);
+		
+		mylog.debug("/board/faqMain(GET) 호출 -> 페이지 이동 완 ");
+		
+	}
 	
 	
+	/**
+	 * 구글차트
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/pjchart_Json")
+	public JSONObject pjchart_Json() throws Exception{
+		
+		return adBoardService.getChartData();
+	}
+	
+	// http://localhost:8080/board/adMain
 	
 	
-	
-	
-	
-	
+	/**
+	 * 관리자메인 GET
+	 * 
+	 *신고접수 최근 그리고 승인요청
+	 */
+	//@ResponseBody
+	@RequestMapping(value = "/adMain", method = RequestMethod.GET)
+	public void adMainGET(Model model) throws Exception{
+		
+		//  신고 리스트
+		List<AdminVO> adMainRepList = adBoardService.adMainRepList();
+		model.addAttribute("adMainRepList", adMainRepList);
+		
+		// 승인요청리스트
+		List<ProjectVO> adPro2List = adBoardService.adMainPro2();
+		model.addAttribute("adPro2List" , adPro2List);
+		
+		
+		mylog.debug("관리자메인페이지이동");
+	}
+
 	
 	
 }

@@ -102,6 +102,14 @@ public class OrderDAOImpl implements OrderDAO{
 		
 		return sqlSession.selectOne(NAMESPACE+".orderInfo2", order_trade_num);
 	}
+	
+	// 주문 취소 요청
+	@Override
+	public Integer orderCancel(String order_trade_num) throws Exception {
+		
+		return sqlSession.update(NAMESPACE+".orderCancel", order_trade_num );
+	}
+	
 
 	// 배송지 변경
 	@Override
@@ -109,6 +117,7 @@ public class OrderDAOImpl implements OrderDAO{
 		
 		return sqlSession.update(NAMESPACE+".shipChange", vo );
 	}
+
 	
 	
 	

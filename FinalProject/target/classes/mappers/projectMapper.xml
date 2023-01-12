@@ -7,7 +7,7 @@
 
 	<!-- 프로젝트 번호 생성 -->
 	<insert id="insertProNo" parameterType="ProjectVO" useGeneratedKeys="true" keyColumn="pro_no" keyProperty="pro_no">
-		insert into project(mem_id) values(#{mem_id})
+		insert into project(mem_id, pro_title) values(#{mem_id},'임시저장글')
 	</insert>
 	
 	<!-- 프로젝트 기본정보 등록 -->
@@ -83,12 +83,12 @@
 	<!-- 대표자 및 정산 정보 등록 -->
 	<update id="updatePartner" parameterType="ProjectVO">
 		<choose>
-			<when test="par_cat.equals('개인')">
-				update project set par_cat=#{par_cat}, par_intro=#{par_intro}, par_birth=#{par_birth}, par_com_num=0, par_acc_name=#{par_acc_name}, par_acc=#{par_acc}, par_bank=#{par_bank}, par_scan=#{par_scan}, pro_status=2
+			<when test='"개인".equals(par_cat)'>
+				update project set par_cat=#{par_cat}, par_intro=#{par_intro}, par_birth=#{par_birth}, par_com_num=0, par_scan=#{par_scan}, pro_status=2
 				where pro_no=#{pro_no}
 			</when>
-			<when test="par_cat.equals('사업자')">
-				update project set par_cat=#{par_cat}, par_intro=#{par_intro}, par_com_num=#{par_birth}, par_birth=0, par_acc_name=#{par_acc_name}, par_acc=#{par_acc}, par_bank=#{par_bank}, par_scan=#{par_scan}, pro_status=2
+			<when test='"사업자".equals(par_cat)'>
+				update project set par_cat=#{par_cat}, par_intro=#{par_intro}, par_com_num=#{par_birth}, par_birth=0, par_scan=#{par_scan}, pro_status=2
 				where pro_no=#{pro_no}
 			</when>
 		</choose>

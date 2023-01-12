@@ -18,5 +18,13 @@ public class MemberVO {
 	private Integer mem_status;		/* 0. 구매회원, 1. 판매회원, 2. 관리자*/
 	private String mem_profile;
 	private String mem_bdate;	/* 회원이 블랙리스트에 추가된 날짜 */
-
+	private String bank_token;   // 은행 토큰
+	private String bank_user_num;  // 회원일련번호
+	private String bank_code;   // 은행코드
+	private String bank_fin_num;  // 핀테크넘버
+	private String bank_name;  // 은행명
+	private String bank_acc;  // 계좌
+	private String bank_acc_name;  // 예금주명
+	
+	
 }

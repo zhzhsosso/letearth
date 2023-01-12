@@ -31,17 +31,6 @@
     -ms-border-radius: 50%;
     border-radius: 50%;
 }
-.btn {
-	background: #674df0;
-    line-height: 30px;
-    padding: 0 15px;
-    font-size: 11px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #fff;
-    margin-right: 10px;
-}
 </style>
  <script>
 $(document).ready(function(){
@@ -133,8 +122,7 @@ function deleteMember() {
 		<div class="col-lg-8">
 			<div class="text-center">
 				<span class="user-img" style="background-image: url('${memVO.mem_profile}'); vertical-align: middle;"></span> <br><br>
-				<span style="color: black;"><fmt:formatDate value="${memVO.mem_cr_dt }"/> 가입</span>
-				
+				<span style="color: #414934; font-weight: bold;'"><fmt:formatDate value="${memVO.mem_cr_dt }"/> 가입</span>
 			</div>
 		</div>
 	</div>
@@ -142,11 +130,16 @@ function deleteMember() {
 	<div class="row justify-content-center">
 		<div class="col-lg-8">
 			<div class="section-title text-center">
-				<form id="contact-form" action="assets/contact.php" method="post">
+				<form method="post">
 				아이디 <input type="text" name="name" value="${memVO.mem_id }" class="textBox" readonly="readonly"> <br>
 				이름 <input type="text" name="name" value="${memVO.mem_name }" class="textBox" readonly="readonly"> <br>
 				전화번호 <input type="text" name="name" value="${memVO.mem_phone }" class="textBox" readonly="readonly"> <br>
 				이메일 <input type="text" name="name" value="${memVO.mem_email }" class="textBox" readonly="readonly"> <br>
+				거래은행 <input type="text" name="name" value="${memVO.bank_name }" class="textBox" readonly="readonly"> 
+				<button type="button" class="myBtn2" id="account">계좌 등록</button><br>
+				예금주명 <input type="text" name="name" value="${memVO.bank_acc_name }" class="textBox" readonly="readonly"> <br>
+				계좌번호 <input type="text" name="name" value="${memVO.bank_acc }" class="textBox" readonly="readonly"> <br>
+				
 				</form>
 			</div>
 		</div>
@@ -155,11 +148,39 @@ function deleteMember() {
 	<div class="row justify-content-center">
 		<div class="col-lg-8">
 			<div class="text-center">
-				<button type="button" class="btn" id="myModify">수정</button>
-				<span class="btn" data-toggle="modal" data-target="#delete">탈퇴</span>
+				<button type="button" class="myBtn" id="myModify">수정</button>
+				<span class="myBtn" data-toggle="modal" data-target="#delete">탈퇴</span>
 			</div>
 		</div>
 	</div>
+	<!-- 계좌등록 -->
+	<div id="userauth" style="display: none">
+		<div>
+			<form action="https://testapi.openbanking.or.kr/oauth/2.0/authorize" method="get" name="oauth">
+				<!-- 고정값: code -->
+				<input type="hidden" name="response_type" value="code">
+				<!-- 오픈뱅킹에서 발급한 이용기관 앱의 Client ID -->
+				<input type="hidden" name="client_id" value="497a96be-b96b-4f3c-9a29-c8cbed7bd6b5">
+				<!-- 사용자인증이 성공하면 이용기관으로 연결되는 URL callback_uri -->
+				<input type="hidden" name="redirect_uri" value="http://localhost:8080/openbanking/callback">
+				<!-- Access Token 권한 범위 -->
+				<input type="hidden" name="scope" value="login inquiry transfer oob">
+				<!-- CSRF 보안위협에 대응하기 위해 이용기관이 세팅하는 난수값 32자리 -->
+				<input type="hidden" name="state" value="12345678123456781234567812345678">
+				<!-- 사용자인증타입 구분주 2)(0:최초인증, 1:재인증, 2:인증생략) -->
+				<input type="hidden" name="auth_type" value="0">
+
+				<div class="btnbtn">
+					<div class="blog-btn">
+						<button class="main-btn" type="button" onclick="ok()" id="okk">
+						사용자 인증
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
 	<!-- 리워드 추가 / 모달창 -->         
 	<!-- 모달 영역 시작 (탈퇴) -->
 	<form action="/mypage/myDelete" method="post" name="fr">

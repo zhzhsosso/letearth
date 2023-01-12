@@ -60,8 +60,16 @@ function shareFacebook() {
     var sendUrl = "http://localhost:8080/prodetail/info?pro_no=2";    
     window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);       //Facebook에 전송 정보 파라미터 삽입
 } 
- 
+
+$(window).scroll(function() {
+	  sessionStorage.scrollTop = $(this).scrollTop();
+	});
+
 $(document).ready(function() {
+	if(sessionStorage.scrollTop != "undefined") {
+	    $(window).scrollTop(sessionStorage.scrollTop);
+	}
+	
     //button click action
     $("#btnTwitter").click(function() {    
         shareTwitter();
@@ -87,8 +95,6 @@ $(document).ready(function() {
  	// 마감된 프로젝트
     if(${info[0].left_date } <= 0){
     	$("#blockArea").css("display", "block")
-    	$("#blockArea2").css("display", "block")
-    	$("#blockArea4").css("display", "block")
     	$("#blockArea")[0].innerHTML = "마감된 프로젝트 입니다!";    	
     	$("#blockArea3").css("display", "block")
     } 
@@ -99,8 +105,6 @@ $(document).ready(function() {
     
     if(startPjtDt > today){
     	$("#blockArea").css("display", "block")
-    	$("#blockArea2").css("display", "block")
-    	$("#blockArea4").css("display", "block")
     	$("#blockArea")[0].innerHTML = "오픈 예정인 프로젝트 입니다!";    	
     }
     
@@ -239,6 +243,28 @@ $(document).ready(function() {
 </script>          
           
 <style>
+#contentArea{
+	height:1500px;
+	overflow: auto;
+}
+		
+#contentArea::-webkit-scrollbar {
+	width: 10px;
+	  }
+	  	
+#contentArea::-webkit-scrollbar-thumb {
+	background-color: #B6AD90;
+	border-radius: 10px;
+	background-clip: padding-box;
+	border: 2px solid transparent;
+	}
+	  	
+#contentArea::-webkit-scrollbar-track {
+	background-color: none;
+	border-radius: 10px;
+	box-shadow: inset 0px 0px 5px white;
+	}
+
 #dark {
 		width: 100%;
 		height: 100%;
@@ -301,7 +327,8 @@ $(document).ready(function() {
         font-size: 15px;
 	    font-weight: 500;
 	    color: #212529;
-	    background: #e7ebef;
+	    background: #B6AD90;
+	    color: white;
 	    line-height: 24px;
 	    padding: 8px 15px;
 	    text-transform: uppercase;
@@ -402,7 +429,7 @@ $(document).ready(function() {
 }
 
 .singorp{
-	padding-top:60px;
+	padding-top:0px;
 }
 
 .btnbtn .blog-btn{
@@ -438,16 +465,16 @@ $(document).ready(function() {
 #rangeGraph span{
 	height:100%;
 	width:0%;
-	background:#29f0b4;
+	background:#A4AC85;
 }
 
 #blockArea {
 	width: 100%;
-    height: 86%;
+    height: 100%;
     position: absolute;
     z-index: 99;
-    background: #747373;
-    opacity: 0.90;
+    background: #829c88;
+    opacity: 0.95;
     margin: 0px 0px 0px -20px;
     font-size: 30px;
     text-align: center;
@@ -457,39 +484,6 @@ $(document).ready(function() {
     display:none;
     
 }
-
-#blockArea2 {
-	width: 60%;
-   	height:200px;
-    position: absolute;
-    z-index: 99;
-    background: #747373;
-    opacity: 0.30;
-    margin: 0px 0px 0px 30px;
-    font-size: 30px;
-    text-align: center;
-    padding-top: 200px;
-    color: #f7f7f9;
-    border-radius: 10px;
-    display:none;
-}
-
-#blockArea4 {
-	width: 80%;
-   	height:310px;
-    position: absolute;
-    z-index: 99;
-    background: #747373;
-    opacity: 0.30;
-    margin: 50px 0px 0px 30px;
-    font-size: 30px;
-    text-align: center;
-    padding-top: 200px;
-    color: #f7f7f9;
-    border-radius: 10px;
-    display:none;
-}
-
 
 #blockArea3 {
     width: 47%;
@@ -524,28 +518,38 @@ $(document).ready(function() {
 	<section class="project-details-area pt-120 pb-190" style="padding-top: 200px;">
 	<div id="pro_no" style="display: none">${pro_no}</div>
         <div class="container">
+        	<div class="titleArea" style="margin-bottom: 30px;">
+            	<h2 class="title">${info[0].pro_title }</h2> 
+            </div>
+<!--             <div> -->
+<%--             	<c:if test="${pdvo.cat_no eq '1'}"> --%>
+<!--             		<p>카테고리 : 클래스</p> -->
+<%--             	</c:if> --%>
+<%--             	<c:if test="${pdvo.cat_no eq '2'}"> --%>
+<!--             		<p>카테고리 : 상품</p> -->
+<%--             	</c:if> --%>
+<!--             </div> -->
             <div class="row">
                 <div class="col-lg-7">
                     <div class="project-details-thumb">
-                        <img src="../resources/assets/images/single-project-thumb.jpg" alt="project_thumb"> 
+                        <img src="${pdvo.pro_thum }" alt="project_thumb"> 
                     </div>
                 </div>
                 <div class="col-lg-5">
                     <div class="project-details-content">
-                          <h3 class="title" >${info[0].pro_title }</h3> 
                           <div id="blockArea">이미 마감된 프로젝트입니다!</div>
                         <div class="project-details-item">
                             <div class="item text-center">
-                                <h5 class="title">
+                                <h5 class="title" style="color: #6F7B63;">
                                 	<fmt:formatNumber>${info[0].pro_tp }</fmt:formatNumber>원</h5>
                                 <span>총 후원금액</span>
                             </div>
                             <div class="item text-center">
-                                <h5 class="title">${info[0].supporterCnt}명</h5>
+                                <h5 class="title" style="color: #6F7B63;">${info[0].supporterCnt}명</h5>
                                 <span>후원자</span>
                             </div>
                             <div class="item text-center">
-                                <h5 class="title">${info[0].left_date }일</h5>
+                                <h5 class="title" style="color: #6F7B63;">${info[0].left_date }일</h5>
                                 <span>남은 기간</span>
                             </div>
                         </div>
@@ -569,8 +573,9 @@ $(document).ready(function() {
                         <div class="projects-goal">
                             <span style="margin-top: -17px;">펀딩기간: <span><span id="startDt">${info[0].pro_st_dt}</span>~${info[0].pro_ed_dt}</span></span>
                         </div>
+                        
                         <div class="project-btn mt-25" style="scroll-behavior: smooth;">
-                            <a class="main-btn" href="#funding">프로젝트 후원하기</a>
+                            <a class="main-btn" href="#funding" style="background: #A4AC85;">프로젝트 후원하기</a>
                         </div>
                         <div class="project-share d-flex align-items-center">
                             <span>공유</span>
@@ -585,9 +590,9 @@ $(document).ready(function() {
                             <span>좋아요</span>
 							<div class="icon">
                             	<a onClick='chkLike("<%=session.getAttribute("mem_id") %>")'><i class="fa fa-heart"></i></a>
-                        	</div>                   
-                        </div>
-                    </div>
+                        	</div>
+                    	</div>
+                </div>
                 </div>
             </div>
         </div>
@@ -598,7 +603,6 @@ $(document).ready(function() {
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="tab-btns" id="funding">
-                    	<div id="blockArea3"></div>
                         <ul class="nav nav-pills" id="pills-tab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">프로젝트 소개</a>
@@ -616,15 +620,19 @@ $(document).ready(function() {
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                         	<div class="infoBtn">
+                        		<a href="#intro">프로젝트 소개</a>
                         		<a href="#story">스토리 소개</a>
                         		<a href="#budget">예산</a>
-                        		<a href="#date">일정</a>
+                        		<!-- <a href="#date">일정</a>  -->
                         		<a href="#team">팀 소개</a>
                         		<a href="#reward">리워드 소개</a>
                         		<a href="#policy">프로젝트 정책</a>
                         	</div>
+                        	
+                        	<div id="contentArea">
                         	<div class="project-details-content-top">
-                                <p style="color: black; font-size: 25px; padding-bottom: 0px;" id="intro">프로젝트 소개</p>
+                                <h3 id="intro" style="margin-top: 60px; margin-bottom: 30px; color: #B6AD90;"><i class="flaticon-checkmark"></i> 프로젝트 소개</h3>
+                                
                                 <!-- 뷰어 시작 -->
                                 <div id="pro_context">${pdvo.pro_context}</div>
                                 <div id="viewer" style="display: none"></div>	
@@ -644,8 +652,11 @@ $(document).ready(function() {
 									
 								</script>
                             </div>
+                            
+                            <hr>
+                            
                             <div class="project-details-content-top">
-                                <p style="color: black; font-size: 25px; padding-bottom: 0px;" id="story">스토리 소개</p>
+                                <h3 id="stroy" style="margin-top: 60px; color: #B6AD90;"><i class="flaticon-checkmark"></i> 스토리 소개</h3>
                                 <div id="pro_story" style="display: none;">${pdvo.pro_story}</div>
                                 <div id="viewer2"></div>
                                 <script>
@@ -664,67 +675,55 @@ $(document).ready(function() {
 									
 								</script>
                             </div>
+                            
+                            <hr>
+                            
                             <div class="project-details-item">
-                                <p style="color: black; font-size: 25px;" id="budget">프로젝트 예산</p>
-                                <div class="item">
-                                    <i class="flaticon-checkmark"></i>
-                                    <h5 class="title">예산 소개</h5>
-                                    <p>예산 소개는 여기</p>
+                                <h3 style="margin-top: 60px; margin-bottom: 30px; color: #B6AD90;" id="budget"><i class="flaticon-checkmark"></i> 프로젝트 예산</h3>
+                                <div class="item" style="margin-bottom: 75px; padding-left: 5px;">
+                                    <p>저희에게 후원해주신 소중한 금액으로는 후원자 님들에게 보여들릴 소중한 선물들, <br>
+									안전하게 받아보실 수 있도록 포장재 구입비 (렛어스 정책 상 포장지는 모두 일반 포장지가 아닌 생분해가 되는 포장지를 사용합니다), <br>
+									직원들에게 에너지가 되어 줄 인건비, <br>
+									그 외 배송비 및 펀딩 수수료로 사용될 예정입니다.</p>
                                 </div>
-                                <div class="item mt-45 mb-50">
-                                    <i class="flaticon-checkmark"></i>
-                                    <h5 class="title">예산</h5>
-                                    <p>예산 소개</p>
+                            </div>
+                            
+                            <hr>
+                            
+                            <div class="project-details-item">
+                                <h3 style="margin-top: 60px; margin-bottom: 30px; color: #B6AD90;" id="team"><i class="flaticon-checkmark"></i> 프로젝트 팀소개</h3>
+                                <div style="margin-bottom: 75px;">
+                                	<p style="text-align: center; font-size: 20px; line-height: 35px; color: #838694;">${pdvo.par_intro }</p>
                                 </div>
                             </div>
                             
-                            <div class="project-details-content-top">
-                                <p style="color: black; font-size: 25px;" id="date">프로젝트 일정</p>
-                                <ul>
-                                    <li><i class="flaticon-check"></i>프로젝트 공개일 : </li>
-                                    <li><i class="flaticon-check"></i>프로젝트 마감일 : </li>
-                                    <li><i class="flaticon-check"></i>리워드 제작 시기 : </li>
-                                    <li><i class="flaticon-check"></i>배송정보 취합 : </li>
-                                    <li><i class="flaticon-check"></i>배송 예정일 : </li>
-                                </ul>
-                            </div>
+                            <hr>
                             
                             <div class="project-details-item">
-                                <p style="color: black; font-size: 25px;" id="team">프로젝트 팀소개</p>
-                                <p>Nulla in ex at mi viverra sagittis ut non erat raesent nec congue elit. Nunc arcu odio, convallis a lacinia ut, tristique id eros. Suspendisse leo erat, pellentesque et commodo vel, varius in felis. Nulla mollis turpis porta justo eleifend volutpat. Cras malesuada nec magna eu blandit. Nam sed efficitur ante. Quisque lobortis sodales risus, eu dapibus dolor porta vitae. Vestibulum eu ex auctor, scelerisque velit sit amet, vehicula sapien.</p>
-                            </div>
-                            
-                            <div class="project-details-item">
-                                <p style="color: black; font-size: 25px;" id="reward">리워드 소개</p>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="project-details-thumb">
-                                            <img src="../resources/assets/images/project-details-2.jpg" alt="리워드 사진">
-                                        </div>
-                                    </div>
+                                <h3 style="margin-top: 60px; margin-bottom: 30px; color: #B6AD90;" id="reward"><i class="flaticon-checkmark"></i>리워드 소개</h3>
+                                <div style="text-align: center; margin-bottom: 75px;">
+	                                <c:forEach var="reward" items="${reward}" step="1">
+		                                <p class="text" style="font-size: 20px; color: #838694; line-height: 24px; font-weight: 400; margin: 16px;"><i class="flaticon-check"></i>
+		                                	${reward.reward_title } <br>
+		                                	${reward.reward_content } <br>
+		                                	${reward.reward_price }원 <br>
+		                                </p>
+	                                </c:forEach>
                                 </div>
                                 
-                                <c:forEach var="reward" items="${reward}" step="1">
-                                <p class="text"><i class="flaticon-check"></i>
-                                	${reward.reward_title } <br>
-                                	${reward.reward_content } <br>
-                                	${reward.reward_price }원 <br>
-                                </p>
-                                </c:forEach>
-                                
                             </div>
+                            
+                            <hr>
                             
                             <div class="project-details-item" id="policy">
-                                <p style="color: black; font-size: 25px;">프로젝트 정책</p>
-                                <div class="item">
-                                    <i class="flaticon-checkmark"></i>
-                                    <h5 class="title">프로젝트 정책1</h5>
-                                    <p>${intro[0].pro_policy }</p>
+                                <h3 style="margin-top: 60px; margin-bottom: 30px; color: #B6AD90;" id="reward"><i class="flaticon-checkmark"></i>프로젝트 정책</h3>
+                                <div style="margin-bottom: 100px;">
+                                    <p style="font-size: 18px; line-height: 30px; color: #414934">${pdvo.pro_policy }</p>
                                 </div>
                             </div>
                                 
                         </div>
-                       
+                       </div>
                         
                         <!-- 알림 -->
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
@@ -752,7 +751,7 @@ $(document).ready(function() {
 	                                        <div class="comment-one__single">
 		                                        <div class="btnbtn">
 		                                            <div class="blog-btn">
-				                                       <button class="main-btn" type="button" onclick="sncheck();">작성완료</button>
+				                                       <button class="main-btn" type="button" onclick="sncheck();" style="background: #A4AC85;">작성완료</button>
 				                                    </div>
 			                                    </div>
 		                                    </div>
@@ -801,7 +800,6 @@ $(document).ready(function() {
                             <div class="comment-one mt-50">
                            	
                            		<!-- 댓글 작성하기 -->
-                           		<c:if test="${sessionScope.mem_id ne null }">
                            			 <div class="comment-form">
 		                                <form role="form" class="contact-one__form" name="urfr" method="post">
 		                                
@@ -831,7 +829,7 @@ $(document).ready(function() {
 		                                            <div class="comment-one__single">
 		                                            	<div class="btnbtn">
 				                                            <div class="blog-btn">
-						                                        <button class="main-btn" type="button" onclick="urcheck();">작성완료</button>
+						                                        <button class="main-btn" type="button" onclick="urcheck();" style="background: #A4AC85;">작성완료</button>
 						                                    </div>
 					                                    </div>
 				                                    </div>
@@ -840,7 +838,6 @@ $(document).ready(function() {
 		                                    </div>
 		                                </form>
 		                           	</div>
-		                           	</c:if>
 		                       	<!-- 댓글 작성하기 --> 
 		                       	
 		                       	<!-- 회원댓글 -->
@@ -872,34 +869,31 @@ $(document).ready(function() {
 							                            </div>
 						                            </c:when>
 					                            </c:choose>
-					                            <c:if test="${sessionScope.mem_id ne null }">
-						                            <c:choose>
-						                            	<c:when test="${sessionScope.mem_id ne ur.mem_id }">
-							                            	<a href="#" data-toggle="modal" data-target="#reportreplyMo" onclick="javascript:transferPno(${ur.reply_no});">
-																신고하기
-															</a>
-						                            	</c:when>
-						                            	<c:when test="${sessionScope.mem_id eq ur.mem_id }">
-						                            		 <div class="blog-one__meta">
-							                            		<a>내가 쓴 댓글</a>
-							                            	</div>
-						                            	</c:when>
-						                            	
-						                            </c:choose>
-					                          	 </c:if>
+					                            <c:choose>
+					                            	<c:when test="${sessionScope.mem_id ne ur.mem_id }">
+						                            	<a href="#" data-toggle="modal" data-target="#reportreplyMo" onclick="javascript:transferPno(${ur.reply_no});">
+															신고하기
+														</a>
+					                            	</c:when>
+					                            	<c:when test="${sessionScope.mem_id eq ur.mem_id }">
+					                            		 <div class="blog-one__meta">
+						                            		<a>내가 쓴 댓글</a>
+						                            	</div>
+					                            	</c:when>
+					                            	
+					                            </c:choose>
+					                           
 				                            </div>
 	                                        <p>${ur.reply_content }</p>
 	                                    </div>
 	                                    
-		                                <!-- 답글쓰기 버튼 판매자만 보이게 -->
-		                                <c:if test="${sessionScope.mem_id eq pdvo.mem_id }">
-		                                    <div class="blog-btn">
-	<!-- 	                                        <a href="javascript:onDisplay()" class="main-btn">답글쓰기 </a> -->
-		                                        <a href="#" class="rereplymd main-btn" data-toggle="modal" data-target="#moaModal" onclick="javascript:transferRno(${ur.reply_no});">
-													답글쓰기
-												</a>
-		                                    </div>
-	                                    </c:if>
+		                                <!-- 답글쓰기 버튼 관리자만 보이게 -->
+	                                    <div class="blog-btn">
+<!-- 	                                        <a href="javascript:onDisplay()" class="main-btn">답글쓰기 </a> -->
+	                                        <a href="#" class="rereplymd main-btn" data-toggle="modal" data-target="#moaModal" onclick="javascript:transferRno(${ur.reply_no});">
+												답글쓰기
+											</a>
+	                                    </div>
 		                                <!-- 답글쓰기 버튼 관리자만 보이게 -->
 	                                </div>
 	                                
@@ -936,33 +930,65 @@ $(document).ready(function() {
                      <!-- 커뮤니티 -->
                      
                      </div>
-                     <c:if test="${sessionScope.mem_id ne null }">
-	                     <div class="singorp">
-		                     <img src="../resources/assets/images/singo.png" alt="reportsingo">
-		                     <a href="#" id="rePort">이 프로젝트 신고하기</a>
-	                     </div>
-                     </c:if>
+                     
+                     <hr>
+                     <div class="singorp">
+	                     <img src="../resources/assets/images/singo.png" alt="reportsingo">
+	                     <a href="#" id="rePort" style="color: #828d77;">이 프로젝트 신고하기</a>
+                     </div>
+                     <hr>
+                     
                 </div>
                 
 				<!-- 사이드바 - 리워드 선택 reward -->
                 <div class="col-lg-4 col-md-7 col-sm-9">                	
                     <div class="project-details-sidebar">                    
-                        <div class="project-details-park mt-30 box" style="text-align: center; padding: 35px;">
-                        	<div id="blockArea2"></div>
-                            <h4 class="title" style="margin-top: 25px;">리워드 없이 후원하기</h4>
-                            <a class="main-btn" id="withoutReward" style="width: 155px;">후원하기</a>
+                        <div class="project-details-park mt-30 box" style="text-align: center; padding: 35px; background: #d7d1b9;">
+<!--                         	<div id="blockArea2"></div> -->
+                            <h4 class="title" style="margin-top: 25px; color: white;">리워드 없이 후원하기</h4>
+                            
+                            <jsp:useBean id="now" class="java.util.Date" />
+							<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today" />
+                            <c:choose>
+	                            <c:when test="${info[0].left_date < 0 }">
+	                            	<a class="main-btn" style="width: 155px; background-color: #A4AC85;">마감</a>
+	                            </c:when>
+	                            
+	                            <c:when test="${info[0].left_date > 0 }">
+	                            	<c:if test="${pdvo.pro_st_dt <= today }">
+	                            		<a class="main-btn" id="withoutReward" style="width: 155px; background-color: #A4AC85;">후원하기</a>
+	                            	</c:if>
+	                            	<c:if test="${pdvo.pro_st_dt > today }">
+	                            		<a class="main-btn" style="width: 155px; background-color: #A4AC85;">오픈예정</a>
+	                            	</c:if>
+	                            </c:when>
+                            </c:choose>
                         </div>	
                        
                         <c:forEach var="reward" items="${reward}" step="1">
-                        	<div id="blockArea4"></div>
-	                        <div class="project-details-park mt-30 box" style="text-align: center; padding: 35px;">
-	                            <h4 class="title">${reward.reward_title}</h4>
+<!--                         	<div id="blockArea4"></div> -->
+	                        <div class="project-details-park mt-30 box" style="text-align: center; padding: 35px; background: #d7d1b9;">
+	                            <h4 class="title" style="color: white;">${reward.reward_title}</h4>
 	                            <ul>
 	                                <li>${reward.reward_content}</li>
 	                                <li><span>가격</span> ${reward.reward_price}원</li>
 	                                <li><span>재고</span> ${reward.reward_stock}개</li>
 	                            </ul>
-	                            <a class="main-btn" href="/order/or_main?pro_no=${reward.pro_no }&reward_no=${reward.reward_no}" style="width: 155px;">선택</a>
+	                            <c:choose>
+	                            <c:when test="${info[0].left_date < 0 }">
+	                            	<a class="main-btn" style="width: 155px; background-color: #A4AC85;">마감</a>
+	                            </c:when>
+	                            
+	                            <c:when test="${info[0].left_date > 0 }">
+	                            	<c:if test="${pdvo.pro_st_dt <= today }">
+	                            		 <a class="main-btn" href="/order/or_main?pro_no=${reward.pro_no }&reward_no=${reward.reward_no}" style="width: 155px; background-color: #A4AC85;">선택</a>
+	                            	</c:if>
+	                            	<c:if test="${pdvo.pro_st_dt > today }">
+	                            		<a class="main-btn" style="width: 155px; background-color: #A4AC85;">오픈예정</a>
+	                            	</c:if>
+	                            </c:when>
+                            	</c:choose>
+	                           
 	                        </div>
                         </c:forEach>                      
                     </div>
