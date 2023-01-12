@@ -33,11 +33,11 @@
 	}
 	
 	#giftMo-btn {
+		box-shadow: 1px 1px 3px 1px black;
 		padding: 5px;
 		margin: 10px;
 		width: 20%;
 		border: 1px;
-		border-style: solid;
 		border-radius: 5px;
 		background: white;
 		color: black;
@@ -183,13 +183,13 @@
                   <div class="screen">
                   	<div style="margin: 15px 10px;">
                 		<button type="button" id="giftMoCl"><i class="fa-solid fa-circle-xmark"></i></button> 
-                		<h4>선물 변경</h4>
+                		<h4><b>선물 변경</b></h4>
                 		<hr>
                 	</div>
                 	<div class="giftMoBody">
                 		<div class="tedori" style="padding: 20px; margin: 20px">
                 			<div style="display: flex;">
-                			<h4 style="width:90%">1,000원 +</h4>
+                			<h4 style="width:90%;color: black"><b>1,000원 +</b></h4>
                 			<button type="button" id="giftMo-btn" style="margin-top: 0px; background: #6F7B63; color: white;" onclick="nonegift()">선택</button>
                 			</div>
                 			<a style="font-size: 13px">선물없이 후원하기</a> 
@@ -218,12 +218,12 @@
                 		  <div>
                 		  	<div style="display: flex;">
                 		  	<input type="hidden" id="re_no" value="${re.reward_no }">
-                			<h4 style="width:90%"><fmt:formatNumber>${re.reward_price }</fmt:formatNumber> +</h4>
+                			<h4 style="width:90%"><b><fmt:formatNumber>${re.reward_price }</fmt:formatNumber> +</b></h4>
                 			<button type="button" id="giftMo-btn" style="margin-top: 0px; background: #6F7B63; color: white;" onclick="choice(${re.reward_no})">선택</button>
                 			</div>
-                			<p style="font-size: 13px">${re.reward_title }</p>
-                			<p style="font-size: 13px">수량 ${re.reward_stock }</p>
-                			<p style="font-size: 13px">예상 전달일 ${re.reward_shipmonth } ${re.reward_shipdate }</p>
+                			<p style="font-size: 13px; color: black">${re.reward_title }</p>
+                			<p style="font-size: 13px; color: black">수량 ${re.reward_stock }</p>
+                			<p style="font-size: 13px; color: black">예상 전달일 ${re.reward_shipmonth } ${re.reward_shipdate }</p>
                 		  </div>
                 		<div>
                 		  <details>
@@ -247,12 +247,12 @@
                 		  <div>
                 		  	<div style="display: flex;">
                 		  	<input type="hidden" id="re_no" value="${re.reward_no }">
-                			<h4 style="width:90%"><fmt:formatNumber>${re.reward_price }</fmt:formatNumber> +</h4>
+                			<h4 style="width:90%"><b><fmt:formatNumber>${re.reward_price }</fmt:formatNumber> +</b></h4>
                 			<button type="button" id="giftMo-btn" style="margin-top: 0px; background: #6F7B63; color: white;" onclick="choice(${re.reward_no})" disabled>품절</button>
                 			</div>
-                			<p style="font-size: 13px">${re.reward_title }</p>
-                			<p style="font-size: 13px">수량 ${re.reward_stock }</p>
-                			<p style="font-size: 13px">예상 전달일 ${re.reward_shipmonth } ${re.reward_shipdate }</p>
+                			<p style="font-size: 13px; color: black">${re.reward_title }</p>
+                			<p style="font-size: 13px; color: black">수량 ${re.reward_stock }</p>
+                			<p style="font-size: 13px; color: black">예상 전달일 ${re.reward_shipmonth } ${re.reward_shipdate }</p>
                 		  </div>
                 		<div>
                 		  <details>
