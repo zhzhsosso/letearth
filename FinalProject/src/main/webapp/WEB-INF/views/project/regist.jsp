@@ -156,13 +156,13 @@ $(document).ready(function(){
 				<input type="radio" id="select2" name="par_cat" value="사업자"><label for="select2" style="position: inherit;">사업자</label>
 			</div>
 			
-			<label class="btn btn-primary btn-lg" for="input-file" id="scan" style="position: inherit;">
+			<label class="btn btn-primary" for="input-file" id="scan" style="background-color: #414934; position: inherit; border: none;">
 				주민등록증 추가 </label>
 			<div style="display: none">
 				<input type="file" id="input-file" name="par_scan" />
 			</div>
 
-			<label class="btn btn-primary btn-lg" for="input-file" id="scan2" style="position: inherit;">
+			<label class="btn btn-primary" for="input-file" id="scan2" style="background-color: #414934; position: inherit; border: none;">
 				사업자 등록증 추가 </label>
 			<div style="display: none">
 				<input type="file" id="input-file" name="par_scan" />
@@ -175,7 +175,7 @@ $(document).ready(function(){
 					</div>
 					<small>창작자 개인이나 팀의 사진을 올려주세요</small>
 				</div>
-			<label class="btn btn-primary btn-lg" for="input-file" style="position: inherit;">
+			<label class="btn btn-primary" for="input-file" style="background-color: #414934; position: inherit; border: none;">
 				사진 업로드 </label>
 			<div style="display: none">
 				<input type="file" id="input-file" name="" />
@@ -270,7 +270,9 @@ $(document).ready(function(){
 			계좌 번호 <br> 
 			<input type="text" name="par_acc" class="textBox" id="par_acc" onKeyup="this.value=this.value.replace(/[^-0-9]/g,'');" value=${par_acc }>
 			<br>
-			<button type="button" class="main-btn" style="float: right;" onclick="createReward();">저장</button>
+			<div class="text-center">
+				<button type="button" class="main-btn" onclick="createReward();" style="background-color: #A4AC85; border: none;">저장</button>
+			</div>
 		</div>
 	</div>
 </form>

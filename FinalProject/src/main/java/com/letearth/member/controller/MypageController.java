@@ -1,7 +1,6 @@
 package com.letearth.member.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -24,9 +23,6 @@ import com.letearth.notice.domain.NoticeVO;
 import com.letearth.order.domain.OrderVO;
 import com.letearth.prodetail.domain.LikeyVO;
 import com.letearth.prodetail.domain.ProReplyVO;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping("/mypage/*")
@@ -185,6 +181,22 @@ public class MypageController {
 	}
 	
 	/**
+	 * 배송 상태 업데이트
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/myProAdmin", method = RequestMethod.POST)
+	public void myProAdminPOST(OrderVO ordVO) throws Exception {
+		
+		mylog.debug(ordVO + "");
+		
+		memService.updateMyOrder(ordVO);
+		
+		mylog.debug("myProAdmin: 배송 상태 업데이트 완료!");
+		mylog.debug("myProAdmin: 판매자 관리 탭 이동!");
+		
+	}
+	
+	/**
 	 * 펀딩 프로젝트 이동
 	 */
 	@RequestMapping(value = "/myFunding", method = RequestMethod.GET)
@@ -209,6 +221,22 @@ public class MypageController {
 		model.addAttribute("detailOrder", memService.detailOrder(ordVO));
 		
 		mylog.debug("myFunDetail: 주문 상세내역 조회 완료! + 상세내역 이동");
+	}
+	
+	/**
+	 * 배송지 변경
+	 */
+	@RequestMapping(value = "/myFunDetail", method = RequestMethod.POST)
+	public void myFunDetailPOST(OrderVO ordVO) throws Exception {
+		
+		mylog.debug(ordVO.getAddress());
+		mylog.debug(ordVO.getAddress_detail());
+		mylog.debug(ordVO.getAddress_no());
+		mylog.debug(ordVO.getOrder_no()+"");
+		 
+		memService.changeAddr(ordVO);
+		
+		mylog.debug("myFunDetail: 배송지 변경 완료! + 상세내역 이동");
 	}
 	
 	/**

@@ -72,6 +72,7 @@ function createReward(seq){
 				type:"get",
 				datatype:"html",
 				success:function(data){
+					$('html, body').scrollTop(0);
 					$("#project").html(data);
 				}	
 			});
@@ -147,7 +148,7 @@ function createReward(seq){
 						<small>스토리를 작성하기 전 렛어스에서 제공하는 광고 심의 가이드를 반드시 확인해주세요</small>
 					</div>
 				</div>
-				<div class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="btn">가이드 라인 확인</div>
+				<div class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="btn" style="background-color: #414934; position: inherit; border: none;">가이드 라인 확인</div>
 				<br> <br> <input type="checkbox" value="agree" id="check">
 				동의하기
 
@@ -215,7 +216,10 @@ function createReward(seq){
 				<!-- 모달영역 끝 -->
 
 				<input type="hidden" name="result" value="" id="result">
-				<button type="button" class="main-btn" style="float: right;" onclick="createReward();">다음</button>
+				<div class="text-center">
+					<button type="button" class="main-btn" onclick="createReward();" style="background-color: #A4AC85; border: none;">다음</button>
+				</div>
+				<br>
 			</div>
 		</div>
 	</div>

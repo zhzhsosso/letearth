@@ -6,9 +6,10 @@
 <link rel="stylesheet" href="../resources/assets/css/project.css">
 <link rel="stylesheet" href="../resources/assets/css/board.css">
 <script src="../resources/assets/js/vendor/jquery-3.5.1.min.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
 <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
@@ -48,91 +49,79 @@ function myFunDetail(num){
 <script>
 	var strList = ${jsonString};
 	
-	var countries = [
-        { Name: "", Id: 0 },
-        { Name: "United States", Id: 1 },
-        { Name: "Canada", Id: 2 },
-        { Name: "United Kingdom", Id: 3 }
+	var shipping_status = [
+        { Name: "미정", Id: 1 },
+        { Name: "배송준비중", Id: 2 },
+        { Name: "배송시작", Id: 3 },
+        { Name: "배송완료", Id: 4 },
+        { Name: "펀딩취소", Id: 5 },
+    ];
+
+	var shipping_com = [
+        { Name: "대한통운", Id: "대한통운" },
+        { Name: "우체국택배", Id: "우체국택배" },
+        { Name: "로젠택배", Id: "로젠택배" },
+        { Name: "한진택배", Id: "한진택배" },
     ];
  
     $("#jsGrid").jsGrid({
         width: "100%",
-        height: "400px",
+        height: "600px",
  
         inserting: true,
-        editing: true,
         sorting: true,
+        editing: true,
         paging: true,
- 
+        autoload: true,
+        
         data: strList,
- 
+        
+        controller: {
+        	updateItem: function(item) {
+        		console.log(item);
+        		$.ajax({
+        			async : true,
+        			type:'post',
+        			url:"/mypage/myProAdmin",
+        			data: {
+        				shipping_com : item.shipping_com,
+        				shipping_status : item.shipping_status,
+        				shipping_no : item.shipping_no,
+        				order_no : item.order_no,
+        			},
+        			dataType : "text",
+        			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+        			success : function(resp) {
+        				Swal.fire({
+        					icon : 'info',
+        					title : '배송 정보가 등록되었습니다.',
+        					confirmButtonText : '확인'
+        				})
+        			},
+        			error: function(jqXHR, textStatus, errorThrown) {
+        			    alert("ERROR : " + textStatus + " : " + errorThrown);
+        			}        
+        		});
+			},
+        },
+
         fields: [
-            { name: "order_no", title:"주문번호", type: "text", width: 150, validate: "required" },
-            { name: "pro_title", title:"프로젝트", type: "text", width: 200 },
-            { name: "mem_id", title:"회원 아이디", type: "text", width: 200 },
-            { name: "order_date", title:"주문일시", type: "text", width: 200 },
-            { name: "reward_title", title:"리워드", type: "text", width: 200 },
-            { name: "total_price", title:"금액", type: "number", width: 200 },
-            { name: "shipping_status", title:"배송상태", type: "text", width: 200 },
-//             { name: "Country", type: "select", items: countries, valueField: "Id", textField: "Name" },
-//             { name: "Married", type: "checkbox", title: "Is Married", sorting: false },
-            { type: "control" }
+            { name: "order_trade_num", title:"주문번호", width: 150, align: "center", editing: false },
+            { name: "pro_title", title:"프로젝트", width: 200, align: "center"},
+            { name: "mem_id", title:"회원 아이디", width: 120, align: "center" },
+            { name: "create_date", title:"주문일시", width: 200, align: "center" },
+            { name: "reward_title", title:"리워드", width: 200, align: "center" },
+            { name: "total_price", title:"금액", type: "number", width: 100, align: "center", editing: false },
+            { name: "shipping_status", type: "select", items: shipping_status, title:"배송상태", valueField: "Id", textField: "Name", align: "center" },
+            { name: "shipping_com", type: "select", items: shipping_com, title:"회사", valueField: "Id", textField: "Name", align: "center" },
+            { name: "shipping_no", title:"운송장 번호", type: "text", width: 200, align: "center" },
+            { type: "control", deleteButton: false, editButton : true }
         ]
     });
-    
-    var colModel = $("#jqgrid").jqGrid('getGridParam', 'name'); // 컬럼명을 배열형태로 가져온다.
-
-    alert(colModel);
-    
-// 	jQuery("#jqgrid").jqGrid("setLabel", colModel[0]['name'], "abc"); // setLabel 함수로 0번째 컬럼명을 abc로 변경, for문으로 돌려도 된다.
-
+   
 </script>
-<br><br>
+<br> <br>
+<h3 style="text-align: center; color: #414934;">판매자 주문 관리 페이지</h3>
+<br> <br>
 
-<div id="jsGrid"></div>
-    
-<div class="board_list_wrap">
-	<div class="board_list">
-		<div class="top">
-			<div class="mem_id">주문번호</div>
-			<div class="mem_id">프로젝트</div>
-			<div class="mem_id">아이디</div>
-			<div class="mem_id">구매날짜</div>
-			<div class="mem_id">리워드</div>
-			<div class="mem_id">가격</div>
-			<div class="mem_id">배송상태</div>
-		</div>
-		
-		<c:forEach var="ordList" items="${ordList }">
-			<div>
-				<div class="mem_id"><span id="myFunDetail" onclick="myFunDetail(${ordList.order_no });">${ordList.order_trade_num }</span></div>
-				<div class="mem_id"><a href="/prodetail/info?pro_no=${ordList.pro_no}">${ordList.pro_title }</a></div>
-				<div class="mem_id">${ordList.mem_id }</div>
-				<div class="mem_id"><fmt:formatDate value="${ordList.order_date }"/></div>
-				<div class="mem_id">${ordList.reward_title }</div>
-				<div class="mem_id"><fmt:formatNumber value="${ordList.total_price }" pattern="#,###"/></div>
-				<div class="mem_id">
-				<c:choose>
-					<c:when test="${ordList.shipping_status == 1 }">
-						결제완료
-					</c:when>
-					<c:when test="${ordList.shipping_status == 2 }">
-						배송준비중
-					</c:when>
-					<c:when test="${ordList.shipping_status == 3 }">
-						배송시작
-					</c:when>
-					<c:when test="${ordList.shipping_status == 4 }">
-						배송완료
-					</c:when>
-					<c:when test="${ordList.shipping_status == 5 }">
-						펀딩취소
-					</c:when>
-				</c:choose>
-				</div>
-			</div>
-		</c:forEach>
-
-
-	</div>
-</div>
+<div id="jsGrid" class="board_list"></div>

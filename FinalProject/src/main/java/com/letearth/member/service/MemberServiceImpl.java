@@ -112,6 +112,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	/**
+	 * 배송지 변경
+	 */
+	@Override
+	public void changeAddr(OrderVO ordVO) throws Exception {
+		memDAO.changeAddr(ordVO);
+	}
+
+	/**
 	 * 주문 취소
 	 */
 	@Override
@@ -120,7 +128,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	/**
-	 * 마이페이지 이동 (프로젝트 조회)
+	 * 마이페이지 이동 (나의 프로젝트 조회)
 	 */
 	@Override
 	public List<PlusVO> getProject(PlusVO plusVO) throws Exception {
@@ -133,6 +141,14 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<PlusVO> getMyOrder(PlusVO plusVO) throws Exception {
 		return memDAO.getMyOrder(plusVO);
+	}
+	
+	/**
+	 * 프로젝트 상태 업데이트
+	 */
+	@Override
+	public Integer updateMyOrder(OrderVO ordVO) throws Exception {
+		return memDAO.updateMyOrder(ordVO);
 	}
 
 	/**

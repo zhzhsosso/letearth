@@ -11,20 +11,10 @@
 }
 
 #rangeGraph span{
+	max-width: 100%;
     height:100%;
     width:0%;
-    background:#29f0b4;
-}
-.user {
-	background: #674df0;
-    line-height: 30px;
-    padding: 0 15px;
-    font-size: 11px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #fff;
-    margin-right: 10px;
+    background:#A4AC85;
 }
 </style>
 <script type="text/javascript">
@@ -35,6 +25,7 @@ function myProAdmin(num){
 		type:"get",
 		datatype:"html",
 		success:function(data){
+			$('html, body').scrollTop(0);
 			$("#myProject").html(data);
 		}	
 	});
@@ -45,6 +36,7 @@ function myProUpdate(num){
 		type:"get",
 		datatype:"html",
 		success:function(data){
+			$('html, body').scrollTop(0);
 			location.href='/project/create';
 		}	
 	});
@@ -65,28 +57,28 @@ function myProUpdate(num){
 						</div>
 						<div class="explore-projects-content">
 							<div class="item d-flex align-items-center">
-								<span>D - ${pro.left_date}</span>
+								<span style="background: #6F7B63;">D - ${pro.left_date}</span>
 							<c:choose>
 								<c:when test="${pro.pro_status == 1}">
-									<span class="user" style="border: none;">임시저장</span>
+									<span style="background: #6F7B63;" style="border: none;">임시저장</span>
 								</c:when>
 								<c:when test="${pro.pro_status == 2}">
-									<span class="user" style="border: none;">승인요청</span>
+									<span style="background: #6F7B63;" style="border: none;">승인요청</span>
 								</c:when>
 								<c:when test="${pro.pro_status == 3}">
-									<span class="user" style="border: none;">승인</span>
+									<span style="background: #6F7B63;" style="border: none;">승인</span>
 								</c:when>
 								<c:when test="${pro.pro_status == 4}">
-									<span class="user" style="border: none;">반려</span>
+									<span style="background: #6F7B63;" style="border: none;">반려</span>
 								</c:when>
 								<c:when test="${pro.pro_status == 5}">
-									<span class="user" style="border: none;">판매중</span>
+									<span style="background: #6F7B63;" style="border: none;">판매중</span>
 								</c:when>
 								<c:when test="${pro.pro_status == 6}">
-									<span class="user" style="border: none;">마감</span>
+									<span style="background: #6F7B63;" style="border: none;">마감</span>
 								</c:when>
 								<c:when test="${pro.pro_status == 7}">
-									<span class="user" style="border: none;">판매중지</span>
+									<span style="background: #6F7B63;" style="border: none;">판매중지</span>
 								</c:when>
 							</c:choose>
 							</div>  <br>
@@ -101,7 +93,7 @@ function myProUpdate(num){
 										<li id="rate">${pro.achievement_rate}%</li>
 									</ul>
 									<div id="rangeGraph">
-										<span></span>
+										<span style="width: ${pro.achievement_rate}%"></span>
 									</div>
 								</div>
 							</div>
@@ -111,13 +103,13 @@ function myProUpdate(num){
 							</div> <br>
 							<c:choose>
 								<c:when test="${pro.pro_status == 1}">
-									<button type="button" class="user" style="border: none;" onclick="myProUpdate(${pro.pro_no});">프로젝트 작성</button>
+									<button type="button" class="myBtn2" style="border: none;" onclick="myProUpdate(${pro.pro_no});">프로젝트 작성</button>
 								</c:when>
 								<c:when test="${pro.pro_status == 5}">
-									<button type="button" class="user" style="border: none;" onclick="myProAdmin(${pro.pro_no});">판매 관리</button>
+									<button type="button" class="myBtn2" style="border: none;" onclick="myProAdmin(${pro.pro_no});">판매 관리</button>
 								</c:when>
 								<c:when test="${pro.pro_status == 6}">
-									<button type="button" class="user" style="border: none;">판매 관리</button>
+									<button type="button" class="myBtn2" style="border: none;">판매 관리</button>
 								</c:when>
 							</c:choose>
 						</div>

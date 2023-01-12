@@ -27,17 +27,6 @@
     -ms-border-radius: 50%;
     border-radius: 50%;
 }
-.btn {
-	background: #674df0;
-    line-height: 30px;
-    padding: 0 15px;
-    font-size: 11px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #fff;
-    margin-right: 10px;
-}
 </style>
  <script>
 function modifyMember() {
@@ -77,7 +66,8 @@ function modifyMember() {
 	<div class="row justify-content-center">
 		<div class="col-lg-8">
 			<div class="text-center">
-				<span class="user-img" style="background-image: url('../resources/assets/images/author.jpg'); vertical-align: middle;"></span>
+				<span class="user-img" style="background-image: url('${memVO.mem_profile}'); vertical-align: middle;"></span> <br><br>
+				<span style="color: #414934; font-weight: bold;'"><fmt:formatDate value="${memVO.mem_cr_dt }"/> 가입</span>
 			</div>
 		</div>
 	</div>
@@ -98,7 +88,7 @@ function modifyMember() {
 	<div class="row justify-content-center">
 		<div class="col-lg-8">
 			<div class="text-center">
-				<button type="button" class="btn" id="myModify" onclick="modifyMember();">수정</button>
+				<button type="button" class="myBtn" id="myModify" onclick="modifyMember();">수정</button>
 			</div>
 		</div>
 	</div>

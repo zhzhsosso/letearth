@@ -48,18 +48,6 @@ label{ position:absolute; top:10px; right:10px; cursor:pointer; font:600 .8em Ar
 
 </style>
 <script type="text/javascript">
-// if(('#name').val() != null){
-// 	if($('#cat_no option:selected').val() == 1){
-// 		$("#cat_name option").remove();
-// 	   	$("#cat_name").append("<option>쿠킹</option>");
-// 	   	$("#cat_name").append("<option>강의</option>");
-// 	} else {
-// 	   	$("#cat_name option").remove();
-// 	   	$("#cat_name").append("<option>비건</option>");
-// 	   	$("#cat_name").append("<option>친환경</option>");
-// 	}
-// }
-
 $("#cat_no").change(function(){
     var cat_no=$(this).val();
     if(cat_no == 1){
@@ -204,6 +192,7 @@ function checkInfo() {
 					type:"get",
 					datatype:"html",
 					success:function(data){
+						$('html, body').scrollTop(0);
 						$("#project").html(data);
 					}	
 				});
@@ -324,13 +313,10 @@ function checkInfo() {
 					</div>
 				</div>
 
-				<div class="container">
-					<label class="main-btn" for="input-file">
-						사진 업로드
-  					</label>
-                        	<div style="display:none;">
-					<input type="file" id="input-file" name="pro_thum"/> <br><br>
-         					</div>
+        		<label class="btn btn-primary" for="input-file" id="scan" style="background-color: #414934; position: inherit; border: none;">
+				사진 업로드 </label>
+				<div style="display: none">
+					<input type="file" id="input-file" name="pro_thum" /> <br><br>
 				</div>
 
 				<!-- 프로젝트 대표 이미지-->
@@ -341,17 +327,16 @@ function checkInfo() {
 						<div class="blog-details__tags">
 							<span>태그</span>
 						</div>
-						<small> 잠재 후원자의 관심사를 고려한 검색 태그를 입력해주세요. 외부 검색엔진이나 텀블벅에서
-							해당 태그로 검색한 후원자가 프로젝트를 발견할 수 있습니다. </small>
+						<small> 잠재 후원자의 관심사를 고려한 검색 태그를 입력해주세요. </small>
 					</div>
 				</div>
 					<input type="text" name='pro_tags' placeholder="태그를 입력해주세요" value="${proVO.tags }" class="tagBox" id="pro_tags">
 					<input type="hidden" name="tags" id="tags">
 					<!-- 검색태그 -->
-				<br>
-				<!-- 버튼 -->
+				<br> <br>
+				<!-- 버튼 --> 
 				<div class="blog-btn" align="center">
-					<input type="button" class="main-btn" value="다음" onclick="checkInfo();">
+					<input type="button" class="main-btn" value="다음" onclick="checkInfo();" style="background-color: #A4AC85; border: none;">
 				</div>
 				<!-- 버튼 -->
 			</div>
