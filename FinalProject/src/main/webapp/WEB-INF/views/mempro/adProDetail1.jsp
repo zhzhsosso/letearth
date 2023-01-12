@@ -38,8 +38,8 @@ body {
 }
 
 .table tbody tr {
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-	border-radius: 5px;
+    box-shadow: 0 2px 10px rgb(184 179 158 / 50%);
+    border-radius: 5px;
 }
 
 .table tbody tr td {
@@ -97,6 +97,7 @@ body {
 	object-fit: cover;
 }
 
+/*사이드바*/
 /* Fixed sidenav, full height */
 .sidenav {
 	height: 100%;
@@ -105,7 +106,7 @@ body {
 	z-index: 1;
 	/*    top: 30%;  */
 	/*    left: 20%;  */
-	background-color: #EEF6E6;
+	background-color: #EDEAE0;
 	overflow-x: hidden;
 	padding-top: 30px;
 	padding-bottom: 100px;
@@ -113,13 +114,12 @@ body {
 	top: 120px;
 	left: 250px;
 }
-
 /* Style the sidenav links and the dropdown button */
 .sidenav a, .dropdown-btn {
 	padding: 6px 8px 6px 16px;
 	text-decoration: none;
 	font-size: 17px;
-	color: #818181;
+	color: #414934;
 	display: block;
 	border: none;
 	background: none;
@@ -128,12 +128,10 @@ body {
 	cursor: pointer;
 	outline: none;
 }
-
 /* On mouse-over */
 .sidenav a:hover, .dropdown-btn:hover {
-	color: #ACCC97;
+	color: #B6AD90;
 }
-
 /* Main content */
 .main {
 	margin-left: 200px; /* Same as the width of the sidenav */
@@ -143,26 +141,22 @@ body {
 	top: 30%;
 	left: 20%
 }
-
 /* Add an active class to the active dropdown button */
-.active {
-	background-color: #D8E9C5;
+.active1 {
+	background-color: #D7D1B9;
 	color: white;
 }
-
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
 	display: none;
-	background-color: #EEF5E6;
+	background-color: #EDEAE0;
 	padding-left: 8px;
 }
-
 /* Optional: Style the caret down icon */
 .fa-caret-down {
 	float: right;
 	padding-right: 8px;
 }
-
 /* Some media queries for responsiveness */
 @media screen and (max-height: 450px) {
 	.sidenav {
@@ -183,6 +177,55 @@ body {
 	display: flex;
 	/* display: inline-flex; */
 }
+
+/*버튼체인지색상*/
+.main-btn::before {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 0;
+    height: 17px;
+    width: 17px;
+    background: #6F7B63;
+	border-radius:0.25rem;
+    z-index: -1;
+}
+
+.main-btn{
+    border-radius: 0.25rem;
+    background-color: #A4AC85;
+    color: #F2F0E8;
+    font-size: 18px;
+    font-weight: bolder;
+	text-align:center; 
+    vertical-align:middle;
+    line-height:0px;
+    padding:12px;
+    align-content:center;
+    width: 140px;
+    height: 60px;
+    
+    margin: 10px;
+
+}
+
+#sbtn { /*검색버튼*/
+	position: absolute;
+	top: 0px;
+	
+	background-color: #A4AC85;
+	height: 35px;
+}
+ 
+ /*페이징*/
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #89A378;
+    border-color: #89A378;
+}
+
 </style>
 
 
@@ -202,7 +245,9 @@ body {
 			<div class="col-lg-12">
 				<div>
 					<h3 class="title"
-						style="color: black; font-size: 3em; margin-left: 400px;">${proVO.pro_title }</h3>
+						style="color: #6c757d; font-size: 2.5em; margin-left: 130px;">
+						<b>${proVO.pro_title }</b>
+					</h3>
 				</div>
 			</div>
 		</div>
@@ -271,20 +316,30 @@ body {
 							<!-- div class="flex-container" -->
 							<!-- 회원정보 (프로필) -->
 							<div class="flex-container" style="width: 1000">
-								<div class="project-details-item" style="width: 1000">
+								<div class="project-details-item" style="width: 1000" >
 									<br> <br> <br>
 									<div>
-										<p style="font-size: 2.2rem;" align="left">판매자 정보</p>
+										<p style="font-size: 30px; color: #6c757d;" align="left">판매자
+											정보</p>
 										<br>
 										<h5 class="title"></h5>
 
 
 
 										<div
-											class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
+											class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+											style="border-color: rgb(164 172 133 / 40%);">
 											<div class="banner"></div>
-											<img src="/resources/assets/images/messi.jpg" alt=""
-												class="img-circle mx-auto mb-3">
+											<c:choose>
+									<c:when test="${not empty proVO.memberVO.mem_profile }">
+									<img src=""
+										alt="" class="img-circle mx-auto mb-3">
+									</c:when>
+									<c:otherwise>
+									<img src="/resources/assets/images/userimg.png"
+										alt="" class="img-circle mx-auto mb-3">
+									</c:otherwise>
+									</c:choose>
 											<%--<img src="/resources/assets/images/${proVO.memberVO.mem_profile }" alt="" class="img-circle mx-auto mb-3"> --%>
 											<h3 class="mb-4">${proVO.mem_id }</h3>
 
@@ -337,18 +392,20 @@ body {
 								<div class="project-details-item" style="width: 1000">
 									<br> <br> <br>
 									<div>
-										<p style="font-size: 2.2rem;" align="left">프로젝트 정보</p>
+										<p style="font-size: 30px; color: #6c757d;" align="left">프로젝트
+											정보</p>
 										<br>
 										<h5 class="title"></h5>
 										<div
-											class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
+											class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+											style="border-color: rgb(164 172 133 / 40%);">
 											<table class="table table-condensed">
 												<!-- 사진을 넣을지 그냥 타이틀만 넣을지 정하기 -->
 												<div class="banner">
 													<img src="/resources/assets/images/messi.jpg" alt=""
-														class="img-rectangle">
-													<h6></h6>
-													<h3 class="mb-4">${proVO.pro_title }</h3>
+														class="img-rectangle"> <br>
+													<h4 class="mb-4">
+														<br>${proVO.pro_title }</h4>
 													<tbody>
 														<!-- 												<tr> -->
 														<!-- 													<th style="width: 150px">제목</th> -->
@@ -380,105 +437,77 @@ body {
 															<th>목표금액</th>
 															<td><fmt:formatNumber value="${proVO.pro_gp }" />원</td>
 														</tr>
+<!-- 														<tr> -->
+<!-- 															<th>상태</th> -->
+<%-- 															<td>${ proVO.pro_status }</td> --%>
+<!-- 														</tr> -->
+
 
 													</tbody>
-												</div>
 											</table>
 										</div>
 									</div>
 								</div>
 							</div>
-							<!-- div class="flex-container" -->
+							<!-- 							div class="flex-container" -->
 
 
 
+							<br> <br> <br>
 
-
-							<!-- 프로젝트 미리보기 -->
-
-							<div id="proPreview" class="container"
-								style="width: 145%; overflow-y: scroll; height: 800px;">
-								<p style="font-size: 2em;">
-									<br>프로젝트 미리보기
-								</p>
-								<br>
-								<div
-									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
-									<h5 class="title"></h5>
-
-
-
-								</div>
-								<%-- <jsp:include page="/mempro/infoPreview?pro_no=${proVO.pro_no }"/> --%>
+						
+							<!-- 미리보기 버튼 -->
+							<div>
+								<button type="button" class="main-btn"
+									onclick="proPreviewBtn(${proVO.pro_no});"
+									style="font-size: 30px; width: 400px" align="left">프로젝트
+									미리보기</button>
 							</div>
-							<!-- 프로젝트 미리보기 -->
+							
+						</div>
 
-
-
-
-
+						<!-- 프로젝트 미리보기 -->
+						<div id="result" class="container"
+							style="width: 2000px; overflow-y: scroll; height: 800px;">
 
 						</div>
+
+
+<br> <br> <br>
+
+
+
 					</div>
 				</div>
-
-				<!-- 프로젝트정보 (프로필) -->
-
-
-				<!-- 				<button type="button" class="btn btn-primary btn-lg" -->
-				<!-- 					data-toggle="modal" data-target="#proDetail">모달창 : 해당 프로젝트 -->
-				<!-- 					상세보기 가져오기</button> -->
-
-
-				<!--  모달에 외부 jsp 가져오기 도전 !! 아직 미완성 .. -->
-				<!--  ajax / 버튼 클릭시 ajax 서버타고 결과값 html로 만듬
-							modal창 div에 append(html) 하기 / 종료될때 하위 div삭제 후 초기화 -->
-
-				<!-- 							<br> <a data-toggle="modal" -->
-				<%-- 								href="/prodetail/info?pro_no=${proVO.pro_no }" --%>
-				<!-- 								data-target="#modal-testNew" role="button" -->
-				<!-- 								data-backdrop="static"> <span class="btn btn-xs btn-success">테스트 -->
-				<!-- 									등록</span> -->
-				<!-- 							</a> -->
-
-
-
-				<!-- 				모달 영역 시작 -->
-				<!-- 				<div class="modal fade" id="proDetail" tabindex="-1" role="dialog" -->
-				<!-- 					aria-labelledby="myModalLabel"> -->
-				<!-- 					<div class="modal-dialog modal-lg modal-dialog-scrollable" -->
-				<!-- 						role="document" style="width: 1200px; height: 700px"> -->
-				<!-- 						<div class="modal-content"> -->
-				<!-- 							<div class="modal-header"> -->
-				<!-- 								<h4 class="modal-title" id="myModalLabel">모달창 : 해당 프로젝트 -->
-				<!-- 									상세보기 가져오기</h4> -->
-				<!-- 								<button type="button" class="close" data-dismiss="modal" -->
-				<!-- 									aria-label="Close"> -->
-				<!-- 									<span aria-hidden="true">×</span> -->
-				<!-- 								</button> -->
-				<!-- 							</div> -->
-				<!-- 						</div> -->
-				<!-- 						<div class="modal-body"></div> -->
-
-				<!-- 					</div> -->
-				<!-- 				</div> -->
 			</div>
-			<!-- 모달영역 끝 -->
 
-			<br> <br> <br>
+			<!-- 프로젝트정보 (프로필) -->
 
 		</div>
+
+	</div>
 	</div>
 
-<!-- 	<div align="center"> -->
-<!-- 		<button type="submit" -->
-<!-- 			onclick="location.href='javascript:window.history.back();'" -->
-<!-- 			class="main-btn" style="float: center;">목록</button> -->
-<!-- 		<button type="submit" onclick="/mempro/adProList1" class="main-btn" -->
-<!-- 			style="float: center;">목록</button> -->
-<!-- 		<!-- 			</form> --> -->
+	<div align="center">
+		
+			
+	<c:choose>
+		<c:when test="${proVO.pro_status == 2}">
+			<button type="button" onclick="updatePro3(${proVO.pro_no});" class="main-btn"
+							style="float: center; background-color : #A4AC85">승인</button>
+			<button type="button" onclick="updatePro4(${proVO.pro_no});" class="main-btn" 
+					style="float: center; background-color : #A4AC85;">반려</button>
+			<button type="submit" onclick="location.href='javascript:window.history.back();'" class="main-btn"
+			style="float: center; background-color : #A4AC85">뒤로</button>
+		</c:when>
+		<c:otherwise>
+			<button type="submit" onclick="location.href='javascript:window.history.back();'" class="main-btn"
+			style="float: center; background-color : #A4AC85">뒤로</button>
+		</c:otherwise>
+	</c:choose>
+			
 
-<!-- 	</div> -->
+	</div>
 </section>
 
 
@@ -509,10 +538,9 @@ body {
 /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
 var dropdown = document.getElementsByClassName("dropdown-btn");
 var i;
-
 for (i = 0; i < dropdown.length; i++) {
   dropdown[i].addEventListener("click", function() {
-    this.classList.toggle("active");
+    this.classList.toggle("active1");
    var dropdownContent = this.nextElementSibling;
     if (dropdownContent.style.display === "block") {
       dropdownContent.style.display = "none";
@@ -524,23 +552,73 @@ for (i = 0; i < dropdown.length; i++) {
 </script>
 <!-- 드롭다운 -->
 
+<script type="text/javascript">
+		var result = '${result}';
+		if(result == '승인완료'){
+			alert("프로젝트 승인 완료!");
+		}
+		
+		if(result == '반려완료'){
+			alert("프로젝트 반료처리 완료!");
+		}
+		
+</script>
+
 
 <!-- 스크롤안에 jsp 불러오기 -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-<!-- <script> -->
-
-// $(document).ready(function(){
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script type="text/javascript">
+function proPreviewBtn(num){
+	$.ajax({
+		type: "GET",
+		url : "/prodetail/infoPreview?pro_no="+num,
+		dateType : "html",
+		success:function(result){
+			$("#result").html(result);
+		}	
+	});
 	
-//    $("#proPreview").load("/mempro/infoPreview",);
-// //    $("#proPreview").load("/mempro/infoPreview?pro_no=${pro_no}");
-// //    $("#proPreview").load("/mempro/infoPreview?pro_no=${pdvo.pro_no}");
-// //     $("#proPreview").load("/mempro/infoPreview?pro_no="+pdvo.pro_no);
+}
 
-// });
-<!--  </script> -->
+
+
+function updatePro3(num){
+		 Swal.fire({ 
+	        title: '프로젝트를 승인하시겠습니까?', 
+	        icon: 'warning', 
+	        html: "<h5>프로젝트 승인리스트로 이동합니다.</h5>",
+	        showCancelButton: true,         
+	        confirmButtonColor: '#3085d6', 
+	        cancelButtonColor: 'grey', 
+	        confirmButtonText: '승인하기', 
+	        cancelButtonText: '취소하기' 
+	      }).then((result) => { 
+	        if (result.isConfirmed) {           
+	             
+	       	 location.href="/mempro/adProStatus3?pro_no="+num;
+	        } 
+	      }) 
+}
+
+
+function updatePro4(num){
+		 Swal.fire({ 
+	        title: '프로젝트를 반려하시겠습니까?', 
+	        icon: 'warning', 
+	        html: "<h5>프로젝트 승인리스트로 이동합니다.</h5>",
+	        showCancelButton: true,         
+	        confirmButtonColor: '#3085d6', 
+	        cancelButtonColor: 'grey', 
+	        confirmButtonText: '반려하기', 
+	        cancelButtonText: '취소하기' 
+	      }).then((result) => { 
+	        if (result.isConfirmed) {           
+	             
+	       	 location.href="/mempro/adProStatus4?pro_no="+num;
+	        } 
+	      }) 
+}
+</script>
 <!-- 스크롤안에 jsp 불러오기 -->
-
-
-
-

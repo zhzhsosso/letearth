@@ -99,6 +99,7 @@ body {
 	object-fit: cover;
 }
 
+/*사이드바*/
 /* Fixed sidenav, full height */
 .sidenav {
 	height: 100%;
@@ -107,7 +108,7 @@ body {
 	z-index: 1;
 	/*    top: 30%;  */
 	/*    left: 20%;  */
-	background-color: #EEF6E6;
+	background-color: #EDEAE0;
 	overflow-x: hidden;
 	padding-top: 30px;
 	padding-bottom: 100px;
@@ -133,7 +134,7 @@ body {
 
 /* On mouse-over */
 .sidenav a:hover, .dropdown-btn:hover {
-	color: #ACCC97;
+	color: #B6AD90;
 }
 
 /* Main content */
@@ -147,15 +148,15 @@ body {
 }
 
 /* Add an active class to the active dropdown button */
-.active {
-	background-color: #D8E9C5;
+.active1 {
+	background-color: #D7D1B9;
 	color: white;
 }
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
 	display: none;
-	background-color: #EEF5E6;
+	background-color: #EDEAE0;
 	padding-left: 8px;
 }
 
@@ -185,6 +186,158 @@ body {
 	display: flex;
 	/* display: inline-flex; */
 }
+
+#sbtn { /*검색버튼*/
+	position: absolute;
+	top: 0px;
+	background-color: #A4AC85;
+	height: 35px;
+}
+
+#mbtn {
+	font-size: 14px;
+	border-radius: 0.5rem;
+}
+
+#repSelector {
+	width: 20%;
+	height: 3px;
+	background-color: #D7D1B9;
+	border: 0;
+	position: relative;
+	top: -10px;
+	/*    left: 380px;  */
+	left: 40%;
+}
+
+#repSelector1 {
+	position: relative;
+	top: -15px;
+}
+
+/*a 태그 상태 css*/
+#hov a:link {
+	color: #D7D1B9;
+	font-weight: normal;
+	/*text-decoration: underline;*/
+}
+
+#hov a:hover {
+	color: #6F7B63;
+	transition: 0s;
+	font-weight: bolder;
+	/*text-decoration: underline;*/
+}
+
+#hov a:active {
+	color: #6F7B63;
+	transition: 0s;
+	font-weight: bolder;
+	/*text-decoration: underline;*/
+}
+
+/*페이징*/
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+	{
+	z-index: 2;
+	color: #fff;
+	cursor: default;
+	background-color: #89A378;
+	border-color: #89A378;
+}
+
+/*셀렉트 꾸미기*/
+/* The container must be positioned relative: */
+.fcntr {
+	position: relative;
+	font-family: Arial;
+}
+
+.fcntr select {
+	display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+	background-color: #BFCC97;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+	position: absolute;
+	content: "";
+	top: 14px;
+	right: 10px;
+	width: 0;
+	height: 0;
+	border: 6px solid transparent;
+	border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+	border-color: transparent transparent #fff transparent;
+	top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div, .select-selected {
+	color: #6c757d;
+	padding: 8px 16px;
+	border: 1px solid transparent;
+	border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+	cursor: pointer;
+	font-weight: bolder;
+	border-radius: 0.25rem;
+}
+
+/* Style items (options): */
+.select-items {
+	position: absolute;
+	background-color: #EEF5E6;
+	top: 100%;
+	left: 0;
+	right: 0;
+	z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+	display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+/*버튼체인지색상*/
+.main-btn::before {
+	position: absolute;
+	content: '';
+	right: 0;
+	top: 0;
+	height: 17px;
+	width: 17px;
+	background: #6F7B63;
+	border-radius: 0.25rem;
+	z-index: -1;
+}
+
+.main-btn {
+	border-radius: 0.25rem;
+	background-color: #A4AC85;
+	color: #F2F0E8;
+	font-size: 18px;
+	font-weight: bolder;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 0px;
+	padding: 12px;
+	align-content: center;
+	width: 140px;
+	height: 60px;
+	margin: 10px;
+}
 </style>
 
 
@@ -195,22 +348,11 @@ body {
 <br>
 <br>
 <br>
+<br>
+<br>
+<br>
 
-<section class="page-title-area">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<div>
 
-					<h2 class="box-title" align="center">
-
-						<b style="color: #6c757d;">회원 리스트</b> <br> <br> <br>
-					</h2>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
 
 <!--====== PROJECT CONTENT PART START ====== -->
 <section class="project-details-content-area pb-110">
@@ -253,9 +395,6 @@ body {
 
 
 
-
-
-
 		<div class="container">
 
 
@@ -269,32 +408,43 @@ body {
 
 					<!-- div class="flex-container" -->
 					<!-- 회원정보 (프로필) -->
-					<div class="flex-container" style="width: 1000">
-						<div class="project-details-item" style="width: 1000">
-							<br> <br> <br> <br>
-							<div>
-								<p style="font-size: 2.2rem;" align="left"></p>
-								<br>
-								<h5 class="title"></h5>
+
+					<div class="project-details-item"
+						style="width: 120%; position: relative; left: 13%;">
+						<br> <br> <br> <br>
+						<div>
+							<p style="font-size: 2.2rem;" align="left"></p>
+							<br>
+							<h5 class="title"></h5>
 
 
 
-								<div
-									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
-									<div class="banner"></div>
-									<!-- 											<img src="/resources/assets/images/messi.jpg" alt="" -->
-									<!-- 												class="img-circle mx-auto mb-3"> -->
-									<img src="/resources/assets/images/${memVO.mem_profile }"
-										alt="" class="img-circle mx-auto mb-3">
-									<h3 class="mb-4">${memVO.mem_id }</h3>
+							<div
+								class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+								style="border-color: rgb(164 172 133/ 40%);">
+								<div class="banner"></div>
+								<c:choose>
+									<c:when test="${not empty memVO.mem_profile }">
+										<img src="" alt="" class="img-circle mx-auto mb-3">
+									</c:when>
+									<c:otherwise>
+										<img src="/resources/assets/images/userimg.png" alt=""
+											class="img-circle mx-auto mb-3">
+									</c:otherwise>
+								</c:choose>
+								<h3 class="mb-4">${memVO.mem_id }</h3>
 
 
+								<div>
+									<!-- 플렉스 -->
+									<table class="table table-condensed"
+										style="display: flex; justify-content: space-around;">
 
-									<table class="table table-condensed">
-										<tbody>
+										<tbody
+											style="border-top: none; width: 40%; table-layout: fixed;">
 											<tr>
-												<th style="width: 150px">이름</th>
-												<td>${memVO.mem_name }</td>
+												<th style="width: 40%;">이름</th>
+												<td style="width: 300px;">${memVO.mem_name }</td>
 											</tr>
 											<tr>
 												<th style="width: 150px">연락처</th>
@@ -309,9 +459,13 @@ body {
 												<td><fmt:formatDate value="${memVO.mem_cr_dt }"
 														pattern="yyyy-MM-dd" /></td>
 											</tr>
+										</tbody>
+
+										<tbody
+											style="border-top: none; width: 40%; table-layout: fixed;">
 											<tr>
-												<th>펀딩횟수</th>
-												<td>${memPro }회</td>
+												<th style="width: 40%;">펀딩횟수</th>
+												<td style="width: 300px;">${memPro }회</td>
 											</tr>
 											<tr>
 												<th>구매횟수</th>
@@ -331,69 +485,20 @@ body {
 													</c:when>
 												</c:choose>
 											</tr>
+											<tr>
+												<th>하나더넣기</th>
+												<td>${memPro }기억회</td>
+											</tr>
 										</tbody>
 									</table>
 								</div>
+								<!-- 플렉스 -->
 							</div>
 						</div>
-						<!-- 회원정보 (프로필) -->
-
-
-						<!-- 중간 텀 -->
-						<div class id="empty" style="width: 100"></div>
-						<!-- 중간 텀 -->
-
-
-						<br> <br>
-						<!-- 여기에 무얼넣을까 -->
-						<!-- detail1 : X 달성금액, 달성률, 배송상황, 정산현황 -->
-						<!-- detail2 : O 달성금액, 달성률, 배송상황, 정산현황 -->
-						<div class="project-details-item" style="width: 1000">
-							<br> <br> <br> <br> <br>
-							<div>
-								<p style="font-size: 2.2rem;" align="left"></p>
-								<br>
-								<h5 class="title"></h5>
-								<div
-									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
-									<table class="table table-condensed">
-										<!-- 사진을 넣을지 그냥 타이틀만 넣을지 정하기 -->
-										<div class="banner">
-											<img src="/resources/assets/images/messi.jpg" alt=""
-												class="img-rectangle">
-											<h6></h6>
-											<%-- 											<h3 class="mb-4">${proList.pro_title }</h3> --%>
-											<tbody>
-												<tr>
-													<th>시작일</th>
-													<td></td>
-												</tr>
-												<tr>
-													<th>종료일</th>
-													<td></td>
-												</tr>
-												<tr>
-													<th>기간</th>
-													<td></td>
-												</tr>
-												<tr>
-													<th>목표금액</th>
-													<td></td>
-												</tr>
-												<tr>
-													<th></th>
-													<td></td>
-												</tr>
-
-											</tbody>
-										</div>
-									</table>
-								</div>
-							</div>
-						</div>
-						<!-- 여기에 무얼넣을까.. -->
 					</div>
-					<!-- div class="flex-container" -->
+					<!-- 회원정보 (프로필) -->
+
+
 
 
 
@@ -402,138 +507,154 @@ body {
 					<div class="container" style="width: 145%">
 						<p style="font-size: 2em;">구매 리스트</p>
 						<br>
-						<div
-							class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
-							<h5 class="title"></h5>
+						<!-- 결제내역 X-->
+						<c:choose>
+							<c:when test="${empty ordList }">
+								<div
+									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+									style="border-color: rgb(164 172 133/ 40%);">
+									<h5 class="title"></h5>
+									
+									결제내역이 없습니다.
+								</div>
+							<!-- 결제내역 X -->
+							</c:when>
+							<c:otherwise>
+							<!-- 결제내역 O -->
+								<div
+									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+									style="border-color: rgb(164 172 133/ 40%);">
+									<h5 class="title"></h5>
 
-							<table class="table">
-								<thead>
-									<tr>
-										<th></th>
-										<th style="width: 200px">프로젝트이름</th>
-										<th style="width: 150px">리워드번호</th>
-										<th style="width: 200px">리워드이름</th>
-										<th style="width: 150px">결제금액</th>
-										<th style="width: 150px">결제일시</th>
-										<th style="width: 100px">달성률</th>
-										<th style="width: 150px">운송장번호</th>
-									</tr>
-								</thead>
+									<table class="table">
+										<thead>
+											<tr>
+												<th></th>
+												<th style="width: 200px">프로젝트이름</th>
+												<th style="width: 150px">리워드번호</th>
+												<th style="width: 200px">리워드이름</th>
+												<th style="width: 150px">결제금액</th>
+												<th style="width: 150px">결제일시</th>
+												<th style="width: 100px">달성률</th>
+												<th style="width: 150px">운송장번호</th>
+											</tr>
+										</thead>
 
-								<c:forEach var="ordList" items="${ordList  }" varStatus="status">
-									<tbody>
-										<tr>
-											<td>${status.count }</td>
-											<td>${ordList.pro_title }</td>
-											<td style="text-align: center">${ordList.reward_no }</td>
-											<td>${ordList.reward_title }</td>
-											<td><fmt:formatNumber value="${ordList.total_price }" />원</td>
-											<td><fmt:formatDate value="${ordList.order_date }"
-													pattern="yyyy-MM-dd" /></td>
-											<td><fmt:formatNumber
-													value="${ordList.pro_tp / ordList.pro_gp }" type="percent" /></td>
-											<td>${ordList.shipping_no }</td>
-										</tr>
-									</tbody>
-								</c:forEach>
+										<c:forEach var="ordList" items="${ordList  }"
+											varStatus="status">
+											<tbody>
+												<tr>
+													<td>${status.count }</td>
+													<td>${ordList.pro_title }</td>
+													<td style="text-align: center">${ordList.reward_no }</td>
+													<td>${ordList.reward_title }</td>
+													<td><fmt:formatNumber value="${ordList.total_price }" />원</td>
+													<td><fmt:formatDate value="${ordList.order_date }"
+															pattern="yyyy-MM-dd" /></td>
+													<td><fmt:formatNumber
+															value="${ordList.pro_tp / ordList.pro_gp }"
+															type="percent" /></td>
+													<td>${ordList.shipping_no }</td>
+												</tr>
+											</tbody>
+										</c:forEach>
 
-							</table>
-						</div>
+									</table>
+								</div>
+							</c:otherwise>
+						</c:choose>
+						<!-- 판매리스트 -->
+						<br> <br> <br> <br>
+<!-- 						<div class="container" style="width: 145%"> -->
+							<p style="font-size: 2em;">판매 리스트</p>
+							<br>
+							<c:choose>
+								<c:when test="${empty proList }">
+								<!-- 판매내역 X -->
+									<div
+										class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+										style="border-color: rgb(164 172 133/ 40%);">
+										<h5 class="title"></h5>
+										판매내역이 없습니다
+									</div>
+								<!-- 판매내역 X -->
+								</c:when>
+
+								<c:otherwise>
+								<!-- 판매내역 O -->
+									<div
+										class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+										style="border-color: rgb(164 172 133/ 40%);">
+										<h5 class="title"></h5>
+
+										<table class="table">
+											<thead>
+												<tr>
+													<th></th>
+													<th style="width: 80px">분류</th>
+													<th style="width: 200px">프로젝트번호</th>
+													<th style="width: 200px">프로젝트이름</th>
+													<th style="width: 180px">목표금액</th>
+													<th style="width: 150px">달성금액</th>
+													<th style="width: 100px">달성률</th>
+													<th style="width: 200px">시작일</th>
+													<th style="width: 200px">종료일</th>
+													<th style="width: 100px">기간</th>
+													<!-- 										<th style="width: 100px">상태</th> -->
+												</tr>
+											</thead>
+
+											<c:forEach var="proList" items="${proList  }"
+												varStatus="status">
+												<tbody>
+													<tr>
+														<td>${status.count }</td>
+														<td>${proList.cat_name }</td>
+														<td style="text-align: center">${proList.pro_no }</td>
+														<td>${proList.pro_title }</td>
+														<td><fmt:formatNumber value="${proList.pro_gp }" />원</td>
+														<td><fmt:formatNumber value="${proList.pro_tp }" />원</td>
+														<td><fmt:formatNumber
+																value="${proList.pro_tp / proList.pro_gp }"
+																type="percent" /></td>
+														<td>${proList.pro_st_dt }</td>
+														<td>${proList.pro_ed_dt }</td>
+														<fmt:parseDate value="${proList.pro_st_dt }"
+															var="str_Date" pattern="yyyy-MM-dd" />
+														<fmt:parseNumber
+															value="${str_Date.time / (1000*60*60*24)}"
+															integerOnly="true" var="strDate"></fmt:parseNumber>
+														<fmt:parseDate value="${proList.pro_ed_dt }"
+															var="end_Date" pattern="yyyy-MM-dd" />
+														<fmt:parseNumber
+															value="${end_Date.time / (1000*60*60*24)}"
+															integerOnly="true" var="endDate"></fmt:parseNumber>
+														<td>${endDate - strDate }일</td>
+													</tr>
+												</tbody>
+											</c:forEach>
+
+										</table>
+									</div>
+								</c:otherwise>
+							</c:choose>
+								<!-- 판매내역 O -->
+<!-- 						</div> -->
+						<!-- 판매 리스트  -->
 					</div>
-					<!-- 구매 리스트  -->
-					<!-- 판매 리스트  -->
-					<br> <br> <br> <br>
-					<div class="container" style="width: 145%">
-						<p style="font-size: 2em;">판매 리스트</p>
-						<br>
-						<div
-							class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
-							<h5 class="title"></h5>
-
-							<table class="table">
-								<thead>
-									<tr>
-										<th></th>
-										<th style="width: 80px">분류</th>
-										<th style="width: 200px">프로젝트번호</th>
-										<th style="width: 200px">프로젝트이름</th>
-										<th style="width: 180px">목표금액</th>
-										<th style="width: 150px">달성금액</th>
-										<th style="width: 100px">달성률</th>
-										<th style="width: 200px">시작일</th>
-										<th style="width: 200px">종료일</th>
-										<th style="width: 100px">기간</th>
-										<!-- 										<th style="width: 100px">상태</th> -->
-									</tr>
-								</thead>
-
-								<c:forEach var="proList" items="${proList  }" varStatus="status">
-									<tbody>
-										<tr>
-											<td>${status.count }</td>
-											<td>${proList.cat_name }</td>
-											<td style="text-align: center">${proList.pro_no }</td>
-											<td>${proList.pro_title }</td>
-											<td><fmt:formatNumber value="${proList.pro_gp }" />원</td>
-											<td><fmt:formatNumber value="${proList.pro_tp }" />원</td>
-											<td><fmt:formatNumber
-													value="${proList.pro_tp / proList.pro_gp }" type="percent" /></td>
-											<td>${proList.pro_st_dt }</td>
-											<td>${proList.pro_ed_dt }</td>
-											<fmt:parseDate value="${proList.pro_st_dt }" var="str_Date"
-												pattern="yyyy-MM-dd" />
-											<fmt:parseNumber value="${str_Date.time / (1000*60*60*24)}"
-												integerOnly="true" var="strDate"></fmt:parseNumber>
-											<fmt:parseDate value="${proList.pro_ed_dt }" var="end_Date"
-												pattern="yyyy-MM-dd" />
-											<fmt:parseNumber value="${end_Date.time / (1000*60*60*24)}"
-												integerOnly="true" var="endDate"></fmt:parseNumber>
-											<td>${endDate - strDate }일</td>
-											<%-- 											<c:choose> --%>
-											<%-- 												<c:when test="${proList.pro_status == 2}"> --%>
-											<!-- 													<td>승인요청</td> -->
-											<%-- 												</c:when> --%>
-											<%-- 												<c:when test="${proList.pro_status == 3}"> --%>
-											<!-- 													<td>승인</td> -->
-											<%-- 												</c:when> --%>
-											<%-- 												<c:when test="${proList.pro_status == 4}"> --%>
-											<!-- 													<td>반려</td> -->
-											<%-- 												</c:when> --%>
-											<%-- 												<c:when test="${proList.pro_status == 5}"> --%>
-											<!-- 													<td>판매중</td> -->
-											<%-- 												</c:when> --%>
-											<%-- 												<c:when test="${proList.pro_status == 6}"> --%>
-											<!-- 													<td>마감</td> -->
-											<%-- 												</c:when> --%>
-											<%-- 												<c:when test="${proList.pro_status == 7}"> --%>
-											<!-- 													<td>판매중지</td> -->
-											<%-- 												</c:when> --%>
-											<%-- 											</c:choose> --%>
-										</tr>
-									</tbody>
-								</c:forEach>
-
-							</table>
-						</div>
-					</div>
-					<!-- 판매 리스트  -->
-
-
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<br> <br> <br> <br>
+		<br> <br>
 
-	<div align="center">
-		<button type="submit"
-			onclick="location.href='javascript:window.history.back();'"
-			class="main-btn" style="float: center;">목록</button>
-		<button type="submit" class="main-btn" style="float: center;">목록</button>
-		<!-- 			</form> -->
+		<div style="position: relative; left: 50%;">
+			<button type="submit"
+				onclick="location.href='javascript:window.history.back();'"
+				class="main-btn" style="float: center;">목록</button>
+			<!-- 			</form> -->
 
-	</div>
+		</div>
 </section>
 <!--  ====== PROJECT CONTENT PART ENDS ====== -->
 
@@ -549,7 +670,7 @@ body {
 
 	for (i = 0; i < dropdown.length; i++) {
 		dropdown[i].addEventListener("click", function() {
-			this.classList.toggle("active");
+			this.classList.toggle("active1");
 			var dropdownContent = this.nextElementSibling;
 			if (dropdownContent.style.display === "block") {
 				dropdownContent.style.display = "none";

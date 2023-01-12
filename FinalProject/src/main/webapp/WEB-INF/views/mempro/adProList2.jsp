@@ -20,12 +20,16 @@
 <!-- 어드민 lte -->
 <meta charset="UTF-8">
 <title>프로젝트 목록</title>
-<style type="text/css">
-#sbtn {
-	position: absolute;
-	top: -4px;
-}
 
+<style type="text/css">
+
+#sbtn { /*검색버튼*/
+	position: absolute;
+	top: 0px;
+	
+	background-color: #A4AC85;
+	height: 35px;
+}
 #repSelector {
 	width: 20%;
 	height: 3px;
@@ -49,6 +53,39 @@
 	font-weight: bolder;
 	/*text-decoration: underline;*/
 }
+
+/*버튼체인지색상*/
+.main-btn::before {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 0;
+    height: 17px;
+    width: 17px;
+    background: #6F7B63;
+	border-radius:0.25rem;
+    z-index: -1;
+}
+
+.main-btn{
+    border-radius: 0.25rem;
+    background-color: #A4AC85;
+    color: #F2F0E8;
+    font-size: 18px;
+    font-weight: bolder;
+	text-align:center; 
+    vertical-align:middle;
+    line-height:0px;
+    padding:12px;
+    align-content:center;
+    width: 140px;
+    height: 60px;
+    
+    margin: 10px;
+
+}
+
+
 </style>
 
 </head>
@@ -71,23 +108,25 @@
 				</h2>
 				<div class="col-xs-12">
 					<div style="font-size: 2.2rem;" align="left">
-						<span id="hov"> <a id="listAll">전체</a> | <a id="list5">판매중</a>
-							| <a id="list6">마감</a> | <a id="list7">판매중지</a>
+						<span id="hov"><a id="listAll"
+							style="color: #6F7B63; font-weight: bolder;">전체</a> | <a id="list5" style="color: #B6AD90" >판매중</a>
+							| <a id="list6" style="color: #B6AD90" >마감</a> | <a id="list7" style="color: #B6AD90" >판매중지</a>
 						</span>
 					</div>
 					<br>
 					<!-- 어드민 -->
 
-					<div class="box">
-						<br>
+					<!-- 검색기능 -->
+
+					<div class="box" style="border-top: none;">
 						<div class="box-header">
-							<br>
 							<div class="box-tools" align="right">
 								<div class="input-group input-group-sm hidden-xs"
-									style="width: 150px;">
-									<input type="text" name="table_search"
-										class="form-control pull-right" placeholder="Search">
-									<div class="input-group-btn">
+									style="width: 180px; height: 50px;">
+									<input type="text" name="keyword"
+										class="form-control pull-right" placeholder="Search"
+										style="height: 35px; width: 60px; font-size: 1rem;">
+									<div class="input-group-btn" style="padding-left: 3px;">
 										<button type="submit" class="btn btn-default" id="sbtn">
 											<i class="fa fa-search"></i>
 										</button>
@@ -95,6 +134,8 @@
 								</div>
 							</div>
 						</div>
+					<!-- 검색기능 -->
+						<br>
 						<br>
 
 						<!-- proAll -->
@@ -103,10 +144,10 @@
 								method="post">
 								<table class="table table-hover">
 									<tbody>
-										<tr style="background-color: #EEF5E6">
+										<tr style="background-color: #EDEAE0">
 											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">프로젝트 번호</th>
-											<th style="font-size: 15px;">프로젝트 이름</th>
-											<th style="font-size: 15px;">아이디</th>
+											<th style="font-size: 15px; width: 35%; table-layout: fixed">프로젝트 이름</th>
+											<th style="font-size: 15px; width: 15%; table-layout: fixed;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
 											<th style="font-size: 15px;">목표금액</th>
 											<th style="font-size: 15px;">달성률</th>
@@ -116,7 +157,7 @@
 											<tr>
 												<td style="font-size: 15px;">${proVO.pro_no }</td>
 												<td style="font-size: 15px;"><a
-													href="/mempro/adProDetail2?pro_no=${proVO.pro_no }"
+													href="/mempro/adProDetail2?pro_no=${proVO.pro_no }&mem_id=${proVO.mem_id}"
 													style="color: green"> ${proVO.pro_title } </a></td>
 												<td style="font-size: 15px;">${proVO.mem_id }</td>
 												<td style="font-size: 15px;">${proVO.pro_st_dt }</td>
@@ -126,16 +167,22 @@
 														value="${proVO.pro_tp / proVO.pro_gp }" type="percent" /></td>
 												<c:choose>
 													<c:when test="${proVO.pro_status == 5}">
-														<td style="font-size: 15px;"><span
-															class="label label-success">판매중</span></td>
+														<td>
+															<button type="button" class="btn btn-primary"
+																style="font-size: 12px; background-color: #B6AD90; border-color: #B6AD90;">판매중</button>
+														</td>
 													</c:when>
 													<c:when test="${proVO.pro_status == 6}">
-														<td style="font-size: 15px;"><span
-															class="label label-info">마감</span></td>
+														<td>
+															<button type="button" class="btn btn-primary"
+																style="font-size: 12px; background-color: #BFCC97; border-color: #BFCC97;">마감</button>
+														</td>
 													</c:when>
 													<c:when test="${proVO.pro_status == 7}">
-														<td style="font-size: 15px;"><span
-															class="label label-warning">판매중지</span></td>
+														<td>
+															<button type="button" class="btn btn-primary"
+																style="font-size: 12px; background-color: #89A378; border-color: #89A378;">판매중지</button>
+														</td>
 													</c:when>
 												</c:choose>
 											</tr>
@@ -151,10 +198,10 @@
 								method="post">
 								<table class="table table-hover">
 									<tbody>
-										<tr style="background-color: #EEF5E6">
+										<tr style="background-color: #EDEAE0">
 											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">프로젝트 번호</th>
-											<th style="font-size: 15px;">프로젝트 이름</th>
-											<th style="font-size: 15px;">아이디</th>
+											<th style="font-size: 15px; width: 35%; table-layout: fixed">프로젝트 이름</th>
+											<th style="font-size: 15px; width: 15%; table-layout: fixed;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
 											<th style="font-size: 15px;">목표금액</th>
 											<th style="font-size: 15px;">달성률</th>
@@ -165,7 +212,7 @@
 												<tr>
 													<td style="font-size: 15px;">${proVO5.pro_no }</td>
 													<td style="font-size: 15px;"><a
-														href="/mempro/adProDetail2?pro_no=${proVO5.pro_no }"
+														href="/mempro/adProDetail2?pro_no=${proVO5.pro_no }&mem_id=${proVO5.mem_id}"
 														style="color: green"> ${proVO5.pro_title } </a></td>
 													<td style="font-size: 15px;">${proVO5.mem_id }</td>
 													<td style="font-size: 15px;">${proVO5.pro_st_dt }</td>
@@ -173,8 +220,10 @@
 															value="${proVO5.pro_tp }" />원</td>
 													<td style="font-size: 15px;"><fmt:formatNumber
 															value="${proVO5.pro_tp / proVO5.pro_gp }" type="percent" /></td>
-													<td style="font-size: 15px;"><span
-														class="label label-success">판매중</span></td>
+													<td>
+															<button type="button" class="btn btn-primary"
+																style="font-size: 12px; background-color: #B6AD90; border-color: #B6AD90;">판매중</button>
+														</td>
 												</tr>
 											</c:if>
 										</c:forEach>
@@ -190,10 +239,10 @@
 								method="post">
 								<table class="table table-hover">
 									<tbody>
-										<tr style="background-color: #EEF5E6">
+										<tr style="background-color: #EDEAE0">
 											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">프로젝트 번호</th>
-											<th style="font-size: 15px;">프로젝트 이름</th>
-											<th style="font-size: 15px;">아이디</th>
+											<th style="font-size: 15px; width: 35%; table-layout: fixed">프로젝트 이름</th>
+											<th style="font-size: 15px; width: 15%; table-layout: fixed;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
 											<th style="font-size: 15px;">목표금액</th>
 											<th style="font-size: 15px;">달성률</th>
@@ -204,7 +253,7 @@
 												<tr>
 													<td style="font-size: 15px;">${proVO6.pro_no }</td>
 													<td style="font-size: 15px;"><a
-														href="/mempro/adProDetail2?pro_no=${proVO6.pro_no }"
+														href="/mempro/adProDetail2?pro_no=${proVO6.pro_no }&mem_id=${proVO6.mem_id}"
 														style="color: green"> ${proVO6.pro_title } </a></td>
 													<td style="font-size: 15px;">${proVO6.mem_id }</td>
 													<td style="font-size: 15px;">${proVO6.pro_st_dt }</td>
@@ -212,8 +261,10 @@
 															value="${proVO6.pro_tp }" />원</td>
 													<td style="font-size: 15px;"><fmt:formatNumber
 															value="${proVO6.pro_tp / proVO6.pro_gp }" type="percent" /></td>
-													<td style="font-size: 15px;"><span
-														class="label label-info">마감</span></td>
+													<td>
+															<button type="button" class="btn btn-primary"
+																style="font-size: 12px; background-color: #BFCC97; border-color: #BFCC97;">마감</button>
+														</td>
 												</tr>
 											</c:if>
 										</c:forEach>
@@ -228,10 +279,12 @@
 								method="post">
 								<table class="table table-hover">
 									<tbody>
-										<tr style="background-color: #EEF5E6">
-											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">프로젝트 번호</th>
-											<th style="font-size: 15px;">프로젝트 이름</th>
-											<th style="font-size: 15px;">아이디</th>
+										<tr style="background-color: #EDEAE0">
+											<th style="font-size: 15px; width: 10%; table-layout: fixed;"">프로젝트
+												번호</th>
+											<th style="font-size: 15px; width: 35%; table-layout: fixed">프로젝트
+												이름</th>
+											<th style="font-size: 15px; width: 15%; table-layout: fixed;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
 											<th style="font-size: 15px;">목표금액</th>
 											<th style="font-size: 15px;">달성률</th>
@@ -242,7 +295,7 @@
 												<tr>
 													<td style="font-size: 15px;">${proVO7.pro_no }</td>
 													<td style="font-size: 15px;"><a
-														href="/mempro/adProDetail2?pro_no=${proVO7.pro_no }"
+														href="/mempro/adProDetail2?pro_no=${proVO7.pro_no }&mem_id=${proVO7.mem_id}"
 														style="color: green"> ${proVO7.pro_title } </a></td>
 													<td style="font-size: 15px;">${proVO7.mem_id }</td>
 													<td style="font-size: 15px;">${proVO5.pro_st_dt }</td>
@@ -250,8 +303,10 @@
 															value="${proVO7.pro_tp }" />원</td>
 													<td style="font-size: 15px;"><fmt:formatNumber
 															value="${proVO7.pro_tp / proVO7.pro_gp }" type="percent" /></td>
-													<td style="font-size: 15px;"><span
-														class="label label-warning">판매중지</span></td>
+													<td>
+														<button type="button" class="btn btn-primary"
+															style="font-size: 12px; background-color: #89A378; border-color: #89A378;">판매중지</button>
+													</td>
 												</tr>
 											</c:if>
 										</c:forEach>
@@ -305,89 +360,139 @@
 		$("#pro6").hide();
 		$("#pro7").hide();
 
-		$("#listAll").css("color", "green");
+		$("#listAll").css("color", "#B6AD90");
 		$("#listAll").css("font-weight", "bolder");
 
-		$("#listAll").click(function() {
+		$("#listAll").hover(function() {
 			$("#proAll").show();
 			$("#pro5").hide();
 			$("#pro6").hide();
 			$("#pro7").hide();
 
-			$("#listAll").css("color", "green");
+			$("#listAll").css("color", "#6F7B63");
 			$("#listAll").css("font-weight", "bolder");
-			$("#list5").css("color", "grey");
+			$("#list5").css("color", "#B6AD90");
 			$("#list5").css("font-weight", "normal");
-			$("#list6").css("color", "grey");
+			$("#list6").css("color", "#B6AD90");
 			$("#list6").css("font-weight", "normal");
-			$("#list7").css("color", "grey");
+			$("#list7").css("color", "#B6AD90");
 			$("#list7").css("font-weight", "normal");
 
 		});
 
-		$("#list5").click(function() {
+		$("#list5").hover(function() {
 			$("#proAll").hide();
 			$("#pro5").show();
 			$("#pro6").hide();
 			$("#pro7").hide();
 
-			$("#listAll").css("color", "grey");
+			$("#listAll").css("color", "#B6AD90");
 			$("#listAll").css("font-weight", "normal");
-			$("#list5").css("color", "green");
+			$("#list5").css("color", "#6F7B63");
 			$("#list5").css("font-weight", "bolder");
-			$("#list6").css("color", "grey");
+			$("#list6").css("color", "#B6AD90");
 			$("#list6").css("font-weight", "normal");
-			$("#list7").css("color", "grey");
+			$("#list7").css("color", "#B6AD90");
 			$("#list7").css("font-weight", "normal");
 		});
 
-		$("#list6").click(function() {
+		$("#list6").hover(function() {
 			$("#proAll").hide();
 			$("#pro5").hide();
 			$("#pro6").show();
 			$("#pro7").hide();
 
-			$("#listAll").css("color", "grey");
+			$("#listAll").css("color", "#B6AD90");
 			$("#listAll").css("font-weight", "normal");
-			$("#list5").css("color", "grey");
+			$("#list5").css("color", "#B6AD90");
 			$("#list5").css("font-weight", "normal");
-			$("#list6").css("color", "green");
+			$("#list6").css("color", "#6F7B63");
 			$("#list6").css("font-weight", "bolder");
-			$("#list7").css("color", "grey");
+			$("#list7").css("color", "#B6AD90");
 			$("#list7").css("font-weight", "normal");
 		});
 
-		$("#list7").click(function() {
+		$("#list7").hover(function() {
 			$("#proAll").hide();
 			$("#pro5").hide();
 			$("#pro6").hide();
 			$("#pro7").show();
 
-			$("#listAll").css("color", "grey");
+			$("#listAll").css("color", "#B6AD90");
 			$("#listAll").css("font-weight", "normal");
-			$("#list5").css("color", "grey");
+			$("#list5").css("color", "#B6AD90");
 			$("#list5").css("font-weight", "normal");
-			$("#list6").css("color", "grey");
+			$("#list6").css("color", "#B6AD90");
 			$("#list6").css("font-weight", "normal");
-			$("#list7").css("color", "green");
+			$("#list7").css("color", "#6F7B63");
 			$("#list7").css("font-weight", "bolder");
 		});
+		
+		
+		$("#listAll").hover(function() {
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder');
+		}, function() {
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal');
+		});
+
+		$("#list5").hover(function() {
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder');
+		}, function() {
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal');
+		});
+
+		$("#list6").hover(function() {
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder');
+		}, function() {
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal');
+		});
+
+		$("#list7").hover(function() {
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder');
+		}, function() {
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal');
+		});
+
+		
 
 	});
 </script>
 
 
 
+<!-- 검색기능 -->
+ <script type="text/javascript">
+ function fun1(){
+	 
+ if(document.fr.type.value==""){
+	 
+	 Swal.fire({   
+         title : '검색유형을 선택하세요!',
+          icon: 'info',
+         confirmButtonText: '확인'
+      })
+		document.fr.type.focus();
+		return false;
+	}
+ 
+	$(document).ready(function(){
+			 
+		$("#sbtn").click(function(){ // get방식
+			location.href="/mempro/adProList2";
+		});
+		
+	});
 
-
-
-
-
-
-
-
-
-
+ }
+ </script>
 
 
 

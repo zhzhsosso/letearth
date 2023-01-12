@@ -38,7 +38,7 @@ body {
 }
 
 .table tbody tr {
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 2px 10px rgb(184 179 158/ 50%);
 	border-radius: 5px;
 }
 
@@ -97,6 +97,7 @@ body {
 	object-fit: cover;
 }
 
+/*사이드바*/
 /* Fixed sidenav, full height */
 .sidenav {
 	height: 100%;
@@ -105,7 +106,7 @@ body {
 	z-index: 1;
 	/*    top: 30%;  */
 	/*    left: 20%;  */
-	background-color: #EEF6E6;
+	background-color: #EDEAE0;
 	overflow-x: hidden;
 	padding-top: 30px;
 	padding-bottom: 100px;
@@ -119,7 +120,7 @@ body {
 	padding: 6px 8px 6px 16px;
 	text-decoration: none;
 	font-size: 17px;
-	color: #818181;
+	color: #414934;
 	display: block;
 	border: none;
 	background: none;
@@ -131,7 +132,7 @@ body {
 
 /* On mouse-over */
 .sidenav a:hover, .dropdown-btn:hover {
-	color: #ACCC97;
+	color: #B6AD90;
 }
 
 /* Main content */
@@ -145,15 +146,15 @@ body {
 }
 
 /* Add an active class to the active dropdown button */
-.active {
-	background-color: #D8E9C5;
+.active1 {
+	background-color: #D7D1B9;
 	color: white;
 }
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
 	display: none;
-	background-color: #EEF5E6;
+	background-color: #EDEAE0;
 	padding-left: 8px;
 }
 
@@ -183,6 +184,53 @@ body {
 	display: flex;
 	/* display: inline-flex; */
 }
+
+/*버튼체인지색상*/
+.main-btn::before {
+	position: absolute;
+	content: '';
+	right: 0;
+	top: 0;
+	height: 17px;
+	width: 17px;
+	background: #6F7B63;
+	border-radius: 0.25rem;
+	z-index: -1;
+}
+
+.main-btn {
+	border-radius: 0.25rem;
+	background-color: #A4AC85;
+	color: #F2F0E8;
+	font-size: 18px;
+	font-weight: bolder;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 0px;
+	padding: 12px;
+	align-content: center;
+	width: 140px;
+	height: 60px;
+	margin: 10px;
+}
+
+#sbtn { /*검색버튼*/
+	position: absolute;
+	top: 0px;
+	background-color: #A4AC85;
+	height: 35px;
+}
+
+/*페이징*/
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+	{
+	z-index: 2;
+	color: #fff;
+	cursor: default;
+	background-color: #89A378;
+	border-color: #89A378;
+}
 </style>
 
 
@@ -202,7 +250,9 @@ body {
 			<div class="col-lg-12">
 				<div>
 					<h3 class="title"
-						style="color: black; font-size: 3em; margin-left: 400px;">${proVO.pro_title }</h3>
+						style="color: #6c757d; font-size: 2.5em; margin-left: 130px;">
+						<b>${proVO.pro_title }</b>
+					</h3>
 				</div>
 			</div>
 		</div>
@@ -259,210 +309,245 @@ body {
 			<div class="container" style="width: 1400">
 				<div class="col-lg-8">
 					<!-- 					<form action="/mempro/adProList1" method="get"> -->
-s							<div class="project-details-content-top">
-								<div class="col-lg-4 col-md-7 col-sm-9"></div>
-							</div>
+					<div class="project-details-content-top">
+						<div class="col-lg-4 col-md-7 col-sm-9"></div>
+					</div>
 
-<!-- div class="flex-container" -->
-<!-- 회원정보 (프로필) -->
-							<div class="flex-container" style="width: 1000">
-								<div class="project-details-item" style="width: 1000">
-									<br> <br> <br> <br> <br>
-									<div>
-										<p style="font-size: 2.2rem;" align="left">판매자 정보</p>
-										<br>
-										<h5 class="title"></h5>
+					<!-- div class="flex-container" -->
+					<!-- 회원정보 (프로필) -->
+					<div class="flex-container" style="width: 1000">
+						<div class="project-details-item" style="width: 1000">
+							<br> <br> <br> <br> <br>
+							<div>
+								<p style="font-size: 30px; color: #6c757d;" align="left">판매자
+									정보</p>
+								<br>
+								<h5 class="title"></h5>
 
 
 
-										<div
-											class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
-											<div class="banner"></div>
-											<img src="/resources/assets/images/messi.jpg" alt=""
+								<div
+									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+									style="border-color: rgb(164 172 133/ 40%);">
+									<div class="banner"></div>
+									<c:choose>
+										<c:when test="${not empty proVO.memberVO.mem_profile }">
+											<img src="" alt="" class="img-circle mx-auto mb-3">
+										</c:when>
+										<c:otherwise>
+											<img src="/resources/assets/images/userimg.png" alt=""
 												class="img-circle mx-auto mb-3">
-											<%--<img src="/resources/assets/images/${proVO.memberVO.mem_profile }" alt="" class="img-circle mx-auto mb-3"> --%>
-											<h3 class="mb-4">${proVO.mem_id }</h3>
+										</c:otherwise>
+									</c:choose>
+									<%--<img src="/resources/assets/images/${proVO.memberVO.mem_profile }" alt="" class="img-circle mx-auto mb-3"> --%>
+									<h3 class="mb-4">${proVO.mem_id }</h3>
 
 
 
-											<table class="table table-condensed">
-												<tbody>
-													<tr>
-														<th style="width: 150px">연락처</th>
-														<td>${proVO.memberVO.mem_phone }</td>
-													</tr>
-													<tr>
-														<th>이메일</th>
-														<td>${proVO.memberVO.mem_email }</td>
-													</tr>
-													<tr>
-														<th>가입날짜</th>
-														<td><fmt:formatDate
-																value="${proVO.memberVO.mem_cr_dt }"
-																pattern="yyyy-MM-dd" /></td>
-													</tr>
-													<tr>
-														<th>펀딩횟수</th>
-														<td>${memPro }회</td>
-													</tr>
-													<tr>
-														<th>구매횟수</th>
-														<td>${memOrd }회</td>
-													</tr>
+									<table class="table table-condensed">
+										<tbody>
+											<tr>
+												<th style="width: 150px">연락처</th>
+												<td>${proVO.memberVO.mem_phone }</td>
+											</tr>
+											<tr>
+												<th>이메일</th>
+												<td>${proVO.memberVO.mem_email }</td>
+											</tr>
+											<tr>
+												<th>가입날짜</th>
+												<td><fmt:formatDate
+														value="${proVO.memberVO.mem_cr_dt }" pattern="yyyy-MM-dd" /></td>
+											</tr>
+											<tr>
+												<th>펀딩횟수</th>
+												<td>${memPro }회</td>
+											</tr>
+											<tr>
+												<th>구매횟수</th>
+												<td>${memOrd }회</td>
+											</tr>
 
-												</tbody>
-											</table>
-
+										</tbody>
+									</table>
 
 
-										</div>
-									</div>
-								</div>
-<!-- 회원정보 (프로필) -->
 
-
-<!-- 중간 텀 -->
-								<div class id="empty" style="width: 100"></div>
-<!-- 중간 텀 -->
-
-
-								<br> <br>
-<!-- 프로젝트정보 (프로필) -->
-								<!-- detail1 : X 달성금액, 달성률, 배송상황, 정산현황 -->
-								<!-- detail2 : O 달성금액, 달성률, 배송상황, 정산현황 -->
-								<div class="project-details-item" style="width: 1000">
-									<br> <br> <br> <br> <br>
-									<div>
-										<p style="font-size: 2.2rem;" align="left">프로젝트 정보</p>
-										<br>
-										<h5 class="title"></h5>
-										<div
-											class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
-											<table class="table table-condensed">
-												<!-- 사진을 넣을지 그냥 타이틀만 넣을지 정하기 -->
-												<div class="banner">
-													<img src="/resources/assets/images/messi.jpg" alt=""
-														class="img-rectangle">
-													<h6>　</h6>
-													<h3 class="mb-4">${proVO.pro_title }</h3>
-													<tbody>
-														<!-- 												<tr> -->
-														<!-- 													<th style="width: 150px">제목</th> -->
-														<%-- 													<td>${proVO.pro_title }</td> --%>
-														<!-- 												</tr> -->
-														<tr>
-															<th>시작일</th>
-															<td>${proVO.pro_st_dt }</td>
-														</tr>
-														<tr>
-															<th>종료일</th>
-															<td>${proVO.pro_ed_dt }</td>
-														</tr>
-														<tr>
-															<th>기간</th>
-															<fmt:parseDate value="${proVO.pro_st_dt }" var="str_Date"
-																pattern="yyyy-MM-dd" />
-															<fmt:parseNumber
-																value="${str_Date.time / (1000*60*60*24)}"
-																integerOnly="true" var="strDate"></fmt:parseNumber>
-															<fmt:parseDate value="${proVO.pro_ed_dt }" var="end_Date"
-																pattern="yyyy-MM-dd" />
-															<fmt:parseNumber
-																value="${end_Date.time / (1000*60*60*24)}"
-																integerOnly="true" var="endDate"></fmt:parseNumber>
-															<td>${endDate - strDate }일</td>
-														</tr>
-														<tr>
-															<th>목표금액</th>
-															<td><fmt:formatNumber value="${proVO.pro_gp }" />원</td>
-														</tr>
-														<tr>
-															<th>　</th>
-															<td>　</td>
-														</tr>
-
-													</tbody>
-												</div>
-											</table>
-										</div>
-									</div>
 								</div>
 							</div>
-<!-- div class="flex-container" -->
+						</div>
+						<!-- 회원정보 (프로필) -->
 
 
+						<!-- 중간 텀 -->
+						<div class id="empty" style="width: 100"></div>
+						<!-- 중간 텀 -->
 
-	<!-- 결제회원 리스트 -->
-	<br><br><br><br>
-	<div class="container" style="width: 135%">
-		<p style="font-size: 2em;">결제 회원 리스트</p>
-		<br>
-		<div
-			class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden">
-			<h5 class="title"></h5>
 
-			<table class="table">
-				<thead>
-					<tr>
-						<th></th>
-						<th style="width: 100px">아이디</th>
-						<th style="width: 100px">리워드</th>
-						<th style="width: 180px">구매수량</th>
-						<th style="width: 150px">결제금액</th>
-						<th style="width: 200px">결제일시</th>
-						<th style="width: 200px">운송장번호</th>
-					</tr>
-				</thead>
+						<br> <br>
+						<!-- 프로젝트정보 (프로필) -->
+						<!-- detail1 : X 달성금액, 달성률, 배송상황, 정산현황 -->
+						<!-- detail2 : O 달성금액, 달성률, 배송상황, 정산현황 -->
+						<div class="project-details-item" style="width: 1000">
+							<br> <br> <br> <br> <br>
+							<div>
+								<p style="font-size: 30px; color: #6c757d;" align="left">프로젝트
+									정보</p>
+								<br>
+								<h5 class="title"></h5>
+								<div
+									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+									style="border-color: rgb(164 172 133/ 40%);">
+									<table class="table table-condensed">
+										<!-- 사진을 넣을지 그냥 타이틀만 넣을지 정하기 -->
+										<div class="banner">
+											<img src="/resources/assets/images/messi.jpg" alt=""
+												class="img-rectangle"> <br>
+											<h4 class="mb-4">
+												<br>${proVO.pro_title }</h4>
+											<tbody>
+												<!-- 												<tr> -->
+												<!-- 													<th style="width: 150px">제목</th> -->
+												<%-- 													<td>${proVO.pro_title }</td> --%>
+												<!-- 												</tr> -->
+												<tr>
+													<th>시작일</th>
+													<td>${proVO.pro_st_dt }</td>
+												</tr>
+												<tr>
+													<th>종료일</th>
+													<td>${proVO.pro_ed_dt }</td>
+												</tr>
+												<tr>
+													<th>기간</th>
+													<fmt:parseDate value="${proVO.pro_st_dt }" var="str_Date"
+														pattern="yyyy-MM-dd" />
+													<fmt:parseNumber value="${str_Date.time / (1000*60*60*24)}"
+														integerOnly="true" var="strDate"></fmt:parseNumber>
+													<fmt:parseDate value="${proVO.pro_ed_dt }" var="end_Date"
+														pattern="yyyy-MM-dd" />
+													<fmt:parseNumber value="${end_Date.time / (1000*60*60*24)}"
+														integerOnly="true" var="endDate"></fmt:parseNumber>
+													<td>${endDate - strDate }일</td>
+												</tr>
+												<tr>
+													<th>목표금액</th>
+													<td><fmt:formatNumber value="${proVO.pro_gp }" />원</td>
+												</tr>
+												<th></th>
+												<td></td>
+												</tr>
 
-				<c:forEach var="ordList" items="${ordList  }" varStatus="status">
-					<tbody>
-						<tr>
-							<td>${status.count }</td>
-							<td>
-								<div class="user-info">
-									<!-- 																<div class="user-info__img"> -->
-									<!-- 																	<img src="img/user1.jpg" alt="User Img"> -->
-									<!-- 																</div> -->
-									<div class="user-info__basic">
-										<h5 class="mb-0">${ordList.mem_id }</h5>
-									</div>
+											</tbody>
+										</div>
+									</table>
 								</div>
-							</td>
-							<td>${ordList.reward_no }</td>
-							<td>${ordList.order_count }개</td>
-							<td>${ordList.total_price }원</td>
-							<td><fmt:formatDate value="${ordList.order_date }"
-									pattern="yyyy-MM-dd" /></td>
-							<td>${ordList.shipping_no }</td>
-						</tr>
-					</tbody>
-				</c:forEach>
-			</table>
-		</div>
-	</div>
-	<!-- 결제회원 리스트 -->
+							</div>
+						</div>
+					</div>
+					<!-- div class="flex-container" -->
 
-						
+
+
+					<!-- 결제회원 리스트 -->
+					<br> <br> <br> <br>
+					<div class="container" style="width: 135%">
+						<p style="font-size: 2em;">결제 회원 리스트</p>
+						<br>
+
+						<c:choose>
+							<!-- 결제회원이 없을 때 -->
+							<c:when test="${empty ordList }">
+								<div
+									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+									style="border-color: rgb(164 172 133/ 40%); display: block;">
+									결제한 회원 내역이 없습니다.
+									<h5 class="title"></h5>
+
+									<table class="table">
+										<!-- 								<thead> -->
+										<!-- 								</thead> -->
+
+										<%-- 								<c:forEach var="ordList" items="${ordList  }" varStatus="status"> --%>
+										<!-- 									<tbody> -->
+										<!-- 									</tbody> -->
+										<%-- 								</c:forEach> --%>
+									</table>
+								</div>
+							</c:when>
+							<!-- 결제회원이 없을 때 -->
+
+							<!--  결제회원이 있을 때 -->
+							<c:otherwise>
+								<div
+									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+									style="border-color: rgb(164 172 133/ 40%);">
+									<h5 class="title"></h5>
+
+									<table class="table">
+										<thead>
+											<tr>
+												<th></th>
+												<th style="width: 100px">아이디</th>
+												<th style="width: 100px">리워드</th>
+												<th style="width: 180px">구매수량</th>
+												<th style="width: 150px">결제금액</th>
+												<th style="width: 200px">결제일시</th>
+												<th style="width: 200px">운송장번호</th>
+											</tr>
+										</thead>
+
+										<c:forEach var="ordList" items="${ordList  }"
+											varStatus="status">
+											<tbody>
+												<tr>
+													<td>${status.count }</td>
+													<td>
+														<div class="user-info">
+															<!-- 																<div class="user-info__img"> -->
+															<!-- 																	<img src="img/user1.jpg" alt="User Img"> -->
+															<!-- 																</div> -->
+															<div class="user-info__basic">
+																<h5 class="mb-0">${ordList.mem_id }</h5>
+															</div>
+														</div>
+													</td>
+													<td>${ordList.reward_no }</td>
+													<td>${ordList.order_count }개</td>
+													<td>${ordList.total_price }원</td>
+													<td><fmt:formatDate value="${ordList.order_date }"
+															pattern="yyyy-MM-dd" /></td>
+													<td>${ordList.shipping_no }</td>
+												</tr>
+											</tbody>
+										</c:forEach>
+									</table>
+								</div>
+							</c:otherwise>
+							<!--  결제회원이 있을 때 -->
+						</c:choose>
+					</div>
+					<!-- 결제회원 리스트 -->
+
+
 				</div>
-<!-- 프로젝트정보 (프로필) -->
+				<!-- 프로젝트정보 (프로필) -->
 			</div>
 		</div>
-		
-		
-		
+
+
+
 	</div>
 
-<br><br><br><br>
+	<br> <br> <br> <br>
 
 
 
 	<div align="center">
-	<button type="submit"
-		onclick="location.href='javascript:window.history.back();'"
-		class="main-btn" style="float: center;">목록</button>
-	<button type="submit"  class="main-btn"
-		style="float: center;">목록</button>
-	<!-- 			</form> -->
+		<button type="submit"
+			onclick="location.href='javascript:window.history.back();'"
+			class="main-btn" style="float: center;">목록</button>
+		<!-- 			</form> -->
 
 	</div>
 </section>
@@ -492,20 +577,20 @@ s							<div class="project-details-content-top">
 
 <!-- 드롭다운 -->
 <script>
-/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
-var dropdown = document.getElementsByClassName("dropdown-btn");
-var i;
+	/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+	var dropdown = document.getElementsByClassName("dropdown-btn");
+	var i;
 
-for (i = 0; i < dropdown.length; i++) {
-  dropdown[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-   var dropdownContent = this.nextElementSibling;
-    if (dropdownContent.style.display === "block") {
-      dropdownContent.style.display = "none";
-    } else {
-      dropdownContent.style.display = "block";
-    }
-  });
-}
+	for (i = 0; i < dropdown.length; i++) {
+		dropdown[i].addEventListener("click", function() {
+			this.classList.toggle("active1");
+			var dropdownContent = this.nextElementSibling;
+			if (dropdownContent.style.display === "block") {
+				dropdownContent.style.display = "none";
+			} else {
+				dropdownContent.style.display = "block";
+			}
+		});
+	}
 </script>
 <!-- 드롭다운 -->

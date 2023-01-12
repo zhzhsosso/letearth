@@ -6,9 +6,9 @@
 <html>
 <head>
 <!-- 어드민 lte -->
-<link
-	href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css" />
+<!-- <link -->
+<%-- 	href="${pageContext.request.contextPath }/resources/bootstrap/css/bootstrap.min.css" --%>
+<!-- 	rel="stylesheet" type="text/css" /> -->
 <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> -->
 <link href="/resources/dist/css/AdminLTE.min.css" rel="stylesheet"
 	type="text/css" />
@@ -28,9 +28,11 @@
 	font-size: 15px;
 }
 
-#sbtn {
+#sbtn { /*검색버튼*/
 	position: absolute;
-	top: -4px;
+	top: 0px;
+	background-color: #A4AC85;
+	height: 35px;
 }
 
 hr {
@@ -46,6 +48,35 @@ hr {
 	transition: 0s;
 	font-weight: bolder;
 	/*text-decoration: underline;*/
+}
+
+/*버튼체인지색상*/
+.main-btn::before {
+	position: absolute;
+	content: '';
+	right: 0;
+	top: 0;
+	height: 17px;
+	width: 17px;
+	background: #6F7B63;
+	border-radius: 0.25rem;
+	z-index: -1;
+}
+
+.main-btn {
+	border-radius: 0.25rem;
+	background-color: #A4AC85;
+	color: #F2F0E8;
+	font-size: 18px;
+	font-weight: bolder;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 0px;
+	padding: 12px;
+	align-content: center;
+	width: 140px;
+	height: 60px;
+	margin: 10px;
 }
 </style>
 </head>
@@ -68,43 +99,54 @@ hr {
 					<b style="color: #6c757d;">프로젝트 승인</b> <br> <br> <br>
 				</h2>
 				<div class="col-xs-12">
-					<div style="font-size: 2.2rem;" align="left">
-						<span id="hov"> <a id="listAll">전체</a> | <a id="list2">승인요청</a>
-							| <a id="list3">승인</a> | <a id="list4">반려</a>
+					<div style="font-size: 2.2em" align="left"
+						class="proList1">
+						<span id="hov"> <a id="listAll"
+							style="color: #6F7B63; font-weight: bolder;">전체</a> | <a
+							id="list2" style="color: #B6AD90">승인요청</a> | <a id="list3"
+							style="color: #B6AD90">승인</a> | <a id="list4"
+							style="color: #B6AD90">반려</a>
 						</span>
-
+						<hr style="border-color: #A4AC85; position: relative; top: -10px;">
 					</div>
 					<br>
 					<!-- 어드민 -->
 
-					<div class="box">
-						<br>
+					<!-- 검색기능 -->
+
+					<div class="box" style="border-top: none;">
 						<div class="box-header">
-							<br>
 							<div class="box-tools" align="right">
 								<div class="input-group input-group-sm hidden-xs"
-									style="width: 150px;">
-									<input type="text" name="table_search"
-										class="form-control pull-right" placeholder="Search">
-									<div class="input-group-btn">
+									style="width: 180px; height: 50px;">
+									<input type="text" name="keyword"
+										class="form-control pull-right" placeholder="검색어를 입력해주세요"
+										style="height: 35px; width: 60px; font-size: 1rem;">
+									<div class="input-group-btn" style="padding-left: 3px;">
 										<button type="submit" class="btn btn-default" id="sbtn">
 											<i class="fa fa-search"></i>
 										</button>
 									</div>
+									<!-- 				</form> -->
 								</div>
 							</div>
 						</div>
+					<!-- 검색기능 -->
 						<br>
+						<br>
+
 						<!-- proAll -->
 						<div class="box-body table-responsive no-padding" id="proAll">
 							<form role="form" name="fr" id="contact-form" action=""
 								method="post">
 								<table class="table table-hover">
 									<tbody>
-										<tr style="background-color: #EEF5E6">
-											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">프로젝트 번호</th>
-											<th style="font-size: 15px;">프로젝트 이름</th>
-											<th style="font-size: 15px;">아이디</th>
+										<tr style="background-color: #EDEAE0">
+											<th style="font-size: 15px; width: 10%; table-layout: fixed;">프로젝트
+												번호</th>
+											<th style="font-size: 15px; width: 35%; table-layout: fixed;">프로젝트
+												이름</th>
+											<th style="font-size: 15px; width: 15%; table-layout: fixed;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
 											<th style="font-size: 15px;">목표금액</th>
 											<th style="font-size: 15px;">승인상태</th>
@@ -114,7 +156,8 @@ hr {
 											<tr>
 												<td style="font-size: 15px;">${proVO.pro_no }</td>
 												<td style="font-size: 15px;"><a
-													href="/mempro/adProDetail1?pro_no=${proVO.pro_no }"
+													<%-- 													href="/mempro/adProDetail1?pro_no=${proVO.pro_no }" --%>
+													href="/mempro/adProDetail1?pro_no=${proVO.pro_no }&mem_id=${proVO.mem_id}"
 													style="color: green"> ${proVO.pro_title } </a></td>
 												<td style="font-size: 15px;">${proVO.mem_id }</td>
 												<td style="font-size: 15px;">${proVO.pro_st_dt }</td>
@@ -122,16 +165,22 @@ hr {
 														value="${proVO.pro_gp }" />원</td>
 												<c:choose>
 													<c:when test="${proVO.pro_status == 2}">
-														<td style="font-size: 15px;"><span
-															class="label label-info">승인요청</span></td>
+														<td>
+															<button type="button" class="btn btn-primary"
+																style="font-size: 12px; background-color: #89A378; border-color: #89A378;">승인요청</button>
+														</td>
 													</c:when>
 													<c:when test="${proVO.pro_status == 3}">
-														<td style="font-size: 15px;"><span
-															class="label label-success">승인</span></td>
+														<td>
+															<button type="button" class="btn btn-primary"
+																style="font-size: 12px; background-color: #B6AD90; border-color: #B6AD90;">승인</button>
+														</td>
 													</c:when>
 													<c:when test="${proVO.pro_status == 4}">
-														<td style="font-size: 15px;"><span
-															class="label label-warning">반려</span></td>
+														<td>
+															<button type="button" class="btn btn-primary"
+																style="font-size: 12px; background-color: #BFCC97; border-color: #BFCC97;">반려</button>
+														</td>
 													</c:when>
 												</c:choose>
 											</tr>
@@ -148,10 +197,12 @@ hr {
 								method="post">
 								<table class="table table-hover">
 									<tbody>
-										<tr style="background-color: #f8f9fa">
-											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">프로젝트 번호</th>
-											<th style="font-size: 15px;">프로젝트 이름</th>
-											<th style="font-size: 15px;">아이디</th>
+										<tr style="background-color: #EDEAE0">
+											<th style="font-size: 15px; width: 10%; table-layout: fixed;">프로젝트
+												번호</th>
+											<th style="font-size: 15px; width: 35%; table-layout: fixed;">프로젝트
+												이름</th>
+											<th style="font-size: 15px; width: 15%; table-layout: fixed;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
 											<th style="font-size: 15px;">목표금액</th>
 											<th style="font-size: 15px;">승인상태</th>
@@ -161,14 +212,17 @@ hr {
 												<tr>
 													<td style="font-size: 15px;">${proVO2.pro_no }</td>
 													<td style="font-size: 15px;"><a
-														href="/mempro/adProDetail1?pro_no=${proVO2.pro_no }"
+														<%-- 														href="/mempro/adProDetail1?pro_no=${proVO2.pro_no }" --%>
+														href="/mempro/adProDetail1?pro_no=${proVO2.pro_no }&mem_id=${proVO2.mem_id}"
 														style="color: green"> ${proVO2.pro_title } </a></td>
 													<td style="font-size: 15px;">${proVO2.mem_id }</td>
 													<td style="font-size: 15px;">${proVO2.pro_st_dt }</td>
 													<td style="font-size: 15px;"><fmt:formatNumber
 															value="${proVO2.pro_gp }" />원</td>
-													<td style="font-size: 15px;"><span
-														class="label label-info">승인요청</span></td>
+													<td>
+														<button type="button" class="btn btn-primary"
+															style="font-size: 12px; background-color: #89A378; border-color: #89A378;">승인요청</button>
+													</td>
 
 												</tr>
 											</c:if>
@@ -185,10 +239,12 @@ hr {
 								method="post">
 								<table class="table table-hover">
 									<tbody>
-										<tr style="background-color: #f8f9fa">
-											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">프로젝트 번호</th>
-											<th style="font-size: 15px;">프로젝트 이름</th>
-											<th style="font-size: 15px;">아이디</th>
+										<tr style="background-color: #EDEAE0">
+											<th style="font-size: 15px; width: 10%; table-layout: fixed;">프로젝트
+												번호</th>
+											<th style="font-size: 15px; width: 35%; table-layout: fixed;">프로젝트
+												이름</th>
+											<th style="font-size: 15px; width: 15%; table-layout: fixed;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
 											<th style="font-size: 15px;">목표금액</th>
 											<th style="font-size: 15px;">승인상태</th>
@@ -198,14 +254,17 @@ hr {
 												<tr>
 													<td style="font-size: 15px;">${proVO3.pro_no }</td>
 													<td style="font-size: 15px;"><a
-														href="/mempro/adProDetail1?pro_no=${proVO3.pro_no }"
+														<%-- 														href="/mempro/adProDetail1?pro_no=${proVO3.pro_no }" --%>
+														href="/mempro/adProDetail1?pro_no=${proVO3.pro_no }&mem_id=${proVO3.mem_id}"
 														style="color: green"> ${proVO3.pro_title } </a></td>
 													<td style="font-size: 15px;">${proVO3.mem_id }</td>
 													<td style="font-size: 15px;">${proVO3.pro_st_dt }</td>
 													<td style="font-size: 15px;"><fmt:formatNumber
 															value="${proVO3.pro_gp }" />원</td>
-													<td style="font-size: 15px;"><span
-														class="label label-success">승인</span></td>
+													<td>
+														<button type="button" class="btn btn-primary"
+															style="font-size: 12px; background-color: #B6AD90; border-color: #B6AD90;">승인</button>
+													</td>
 
 												</tr>
 											</c:if>
@@ -221,10 +280,12 @@ hr {
 								method="post">
 								<table class="table table-hover">
 									<tbody>
-										<tr style="background-color: #f8f9fa">
-											<th style="font-size: 15px; width : 10%; table-layout: fixed;"">프로젝트 번호</th>
-											<th style="font-size: 15px;">프로젝트 이름</th>
-											<th style="font-size: 15px;">아이디</th>
+										<tr style="background-color: #EDEAE0">
+											<th style="font-size: 15px; width: 10%; table-layout: fixed;">프로젝트
+												번호</th>
+											<th style="font-size: 15px; width: 35%; table-layout: fixed;">프로젝트
+												이름</th>
+											<th style="font-size: 15px; width: 15%; table-layout: fixed;">아이디</th>
 											<th style="font-size: 15px;">펀딩 시작날짜</th>
 											<th style="font-size: 15px;">목표금액</th>
 											<th style="font-size: 15px;">승인상태</th>
@@ -234,14 +295,17 @@ hr {
 												<tr>
 													<td style="font-size: 15px;">${proVO4.pro_no }</td>
 													<td style="font-size: 15px;"><a
-														href="/mempro/adProDetail1?pro_no=${proVO4.pro_no }"
+														<%-- 														href="/mempro/adProDetail1?pro_no=${proVO4.pro_no }" --%>
+														href="/mempro/adProDetail1?pro_no=${proVO4.pro_no }&mem_id=${proVO4.mem_id}"
 														style="color: green"> ${proVO4.pro_title } </a></td>
 													<td style="font-size: 15px;">${proVO4.mem_id }</td>
 													<td style="font-size: 15px;">${proVO4.pro_st_dt }</td>
 													<td style="font-size: 15px;"><fmt:formatNumber
 															value="${proVO4.pro_gp }" />원</td>
-													<td style="font-size: 15px;"><span
-														class="label label-warning">반려</span></td>
+													<td>
+														<button type="button" class="btn btn-primary"
+															style="font-size: 12px; background-color: #BFCC97; border-color: #BFCC97;">반려</button>
+													</td>
 
 												</tr>
 											</c:if>
@@ -297,75 +361,112 @@ hr {
 		$("#pro3").hide();
 		$("#pro4").hide();
 
-		$("#listAll").css("color", "green");
+		$("#listAll").css("color", "#6F7B63");
 		$("#listAll").css("font-weight", "bolder");
 
-		$("#listAll").click(function() {
+		$("#listAll").hover(function() {
 			$("#proAll").show();
 			$("#pro2").hide();
 			$("#pro3").hide();
 			$("#pro4").hide();
 
-			$("#listAll").css("color", "green");
+			$("#listAll").css("color", "#6F7B63");
 			$("#listAll").css("font-weight", "bolder");
-			$("#list2").css("color", "grey");
+			$("#list2").css("color", "#B6AD90");
 			$("#list2").css("font-weight", "normal");
-			$("#list3").css("color", "grey");
+			$("#list3").css("color", "#B6AD90");
 			$("#list3").css("font-weight", "normal");
-			$("#list4").css("color", "grey");
+			$("#list4").css("color", "#B6AD90");
 			$("#list4").css("font-weight", "normal");
 
 		});
 
-		$("#list2").click(function() { // 승인요청
+		$("#list2").hover(function() { // 승인요청
 			$("#proAll").hide();
 			$("#pro2").show();
 			$("#pro3").hide();
 			$("#pro4").hide();
 
-			$("#list2").css("color", "green");
+			$("#list2").css("color", "#6F7B63");
 			$("#list2").css("font-weight", "bolder");
-			$("#listAll").css("color", "grey");
+			$("#listAll").css("color", "#B6AD90");
 			$("#listAll").css("font-weight", "normal");
-			$("#list3").css("color", "grey");
+			$("#list3").css("color", "#B6AD90");
 			$("#list3").css("font-weight", "normal");
-			$("#list4").css("color", "grey");
+			$("#list4").css("color", "#B6AD90");
 			$("#list4").css("font-weight", "normal");
 		});
 
-		$("#list3").click(function() { // 승인
+		$("#list3").hover(function() { // 승인
 			$("#proAll").hide();
 			$("#pro2").hide();
 			$("#pro3").show();
 			$("#pro4").hide();
 
-			$("#list3").css("color", "green");
+			$("#list3").css("color", "#6F7B63");
 			$("#list3").css("font-weight", "bolder");
-			$("#list2").css("color", "grey");
+			$("#list2").css("color", "#B6AD90");
 			$("#list2").css("font-weight", "normal");
-			$("#listAll").css("color", "grey");
+			$("#listAll").css("color", "#B6AD90");
 			$("#listAll").css("font-weight", "normal");
-			$("#list4").css("color", "grey");
+			$("#list4").css("color", "#B6AD90");
 			$("#list4").css("font-weight", "normal");
 		});
 
-		$("#list4").click(function() { // 반려
+		$("#list4").hover(function() { // 반려
 			$("#proAll").hide();
 			$("#pro2").hide();
 			$("#pro3").hide();
 			$("#pro4").show();
 
-			$("#list4").css("color", "green");
+			$("#list4").css("color", "#6F7B63");
 			$("#list4").css("font-weight", "bolder");
-			$("#list2").css("color", "grey");
+			$("#list2").css("color", "#B6AD90");
 			$("#list2").css("font-weight", "normal");
-			$("#listAll").css("color", "grey");
+			$("#listAll").css("color", "#B6AD90");
 			$("#listAll").css("font-weight", "normal");
-			$("#list3").css("color", "grey");
+			$("#list3").css("color", "#B6AD90");
 			$("#list3").css("font-weight", "normal");
 		});
+
+		$("#listAll").hover(function() {
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder');
+		}, function() {
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal');
+		});
+
+		$("#list2").hover(function() {
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder');
+		}, function() {
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal');
+		});
+
+		$("#list3").hover(function() {
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder');
+		}, function() {
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal');
+		});
+
+		$("#list4").hover(function() {
+			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+			$(this).css('font-weight', 'bolder');
+		}, function() {
+			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+			$(this).css('font-weight', 'normal');
+		});
+
 	});
 </script>
+
+
+<!-- 검색기능 -->
+
 
 </html>
 

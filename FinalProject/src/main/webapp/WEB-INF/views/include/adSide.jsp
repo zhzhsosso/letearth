@@ -18,7 +18,7 @@
   z-index: 1;
 /*    top: 30%;  */
 /*    left: 20%;  */
-  background-color: #EEF6E6;
+  background-color: #EDEAE0;
   overflow-x: hidden;
   padding-top: 30px;
   padding-bottom : 100px;
@@ -33,7 +33,7 @@
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 17px;
-  color: #818181;
+  color: #414934;
   display: block;
   border: none;
   background: none;
@@ -45,7 +45,7 @@
 
 /* On mouse-over */
 .sidenav a:hover, .dropdown-btn:hover {
-  color: #ACCC97;
+  color: #B6AD90;
 }
 
 /* Main content */
@@ -61,14 +61,14 @@
 
 /* Add an active class to the active dropdown button */
 .active1 {
-  background-color: #D8E9C5; 
+  background-color: #D7D1B9; 
   color: white;
 }
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
   display: none;
-  background-color: #EEF5E6;
+  background-color: #EDEAE0;
   padding-left: 8px;
 }
 
@@ -89,67 +89,67 @@
 
 
 <!-- <section class="contact-form-area"> -->
-<!-- 	<div class="container"> -->
-		
-		
+<!--    <div class="container"> -->
+      
+      
 <!-- 사이드바 -->
-<div class="sidenav">	
-	<a href="/board/adMain">
-	<i class="fa fa-solid fa-leaf"></i>
-	<span style="position: relative; left: 2px; bottom: 3px; font-weight: bolder;">관리자메인</span>
-	</a>
-	<button class="dropdown-btn">
-	<i class="fa fa-solid fa-paper-plane"></i>
-		&nbsp;고객센터 <i class="fa fa-caret-down"></i>
-	</button>
-	<div class="dropdown-container">
-		<a href="/board/adNoticeList">공지사항</a> 
-		<a href="/board/adFaqList">FAQ</a> 
-		<a href="/board/adRewriteList">1:1문의</a>
-	</div>
-	
-	<button class="dropdown-btn">
-	<i class="fa fa-solid fa-bank"></i>
-		&nbsp;펀딩관리 <i class="fa fa-caret-down"></i>
-	</button>
-	<div class="dropdown-container">
-		<a href="/mempro/adProList1">프로젝트 승인</a> 
-		<a href="/mempro/adProList2">프로젝트 목록</a> 
-		<a href="#">정산관리</a>
-	</div>
-	
-	<button class="dropdown-btn">
-	<i class="fa fa-solid fa-users"></i>
-		&nbsp;회원관리 <i class="fa fa-caret-down"></i>
-	</button>
-	<div class="dropdown-container">
-		<a href="/report/adRepList">신고접수관리</a> 
-		<a href="/mempro/adMemList">회원목록</a> 
-		<a href="/report/adBlackList">블랙리스트</a>
-	</div>
+<div class="sidenav">   
+   <a href="/board/adMain">
+   <i class="fa fa-solid fa-leaf"></i>
+   <span style="position: relative; left: 2px; bottom: 3px; font-weight: bolder;">관리자메인</span>
+   </a>
+   <button class="dropdown-btn">
+   <i class="fa fa-solid fa-paper-plane"></i>
+      &nbsp;고객센터 <i class="fa fa-caret-down"></i>
+   </button>
+   <div class="dropdown-container">
+      <a href="/board/adNoticeList">공지사항</a> 
+      <a href="/board/adFaqList">FAQ</a> 
+      <a href="/board/adRewriteList">1:1문의</a>
+   </div>
+   
+   <button class="dropdown-btn">
+   <i class="fa fa-solid fa-bank"></i>
+      &nbsp;펀딩관리 <i class="fa fa-caret-down"></i>
+   </button>
+   <div class="dropdown-container">
+      <a href="/mempro/adProList1">프로젝트 승인</a> 
+      <a href="/mempro/adProList2">프로젝트 목록</a> 
+      <a href="#">정산관리</a>
+   </div>
+   
+   <button class="dropdown-btn">
+   <i class="fa fa-solid fa-users"></i>
+      &nbsp;회원관리 <i class="fa fa-caret-down"></i>
+   </button>
+   <div class="dropdown-container">
+      <a href="/report/adRepListAll">신고접수관리</a> 
+      <a href="/mempro/adMemList">회원목록</a> 
+      <a href="/report/adBlackList">블랙리스트</a>
+   </div>
 </div>
 <!-- 사이드바 -->
 
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-<!-- 		</div> -->
-<!-- 	</section> -->
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+<!--       </div> -->
+<!--    </section> -->
 
 
 
