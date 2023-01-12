@@ -2,7 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
@@ -512,10 +515,9 @@ body {
 							<c:when test="${empty ordList }">
 								<div
 									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-									style="border-color: rgb(164 172 133/ 40%);">
+									style="border-color: rgb(164 172 133/ 40%); display: block;">
+									<i class="ion-checkmark-round"></i>&nbsp;결제내역이 없습니다
 									<h5 class="title"></h5>
-									
-									결제내역이 없습니다.
 								</div>
 							<!-- 결제내역 X -->
 							</c:when>
@@ -523,7 +525,7 @@ body {
 							<!-- 결제내역 O -->
 								<div
 									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-									style="border-color: rgb(164 172 133/ 40%);">
+									style="border-color: rgb(164 172 133/ 40%)">
 									<h5 class="title"></h5>
 
 									<table class="table">
@@ -570,12 +572,13 @@ body {
 							<br>
 							<c:choose>
 								<c:when test="${empty proList }">
-								<!-- 판매내역 X -->
 									<div
 										class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-										style="border-color: rgb(164 172 133/ 40%);">
+										style="border-color: rgb(164 172 133/ 40%); display: block;">
+								<!-- 판매내역 X -->
+										<i class="ion-checkmark-round"></i>&nbsp;판매내역이 없습니다
 										<h5 class="title"></h5>
-										판매내역이 없습니다
+										
 									</div>
 								<!-- 판매내역 X -->
 								</c:when>
