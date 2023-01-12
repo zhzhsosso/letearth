@@ -67,7 +67,7 @@
 						<li>현금, 주식, 지분, 복권, 사이버머니, 상품권 등 수익성 상품 제공</li>
 						<li>추첨을 통해서만 제공되는 선물</li>
 						<li>무기, 군용장비, 라이터 등 위험 품목</li>
-					</ul>
+					</ul> <br> <br>
 					<input type="hidden" name="result" id="result" value="">
 					<a class="main-btn" href="/project/createSecond" style="margin-right: 2em; background-color: #A4AC85; border: none;">뒤로가기</a>
 					<a class="main-btn" onclick="ckModal();" style="background-color: #A4AC85; border: none;">다음</a>

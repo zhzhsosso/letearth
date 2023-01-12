@@ -4,12 +4,13 @@
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-@font-face {
+ @font-face {
      font-family: 'S-CoreDream-3Light';
      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
      font-weight: normal;
      font-style: normal;
 }
+
 :root { -
 	-blue: #007bff; -
 	-indigo: #6610f2; -
@@ -37,11 +38,11 @@
 	-breakpoint-md: 768px; -
 	-breakpoint-lg: 992px; -
 	-breakpoint-xl: 1200px; -
-	-font-family-sans-serif: "S-CoreDream-3Light", -apple-system, BlinkMacSystemFont, "Segoe UI",
+	-font-family-sans-serif: S-CoreDream-3Light, -apple-system, BlinkMacSystemFont, "Segoe UI",
 		Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
 		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
 		"Noto Color Emoji"; -
-	-font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+	-font-family-monospace: S-CoreDream-3Light, SFMono-Regular, Menlo, Monaco, Consolas,
 		"Liberation Mono", "Courier New", monospace
 }
 
@@ -50,7 +51,7 @@
 }
 
 html {
-	font-family: S-CoreDream-3Light;
+	font-family: S-CoreDream-3Light, sans-serif;
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%;
 	-webkit-tap-highlight-color: transparent
@@ -6188,7 +6189,7 @@ a.close.disabled {
 	z-index: 1070;
 	display: block;
 	margin: 0;
-	font-family: S-CoreDream-3Light, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 		"Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
 		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 	font-style: normal;
@@ -6308,7 +6309,7 @@ a.close.disabled {
 	z-index: 1060;
 	display: block;
 	max-width: 276px;
-	font-family: S-CoreDream-3Light, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 		"Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
 		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 	font-style: normal;
@@ -6774,7 +6775,7 @@ opacity
 }
 
 .bg-primary {
-	background-color: #007bff !important
+	background-color: #A4AC85 !important
 }
 
 a.bg-primary:focus, a.bg-primary:hover, button.bg-primary:focus, button.bg-primary:hover
@@ -9645,7 +9646,7 @@ supports ((position:-webkit-sticky ) or (position:sticky )){ .
 }
 
 .text-monospace {
-	font-family: S-CoreDream-3Light, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+	font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
 		"Courier New", monospace !important
 }
 
