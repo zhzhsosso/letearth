@@ -42,9 +42,9 @@
 	</resultMap>
 	
 	<select id="getDetailPro1" parameterType="ProjectVO" resultMap="ProjectVO">
-		select pro.pro_no, pro.mem_id, pro.pro_st_dt, pro.pro_ed_dt, pro.pro_gp, pro.pro_title, pro.pro_tp, pro.pro_status, 
-		mem.mem_id, mem.mem_name, mem.mem_phone, mem.mem_profile, mem.mem_email, mem.mem_cr_dt 
-		from project pro
+		select pro.pro_no, pro.mem_id, pro.pro_st_dt, pro.pro_ed_dt, pro.pro_gp, pro.pro_title, pro.pro_tp, pro_status, 
+		mem.mem_id, mem.mem_name, mem.mem_phone, mem.mem_profile, mem.mem_email, mem.mem_cr_dt, 
+		from project pro 
 		join member mem 
 		on pro.mem_id = mem.mem_id 
 		where pro.pro_no = #{pro_no} 
@@ -144,7 +144,7 @@
 		on ord.pro_no = pro.pro_no 
 		and ord.reward_no = rew.reward_no 
 		where ord.mem_id = #{mem_id} 
-		order by ord.order_no desc
+		order by ord.order_no desc;
 		]]>
 	</select>
 
