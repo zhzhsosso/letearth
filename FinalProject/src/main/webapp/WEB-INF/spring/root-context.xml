@@ -50,6 +50,7 @@
 			<context:component-scan base-package="com.letearth.admin.persistence"/>
 			<context:component-scan base-package="com.letearth.admin.service"/>	
 			<context:component-scan base-package="com.letearth.openbank.service"/>	
+			<context:component-scan base-package="com.letearth.openbank.persistence"/>	
 		<!-- 다른 패키지 정보를 스캔(객체bean로 인식 처리) -->
 	
 </beans>
