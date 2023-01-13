@@ -7,7 +7,7 @@
 
 	<!-- 회원 한명 정보 조회 -->
 	<select id="memInfo" resultType="MemberVO">
-		select * from member where mem_id = #{mem_id}
+		select * from member_tbl where mem_id = #{mem_id}
 	</select>
 	
 	<!-- 리워드 리스트 -->
@@ -22,7 +22,7 @@
 
 	<!-- 회원 연락처 추가 -->
 	<update id="updateMemTel">
-		update member set mem_phone = #{mem_phone} where mem_id = #{mem_id}
+		update member_tbl set mem_phone = #{mem_phone} where mem_id = #{mem_id}
 	</update>
 	
 	<!-- 주문 max 번호 조회 -->

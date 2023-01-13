@@ -74,7 +74,7 @@ function deleteLike(like_no) {
 				<div class="col-lg-4 col-md-6 col-sm-9">
 					<div class="explore-projects-item mt-30">
 						<div class="explore-projects-thumb">
-							<img src="${likey.pro_thum }" alt="LetEarth" width="100px;" height="300px;"> 
+							<img src="../resources/upload/${likey.pro_thum}" alt="LetEarth" width="100px;" height="300px;"> 
 							<a onclick="deleteLike(${likey.like_no});">
 							<i class="fa fa-heart"></i>
 							</a>

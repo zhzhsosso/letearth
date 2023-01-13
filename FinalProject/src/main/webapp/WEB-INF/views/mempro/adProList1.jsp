@@ -36,15 +36,14 @@
 }
 
 #repSelector {
-  width : 10%;
-  height : 3px;
-  background-color : #D7D1B9;
-  border : 0;
-  
-   position: relative;
-   top: -95px; 
-/*    left: 380px;  */
-   left: 45%;
+	width: 10%;
+	height: 3px;
+	background-color: #D7D1B9;
+	border: 0;
+	position: relative;
+	top: -95px;
+	/*    left: 380px;  */
+	left: 45%;
 }
 
 /* hr { */
@@ -93,32 +92,31 @@
 
 /*페이징*/
 .paging {
-    display: inline-block;
+	display: inline-block;
 }
 
-.paging a{
+.paging a {
 	display: block;
 	text-decoration: none;
 	color: #414934;
 	float: left;
 	line-height: 1.5;
-	border-radius:50%;
+	border-radius: 50%;
 	padding: 8px 16px;
 }
 
 .paging a:hover {
 	background-color: #B6AD90;
 	color: #E8E4D7;
-	
 }
 
-.paging a.active{
+.paging a.active {
 	cursor: default;
 	background-color: #B6AD90;
 	color: #E8E4D7;
 }
 
-.pagination a:active{
+.pagination a:active {
 	cursor: default;
 	background-color: #B6AD90;
 	color: #E8E4D7;
@@ -142,17 +140,18 @@
 				<!-- 어드민 -->
 				<h2 class="box-title" align="center">
 					<b style="color: #6c757d;">프로젝트 승인</b> <br> <br> <br>
-				</h2><hr id="repSelector" align="center">
+				</h2>
+				<hr id="repSelector" align="center">
 				<div class="col-xs-12">
-					<div style="font-size: 1.7rem" align="left"
-						class="proList1">
+					<div style="font-size: 1.7rem" align="left" class="proList1">
 						<span id="hov"> <a id="listAll"
 							style="color: #6F7B63; font-weight: bolder;">전체</a> | <a
 							id="list2" style="color: #B6AD90">승인요청</a> | <a id="list3"
 							style="color: #B6AD90">승인</a> | <a id="list4"
 							style="color: #B6AD90">반려</a>
 						</span>
-						<hr style="border-color: rgba(164, 172, 133, .5); position: relative; top: -10px; width: 100%; ">
+						<hr
+							style="border-color: rgba(164, 172, 133, .5); position: relative; top: -10px; width: 100%;">
 					</div>
 					<br>
 					<!-- 어드민 -->
@@ -163,22 +162,31 @@
 						<div class="box-header">
 							<div class="box-tools" align="right">
 								<div class="input-group input-group-sm hidden-xs"
-									style="width: 180px; height: 50px;">
-									<input type="text" name="keyword"
-										class="form-control pull-right" placeholder="Search"
-										style="height: 35px; width: 60px; font-size: 1rem;">
+									style="width: 380px; height: 35px;" id="search">
+									<select name="searchType">
+										<option value="n"
+											<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
+										<option value="t"
+											<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+										<option value="m"
+											<c:out value="${scri.searchType eq 'm' ? 'selected' : ''}"/>>작성자</option>
+										<option value="tm"
+											<c:out value="${scri.searchType eq 'tm' ? 'selected' : ''}"/>>제목+작성자</option>
+									</select> <input type="text" name="keyword" id="keywordInput"
+										value="${scri.keyword}" class="form-control pull-right"
+										placeholder="검색어를 입력해주세요"
+										style="height: 38px; width: 150px; font-size: 1rem;">
 									<div class="input-group-btn" style="padding-left: 3px;">
-										<button type="submit" class="btn btn-default" id="sbtn">
+										<button id="searchBtn" type="submit" class="btn btn-default">
 											<i class="fa fa-search"></i>
 										</button>
 									</div>
-									<!-- 				</form> -->
 								</div>
 							</div>
 						</div>
-					<!-- 검색기능 -->
-						<br>
-						<br>
+						
+						<!-- 검색기능 -->
+						<br> <br>
 
 						<!-- proAll -->
 						<div class="box-body table-responsive no-padding" id="proAll">
@@ -363,29 +371,39 @@
 
 					</div>
 				</div>
-<br><br>
+				<br>
+				<br>
 				<!-- 페이징처리 -->
-					<div class="pagination" style="position: absolute; right: 45%; border: none;">
-						<ul class="pagination" style="font-size: 18px;">
+				<div class="pagination"
+					style="position: absolute; right: 45%; border: none;">
+					<ul class="pagination" style="font-size: 18px;">
 						<c:if test="${pvo.prev }">
-							<li class="paging"><a href="/mempro/adProList1?page=${pvo.startPage-1 }">«</a></li>
+							<li class="paging"><a
+								href="adProList1${pvo.makeSearch(pvo.starPage-1) }">«</a></li>
 							<!-- 10 -->
 						</c:if>
 
 						<c:forEach var="idx" begin="${pvo.startPage }"
 							end="${pvo.endPage }" step="1">
-							<li class="paging" <c:out value="${idx == pvo.cri.page? 'class=active':'' }"/>><a
-								href="/mempro/adProList1?page=${idx }">${idx }</a></li>
+							<li class="paging"
+								<c:out value="${idx == pvo.cri.page? 'class=active':'' }"/>><a
+								href="adProList1${pvo.makeSearch(idx) }">${idx }</a></li>
 						</c:forEach>
 
 						<c:if test="${pvo.next }">
-							<li class="paging"><a href="/mempro/adProList1?page=${pvo.endPage+1 }">»</a></li>
+							<li class="paging"><a
+								href="adProList1${pvo.makeSearch(pvo.endPage+1) }">»</a></li>
 							<!-- 11 -->
 						</c:if>
 					</ul>
 				</div>
 				<!-- 페이징처리 -->
-			</div><br><br><br><br><br>
+			</div>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
 	</section>
 
 
@@ -509,7 +527,19 @@
 	});
 </script>
 
-
+<!-- 검색기능 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#searchBtn').click(
+				function() {
+					self.location = "adProList1" + '${pvo.makeQuery(1)}'
+							+ "&searchType="
+							+ $("select option:selected").val() + "&keyword="
+							+ encodeURIComponent($('#keywordInput').val());
+				});
+	});
+</script>
 <!-- 검색기능 -->
 
 

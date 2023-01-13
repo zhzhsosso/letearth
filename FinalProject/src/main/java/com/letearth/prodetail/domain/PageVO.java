@@ -1,5 +1,13 @@
 package com.letearth.prodetail.domain;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import com.letearth.admin.domain.SearchCriteria;
+
 public class PageVO {
 	//하단부 페이징처리에 필요한 객체 정보
 	//startPage, endPage, prev, next, totalCount(DB), Cri - [page, perPageNum]
@@ -109,6 +117,53 @@ public class PageVO {
 		this.displayPageNum = displayPageNum;
 	}
 
+	
+	
+	
+	public String makeSearch(int page)
+	{
+	  
+	 UriComponents uriComponents =
+	            UriComponentsBuilder.newInstance()
+	            .queryParam("page", page)
+	            .queryParam("perPageNum", cri.getPerPageNum())
+	            .queryParam("searchType", ((SearchCriteria)cri).getSearchType())
+	            .queryParam("keyword", encoding(((SearchCriteria)cri).getKeyword()))
+	            .build(); 
+	    return uriComponents.toUriString();  
+	}
+	
+	
+	// 검색기능 구현
+	public String makeQuery(int page) {
+		UriComponents uriComponents =
+		UriComponentsBuilder.newInstance()
+						    .queryParam("page", page)
+							.queryParam("perPageNum", cri.getPerPageNum())
+							.build();
+		   
+		return uriComponents.toUriString();
+	}
+	
+
+	// 검색기능 구현
+	private String encoding(String keyword) {
+		if(keyword == null || keyword.trim().length() == 0) { 
+			return "";
+		}
+		 
+		try {
+			return URLEncoder.encode(keyword, "UTF-8");
+		} catch(UnsupportedEncodingException e) { 
+			return ""; 
+		}
+	}
+
+	
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "PageVO [startPage=" + startPage + ", endPage=" + endPage + ", totalCount=" + totalCount + ", prev="
