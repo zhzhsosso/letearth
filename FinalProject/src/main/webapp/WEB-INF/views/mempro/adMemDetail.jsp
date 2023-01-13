@@ -2,8 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+	rel="stylesheet" type="text/css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -379,8 +382,8 @@ body {
 					class="fa fa-caret-down"></i>
 			</button>
 			<div class="dropdown-container">
-				<a href="#">프로젝트 승인</a> <a href="#">프로젝트 목록</a> <a href="#">재펀딩</a>
-				<a href="#">정산관리</a>
+				<a href="/mempro/adProList1">프로젝트 승인</a> <a href="#">프로젝트 목록</a> <a href="#">재펀딩</a>
+				<a href="/mempro/adProList2">정산관리</a>
 			</div>
 
 			<button class="dropdown-btn">
@@ -388,7 +391,7 @@ body {
 					class="fa fa-caret-down"></i>
 			</button>
 			<div class="dropdown-container">
-				<a href="/report/adRepList">신고접수관리</a> <a href="#">회원목록</a> <a
+				<a href="/report/adRepList">신고접수관리</a> <a href="/mempro/adMemList">회원목록</a> <a
 					href="/report/adBlackList">블랙리스트</a>
 			</div>
 		</div>
@@ -428,7 +431,9 @@ body {
 								<div class="banner"></div>
 								<c:choose>
 									<c:when test="${not empty memVO.mem_profile }">
-										<img src="" alt="" class="img-circle mx-auto mb-3">
+										<img
+											src="../resources/upload/${proVO.memberVO.mem_profile} alt="
+											" class="img-circle mx-auto mb-3">
 									</c:when>
 									<c:otherwise>
 										<img src="/resources/assets/images/userimg.png" alt=""
@@ -519,10 +524,10 @@ body {
 									<i class="ion-checkmark-round"></i>&nbsp;결제내역이 없습니다
 									<h5 class="title"></h5>
 								</div>
-							<!-- 결제내역 X -->
+								<!-- 결제내역 X -->
 							</c:when>
 							<c:otherwise>
-							<!-- 결제내역 O -->
+								<!-- 결제내역 O -->
 								<div
 									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
 									style="border-color: rgb(164 172 133/ 40%)">
@@ -567,82 +572,80 @@ body {
 						</c:choose>
 						<!-- 판매리스트 -->
 						<br> <br> <br> <br>
-<!-- 						<div class="container" style="width: 145%"> -->
-							<p style="font-size: 2em;">판매 리스트</p>
-							<br>
-							<c:choose>
-								<c:when test="${empty proList }">
-									<div
-										class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-										style="border-color: rgb(164 172 133/ 40%); display: block;">
-								<!-- 판매내역 X -->
-										<i class="ion-checkmark-round"></i>&nbsp;판매내역이 없습니다
-										<h5 class="title"></h5>
-										
-									</div>
-								<!-- 판매내역 X -->
-								</c:when>
+						<!-- 						<div class="container" style="width: 145%"> -->
+						<p style="font-size: 2em;">판매 리스트</p>
+						<br>
+						<c:choose>
+							<c:when test="${empty proList }">
+								<div
+									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+									style="border-color: rgb(164 172 133/ 40%); display: block;">
+									<!-- 판매내역 X -->
+									<i class="ion-checkmark-round"></i>&nbsp;판매내역이 없습니다
+									<h5 class="title"></h5>
 
-								<c:otherwise>
+								</div>
+								<!-- 판매내역 X -->
+							</c:when>
+
+							<c:otherwise>
 								<!-- 판매내역 O -->
-									<div
-										class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-										style="border-color: rgb(164 172 133/ 40%);">
-										<h5 class="title"></h5>
+								<div
+									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+									style="border-color: rgb(164 172 133/ 40%);">
+									<h5 class="title"></h5>
 
-										<table class="table">
-											<thead>
+									<table class="table">
+										<thead>
+											<tr>
+												<th></th>
+												<th style="width: 80px">분류</th>
+												<th style="width: 200px">프로젝트번호</th>
+												<th style="width: 200px">프로젝트이름</th>
+												<th style="width: 180px">목표금액</th>
+												<th style="width: 150px">달성금액</th>
+												<th style="width: 100px">달성률</th>
+												<th style="width: 200px">시작일</th>
+												<th style="width: 200px">종료일</th>
+												<th style="width: 100px">기간</th>
+												<!-- 										<th style="width: 100px">상태</th> -->
+											</tr>
+										</thead>
+
+										<c:forEach var="proList" items="${proList  }"
+											varStatus="status">
+											<tbody>
 												<tr>
-													<th></th>
-													<th style="width: 80px">분류</th>
-													<th style="width: 200px">프로젝트번호</th>
-													<th style="width: 200px">프로젝트이름</th>
-													<th style="width: 180px">목표금액</th>
-													<th style="width: 150px">달성금액</th>
-													<th style="width: 100px">달성률</th>
-													<th style="width: 200px">시작일</th>
-													<th style="width: 200px">종료일</th>
-													<th style="width: 100px">기간</th>
-													<!-- 										<th style="width: 100px">상태</th> -->
+													<td>${status.count }</td>
+													<td>${proList.cat_name }</td>
+													<td style="text-align: center">${proList.pro_no }</td>
+													<td>${proList.pro_title }</td>
+													<td><fmt:formatNumber value="${proList.pro_gp }" />원</td>
+													<td><fmt:formatNumber value="${proList.pro_tp }" />원</td>
+													<td><fmt:formatNumber
+															value="${proList.pro_tp / proList.pro_gp }"
+															type="percent" /></td>
+													<td>${proList.pro_st_dt }</td>
+													<td>${proList.pro_ed_dt }</td>
+													<fmt:parseDate value="${proList.pro_st_dt }" var="str_Date"
+														pattern="yyyy-MM-dd" />
+													<fmt:parseNumber value="${str_Date.time / (1000*60*60*24)}"
+														integerOnly="true" var="strDate"></fmt:parseNumber>
+													<fmt:parseDate value="${proList.pro_ed_dt }" var="end_Date"
+														pattern="yyyy-MM-dd" />
+													<fmt:parseNumber value="${end_Date.time / (1000*60*60*24)}"
+														integerOnly="true" var="endDate"></fmt:parseNumber>
+													<td>${endDate - strDate }일</td>
 												</tr>
-											</thead>
+											</tbody>
+										</c:forEach>
 
-											<c:forEach var="proList" items="${proList  }"
-												varStatus="status">
-												<tbody>
-													<tr>
-														<td>${status.count }</td>
-														<td>${proList.cat_name }</td>
-														<td style="text-align: center">${proList.pro_no }</td>
-														<td>${proList.pro_title }</td>
-														<td><fmt:formatNumber value="${proList.pro_gp }" />원</td>
-														<td><fmt:formatNumber value="${proList.pro_tp }" />원</td>
-														<td><fmt:formatNumber
-																value="${proList.pro_tp / proList.pro_gp }"
-																type="percent" /></td>
-														<td>${proList.pro_st_dt }</td>
-														<td>${proList.pro_ed_dt }</td>
-														<fmt:parseDate value="${proList.pro_st_dt }"
-															var="str_Date" pattern="yyyy-MM-dd" />
-														<fmt:parseNumber
-															value="${str_Date.time / (1000*60*60*24)}"
-															integerOnly="true" var="strDate"></fmt:parseNumber>
-														<fmt:parseDate value="${proList.pro_ed_dt }"
-															var="end_Date" pattern="yyyy-MM-dd" />
-														<fmt:parseNumber
-															value="${end_Date.time / (1000*60*60*24)}"
-															integerOnly="true" var="endDate"></fmt:parseNumber>
-														<td>${endDate - strDate }일</td>
-													</tr>
-												</tbody>
-											</c:forEach>
-
-										</table>
-									</div>
-								</c:otherwise>
-							</c:choose>
-								<!-- 판매내역 O -->
-<!-- 						</div> -->
+									</table>
+								</div>
+							</c:otherwise>
+						</c:choose>
+						<!-- 판매내역 O -->
+						<!-- 						</div> -->
 						<!-- 판매 리스트  -->
 					</div>
 				</div>

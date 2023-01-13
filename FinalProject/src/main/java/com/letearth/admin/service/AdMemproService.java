@@ -51,7 +51,7 @@ public interface AdMemproService {
 	 * 회원
 	 */
 	// 회원 목록 조회
-	public List<MemberVO> getMemList(Criteria cri);
+	public List<MemberVO> getMemList(SearchCriteria scri);
 	
 	// 회원 상세조회
 	public MemberVO getMemDetail(String mem_id);

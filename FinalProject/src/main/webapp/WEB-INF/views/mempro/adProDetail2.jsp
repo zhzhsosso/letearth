@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 <!-- 헤더 -->
@@ -286,8 +287,8 @@ body {
 					class="fa fa-caret-down"></i>
 			</button>
 			<div class="dropdown-container">
-				<a href="#">프로젝트 승인</a> <a href="#">프로젝트 목록</a> <a href="#">재펀딩</a>
-				<a href="#">정산관리</a>
+				<a href="/mempro/adProList1">프로젝트 승인</a> <a href="/mempro/adProList2"">프로젝트 목록</a> 
+				<a href="">정산관리</a>
 			</div>
 
 			<button class="dropdown-btn">
@@ -295,7 +296,7 @@ body {
 					class="fa fa-caret-down"></i>
 			</button>
 			<div class="dropdown-container">
-				<a href="/report/adRepList">신고접수관리</a> <a href="#">회원목록</a> <a
+				<a href="/report/adRepList">신고접수관리</a> <a href="/mempro/adMemList">회원목록</a> <a
 					href="/report/adBlackList">블랙리스트</a>
 			</div>
 		</div>
@@ -331,11 +332,11 @@ body {
 
 								<div
 									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-									style="border-color: rgb(164 172 133/ 40%);">
+									style="border-color: rgb(164 172 133/ 40%); width:480px; height:700px;">
 									<div class="banner"></div>
 									<c:choose>
 										<c:when test="${not empty proVO.memberVO.mem_profile }">
-											<img src="" alt="" class="img-circle mx-auto mb-3">
+											<img src="../resources/upload/${proVO.memberVO.mem_profile}" alt="" class="img-circle mx-auto mb-3">
 										</c:when>
 										<c:otherwise>
 											<img src="/resources/assets/images/userimg.png" alt=""
@@ -400,11 +401,11 @@ body {
 								<h5 class="title"></h5>
 								<div
 									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-									style="border-color: rgb(164 172 133/ 40%);">
+									style="border-color: rgb(164 172 133/ 40%); width:480px; height:700px;">
 									<table class="table table-condensed">
 										<!-- 사진을 넣을지 그냥 타이틀만 넣을지 정하기 -->
 										<div class="banner">
-											<img src="/resources/assets/images/messi.jpg" alt=""
+											<img src="../resources/upload/${pro_thum}" alt=""
 												class="img-rectangle"> <br>
 											<h4 class="mb-4">
 												<br>${proVO.pro_title }</h4>

@@ -16,7 +16,7 @@
    <select id="getListPro1" parameterType="com.letearth.admin.domain.SearchCriteria" resultType="ProjectVO">
       select * from project
       where pro_no > 0  
-      and pro_status between 5 and 7
+      and pro_status between 2 and 4
       <include refid="search"></include> 
       order by pro_no desc, pro_cr_dt desc
       limit #{pageStart},#{perPageNum}
@@ -76,7 +76,7 @@
 	
 <!-- ProDetail2 페이지에서 ProDetail1메서드와 함께 출력할 메서드 -->	
 	<!-- 결제회원 리스트 -->
-	<select id="proOrdMemList" resultType="orderVO">
+	<select id="proOrdMemList" resultType="OrderVO">
 	 <![CDATA[
 		select * from order_tbl
 		where pro_no = #{pro_no} 
@@ -128,7 +128,7 @@
          <if test="searchType == 'm'.toString()">AND mem_id LIKE CONCAT('%',#{keyword},'%')</if>
       </if>
    </sql>
-   <select id="getMemList" parameterType="com.letearth.admin.domain.SearchCriteria" resultType="memberVO">
+   <select id="getMemList" parameterType="com.letearth.admin.domain.SearchCriteria" resultType="MemberVO">
       select * from member_tbl 
       where mem_no > 0 
       <include refid="searchMem"></include> 
@@ -151,7 +151,7 @@
 
 
 	<!-- 구매자 구매 리스트 -->
-	<select id="memOrdList" resultType="memOrdVO">
+	<select id="memOrdList" resultType="MemOrdVO">
 	<![CDATA[
 		select pro.pro_title, rew.reward_title, ord.order_no, ord.total_price, ord.order_status, 
 		ord.order_date, pro.pro_tp, pro.pro_gp, ord.shipping_no 
