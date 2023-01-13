@@ -71,7 +71,6 @@
                         <div class="explore-projects-thumb">
                             <img src="../resources/upload/${end.pro_thum }" alt="LetEarth" style="width: 370px; height: 370px;">
                             <a href="/prodetail/info?pro_no=${end.pro_no}">
-                            	<i class="fa fa-heart"></i>
                             </a>
                         </div>
                         <div class="explore-projects-content" style="height: 305px;">

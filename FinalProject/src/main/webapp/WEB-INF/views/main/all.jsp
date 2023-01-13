@@ -10,7 +10,7 @@
 	<script>
 	$(document).ready(function() {		
 		var tagObj = $(".tags");
-				
+				debugger;
 		for(var i=0; i<tagObj.length; i++){
 			var tagText = $(".tags")[i].innerHTML;	
 		    tagText = tagText.replaceAll(',', ' #');
@@ -149,10 +149,10 @@
                 <div class="col-lg-4 col-md-6 col-sm-9" style="width: 280px;">
                     <div class="explore-projects-item mt-30">
                         <div class="explore-projects-thumb">
-                            <img src="${pl.pro_thum }" alt="LetEarth_popularList" style="width: 370px; height: 370px;">
+                            <img src="../resources/upload/${pl.pro_thum }" alt="LetEarth_popularList" style="width: 370px; height: 370px;">
                             <a href="/prodetail/info?pro_no=${pl.pro_no }"><i class="fa fa-heart"></i></a>
                         </div>
-                        <div class="explore-projects-content" style="height: 255px;">
+                        <div class="explore-projects-content" style="height: 305px;">
                         	<div class="item d-flex align-items-center">
                             	<p><i class="fa fa-clock-o"></i></p>
                         		<p>프로젝트 종료까지</p>&nbsp;
@@ -178,7 +178,7 @@
                                 <span>목표 금액: <span><fmt:formatNumber value="${pl.pro_gp }" pattern="#,###"/></span> 원</span>
                             </div>
                             <div>
-                            	<span class="tags" style="color: #A4AC85;">${pl.tags }</span>
+                            	<span class="tags" style="color: #A4AC85;">${pl.tags}</span>
                             </div>
                         </div>
                     </div>

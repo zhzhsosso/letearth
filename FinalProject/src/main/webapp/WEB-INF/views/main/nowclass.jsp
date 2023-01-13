@@ -70,9 +70,7 @@
                     <div class="explore-projects-item mt-30">
                         <div class="explore-projects-thumb">
                             <img src="../resources/upload/${nowc.pro_thum }" alt="LetEarth" style="width: 370px; height: 370px;">
-                            <a href="/prodetail/info?pro_no=${nowc.pro_no}">
-                            	<i class="fa fa-heart"></i>
-                            </a>
+                            <a href="/prodetail/info?pro_no=${nowc.pro_no}"></a>
                         </div>
                         <div class="explore-projects-content" style="height: 305px;">
                         	<div class="item d-flex align-items-center">
