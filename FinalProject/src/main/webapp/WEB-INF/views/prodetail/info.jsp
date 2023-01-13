@@ -709,7 +709,7 @@ $(document).ready(function() {
                                 <h3 style="margin-top: 60px; margin-bottom: 30px; color: #B6AD90;" id="reward"><i class="flaticon-checkmark"></i>리워드 소개</h3>
                                 <div style="text-align: center; margin-bottom: 75px;">
 	                                <c:forEach var="reward" items="${reward}" step="1">
-		                                <p class="text" style="font-size: 20px; color: #838694; line-height: 24px; font-weight: 400; margin: 16px;"><i class="flaticon-check"></i>
+		                                <p class="text" style="font-size: 20px; color: #838694; line-height: 30px; font-weight: 400; margin: 16px;"><i class="flaticon-check"></i>
 		                                	${reward.reward_title } <br>
 		                                	${reward.reward_content } <br>
 		                                	${reward.reward_price }원 <br>
@@ -775,7 +775,7 @@ $(document).ready(function() {
 	                                <div class="project-details-updates-top">
 	                                    <div class="info-updates d-block d-sm-flex justify-content-between align-items-center">
 	                                        <div class="info">
-	                                            <img src="${sn.mem_profile}" alt="" width="65px;" height="65px;">
+	                                            <img src="../resources/upload/${sn.mem_profile}" alt="" width="65px;" height="65px;">
 	                                          	 <span>by <span>${pdvo.mem_id }<span style="color: #6F7B63;">${sn.reply_date }</span></span></span>
 	                                  			<div class="panmaeja-btn">
 						                            <span>판매자</span>
@@ -851,7 +851,7 @@ $(document).ready(function() {
 		                       		<div class="comment-one__single">
 	                                    <div class="comment-one__image">
 	                                    	<!-- 나중에 멤버랑 합치면 쪼인해서 프사올리기 -->
-	                                        <img src="${ur.mem_profile }" alt="${ur.mem_profile }" style="width: 165px;">
+	                                        <img src="../resources/upload/${ur.mem_profile }" alt="${ur.mem_profile }" style="width: 165px;">
 	                                    </div>
 	                                    <div class="comment-one__content">
 	                                        <h3>${ur.mem_id } <span class="comment-one__date" style="color: #6F7B63;">${ur.reply_date }</span></h3>
@@ -984,20 +984,22 @@ $(document).ready(function() {
 	                                <li><span>재고</span> ${reward.reward_stock}개</li>
 	                            </ul>
 	                            <c:choose>
-	                            <c:when test="${info[0].left_date < 0 }">
-	                            	<a class="main-btn" style="width: 155px; background-color: #A4AC85;">마감</a>
-	                            </c:when>
-	                            
-	                            <c:when test="${info[0].left_date > 0 }">
-	                            	<c:if test="${pdvo.pro_st_dt <= today }">
-	                            		 <a class="main-btn" href="/order/or_main?pro_no=${reward.pro_no }&reward_no=${reward.reward_no}" style="width: 155px; background-color: #A4AC85;">선택</a>
-	                            	</c:if>
-	                            	<c:if test="${pdvo.pro_st_dt > today }">
-	                            		<a class="main-btn" style="width: 155px; background-color: #A4AC85;">오픈예정</a>
-	                            	</c:if>
-	                            </c:when>
+		                            <c:when test="${info[0].left_date < 0 }">
+		                            	<a class="main-btn" style="width: 155px; background-color: #A4AC85;">마감</a>
+		                            </c:when>
+		                            
+		                            <c:when test="${info[0].left_date > 0 }">
+		                            	<c:if test="${pdvo.pro_st_dt <= today && reward.reward_stock != 0}">
+		                            		 <a class="main-btn" href="/order/or_main?pro_no=${reward.pro_no }&reward_no=${reward.reward_no}" style="width: 155px; background-color: #A4AC85;">선택</a>
+		                            	</c:if>
+		                            	<c:if test="${pdvo.pro_st_dt <= today && reward.reward_stock == 0}">
+		                            		 <a class="main-btn" style="width: 155px; background-color: #A4AC85;">품절</a>
+		                            	</c:if>
+		                            	<c:if test="${pdvo.pro_st_dt > today }">
+		                            		<a class="main-btn" style="width: 155px; background-color: #A4AC85;">오픈예정</a>
+		                            	</c:if>
+		                            </c:when>
                             	</c:choose>
-	                           
 	                        </div>
                         </c:forEach>                      
                     </div>

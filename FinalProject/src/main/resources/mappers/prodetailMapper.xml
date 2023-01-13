@@ -79,7 +79,7 @@
 		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
 		from project
 		<![CDATA[
-		where DATE_FORMAT(pro_st_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and pro_status != '7'
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") >= DATE_FORMAT(now(), "%Y%m%d") and pro_status != '7'
 		]]>
 		order by pro_st_dt desc
 	</select>
