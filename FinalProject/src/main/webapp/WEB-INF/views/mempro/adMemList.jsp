@@ -244,12 +244,20 @@
 						<div class="box-header">
 							<div class="box-tools" align="right">
 								<div class="input-group input-group-sm hidden-xs"
-									style="width: 180px; height: 50px;">
-									<input type="text" name="keyword"
-										class="form-control pull-right" placeholder="Search"
-										style="height: 35px; width: 60px; font-size: 1rem;">
+									style="width: 380px; height: 35px;" id="search">
+									<select name="searchType">
+										<option value="n"
+											<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>카테고리</option>
+										<option value="na"
+											<c:out value="${scri.searchType eq 'na' ? 'selected' : ''}"/>>이름</option>
+										<option value="m"
+											<c:out value="${scri.searchType eq 'm' ? 'selected' : ''}"/>>아이디</option>
+									</select> <input type="text" name="keyword" id="keywordInput"
+										value="${scri.keyword}" class="form-control pull-right"
+										placeholder="검색어를 입력해주세요"
+										style="height: 38px; width: 150px; font-size: 1rem;">
 									<div class="input-group-btn" style="padding-left: 3px;">
-										<button type="submit" class="btn btn-default" id="sbtn">
+										<button id="searchBtn" type="submit" class="btn btn-default">
 											<i class="fa fa-search"></i>
 										</button>
 									</div>
@@ -494,25 +502,29 @@
 					</div>
 <br><br>
 					<!-- 페이징처리 -->
-					<div class="pagination" style="position: absolute; right: 45%; border: none;">
-						<ul class="pagination" style="font-size: 18px;">
-							<c:if test="${pvo.prev }">
-								<li class="paging"><a href="/mempro/adMemList?page=${pvo.startPage-1 }">«</a></li>
-								<!-- 10 -->
-							</c:if>
+				<div class="pagination"
+					style="position: absolute; right: 45%; border: none;">
+					<ul class="pagination" style="font-size: 18px;">
+						<c:if test="${pvo.prev }">
+							<li class="paging"><a
+								href="adMemList${pvo.makeSearch(pvo.starPage-1) }">«</a></li>
+							<!-- 10 -->
+						</c:if>
 
-							<c:forEach var="idx" begin="${pvo.startPage }"
-								end="${pvo.endPage }" step="1">
-								<li class="paging" <c:out value="${idx == pvo.cri.page? 'class=active':'' }"/>><a
-									href="/mempro/adMemList?page=${idx }">${idx }</a></li>
-							</c:forEach>
+						<c:forEach var="idx" begin="${pvo.startPage }"
+							end="${pvo.endPage }" step="1">
+							<li class="paging"
+								<c:out value="${idx == pvo.cri.page? 'class=active':'' }"/>><a
+								href="adMemList${pvo.makeSearch(idx) }">${idx }</a></li>
+						</c:forEach>
 
-							<c:if test="${pvo.next }">
-								<li class="paging"><a href=/mempro/adMemList?page=${pvo.endPage+1}">»</a></li>
-								<!-- 11 -->
-							</c:if>
-						</ul>
-					</div>
+						<c:if test="${pvo.next }">
+							<li class="paging"><a
+								href="adMemList${pvo.makeSearch(pvo.endPage+1) }">»</a></li>
+							<!-- 11 -->
+						</c:if>
+					</ul>
+				</div>
 					<!-- 페이징처리 -->
 				</div>
 			</div>
@@ -644,30 +656,19 @@
 
 
 <!-- 검색기능 -->
- <script type="text/javascript">
- function fun1(){
-	 
- if(document.fr.type.value==""){
-	 
-	 Swal.fire({   
-         title : '검색유형을 선택하세요!',
-          icon: 'info',
-         confirmButtonText: '확인'
-      })
-		document.fr.type.focus();
-		return false;
-	}
- 
-	$(document).ready(function(){
-			 
-		$("#sbtn").click(function(){ // get방식
-			location.href="/mempro/adMemList";
-		});
-		
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#searchBtn').click(
+				function() {
+					self.location = "adMemList" + '${pvo.makeQuery(1)}'
+							+ "&searchType="
+							+ $("select option:selected").val() + "&keyword="
+							+ encodeURIComponent($('#keywordInput').val());
+				});
 	});
-
- }
- </script>
+</script>
+<!-- 검색기능 -->
 
 </html>
 

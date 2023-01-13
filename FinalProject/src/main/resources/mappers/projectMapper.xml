@@ -96,7 +96,7 @@
 	
 	<!-- 멤버 프로필 등록 -->
 	<update id="updateMemFile">
-		update member set mem_profile=#{mem_profile}
+		update member_tbl set mem_profile=#{mem_profile}
 		where mem_id=#{mem_id}
 	</update>
 	

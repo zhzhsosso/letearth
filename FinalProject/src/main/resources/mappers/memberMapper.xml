@@ -7,43 +7,43 @@
 	
 	<!-- 일반 회원가입 -->
 	<insert id="insertMember">
-		insert into member(mem_id, mem_pw, mem_name, mem_phone, mem_email, mem_cr_dt, mem_link, rep_cnt, mem_status) 
+		insert into member_tbl_tbl(mem_id, mem_pw, mem_name, mem_phone, mem_email, mem_cr_dt, mem_link, rep_cnt, mem_status) 
 		value(#{mem_id},#{mem_pw},#{mem_name},#{mem_phone},#{mem_email},now(),"N", 0, 0)
 	</insert>
 	
 	<!-- 일반 로그인 -->
 	<select id="loginMember" resultType="int">
-		select count(*) from member where mem_id=#{mem_id} and mem_pw=#{mem_pw}
+		select count(*) from member_tbl where mem_id=#{mem_id} and mem_pw=#{mem_pw}
 	</select>
 	
 	<!-- 아이디 찾기 -->
 	<select id="findMemID" resultType="String">
-		select mem_id from member where mem_name=#{mem_name} and mem_email=#{mem_email}
+		select mem_id from member_tbl where mem_name=#{mem_name} and mem_email=#{mem_email}
 	</select>
 	
 	<!-- 비밀번호 찾기 -->
 	<select id="findMemPW" resultType="MemberVO">
-		select * from member where mem_id=#{mem_id} and mem_name=#{mem_name} and mem_email=#{mem_email}
+		select * from member_tbl where mem_id=#{mem_id} and mem_name=#{mem_name} and mem_email=#{mem_email}
 	</select>
 	
 	<!-- 비밀번호 변경 -->
 	<update id="changePw">
-		update member set mem_pw=#{mem_pw} where mem_id=#{mem_id}
+		update member_tbl set mem_pw=#{mem_pw} where mem_id=#{mem_id}
 	</update>
 	
 	<!-- mem_id에 해당하는 회원의 정보 불러오기 -->
 	<select id="getMember" resultType="MemberVO">
-		select * from member where mem_id=#{mem_id}
+		select * from member_tbl where mem_id=#{mem_id}
 	</select>
 	
 	<!-- 카카오 회원인지 아닌지 -->
 	<select id="kakaoAccount" parameterType="String" resultType="String">
-		select count(*) from member where mem_id=#{kid} and mem_link="Y"
+		select count(*) from member_tbl where mem_id=#{kid} and mem_link="Y"
 	</select>
 	
 	<!-- 카카오 회원가입 -->
 	<insert id="insertKakao" parameterType="MemberVO">
-		insert into member(mem_id, mem_name, mem_email, mem_cr_dt, mem_link, rep_cnt, mem_status) 
+		insert into member_tbl(mem_id, mem_name, mem_email, mem_cr_dt, mem_link, rep_cnt, mem_status) 
 		values (#{mem_id}, #{mem_name}, #{mem_email}, now(), "Y", 0, 0)
 	</insert>
 
@@ -53,7 +53,7 @@
 		from order_tbl ord
 		join reward rew
 		on ord.reward_no=rew.reward_no
-		join member mem
+		join member_tbl mem
 		on ord.mem_id=mem.mem_id
 		join project pro
 		on ord.pro_no=pro.pro_no
@@ -110,21 +110,21 @@
 	
 	<!-- 회원정보 수정 -->
 	<update id="myModify">
-		update member
+		update member_tbl
 		set mem_name=#{mem_name}, mem_phone=#{mem_phone}, mem_email=#{mem_email}
 		where mem_id=#{mem_id}
 	</update>
 	
 	<!-- 패스워드 체크 -->
 	<select id="passChk" resultType="Integer">
-		select count(*) FROM member
+		select count(*) from member_tbl
 		where mem_id = #{mem_id}
 		  and mem_pw = #{mem_pw}
 	</select>
 	
 	<!-- 회원 탈퇴 -->
 	<delete id="myDelete">
-		delete from member
+		delete from member_tbl
 		where mem_id=#{mem_id} and mem_pw=#{mem_pw}
 	</delete>
 	
@@ -207,7 +207,7 @@
 	<!--  핀테크용   -->	
 	<!-- 정보 저장 -->
 	<update id="setBank">
-		update member 
+		update member_tbl 
 		set bank_token=#{bank_token}, bank_user_num=#{bank_user_num}, bank_code=#{bank_code}, bank_fin_num=#{bank_fin_num}, bank_name=#{bank_name},bank_acc=#{bank_acc}, bank_acc_name=#{bank_acc_name}  
 		where mem_id=#{mem_id}
 	</update>

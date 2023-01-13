@@ -51,7 +51,7 @@ function myProUpdate(num){
 				<div class="col-lg-4 col-md-6 col-sm-9">
 					<div class="explore-projects-item mt-30">
 						<div class="explore-projects-thumb">
-							<img src="${pro.pro_thum }" alt="LetEarth" width="100px;" height="300px;"> 
+							<img src="../resources/upload/${pro.pro_thum}" width="100px;" height="300px;"> 
 							<a href="/prodetail/info?pro_no=${pro.pro_no}"> <i class="fa fa-heart"></i>
 							</a>
 						</div>

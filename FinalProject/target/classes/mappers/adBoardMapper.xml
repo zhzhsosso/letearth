@@ -145,7 +145,7 @@
   	
 	<!-- 블랙리스트 처리1(회원) - 멤버상태 3으로 변경 -->
  	<update id="updateBlackMem">
-    	update member set mem_status=3
+    	update member_tbl set mem_status=3
     	where mem_id = #{reped_id }  
   	</update>
   	
@@ -159,7 +159,7 @@
   	
   	<!-- 블랙리스트 처리3(회원) - 멤버테이블에 날짜 업데이트 -->
   	<update id="updateBdate">
-  		update member mem
+  		update member_tbl mem
 		join blacklist bl
 		on mem.mem_id = bl.mem_id
 		set mem.mem_bdate = bl.black_date

@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.letearth.admin.domain.AdminVO;
 import com.letearth.admin.domain.MemOrdVO;
+import com.letearth.admin.domain.SearchCriteria;
 import com.letearth.admin.service.AdMemproService;
 import com.letearth.member.domain.MemberVO;
 import com.letearth.order.domain.OrderVO;
@@ -46,7 +48,7 @@ public class AdMemproController {
 	 */
 	//http://localhost:8080/mempro/adProList1
 	@RequestMapping(value="/adProList1", method=RequestMethod.GET)
-	public String adProList1GET(HttpSession session, Model model, Criteria cri) throws Exception{
+	public String adProList1GET(HttpSession session, Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		// session - id값 가져오기
 		// 관리자 로그인제어
 //		String id = (String)session.getAttribute("id");
@@ -55,15 +57,15 @@ public class AdMemproController {
 //		}
 		
 		// 서비스 -dao 프로젝트 목록 가져오기
-		List<ProjectVO> proList = adMemproService.getListPro1(cri);
+		List<ProjectVO> proList = adMemproService.getListPro1(scri);
 		
 		
 		// 페이징처리 하단부 정보 준비 -> 뷰페이지로 전달
 		PageVO pvo = new PageVO();
-		pvo.setCri(cri);
-		mylog.debug("totalPro : "+adMemproService.totalPro1());
-		System.out.println("totalPro : "+adMemproService.totalPro1());
-		pvo.setTotalCount(adMemproService.totalPro1()); // 프로젝트 전체 개수
+		pvo.setCri(scri);
+		mylog.debug("totalPro : "+adMemproService.totalPro1(scri));
+		System.out.println("totalPro : "+adMemproService.totalPro1(scri));
+		pvo.setTotalCount(adMemproService.totalPro1(scri)); // 프로젝트 전체 개수
 	
 		
 		model.addAttribute("proList",proList);
@@ -84,7 +86,6 @@ public class AdMemproController {
 		ProjectVO proVO = adMemproService.getDetailPro1(pro_no);
 		int memOrd = adMemproService.totalMemOrd(mem_id);
 		int memPro = adMemproService.totalMemPro(mem_id);
-		System.out.println("나와라@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2 : "+adMemproService.totalMemOrd(mem_id));
 		
 		model.addAttribute("proVO", proVO);
 		model.addAttribute("memOrd", memOrd);
@@ -101,29 +102,55 @@ public class AdMemproController {
 	 */
 	//http://localhost:8080/mempro/adProList2
 	@RequestMapping(value="/adProList2", method=RequestMethod.GET)
-	public String adProList2GET(HttpSession session, Model model, Criteria cri) throws Exception{
-		// session - id값 가져오기
-		// 관리자 로그인제어
-//		String id = (String)session.getAttribute("id");
-//		if(id==null || !id.equals("admin")) {
-//			return "redirect:member/login";
-//		}
+	public String adProList2GET(HttpSession session, Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		
 		// 서비스 -dao 프로젝트 목록 가져오기
-		List<ProjectVO> proList = adMemproService.getListPro2(cri);
+		List<ProjectVO> proList = adMemproService.getListPro2(scri);
 		
 		// 페이징처리 하단부 정보 준비 -> 뷰페이지로 전달
 		PageVO pvo = new PageVO();
-		pvo.setCri(cri);
-		mylog.debug("totalPro2 : "+adMemproService.totalPro2());
-		pvo.setTotalCount(adMemproService.totalPro2()); // 결제리스트 전체 개수
+		pvo.setCri(scri);
+		mylog.debug("totalPro2 : "+adMemproService.totalPro2(scri));
+		pvo.setTotalCount(adMemproService.totalPro2(scri)); // 결제리스트 전체 개수
 		
 		
 		model.addAttribute("proList",proList);
 		model.addAttribute("pvo", pvo);
+		System.out.println("pvo:@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+pvo);
 		
 		return "/mempro/adProList2";
 	}
+//	
+//	
+//	
+//	/**
+//	 * 프로젝트 리스트 조회 2(상태5-7)
+//	 */
+//	//http://localhost:8080/mempro/adProList2
+//	@RequestMapping(value="/adProList2", method=RequestMethod.GET)
+//	public String adProList2GET(HttpSession session, Model model, Criteria cri) throws Exception{
+//		// session - id값 가져오기
+//		// 관리자 로그인제어
+////		String id = (String)session.getAttribute("id");
+////		if(id==null || !id.equals("admin")) {
+////			return "redirect:member/login";
+////		}
+//		
+//		// 서비스 -dao 프로젝트 목록 가져오기
+//		List<ProjectVO> proList = adMemproService.getListPro2(cri);
+//		
+//		// 페이징처리 하단부 정보 준비 -> 뷰페이지로 전달
+//		PageVO pvo = new PageVO();
+//		pvo.setCri(cri);
+//		mylog.debug("totalPro2 : "+adMemproService.totalPro2());
+//		pvo.setTotalCount(adMemproService.totalPro2()); // 결제리스트 전체 개수
+//		
+//		
+//		model.addAttribute("proList",proList);
+//		model.addAttribute("pvo", pvo);
+//		
+//		return "/mempro/adProList2";
+//	}
 	
 	
 	
@@ -208,7 +235,7 @@ public class AdMemproController {
 	 */
 	//http://localhost:8080/mempro/adMemList
 	@RequestMapping(value="/adMemList", method=RequestMethod.GET)
-	public String adMemListGET(HttpSession session, Model model, Criteria cri) throws Exception{
+	public String adMemListGET(HttpSession session, Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
 			// session - id값 가져오기
 			// 관리자 로그인제어
 //			String id = (String)session.getAttribute("id");
@@ -217,14 +244,14 @@ public class AdMemproController {
 //			}
 			///
 			// 서비스 dao 회원 목록 가져오기
-			List<MemberVO> memList = adMemproService.getMemList(cri);
+			List<MemberVO> memList = adMemproService.getMemList(scri);
 			
 			
 			// 페이징처리 하단부 정보 준비
 			PageVO pvo = new PageVO();
-			pvo.setCri(cri);
-			mylog.debug("totalMem : " + adMemproService.totalMem());
-			pvo.setTotalCount(adMemproService.totalMem()); // 회원 전체 수
+			pvo.setCri(scri);
+			mylog.debug("totalMem : " + adMemproService.totalMem(scri));
+			pvo.setTotalCount(adMemproService.totalMem(scri)); // 회원 전체 수
 			
 			model.addAttribute("pvo", pvo);
 			model.addAttribute("memList",memList);
