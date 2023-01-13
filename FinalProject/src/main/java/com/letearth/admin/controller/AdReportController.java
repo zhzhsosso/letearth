@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.letearth.admin.domain.AdminVO;
+import com.letearth.admin.domain.SearchCriteria;
 import com.letearth.prodetail.domain.Criteria;
 import com.letearth.prodetail.domain.PageVO;
 import com.letearth.admin.service.AdReportService;
@@ -99,17 +101,17 @@ public class AdReportController {
 	 */
 	// 전체 리스트
 	@RequestMapping(value = "/adRepListAll",method = RequestMethod.GET)
-	public String adRepListAllGET(Criteria cri,HttpSession session,Model model) throws Exception{
+	public String adRepListAllGET(HttpSession session,Model model,@ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		
 		session.setAttribute("updateCheck", true); // => 세션 존재하면 true
 		
-			List<AdminVO> adRepList = adReportService.getListAllReport(cri);
+			List<AdminVO> adRepList = adReportService.getListAllReport(scri);
 			
 			// 페이징처리 하단부 정보 준비
 			PageVO pvo = new PageVO();
-			pvo.setCri(cri);
-			mylog.debug("totalRepCnt : " + adReportService.totalRepCntAll());
-			pvo.setTotalCount(adReportService.totalRepCntAll()); // 작성되어있는 글 전체 개수
+			pvo.setCri(scri);
+			mylog.debug("totalRepCnt : " + adReportService.totalRepCntAll(scri));
+			pvo.setTotalCount(adReportService.totalRepCntAll(scri)); // 작성되어있는 글 전체 개수
 			
 			model.addAttribute("pvo", pvo);
 			
@@ -126,19 +128,19 @@ public class AdReportController {
 	// http://localhost:8080/report/adRepList
 	// 조회 GET
 	@RequestMapping(value = "/adRepList",method = RequestMethod.GET)
-	public String adRepListGET(Criteria cri, HttpSession session,Model model, @RequestParam("rep_cat") int rep_cat) throws Exception{
+	public String adRepListGET(Criteria cri, HttpSession session,Model model, @RequestParam("rep_cat") int rep_cat,@ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		
 		session.setAttribute("updateCheck", true); // => 세션 존재하면 true
 			
 		mylog.debug("$$$$$$$$$$@@@@@@@@@@@@@@@@@@@@@@@@rep_cat 번호는 => " + rep_cat);
 		
-			List<AdminVO> adRepList = adReportService.getListReport(cri, rep_cat);
+			List<AdminVO> adRepList = adReportService.getListReport(scri, rep_cat);
 		
 		// 페이징처리 하단부 정보 준비
 				PageVO pvo = new PageVO();
 				pvo.setCri(cri);
-				mylog.debug("totalRepCnt : " + adReportService.totalRepCnt());
-				pvo.setTotalCount(adReportService.totalRepCnt()); // 작성되어있는 글 전체 개수
+				mylog.debug("totalRepCnt : " + adReportService.totalRepCnt(scri));
+				pvo.setTotalCount(adReportService.totalRepCnt(scri)); // 작성되어있는 글 전체 개수
 				
 				model.addAttribute("pvo", pvo);
 				

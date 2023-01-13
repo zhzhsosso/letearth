@@ -210,32 +210,30 @@
 					
 			<!-- 어드민 -->
 			<!-- 검색 -->                                                      
-<!-- 				<div class="box" style="border: none;"> -->
-			
-					<div class="box-header">
-						<div class="box-tools" align="right">
-							<div class="input-group input-group-sm hidden-xs"
-								style="width: 180px; height: 50px; ">
-<!-- 				<form role="searchForm" method="get" onsubmit="return fun1()"> -->
-<!-- 					<div class="fcntr" style="width:200px;"> -->
-<!--                    		 <select name="type" id="type" style="width: 50%;"> -->
-<!--                        		<option value="">::검색유형::</option> -->
-<!-- 							<option value="1">신고자</option> -->
-<!-- 							<option value="2">신고대상</option>							   -->
-<!-- 						</select> -->
-<!--                 	</div> -->
-					
-								<input type="text" name="keyword" class="form-control pull-right" placeholder="Search" 
-									style="height: 35px; width: 60px; font-size: 1rem; border-color: #A4AC85; color:#B6AD90; border-radius:0.25rem; ">
-								<div class="input-group-btn" style="padding-left: 3px;">
-									<button type="submit" class="btn btn-default" id="sbtn">
-										<i class="fa fa-search"></i>
-									</button>
+					<div class="box" style="border-top: none;">
+						<div class="box-header">
+							<div class="box-tools" align="right">
+								<div class="input-group input-group-sm hidden-xs"
+									style="width: 380px; height: 35px;" id="search">
+									<select name="searchType">
+										<option value="n"
+											<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>카테고리</option>
+										<option value="er"
+											<c:out value="${scri.searchType eq 'er' ? 'selected' : ''}"/>>신고자</option>
+										<option value="ed"
+											<c:out value="${scri.searchType eq 'ed' ? 'selected' : ''}"/>>신고대상</option>
+									</select> <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control pull-right"
+										placeholder="검색어를 입력해주세요" style="height: 38px; width: 150px; font-size: 1rem;">
+									<div class="input-group-btn" style="padding-left: 3px;">
+										<button id="searchBtn" type="submit" class="btn btn-default">
+											<i class="fa fa-search"></i>
+										</button>
+									</div>
 								</div>
-<!-- 				</form> -->
 							</div>
 						</div>
-					</div>
+
+
 			<!-- 검색 -->
 				<div style="padding-top: 30px; padding-bottom: 30px;"></div>
 <!-- tableAll --><div class="box" style="border: none;">
@@ -322,23 +320,29 @@
    </div>
    <br><br><br>
 <!-- 페이징처리 -->
-	<div class="pagination" style="position: absolute; right: 45%; border: none;">
-		<ul class="pagination" style="font-size: 18px;">
-			<c:if test="${pvo.prev }">
-				<li class="paging"><a href="/report/adRepListAll?page=${pvo.startPage-1 }" >«</a></li> <!-- 10 -->
-			</c:if>
-			
-			<c:forEach var="idx" begin="${pvo.startPage }" end="${pvo.endPage }">
-				<li class="paging"				
-				<c:out value="${idx == pvo.cri.page? 'class=active':'' }"/> 				
-				><a href="/report/adRepListAll?page=${idx }">${idx }</a></li>
-			</c:forEach>
-			
-			<c:if test="${pvo.next }">
-				<li class="paging"><a href="/report/adRepListAll?page=${pvo.endPage+1 }">»</a></li> <!-- 11 -->
-			</c:if>
-		</ul>
-	</div>
+				<div class="pagination"
+					style="position: absolute; right: 45%; border: none;">
+					<ul class="pagination" style="font-size: 18px;">
+						<c:if test="${pvo.prev }">
+							<li class="paging"><a
+								href="adRepList2${pvo.makeSearch(pvo.starPage-1) }">«</a></li>
+							<!-- 10 -->
+						</c:if>
+
+						<c:forEach var="idx" begin="${pvo.startPage }"
+							end="${pvo.endPage }" step="1">
+							<li class="paging"
+								<c:out value="${idx == pvo.cri.page? 'class=active':'' }"/>><a
+								href="adRepList2${pvo.makeSearch(idx) }">${idx }</a></li>
+						</c:forEach>
+
+						<c:if test="${pvo.next }">
+							<li class="paging"><a
+								href="adRepList2${pvo.makeSearch(pvo.endPage+1) }">»</a></li>
+							<!-- 11 -->
+						</c:if>
+					</ul>
+				</div>
 </section>
    
    
@@ -481,29 +485,18 @@ then close all select boxes: */
 document.addEventListener("click", closeAllSelect);
 </script>   
 
-<!-- 검색기능 -->
- <script type="text/javascript">
- function fun1(){
-	 
- if(document.fr.type.value==""){
-	 
-	 Swal.fire({   
-         title : '검색유형을 선택하세요!',
-          icon: 'info',
-         confirmButtonText: '확인'
-      })
-		document.fr.type.focus();
-		return false;
-	}
- 
-	$(document).ready(function(){
-			 
-		$("#sbtn").click(function(){ // get방식
-			location.href="/report/adRepsList";
-		});
-		
+ <!-- 검색기능 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#searchBtn').click(
+				function() {
+					self.location = "adRepListAll" + '${pvo.makeQuery(1)}'
+							+ "&searchType="
+							+ $("select option:selected").val() + "&keyword="
+							+ encodeURIComponent($('#keywordInput').val());
+				});
 	});
-
- }
- </script>
+</script>
+<!-- 검색기능 -->
 </html>
