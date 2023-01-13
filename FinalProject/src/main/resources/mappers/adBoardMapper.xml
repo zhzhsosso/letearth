@@ -244,7 +244,7 @@
     
     
     <!-- 승인요청 최신꺼 4개 가져오기 -->	
- 	<select id="mainPro2" resultType="projectVO">
+ 	<select id="mainPro2" resultType="ProjectVO">
  		<![CDATA[
  		select * from project
  		where pro_no > 0
@@ -285,7 +285,7 @@
  	
  	
  	<!-- 구글차트 최근 판매중인 프로젝트의 목표금액과 달성금액비교 -->
- 	<select id="pjchart" resultType="projectVO">
+ 	<select id="pjchart" resultType="ProjectVO">
 	  	<![CDATA[
 	  	select pro_title, pro_gp, pro_tp
 		from project
@@ -294,6 +294,14 @@
 		limit 0,5
 	  	]]>
   	</select>
+ 	
+ 	<!-- 구글차트 회원 비율 : 구매(0), 판매(1), 블랙(3) -->
+ 	<select id="memRatio" resultType="MemberVO">
+ 		select mem_status, count(*) as cnt
+		from (select mem_status as mem_status from member_tbl) as m
+		group by mem_status
+ 	</select>
+ 	
  	
  	
  	
