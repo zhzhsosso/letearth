@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.letearth.mapper.openbankMapper">
+
+	<!-- 마감이면서 달성완료된 프로젝트 목록 -->
+	<select id="getListSettle" resultType="ProjectVO">
+	<![CDATA[
+		select * from project 
+		where pro_no > 0 and pro_status=6 and pro_tp>pro_gp || pro_tp = pro_gp 
+		order by pro_no desc, pro_ed_dt 
+		limit #{pageStart},#{perPageNum}
+	]]>
+	</select>
+	
+	<!-- 정산할 프로젝트 개수 -->
+	<select id="totalst" resultType="int">
+		select count(pro_no) from project 
+		where pro_status = 6 and pro_tp>pro_gp || pro_tp = pro_gp 
+	</select>
+	
+	<!-- 프로젝트 상세정보 조회 -->
+	<select id="getSettleDetail" resultType="SettleVO">
+		select p.pro_no, p.pro_title, p.mem_id, m.mem_name , p.pro_tp 
+		from project p join member m 
+		on p.mem_id = m.mem_id 
+		where p.pro_no = #{pro_no}
+	</select>
+	
+	<!-- 정산완료 시 프로젝트 상태 8로 변경 -->
+	<update id="updateStat">
+		update project set pro_status=8 
+		where pro_no = #{pro_no}
+	</update>
+	
+	<!-- 정산완료 프로젝트 목록 -->
+	<select id="getComplete" resultType="ProjectVO">
+		<![CDATA[
+			select * from project 
+			where pro_no > 0 and pro_status=8 and pro_tp>pro_gp || pro_tp = pro_gp 
+			order by pro_no desc, pro_ed_dt  
+			limit #{pageStart},#{perPageNum}
+		]]>
+	</select>
+	
+	<!-- 정산완료 프로젝트 개수 -->
+	<select id="totalcp" resultType="int">
+		select count(pro_no) from project 
+		where pro_status = 8 and pro_tp>pro_gp || pro_tp = pro_gp 
+	</select>
+	
+	<!-- 관리자 핀테크정보 -->
+	<select id="getAdminFin" resultType="MemberVO">
+		select * from member 
+		where mem_id = #{mem_id}
+	</select>
+	
+	<!-- 판매자 핀테크정보 -->
+	<select id="getSellFin" resultType="MemberVO">
+		select * from member m 
+		join project p 
+		on m.mem_id = p.mem_id 
+		where p.pro_no = #{pro_no}
+		
+	</select>
+	
+</mapper>

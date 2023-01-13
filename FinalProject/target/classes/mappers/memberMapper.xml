@@ -203,4 +203,13 @@
 		where not_no=#{not_no}
 	</delete>
 	
+	
+	<!--  핀테크용   -->	
+	<!-- 정보 저장 -->
+	<update id="setBank">
+		update member 
+		set bank_token=#{bank_token}, bank_user_num=#{bank_user_num}, bank_code=#{bank_code}, bank_fin_num=#{bank_fin_num}, bank_name=#{bank_name},bank_acc=#{bank_acc}, bank_acc_name=#{bank_acc_name}  
+		where mem_id=#{mem_id}
+	</update>
+	
 </mapper>

@@ -204,6 +204,7 @@
 						</div>
 					</div>
 					<div style="padding-top: 30px; padding-bottom: 30px;"></div>
+			글의 개수 : ${pvo.totalCount }
 <!-- tableAll -->
 					<div class="box-body table-responsive no-padding" id="tableAll">
 			<form role="form" name="fr" id="contact-form" action="" method="post">

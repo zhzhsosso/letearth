@@ -14,7 +14,6 @@ public class AccountSearchResponseVO {
 	private String res_cnt; //사용자등록계좌 개수
 	private List<AccountVO> res_list; //사용자 등록계좌 목록
 	
-	
 	public AccountSearchResponseVO () {}
 	
 	public AccountSearchResponseVO(String api_tran_id, String rsp_code, String rsp_message, String api_tran_dtm,

@@ -52,26 +52,24 @@ public class OpenBankApiClient {
 	private RestTemplate restTemplate;
 
 	// httpheader에 토큰값 담아가기 위해서 헤더에 토큰추가하는 메서드 정의
-		public HttpHeaders setHeaderAccessToken(String access_token) {
-			httpHeaders.add("Authorization", "Bearer " + access_token);
-			
-			return httpHeaders;
-		}
+	public HttpHeaders setHeaderAccessToken(String access_token) {
+		httpHeaders.add("Authorization", "Bearer " + access_token);
+
+		return httpHeaders;
+	}
+	
 	
 	//토큰발급 요청 메서드
 	public ResponseTokenVO requestToken(RequestTokenVO requestTokenVO) {
-//		return openBankingApiClient.requestToken(requestTokenVO);
 		
 		restTemplate = new RestTemplate();
 		// http header 지정
 		httpHeaders = new HttpHeaders();
 		httpHeaders.add("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
 		
-		//requestTokenVo code => 저장
 		requestTokenVO.setRequestToken(client_id, client_secret, redirect_uri, grant_type);
 		
-		//application/x..~~ 객체저장 불가
-		//파라미터 저장해서 들고감
+		//application/x..~~ 객체저장 불가, 파라미터 저장하기
 		MultiValueMap<String, String> parameters= new LinkedMultiValueMap<String, String>();
 		parameters.add("code", requestTokenVO.getCode());
 		parameters.add("client_id", requestTokenVO.getClient_id());
@@ -83,22 +81,22 @@ public class OpenBankApiClient {
 		HttpEntity<MultiValueMap<String, String>> param = 
 				new HttpEntity<MultiValueMap<String,String>>(parameters,httpHeaders);
 		
-		
 		String requestUrl = "https://testapi.openbanking.or.kr/oauth/2.0/token";
-		
 		
 		
 		return restTemplate.exchange(requestUrl,
 				HttpMethod.POST,param,ResponseTokenVO.class).getBody();
 	}
 	
+	
+	
+	
 	// 사용자 정보 조회
 	public UserInfoResponseVO findUser(UserInfoRequestVO userInfoRequestVO) {
-		/// REST 방식 요청에 필요한 객체 생성
+
 		restTemplate = new RestTemplate();
 		httpHeaders = new HttpHeaders();
 		
-		// 2.2.1 사용자정보조회 API URL 주소 생성
 		String url = baseUrl + "/user/me";
 		
 		// HttpHeaders 와 HttpBody 오브젝트를 하나의 객체로 관리하기 위한 HttpEntity 객체 생성
@@ -128,6 +126,8 @@ public class OpenBankApiClient {
 		// => 메서드 뒤에 .getBody() 메서드를 호출하여 body 데이터에 대한 파싱된 결과를 리턴받기
 		return restTemplate.exchange(uriBuilder.toString(), HttpMethod.GET, openBankingUserInfoRequest, UserInfoResponseVO.class).getBody();
 	}
+	
+	
 
 	//계좌 조회
 	public AccountSearchResponseVO findAccount(AccountSearchRequestVO accountSearchRequestVO) {
@@ -135,7 +135,6 @@ public class OpenBankApiClient {
 		restTemplate = new RestTemplate();
 		httpHeaders = new HttpHeaders();
 		
-		// 2.2.1 사용자정보조회 API URL 주소 생성
 		String url = baseUrl + "/account/list";
 		httpHeaders.add("Authorization", "Bearer " + accountSearchRequestVO.getAccess_token());
 		
@@ -162,30 +161,30 @@ public class OpenBankApiClient {
 		httpHeaders.add("Content-Type", "application/json; charset=UTF-8");
 		
 
-		Map<String, String> parameters = new HashMap<String, String>();
-		parameters.put("bank_tran_id", withdrawRequestVO.getBank_tran_id());
-		parameters.put("cntr_account_type", withdrawRequestVO.getCntr_account_type());
-		parameters.put("cntr_account_num", withdrawRequestVO.getCntr_account_num());
-		parameters.put("dps_print_content", withdrawRequestVO.getDps_print_content());
-		parameters.put("fintech_use_num", withdrawRequestVO.getFintech_use_num());
-		parameters.put("tran_amt", withdrawRequestVO.getTran_amt());
-		parameters.put("tran_dtime", withdrawRequestVO.getTran_dtime());
-		parameters.put("req_client_name", withdrawRequestVO.getReq_client_name());
-		parameters.put("req_client_num", withdrawRequestVO.getReq_client_num());
-		parameters.put("transfer_purpose", withdrawRequestVO.getTransfer_purpose());
-		parameters.put("req_client_bank_code", withdrawRequestVO.getReq_client_bank_code());
-		parameters.put("req_client_account_num", withdrawRequestVO.getReq_client_account_num());
-		//parameters.put("req_client_fintech_use_num", withdrawRequestVO.getReq_client_fintech_use_num());
-		parameters.put("recv_client_name", withdrawRequestVO.getRecv_client_name());
-		parameters.put("recv_client_bank_code", withdrawRequestVO.getRecv_client_bank_code());
-		parameters.put("recv_client_account_num", withdrawRequestVO.getRecv_client_account_num());
+		Map<String, String> p1 = new HashMap<String, String>();
+		p1.put("bank_tran_id", withdrawRequestVO.getBank_tran_id());
+		p1.put("cntr_account_type", withdrawRequestVO.getCntr_account_type());
+		p1.put("cntr_account_num", withdrawRequestVO.getCntr_account_num());
+		p1.put("dps_print_content", withdrawRequestVO.getDps_print_content());
+		p1.put("fintech_use_num", withdrawRequestVO.getFintech_use_num());
+		p1.put("tran_amt", withdrawRequestVO.getTran_amt());
+		p1.put("tran_dtime", withdrawRequestVO.getTran_dtime());
+		p1.put("req_client_name", withdrawRequestVO.getReq_client_name());
+		p1.put("req_client_num", withdrawRequestVO.getReq_client_num());
+		p1.put("transfer_purpose", withdrawRequestVO.getTransfer_purpose());
+		p1.put("req_client_bank_code", withdrawRequestVO.getReq_client_bank_code());
+		p1.put("req_client_account_num", withdrawRequestVO.getReq_client_account_num());
+		//p1.put("req_client_fintech_use_num", withdrawRequestVO.getReq_client_fintech_use_num());
+		p1.put("recv_client_name", withdrawRequestVO.getRecv_client_name());
+		p1.put("recv_client_bank_code", withdrawRequestVO.getRecv_client_bank_code());
+		p1.put("recv_client_account_num", withdrawRequestVO.getRecv_client_account_num());
 		
-		System.out.println("출금이체@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+parameters);
+		System.out.println("출금이체=================================="+p1);
 		
 		//헤더에 토큰넣기
-		HttpEntity<Map<String, String>> param = new HttpEntity<Map<String, String>>(parameters, setHeaderAccessToken(withdrawRequestVO.getAccess_token()));
+		HttpEntity<Map<String, String>> param = new HttpEntity<Map<String, String>>(p1, setHeaderAccessToken(withdrawRequestVO.getAccess_token()));
 		
-		System.out.println("출금이체+헤더토큰@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" +param);
+		System.out.println("출금이체+헤더토큰======================================" +param);
 		
 		String requestUrl = "https://testapi.openbanking.or.kr/v2.0/transfer/withdraw/fin_num";
 		
@@ -194,8 +193,6 @@ public class OpenBankApiClient {
 		return restTemplate.exchange(requestUrl,HttpMethod.POST, param, WithdrawResponseVO.class).getBody();
 	}	
 			
-	
-	
 	
 			
 	//관리자 -> 판매자 정산 입금이체
@@ -207,41 +204,42 @@ public class OpenBankApiClient {
 		httpHeaders.add("Content-Type", "application/json; charset=UTF-8");
 		
 		
-		Map<String, Object> parameters = new HashMap<String, Object>();
+		Map<String, Object> p1 = new HashMap<String, Object>();
 
-		parameters.put("cntr_account_type", depositRequestVO.getCntr_account_type());
-		parameters.put("cntr_account_num", depositRequestVO.getCntr_account_num());
-		parameters.put("wd_pass_phrase", depositRequestVO.getWd_pass_phrase());
-		parameters.put("wd_print_content", depositRequestVO.getWd_print_content());
-		parameters.put("name_check_option", depositRequestVO.getName_check_option());
-		parameters.put("tran_dtime", depositRequestVO.getTran_dtime());
-		parameters.put("req_cnt", depositRequestVO.getReq_cnt());
+		p1.put("cntr_account_type", depositRequestVO.getCntr_account_type());
+		p1.put("cntr_account_num", depositRequestVO.getCntr_account_num());
+		p1.put("wd_pass_phrase", depositRequestVO.getWd_pass_phrase());
+		p1.put("wd_print_content", depositRequestVO.getWd_print_content());
+		p1.put("name_check_option", depositRequestVO.getName_check_option());
+		p1.put("tran_dtime", depositRequestVO.getTran_dtime());
+		p1.put("req_cnt", depositRequestVO.getReq_cnt());
 		
-		Map<String, String> parameters2 = new HashMap<String, String>();
+		Map<String, String> p2 = new HashMap<String, String>();
 
-		parameters2.put("tran_no", depositRequestVO.getTran_no());
-		parameters2.put("bank_tran_id", depositRequestVO.getBank_tran_id());
-		parameters2.put("fintech_use_num", depositRequestVO.getFintech_use_num());
-		parameters2.put("print_content", depositRequestVO.getPrint_content());
-		parameters2.put("tran_amt", depositRequestVO.getTran_amt());
-		parameters2.put("req_client_name", depositRequestVO.getReq_client_name());
-		parameters2.put("req_client_bank_code", depositRequestVO.getReq_client_bank_code());
-		parameters2.put("req_client_account_num", depositRequestVO.getReq_client_account_num());
-		parameters2.put("req_client_num", depositRequestVO.getReq_client_num());
-		parameters2.put("transfer_purpose", depositRequestVO.getTransfer_purpose());
+		p2.put("tran_no", depositRequestVO.getTran_no());
+		p2.put("bank_tran_id", depositRequestVO.getBank_tran_id());
+		p2.put("fintech_use_num", depositRequestVO.getFintech_use_num());
+		p2.put("print_content", depositRequestVO.getPrint_content());
+		p2.put("tran_amt", depositRequestVO.getTran_amt());
+		p2.put("req_client_name", depositRequestVO.getReq_client_name());
+		p2.put("req_client_fintech_use_num", depositRequestVO.getReq_client_fintech_use_num());
+//		p2.put("req_client_bank_code", depositRequestVO.getReq_client_bank_code());
+//		p2.put("req_client_account_num", depositRequestVO.getReq_client_account_num());
+		p2.put("req_client_num", depositRequestVO.getReq_client_num());
+		p2.put("transfer_purpose", depositRequestVO.getTransfer_purpose());
 		
 		List<Map> req_list = new ArrayList<Map>();
-		req_list.add(parameters2);
+		req_list.add(p2);
 		
-		parameters.put("req_list", req_list);
+		p1.put("req_list", req_list);
 		
 		
-		System.out.println("입금이체###############################"+parameters);
+		System.out.println("입금이체============================="+p1);
 		
 		//헤더에 토큰넣기
-		HttpEntity<Map<String, Object>> param = new HttpEntity<Map<String, Object>>(parameters, setHeaderAccessToken(depositRequestVO.getAccess_token()));
+		HttpEntity<Map<String, Object>> param = new HttpEntity<Map<String, Object>>(p1, setHeaderAccessToken(depositRequestVO.getAccess_token()));
 		
-		System.out.println("입금이체+헤더토큰###############################" + param);
+		System.out.println("입금이체+헤더토큰=================================" + param);
 		
 		String url = "https://testapi.openbanking.or.kr/v2.0/transfer/deposit/fin_num";
 		
@@ -257,34 +255,32 @@ public class OpenBankApiClient {
 		
 		httpHeaders.add("Content-Type", "application/json; charset=UTF-8");
 		
+		Map<String, Object> p1 = new HashMap<String, Object>();
 		
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		
-		parameters.put("check_type", transferResultRequestVO.getCheck_type());
-		parameters.put("tran_dtime", transferResultRequestVO.getTran_dtime());
-		parameters.put("req_cnt", transferResultRequestVO.getReq_cnt());
+		p1.put("check_type", transferResultRequestVO.getCheck_type());
+		p1.put("tran_dtime", transferResultRequestVO.getTran_dtime());
+		p1.put("req_cnt", transferResultRequestVO.getReq_cnt());
 		
 		
-		Map<String, String> parameters2 = new HashMap<String, String>();
+		Map<String, String> p2 = new HashMap<String, String>();
 
-		parameters2.put("tran_no", transferResultRequestVO.getTran_no());
-		parameters2.put("org_bank_tran_id", transferResultRequestVO.getOrg_bank_tran_id());
-		parameters2.put("org_bank_tran_date", transferResultRequestVO.getOrg_bank_tran_date());
-		parameters2.put("org_tran_amt", transferResultRequestVO.getOrg_tran_amt());
+		p2.put("tran_no", transferResultRequestVO.getTran_no());
+		p2.put("org_bank_tran_id", transferResultRequestVO.getOrg_bank_tran_id());
+		p2.put("org_bank_tran_date", transferResultRequestVO.getOrg_bank_tran_date());
+		p2.put("org_tran_amt", transferResultRequestVO.getOrg_tran_amt());
 		
 		List<Map> req_list = new ArrayList<Map>();
-		req_list.add(parameters2);
+		req_list.add(p2);
 		
-		parameters.put("req_list", req_list);
+		p1.put("req_list", req_list);
 		
 		
-		
-		System.out.println("결과조회리스트@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+parameters);
+		System.out.println("결과조회리스트=================================="+p1);
 		
 		//헤더에 토큰넣기
-		HttpEntity<Map<String, Object>> param = new HttpEntity<Map<String, Object>>(parameters, setHeaderAccessToken(transferResultRequestVO.getAccess_token()));
+		HttpEntity<Map<String, Object>> param = new HttpEntity<Map<String, Object>>(p1, setHeaderAccessToken(transferResultRequestVO.getAccess_token()));
 
-		System.out.println("결과조회리스트+헤더토큰@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + param);
+		System.out.println("결과조회리스트+헤더토큰=======================================" + param);
 		
 		String requestUrl = "https://testapi.openbanking.or.kr/v2.0/transfer/result";
 		
