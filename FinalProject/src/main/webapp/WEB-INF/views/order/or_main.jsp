@@ -21,13 +21,14 @@
 
 
 <style>
+
 	.ortitle {
 		display: flex;
 		margin: 20px 0px;
 	}
 	
 	.row {
-		margin: 20px 0px 20px 0px;
+		margin-bottom: 20px;
 	}
 	
 	.proimg {
@@ -289,10 +290,10 @@ function requestPay() {
 							alert('인증번호를 입력해주세요.')
 						} else if(getCookie("code") == checkNum) {
 							alert('인증되었습니다.');
-							$('#phoneCheck').hide();
-							$('#checkNum').hide();
-							$("#sendPhone").hide();
-							$("#timer").hide();
+							$('#phoneCheck').css('visibility','hidden');
+							$('#checkNum').css('visibility','hidden');
+							$("#sendPhone").css('visibility','hidden');
+							$("#timer").css('visibility','hidden');
 							$("#phone").attr('readonly',true);
 							$("#phone").css('border','none');
 							$("#hidcheck").attr('value','1');
@@ -406,7 +407,7 @@ function requestPay() {
     
     <!--====== PAGE TITLE PART START ======-->
    
-    <section class="page-title-area bg_cover" style="background-image: url(assets/images/page-title-bg.jpg);">
+    <section class="page-title-area bg_cover">
 
     </section>
     <br>
@@ -419,7 +420,7 @@ function requestPay() {
                 
 	    <div class="ortitle">
 	        <div class="proimg">
-	            <img src="${pvo.pro_thum }" width="150" height="150" alt="">
+	            <img src="../resources/upload/${pvo.pro_thum }" width="150" height="150" alt="">
 	        </div>
 	        <div class="explain">
 	            <div class="explain-list">
@@ -520,7 +521,7 @@ function requestPay() {
                           </div>
                           <!--  공간 맞추기용 -->
                           <div>
-                          	<input type="button" id="gift" value="변경" style="visibility: hidden;">
+                          	<input type="button" id="gift" class="main-btn" value="변경" style="visibility: hidden;">
                           </div>
                            <!--  공간 맞추기용 -->
                          </div>
@@ -570,7 +571,7 @@ function requestPay() {
                           </div>
                         
                         <div class="info2">
-                        	<div style="width:20%; padding-right: 10px">
+                        	<div style="width:19%; padding-right: 10px">
 	                          	<h5>이메일</h5>
 	                          </div>
 	                          <div>
@@ -667,7 +668,7 @@ function requestPay() {
                 
                     <div class="about-introduction-content" style="margin-bottom: 30px">
                     	<div class="info" style="margin-top: 55px; font-size: 20px">
-                    		<div style="width:30%; margin-right: 30px">
+                    		<div style="width:35%; margin-right: 30px">
                     			<p style="color:red; font-size: 20px;"><b>최종 후원 금액</b></p>
                     		</div>
                     		<div>

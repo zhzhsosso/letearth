@@ -195,22 +195,33 @@
  	
  	
  	<!-- 신고접수 목록 -->
+ 	<sql id="repS">
+ 		<if test="searchType != null">
+         <if test="searchType == 'er'.toString()">AND reper_id LIKE CONCAT('%',#{keyword},'%')</if>
+         <if test="searchType == 'ed'.toString()">AND reped_id LIKE CONCAT('%',#{keyword},'%')</if>
+      </if>
+ 	</sql>
  	<select id="listReportAll" resultType="AdminVO">
-	  	<![CDATA[
 	  	select * from report
 	  	where rep_no > 0
+	  	<include refid="repS"></include> 
 	  	order by rep_no desc, rep_date desc
 	  	limit #{pageStart},#{perPageNum}
-	  	]]>
   	</select>
   	
+  	
+  	 <sql id="repS2">
+ 		<if test="searchType != null">
+          <if test="searchType == 'er'.toString()">AND reper_id LIKE CONCAT('%',#{keyword},'%')</if>
+          <if test="searchType == 'ed'.toString()">AND reped_id LIKE CONCAT('%',#{keyword},'%')</if>
+    	</if>
+ 	</sql>
   	<select id="listReport" resultType="AdminVO">
-	  	<![CDATA[
 	  	select * from report
-	  	where rep_cat=#{rep_cat} and rep_no > 0
+	  	where rep_cat=#{rep_cat} and rep_no > 0 
+	  	<include refid="repS2"></include> 
 	  	order by rep_no desc, rep_date desc
 	  	limit #{pageStart},#{perPageNum}
-	  	]]>
   	</select>
   	
  	<!-- 신고접수 전체글개수 -->

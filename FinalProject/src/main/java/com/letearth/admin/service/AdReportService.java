@@ -3,6 +3,7 @@ package com.letearth.admin.service;
 import java.util.List;
 
 import com.letearth.admin.domain.AdminVO;
+import com.letearth.admin.domain.SearchCriteria;
 import com.letearth.prodetail.domain.Criteria;
 
 public interface AdReportService {
@@ -28,16 +29,16 @@ public interface AdReportService {
 	 * 신고관련 메서드 
 	 */
 	// 신고접수 목록전체
-	public List<AdminVO> getListAllReport(Criteria cri) throws Exception;
+	public List<AdminVO> getListAllReport(SearchCriteria scri) throws Exception;
 	
 	// 신고접수 목록
-	public List<AdminVO> getListReport(Criteria cri, int rep_cat) throws Exception;
+	public List<AdminVO> getListReport(SearchCriteria scri, int rep_cat) throws Exception;
 	
 	// 신고접수 전체개수
-	public int totalRepCntAll() throws Exception;
+	public int totalRepCntAll(SearchCriteria scri) throws Exception;
 	
 	// 신고접수 부분전체개수
-	public int totalRepCnt() throws Exception;
+	public int totalRepCnt(SearchCriteria scri) throws Exception;
 	
 	// 신고상세
 	public AdminVO getReport(Integer rep_no) throws Exception;

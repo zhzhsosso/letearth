@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.letearth.admin.domain.AdminVO;
+import com.letearth.admin.domain.SearchCriteria;
 import com.letearth.prodetail.domain.Criteria;
 import com.letearth.member.domain.MemberVO;
 import com.letearth.project.domain.ProjectVO;
@@ -70,29 +71,29 @@ public class AdReportDAOImpl implements AdReportDAO {
 	 */
 	// 신고 목록 전체
 	@Override
-	public List<AdminVO> getListAllReport(Criteria cri) throws Exception {
+	public List<AdminVO> getListAllReport(SearchCriteria scri) throws Exception {
 		mylog.debug(" getListReport(Criteria cri) 페이징처리 ");
 		
-		return sqlSession.selectList(NAMESPACE + ".listReportAll", cri);
+		return sqlSession.selectList(NAMESPACE + ".listReportAll", scri);
 	}
 	
 	// 신고 목록
 	@Override
-	public List<AdminVO> getListReport(Criteria cri, int rep_cat) throws Exception {
+	public List<AdminVO> getListReport(SearchCriteria scri, int rep_cat) throws Exception {
 		
-		return sqlSession.selectList(NAMESPACE + ".listReport", cri);
+		return sqlSession.selectList(NAMESPACE + ".listReport", scri);
 	}
 	
 	// 신고전체개수 
 	@Override
-	public int totalRepCntAll() throws Exception {
-		return sqlSession.selectOne(NAMESPACE + ".countReportAll");
+	public int totalRepCntAll(SearchCriteria scri) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".countReportAll",scri);
 	}
 	
 	// 신고전체개수 
 	@Override
-	public int totalRepCnt() throws Exception {
-		return sqlSession.selectOne(NAMESPACE + ".countReport");
+	public int totalRepCnt(SearchCriteria scri) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".countReport",scri);
 	}
 	
 	// 신고상세
