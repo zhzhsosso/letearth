@@ -128,7 +128,7 @@ public class AdReportController {
 	// http://localhost:8080/report/adRepList
 	// 조회 GET
 	@RequestMapping(value = "/adRepList",method = RequestMethod.GET)
-	public String adRepListGET(Criteria cri, HttpSession session,Model model, @RequestParam("rep_cat") int rep_cat,@ModelAttribute("scri") SearchCriteria scri) throws Exception{
+	public String adRepListGET(HttpSession session,Model model, @RequestParam("rep_cat") int rep_cat,@ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		
 		session.setAttribute("updateCheck", true); // => 세션 존재하면 true
 			
@@ -138,7 +138,7 @@ public class AdReportController {
 		
 		// 페이징처리 하단부 정보 준비
 				PageVO pvo = new PageVO();
-				pvo.setCri(cri);
+				pvo.setCri(scri);
 				mylog.debug("totalRepCnt : " + adReportService.totalRepCnt(scri));
 				pvo.setTotalCount(adReportService.totalRepCnt(scri)); // 작성되어있는 글 전체 개수
 				
