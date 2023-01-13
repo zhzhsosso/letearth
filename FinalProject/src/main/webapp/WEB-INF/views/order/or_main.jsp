@@ -490,7 +490,7 @@ function requestPay() {
                 
 	    <div class="ortitle">
 	        <div class="proimg">
-	            <img src="${pvo.pro_file }" width="150" height="150" alt="">
+	            <img src="${pvo.pro_thum }" width="150" height="150" alt="">
 	        </div>
 	        <div class="explain">
 	            <div class="explain-list">

@@ -58,21 +58,20 @@ function createReward(seq){
 		 			return false;
 				}
 	 		}
-	 		var par_num = $('#par_birth').val();
 	 		
+	 		const sendingData = new FormData();
+			sendingData.append('par_cat',$("input[name='par_cat']:checked").val());  
+			sendingData.append('par_intro',$('#intro').val());  
+			sendingData.append('par_birth',$('#par_birth').val());  
+			sendingData.append('file1',$('#input-file')[0].files[0]);
+			sendingData.append('file2',$('#input-file2')[0].files[0]);
 	 		
 	 		$.ajax({
-	 			async : true,
 	 		    type:'post',
 	 		    url:"/project/regist",
-	 		    data: {
-	 		    	par_cat:$("input[name='par_cat']:checked").val(),
-	 		    	par_intro:$("#intro").val(),
-	 		    	par_birth:par_num,
-	 		    	par_scan:$('input[name=par_scan]').val(),
-	 			},
-	 		    dataType : "text",
-	 		    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+	 		    data: sendingData,
+	 		    processData: false,
+			    contentType: false,
 	 		    success : function(resp) {
 	 		    	swal('저장 되었습니다.','마이페이지에서 정산 계좌를 등록해주세요.','info');
 		    		setTimeout(function () {
@@ -116,7 +115,7 @@ $(document).ready(function(){
 </script>
 
 	<!--====== PROJECT CONTENT PART START ====== -->
-<form method="post" name="fr">
+<form method="post" name="fr" id="fr">
 	<div style="display: flex; justify-content: center;">
 		<div class="col-lg-8">
 			<div class="blog-details__main">
@@ -151,10 +150,10 @@ $(document).ready(function(){
 					</div>
 					<small>창작자 개인이나 팀의 사진을 올려주세요</small>
 				</div>
-			<label class="btn btn-primary" for="input-file" style="background-color: #414934; position: inherit; border: none;">
+			<label class="btn btn-primary" for="input-file2" style="background-color: #414934; position: inherit; border: none;">
 				사진 업로드 </label>
 			<div style="display: none">
-				<input type="file" id="input-file" name="" />
+				<input type="file" id="input-file2" name="mem_profile" />
 			</div>
 			</div>
 

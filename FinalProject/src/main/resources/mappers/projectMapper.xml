@@ -94,13 +94,11 @@
 		</choose>
 	</update>
 	
-	<!-- 대표자 조회 -->
-	<select id="getPart" resultType="ProjectVO">
-		select par_cat, par_intro, par_birth, par_com_num, par_acc_name, par_acc, par_bank
-		from project
-		where pro_no=#{pro_no}
-		
-	</select>
+	<!-- 멤버 프로필 등록 -->
+	<update id="updateMemFile">
+		update member set mem_profile=#{mem_profile}
+		where mem_id=#{mem_id}
+	</update>
 	
 	
 </mapper>

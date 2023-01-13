@@ -176,7 +176,7 @@ function deleteQna(not_no) {
 								<span style="float: right; font-weight: bold; color: #414934;">답변 완료</span>
 							</c:when>
 						</c:choose>
-						<button style="float: right;" onclick="deleteQna(${notVO.not_no });">삭제ㅤ</button>
+						<span style="float: right;" onclick="deleteQna(${notVO.not_no });">삭제ㅤ</span>
 						</div>
 						<p>${notVO.not_title }</p>
 						<p>${notVO.not_content }</p>

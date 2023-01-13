@@ -131,7 +131,7 @@ $(document).ready(function(){
 	        <div class="col-lg-8">
 	        	<div style="position: relative; top: 80%;" >
 	        		<div style="">
-		           		<span class="user-img" style="background-image: url('${memVO.mem_profile}'); vertical-align: middle;"></span>
+		           		<span class="user-img" style="background-image: url(../resources/upload/${memVO.mem_profile}); vertical-align: middle;"></span>
 		           		<span style="font-size: 2em; vertical-align: middle; padding-left: 0.5em;">${memVO.mem_name } 님ㅤ</span>
 		           		<c:choose>
 		           			<c:when test="${memVO.mem_status == 0 }">

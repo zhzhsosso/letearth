@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.letearth.member.domain.MemberVO;
 import com.letearth.project.domain.ProjectVO;
 import com.letearth.project.domain.RewardVO;
 import com.letearth.project.persistence.ProjectDAO;
@@ -41,7 +42,7 @@ public class ProjectServiceImpl implements ProjectService{
 		proDAO.updatePro_basicInfo(proVO);
 		mylog.debug("기본정보 입력완료 -> 컨트롤러 이동");
 	}
-	
+
 	/**
 	 * 기본정보 조회
 	 */
@@ -147,6 +148,14 @@ public class ProjectServiceImpl implements ProjectService{
 		return proDAO.updatePartner(proVO);
 	}
 	
+	/**
+	 * 멤버 프로필
+	 */
+	@Override
+	public void updateMemFile(MemberVO memVO) throws Exception {
+		proDAO.updateMemFile(memVO);
+	}
+
 	/**
 	 * 대표자 조회
 	 */
