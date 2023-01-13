@@ -79,23 +79,6 @@
 
 $(function(){
 	
-// 	$("#shipCancel").click(function(){
-// 		var order_no = $("#orderN").val();
-		
-// 		$.ajax({
-// 			url:'${pageContext.request.contextPath}/order/shipChange',
-// 			type:'post',
-// 			data: {"order_no":order_no},
-// 			success:function(){
-				
-// 			}, 
-// 			error:function(){
-// 				alert("실패");
-// 			}
-// 		});
-// 	});
-	
-	
 	$("#orderCancel").click(function() {
 		var order_trade_num = $("#tradeNum").val();
 		var order_status = $("#orderS").val();
@@ -111,10 +94,11 @@ $(function(){
 			url:'${pageContext.request.contextPath}/order/orderCancel',
 			type:'post',
 			data:{"order_trade_num":order_trade_num},
-			success:function(result){
-				if(result == 1){
-					alert('취소요청이 정상 처리 되었습니다.\n취소 처리까지 카드 영업일 기준 최대 3~5일 소요됩니다. ');
-					$('#cmsg').html("취소 요청");
+			success:function(order_status){
+				if(order_status == 2){
+					alert('취소 요청이 정상 처리 되었습니다.\n취소 처리까지 카드 영업일 기준 최대 3~5일 소요됩니다. ');
+					$('#orderS').attr("value",order_status);
+					$('#cmsg').html("[취소 요청]");
 				} else {
 					alert('실패');
 				}
@@ -161,9 +145,9 @@ $(function(){
     	  <div style="padding: 20px">
     	  <div style="background-color: #A4AC85; height: 40px">
            <h5 style="padding:10px 5px; background-color:transparent; color: white; display: inline;">상품 정보</h5>
-           <font id="cmsg" color="red" size="4"></font>
+           <font id="cmsg" color="#B22222" size="4"></font>
            <c:if test="${ovo.order_status==2 || ovo2.order_status==2 }">
-           <font color="red" size="4">취소 요청</font>
+           <font color="#B22222" size="4">[취소 요청]</font>
            </c:if>
            <!-- 공간용 -->
            <button type="button" class="btn" style="color:blue; visibility: hidden;">변경</button>
@@ -186,7 +170,7 @@ $(function(){
           	<c:when test="${ovo2.reward_no != 0 }">
            	 <table id="ship" border="1">
 				<tr>
-					<td id="sd" rowspan="7" style="border-right: none; width:40%"><img src="${ovo.pro_thum }" width="200" height="200" alt=""></td>
+					<td id="sd" rowspan="7" style="border-right: none; width:40%"><img src="../resources/upload/${ovo.pro_thum }" width="200" height="200" alt=""></td>
 					<td id="sd" style="visibility: hidden; border-bottom: none; border-left: none;">안녕 공간차지용이에요</td>
 				</tr>
 				<tr>
@@ -212,7 +196,7 @@ $(function(){
            <c:otherwise>
             <table id="ship" border="1">
 				<tr>
-					<td id="sd" rowspan="7" style="border-right: none; width:40%"><img src="${ovo2.pro_thum }" width="200" height="200" alt=""></td>
+					<td id="sd" rowspan="7" style="border-right: none; width:40%"><img src="../resources/upload/${ovo2.pro_thum }" width="200" height="200" alt=""></td>
 					<td id="sd" style="visibility: hidden; border-bottom: none; border-left: none;">안녕 공간차지용이에요</td>
 				</tr>
 				<tr>
