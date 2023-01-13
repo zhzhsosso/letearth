@@ -22,8 +22,6 @@
 
 
 <style type="text/css">
-
-
 #sbtn {
 	position: absolute;
 	top: 0px;
@@ -33,7 +31,7 @@
 }
 
 #repSelector {
-  width : 15%;
+  width : 8%;
   height : 4px;
   background-color : #D7D1B9;
   border : 0;
@@ -41,7 +39,7 @@
    position: relative;
    top: -10px; 
 /*    left: 380px;  */
-   left: 42.5%;
+   left: 46%;
 }
 
 #repSelector1{
@@ -50,77 +48,48 @@
    
 }
 
-  /*페이징*/
-.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
-    z-index: 2;
-    color: #fff;
-    cursor: default;
-    background-color: #89A378;
-    border-color: #89A378;
-}
-
-/*셀렉트 꾸미기*/
-/* The container must be positioned relative: */
-.fcntr {
-  position: relative;
-  font-family: Arial;
-}
-
-.fcntr select {
-  display: none; /*hide original SELECT element: */
-}
-
-.select-selected {
-  background-color: #BFCC97;
-}
-
-/* Style the arrow inside the select element: */
-.select-selected:after {
-  position: absolute;
-  content: "";
-  top: 14px;
-  right: 10px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
-}
-
-/* Point the arrow upwards when the select box is open (active): */
-.select-selected.select-arrow-active:after {
-  border-color: transparent transparent #fff transparent;
-  top: 7px;
-}
-
-/* style the items (options), including the selected item: */
-.select-items div,.select-selected {
-  color: #6c757d;
-  padding: 8px 16px;
-  border: 1px solid transparent;
-  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-  cursor: pointer;
+/*hover*/
+#hov a:hover{
+  color : #6F7B63;
+  transition : 0s;
   font-weight: bolder;
-  border-radius : 0.25rem;
+  /*text-decoration: underline;*/
+  
+ } 
+
+ /*페이징*/
+.paging {
+    display: inline-block;
 }
 
-/* Style items (options): */
-.select-items {
-  position: absolute;
-  background-color: #EEF5E6;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 99;
+.paging a{
+	display: block;
+	text-decoration: none;
+	color: #414934;
+	float: left;
+	line-height: 1.5;
+	border-radius:50%;
+	padding: 8px 16px;
 }
 
-/* Hide the items when the select box is closed: */
-.select-hide {
-  display: none;
+.paging a:hover {
+	background-color: #B6AD90;
+	color: #E8E4D7;
+	
 }
 
-.select-items div:hover, .same-as-selected {
-  background-color: rgba(0, 0, 0, 0.1);
+.paging a.active{
+	cursor: default;
+	background-color: #B6AD90;
+	color: #E8E4D7;
 }
+
+.pagination a:active{
+	cursor: default;
+	background-color: #B6AD90;
+	color: #E8E4D7;
+}
+
 
 
 /*모달 관리자 */
@@ -145,7 +114,31 @@
 	color: #A4AC85;
 }
 
+.label1{
+	 background: #A4AC85;
+    line-height: 30px;
+    padding: 0 13px;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #f4f4f4;
+    margin: 15px;
+    border-radius: 0.2rem;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+}
 
+.blacktb a{
+	color: 	#414934;
+	
+}
+.blacktb a:hover{
+  color : #EDEAE0;
+  transition : 0s;
+  font-weight: bolder;
+}
 </style>
 </head>
 <body>
@@ -163,61 +156,60 @@
 		<div style="display: flex;">
 
 			<!-- 사이드바 -->
-			<%@ include file="../include/adSide1.jsp"%>
+			<%@ include file="../include/adSide.jsp"%>
 
 			<div class="container">
-				<br> <br> <br> <br> <br> <br>
+				<br> <br> <br> <br> <br>
 
 				<!-- 어드민 -->
-				<h2 class="box-title" align="center">
-					<b style="color: #6F7B63">정산관리</b> <br> <br> <br>
-				</h2>
+				<h2 class="box-title" align="center"><b style="color: #6F7B63;">정산관리</b></h2>
 				<hr id="repSelector" align="center">
 				<div class="col-xs-12" style="font-size: 16px;">
-					<div style="font-size: 1.5rem; cursor: pointer;" align= "left" id="aaadiv">
-						<span id="hov"> <a id="list2">정산하기</a>
-							| <a href="/openbanking/useroauth2">정산완료</a>
+					<div style="font-size: 1.7rem; cursor: pointer;" align= "left" id="aaadiv">
+						
+						<span id="hov"> 
+							<a id="list2" class="Settlem1" style="color: #6F7B63; font-weight: bold;">정산하기</a>
+							| 
+							<a href="/openbanking/useroauth2" class="Settlem2" style="color: #B6AD90;">정산완료</a>
 						</span>
 							<hr id="repSelector1">	
 					</div>
 
 					<!-- 어드민 -->
-					<br>
+					
 					<div class="box" style="border: none;">
-						<br>
-						<div class="box-header">
-							<br>
-						</div>
-						<br>
-						<!-- memAll -->
+					<div style="padding-top: 30px; padding-bottom: 30px;"></div>	
+						
 						<div class="box-body table-responsive no-padding" id="memAll">
 							<form role="form" name="fr" id="contact-form" action="" method="post">
 								<table class="table table-hover">
 									<tbody>
-										<tr style="background-color: #EDEAE0" " id="vc">
-											<th style="text-align: center; width : 7%; table-layout: fixed;">프로젝트 번호</th>
-											<th style="text-align: center;" >프로젝트 이름</th>
-											<th style="text-align: center;">아이디</th>
-											<th style="text-align: center;">펀딩 종료날짜</th>
-											<th style="text-align: center;">목표금액</th>
-											<th style="text-align: center;">달성금액</th>
-											<th style="text-align: center;">정산상세</th>
+										<tr style="background-color: #EDEAE0;">
+											<th style="text-align: center; width : 5%; table-layout: fixed; color: #414934; font-weight: bold;">#</th>
+											<th style="text-align: center; color: #414934; width : 40%; table-layout: fixed; font-weight: bold;" >프로젝트 이름</th>
+											<th style="text-align: center; color: #414934; font-weight: bold;">아이디</th>
+											<th style="text-align: center; color: #414934; font-weight: bold;">펀딩 종료날짜</th>
+											<th style="text-align: center; color: #414934; font-weight: bold;">목표금액</th>
+											<th style="text-align: center; color: #414934; font-weight: bold;">달성금액</th>
+											<th style="text-align: center; color: #414934; font-weight: bold;">정산상세</th>
 										</tr>
 
 										<c:forEach var="st" items="${fproList }">
-											<tr>
-												<td style="padding-left: 10px; text-align:center; vertical-align:middle; color: #414934;">${st.pro_no }</td>
-												<td style="font-size: 15px;">${st.pro_title } </a></td>
-												<td style="font-size: 15px;">${st.mem_id }</td>
-												<td style="font-size: 15px;">${st.pro_ed_dt }</td>
-												<td style="font-size: 15px;"><fmt:formatNumber
-														value="${st.pro_gp }" />원</td>
-												<td style="font-size: 15px;"><fmt:formatNumber
-														value="${st.pro_tp }" />원</td>
-												<td style="font-size: 15px;"><span
-													class="label label-info"><a
+											<tr class="blacktb">
+												<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">${st.pro_no }</td>
+												<td style="vertical-align:middle; color: #414934; font-weight: bold;">${st.pro_title }</td>
+												<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">${st.mem_id }</td>
+												<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">${st.pro_ed_dt }</td>
+												<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
+													<fmt:formatNumber value="${st.pro_gp }" />원
+												</td>
+												<td style="text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
+													<fmt:formatNumber value="${st.pro_tp }" />원
+												</td>
+												<td style="text-align: center; vertical-align:middle; font-weight: bold;"><span
+													class="label1"><a
 													href="/openbanking/stDetail?pro_no=${st.pro_no }"
-													style="color: green"> 정산상세 </a></span></td>
+													> 정산상세 </a></span></td>
 													
 											</tr>
 										</c:forEach>
@@ -227,10 +219,10 @@
 						<!-- memAll -->
 
 					</div>
-
+<br><br><br>
 					<!-- 페이징처리 -->
-					<div class="box-footer clearfix" id="paging">
-						<ul class="pagination pagination-sm no-margin pull-left">
+					<div class="pagination" style="position: absolute; right: 45%; border: none;">
+		<ul class="pagination" style="font-size: 18px;">
 							<c:if test="${pvo.prev }">
 								<li><a href="/openbanking/useroauth?page=${pvo.startPage-1 }">«</a></li>
 								<!-- 10 -->
@@ -243,7 +235,7 @@
 							</c:forEach>
 
 							<c:if test="${pvo.next }">
-								<li><a href=/openbanking/useroauth?page=${pvo.endPage+1 }">»</a></li>
+								<li><a href="/openbanking/useroauth?page=${pvo.endPage+1} ">»</a></li>
 								<!-- 11 -->
 							</c:if>
 						</ul>
@@ -252,6 +244,7 @@
 				</div>
 			</div>
 		</div>
+		
 	</section>
 	</c:if>
 	
@@ -260,97 +253,9 @@
 <!-- 관리자 페이지 -->	
 
 
+	<br><br><br><br><br><br><br><br><br>
 
 
-<!-- 판매자 계좌등록 처음일때 -->
-	<c:if test="${sessionScope.mem_id ne null && sessionScope.mem_id ne 'admin'}">
-	<section class="contact-form-area">
-        <div class="container">
-		<br><br><br><br><br><br>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="section-title text-center">
-                        <span>계좌 등록하기</span>
-                        <h3 class="title">사용자 인증을 진행해주세요</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <form id="contact-form" action="assets/contact.php" method="post">
-                        <div class="conact-form-item">
-                            <div class="row">
-                                
-                                <div class="col-lg-12">
-                                    
-                                    <div class="input-box mt-20 text-center">
-                                    	<form action="https://testapi.openbanking.or.kr/oauth/2.0/authorize" method="get">
-											<!-- 고정값: code -->
-											<input type="hidden" name="response_type" value="code">
-											<!-- 오픈뱅킹에서 발급한 이용기관 앱의 Client ID -->
-											<input type="hidden" name="client_id" value="be6aa2c4-8b34-4401-9c54-49643df0e522">
-											<!-- 사용자인증이 성공하면 이용기관으로 연결되는 URL callback_uri -->
-											<input type="hidden" name="redirect_uri" value="http://localhost:8080/openbanking/callback">
-											<!-- Access Token 권한 범위 -->
-											<input type="hidden" name="scope" value="login inquiry transfer oob">
-											<!-- CSRF 보안위협에 대응하기 위해 이용기관이 세팅하는 난수값 32자리 -->
-											<input type="hidden" name="state" value="12345678123456781234567812345678">
-											<!-- 사용자인증타입 구분주 2)(0:최초인증, 1:재인증, 2:인증생략) -->
-											<input type="hidden" name="auth_type" value="0">
-											
-											
-											<div class="btnbtn">
-										         <div class="blog-btn">
-										            <button type="submit" class="main-btn" type="button">사용자 인증</button>
-										         </div>
-									        </div>
-									
-                                        
-										</form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <p class="form-message"></p>
-                </div>
-            </div>
-        </div>
-    </section>
-    </c:if>
-    
-<!-- 판매자 계좌등록 처음일때 -->
-	
- 	
-
- 	
- 	<br><br><br><br><br><br><br><br><br>
- 	<!-- 사용자인증 -->
- 	<div class="sidebar__single sidebar__category">
-        <form action="https://testapi.openbanking.or.kr/oauth/2.0/authorize" method="get">
-		<!-- 고정값: code -->
-		<input type="hidden" name="response_type" value="code">
-		<!-- 오픈뱅킹에서 발급한 이용기관 앱의 Client ID -->
-		<input type="hidden" name="client_id" value="be6aa2c4-8b34-4401-9c54-49643df0e522">
-		<!-- 사용자인증이 성공하면 이용기관으로 연결되는 URL callback_uri -->
-		<input type="hidden" name="redirect_uri" value="http://localhost:8080/openbanking/callback">
-		<!-- Access Token 권한 범위 -->
-		<input type="hidden" name="scope" value="login inquiry transfer oob">
-		<!-- CSRF 보안위협에 대응하기 위해 이용기관이 세팅하는 난수값 32자리 -->
-		<input type="hidden" name="state" value="12345678123456781234567812345678">
-		<!-- 사용자인증타입 구분주 2)(0:최초인증, 1:재인증, 2:인증생략) -->
-		<input type="hidden" name="auth_type" value="0">
-		
-		
-		<div class="btnbtn">
-	         <div class="blog-btn">
-	            <button type="submit" class="main-btn" type="button">사용자 인증</button>
-	         </div>
-        </div>
-
-	</form>
-    </div>
- 	 <!-- 인증 요청 작업 수행 -->
  	 
  	 
  	
@@ -372,18 +277,18 @@
     
     
 <!-- 	<div class="sidebar__single sidebar__category"> -->
-<!--  		<!-- 오픈뱅킹 자산 조회 버튼 - 토큰 발급 후 이동 --> -->
-<!-- 		 <!-- sessionToken 값이 있어야 자산 조회 버튼 생성 -->	 -->
-<%-- <%-- 	     <c:if test="${not empty sessionScope.token}"> --%> --%>
+<!--  		<!-- 오픈뱅킹 자산 조회 버튼 - 토큰 발급 후 이동 -->
+<!-- 		 <!-- sessionToken 값이 있어야 자산 조회 버튼 생성 -->	
+<%-- <%-- 	     <c:if test="${not empty sessionScope.token}"> --%> 
 <!--                 자산 조회를 위한 인증 요청 작업 수행 -->
 <!--                 <form method="get" action="/openbanking/userInfo" > -->
-<!-- <!--                   <input type="hidden" name="access_token" value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDE3MTk1Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwib29iIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2ODEyMDMwMTUsImp0aSI6IjZjODZkM2Q4LTE4YTUtNDEyZS1iMjRkLWYyYzdkMDFhNGYzOSJ9.zfT7xFPJiL9BD5bc9IBrcP3PSVA_wnI69vjJhokrq4g"> --> -->
+<!-- <!--                   <input type="hidden" name="access_token" value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDE3MTk1Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwib29iIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2ODEyMDMwMTUsImp0aSI6IjZjODZkM2Q4LTE4YTUtNDEyZS1iMjRkLWYyYzdkMDFhNGYzOSJ9.zfT7xFPJiL9BD5bc9IBrcP3PSVA_wnI69vjJhokrq4g"> -->
 <%--                   <input type="hidden" name="access_token" value="${responseTokenVO.access_token }"> --%>
-<!-- <!--                   <input type="hidden" name="user_seq_no" value="1101017195"> --> -->
+<!-- <!--                   <input type="hidden" name="user_seq_no" value="1101017195"> -->
 <%--                   <input type="hidden" name="user_seq_no" value=${responseTokenVO.user_seq_no }> --%>
 <!-- 				  <input type="submit" value="내 자산조회"> -->
 <!--                 </form> -->
-<%-- <%-- 		</c:if> --%> --%>
+<%-- <%-- 		</c:if> --%>
 
 
 
@@ -394,7 +299,7 @@
 <!-- 						<input type="hidden" name="cntr_account_type" value="N"> -->
 <!-- 						<input type="hidden" name="cntr_account_num" value="1234123412341234"> 렛어스 계좌번호 -->
 <!-- 						<input type="hidden" name="dps_print_content" value="렛어스"> -->
-<!-- <!-- 						<input type="hidden" name="fintech_use_num" value="120220234388941212453442"> --> -->
+<!-- <!-- 						<input type="hidden" name="fintech_use_num" value="120220234388941212453442"> -->
 <!-- 						<input type="hidden" name="fintech_use_num" value="120220234388941212225903"> 구매자의 핀테크번호 -->
 						
 <!-- 						<input type="hidden" name="tran_amt" value="1000"> 금액 -->
@@ -420,7 +325,7 @@
 			<!-- 입금이체 : 관리자가 판매자 계좌로 입금 -->
 <!-- 				<form method="post" action="/openbanking/deposit"> -->
 <%-- 					<input type="hidden" name="access_token" value="${responseTokenVO.access_token }"> --%>
-<!-- <!-- 					<input type="hidden" name="access_token" value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDE3MDIxIiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwib29iIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2ODEwODc2MDIsImp0aSI6IjEwOTFlM2MwLWQxMDMtNDVkOC04ZTU1LWFjNGE2YTcxYTUwMSJ9.0FAFGwfG12VFnFoTA-L1LKDLOlS-j2JKWeLtvfcOOGk"> --> -->
+<!-- <!-- 					<input type="hidden" name="access_token" value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDE3MDIxIiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwib29iIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2ODEwODc2MDIsImp0aSI6IjEwOTFlM2MwLWQxMDMtNDVkOC04ZTU1LWFjNGE2YTcxYTUwMSJ9.0FAFGwfG12VFnFoTA-L1LKDLOlS-j2JKWeLtvfcOOGk"> -->
 <!-- 					<input type="hidden" name="cntr_account_type" value="N"> -->
 <!-- 					<input type="hidden" name="cntr_account_num" value="1234123412341234"> -->
 <!-- 					<input type="hidden" name="wd_pass_phrase" value="NONE"> 테스트환경은 NONE을 사용 -->
@@ -430,10 +335,10 @@
 <!-- 					<input type="hidden" name="req_cnt" value="1"> -->
 					
 <!-- 					<input type="hidden" name="tran_no" value="1"> -->
-<%-- <%-- 					<input type="hidden" name="bank_tran_id" value="${responseTokenVO.bank_tran_id }"> --%> --%>
+<%-- <%-- 					<input type="hidden" name="bank_tran_id" value="${responseTokenVO.bank_tran_id }"> --%> 
 <!-- 					<input type="hidden" name="bank_tran_id" value="M202202343U123456789"> -->
 <!-- 					<input type="hidden" name="fintech_use_num" value="120220234388941212225903"> -->
-<!-- <!-- 					<input type="hidden" name="fintech_use_num" value="120220234388941212453442"> --> -->
+<!-- <!-- 					<input type="hidden" name="fintech_use_num" value="120220234388941212453442"> -->
 <!-- 					<input type="hidden" name="print_content" value="정산해요"> -->
 <!-- 					<input type="hidden" name="tran_amt" value="500"> 금액 -->
 					
@@ -455,7 +360,24 @@
  	
  	
  	
- 	
+ <script type="text/javascript" src="jquery-3.6.3.min.js"></script>
+ <script type="text/javascript">
+ 	$(document).ready(function(){
+ 		$(".Settlem1").css("color","#6F7B63"); 
+ 		$(".Settlem1").css("font-weight","bolder");
+ 		$(".Settlem2").css("color","#B6AD90"); 
+ 		$(".Settlem2").css("font-weight","normal");
+ 		
+ 		$(".Settlem2").hover(function(){
+ 			$(this).css('color', '#6F7B63'); // 마우스 오버 시
+ 			$(this).css('font-weight', 'bolder'); 
+ 		}, function(){
+ 			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
+ 			$(this).css('font-weight', 'normal'); 
+ 		});
+ 	});
+ 
+ </script>	
  	
  	
  	
