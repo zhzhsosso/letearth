@@ -169,42 +169,41 @@ function checkInfo() {
 			})
 			return false;
 		}
-		
 		var pro_context = $(contentObj).val();
 		
+		const sendingData = new FormData();
+		sendingData.append('pro_context',pro_context);  
+		sendingData.append('cat_no',$('#cat_no').val());  
+		sendingData.append('pro_title',$('#pro_title').val());  
+		sendingData.append('tags',$('#tags').val()); 
+		sendingData.append('file',$('#input-file')[0].files[0]);
+		
+		console.log(sendingData);
 		$.ajax({
-			async : true,
-		    type:'post',
-		    url:"/project/basicInfo",
-		    data: {
-		    	cat_no:$("#cat_no").val(),
-		    	cat_name:$("#cat_name").val(),
-		    	pro_title:$('#pro_title').val(),
-		    	pro_context:pro_context,
-		    	pro_thum:$('#input-file').val(),
-		    	tags:$('#tags').val(),
-			},
-		    dataType : "text",
-		    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-		    success : function(resp) {
-		    	$.ajax({
-					url:"/project/plan",
-					type:"get",
-					datatype:"html",
-					success:function(data){
-						$('html, body').scrollTop(0);
-						$("#project").html(data);
-					}	
-				});
-		    },
-		    error: function(jqXHR, textStatus, errorThrown) {
-		        alert("ERROR : " + textStatus + " : " + errorThrown);
-		    }        
-		});
+			    type:'post',
+			    url:"/project/basicInfo",
+			    data: sendingData,
+			    processData: false,
+			    contentType: false,
+			    success : function(resp) {
+			    	$.ajax({
+						url:"/project/plan",
+						type:"get",
+						datatype:"html",
+						success:function(data){
+							$('html, body').scrollTop(0);
+							$("#project").html(data);
+						}	
+					});
+			    },
+			    error: function(jqXHR, textStatus, errorThrown) {
+			        alert("ERROR : " + textStatus + " : " + errorThrown);
+			    }        
+			});
 	}
 </script>
 	<!--====== BLOG DETAILS PART ENDS ======-->
-	<form method="post" name="fr">
+	<form method="post" name="fr" id="fr">
 		<div style="display: flex; justify-content: center;">
 			<div class="col-lg-8">
 				<!-- 프로젝트 카테고리 -->
@@ -318,6 +317,7 @@ function checkInfo() {
 				<div style="display: none">
 					<input type="file" id="input-file" name="pro_thum" /> <br><br>
 				</div>
+				
 
 				<!-- 프로젝트 대표 이미지-->
 

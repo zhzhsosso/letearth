@@ -80,6 +80,9 @@ function myProUpdate(num){
 								<c:when test="${pro.pro_status == 7}">
 									<span style="background: #6F7B63;" style="border: none;">판매중지</span>
 								</c:when>
+								<c:when test="${pro.pro_status == 8}">
+									<span style="background: #6F7B63;" style="border: none;">정산완료</span>
+								</c:when>
 							</c:choose>
 							</div>  <br>
 							<a href="/prodetail/info?pro_no=${pro.pro_no}">

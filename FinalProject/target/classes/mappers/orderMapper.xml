@@ -45,13 +45,13 @@
 	
 	<!-- 주문번호로 주문정보 1개 조회 -->
 	<select id="orderInfo" resultType="OrderVO">
-		select o.*, date_format(o.order_date,'%Y-%m-%d') as o_date, p.pro_title, p.pro_file, r.reward_title, r.reward_shipmonth, r.reward_shipdate 
+		select o.*, date_format(o.order_date,'%Y-%m-%d') as o_date, p.pro_title, p.pro_thum, r.reward_title, r.reward_shipmonth, r.reward_shipdate 
 		from order_tbl o join project p on o.pro_no = p.pro_no join reward r on r.reward_no = o.reward_no where order_trade_num = #{order_trade_num}
 	</select>
 	
 	<!-- 후원만 -->
 	<select id="orderInfo2" resultType="OrderVO">
-		select o.*, date_format(o.order_date,'%Y-%m-%d') as o_date, p.pro_file 
+		select o.*, date_format(o.order_date,'%Y-%m-%d') as o_date, p.pro_thum 
 		from order_tbl o join project p on o.pro_no = p.pro_no where order_trade_num = #{order_trade_num}
 	</select>
 	

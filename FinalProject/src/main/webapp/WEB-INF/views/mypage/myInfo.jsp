@@ -48,6 +48,14 @@ $(document).ready(function(){
 });
 </script>
 <script type="text/javascript">
+$("#account").click(function(){
+	$("#okk").click();
+});
+
+function ok() {
+	document.oauth.submit();
+}
+
 function deleteMember() {
 	if($('#mem_pw').val() == ""){
 	    Swal.fire({
@@ -121,7 +129,7 @@ function deleteMember() {
 	<div class="row justify-content-center">
 		<div class="col-lg-8">
 			<div class="text-center">
-				<span class="user-img" style="background-image: url('${memVO.mem_profile}'); vertical-align: middle;"></span> <br><br>
+				<span class="user-img" style="background-image: url(../resources/upload/${memVO.mem_profile}); vertical-align: middle;"></span> <br><br>
 				<span style="color: #414934; font-weight: bold;'"><fmt:formatDate value="${memVO.mem_cr_dt }"/> 가입</span>
 			</div>
 		</div>

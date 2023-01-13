@@ -2,6 +2,7 @@ package com.letearth.project.persistence;
 
 import java.util.List;
 
+import com.letearth.member.domain.MemberVO;
 import com.letearth.project.domain.ProjectVO;
 import com.letearth.project.domain.RewardVO;
 
@@ -71,6 +72,11 @@ public interface ProjectDAO {
 	 * 대표자 및 정산 정보 등록
 	 */
 	public Integer updatePartner(ProjectVO proVO) throws Exception;
+	
+	/**
+	 * 멤버 프로필 등록
+	 */
+	public void updateMemFile(MemberVO memVO) throws Exception;
 	
 	/**
 	 * 대표자 조회

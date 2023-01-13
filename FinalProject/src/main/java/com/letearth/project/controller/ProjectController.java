@@ -1,10 +1,14 @@
 package com.letearth.project.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.letearth.member.domain.MemberVO;
 import com.letearth.project.domain.ProjectVO;
 import com.letearth.project.domain.RewardVO;
 import com.letearth.project.service.ProjectService;
@@ -209,7 +215,7 @@ public class ProjectController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/basicInfo", method = RequestMethod.POST)
-	public String basicInfoPOST(HttpSession session, ProjectVO proVO) throws Exception {
+	public String basicInfoPOST(@RequestParam HashMap<Object, Object> param, HttpSession session, ProjectVO proVO, MultipartFile file, HttpServletRequest request) throws Exception {
 		// 로그인 제어
 		String mem_id = (String) session.getAttribute("mem_id");
 		mylog.debug(mem_id);
@@ -217,10 +223,63 @@ public class ProjectController {
 		if (mem_id == null) {
 			return "redirect:/member/login";
 		}
+		
+		int cat_no = Integer.parseInt(String.valueOf(param.get("cat_no")));
+		proVO.setPro_context((String) param.get("pro_context"));
+		proVO.setPro_title((String) param.get("pro_title"));
+		proVO.setCat_no(cat_no);
+		proVO.setTags((String) param.get("tags"));
 
 		// 전달된 정보저장(카테고리,제목,내용,이미지)
 		mylog.debug(proVO.toString());
 
+		// 이미지 업로드
+		String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
+		long size = file.getSize(); //파일 사이즈
+		
+		System.out.println("파일명 : "  + fileRealName);
+		System.out.println("용량크기(byte) : " + size);
+		
+		ServletContext servletContext = request.getSession().getServletContext();
+		String realPath = servletContext.getRealPath("/");
+		
+		String Folder = File.separator + "resources" + File.separator + "upload" + File.separator;
+		String uploadFolder = realPath + Folder;
+		
+		mylog.debug("업로드 폴더:" + uploadFolder);
+		
+		//서버에 저장할 파일이름 fileextension으로 .jsp이런식의  확장자 명을 구함
+		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
+		
+		/*
+		  파일 업로드시 파일명이 동일한 파일이 이미 존재할 수도 있고 사용자가 
+		  업로드 하는 파일명이 언어 이외의 언어로 되어있을 수 있습니다. 
+		  타인어를 지원하지 않는 환경에서는 정산 동작이 되지 않습니다.(리눅스가 대표적인 예시)
+		  고유한 랜던 문자를 통해 db와 서버에 저장할 파일명을 새롭게 만들어 준다.
+		 */
+		
+		UUID uuid = UUID.randomUUID();
+		System.out.println(uuid.toString());
+		String[] uuids = uuid.toString().split("-");
+		
+		String uniqueName = uuids[0];
+		System.out.println("생성된 고유문자열" + uniqueName);
+		System.out.println("확장자명" + fileExtension);
+		
+		File saveFile = new File(uploadFolder+"\\"+uniqueName + fileExtension);
+		mylog.debug("파일 이름: " +uniqueName+fileExtension);
+		
+		proVO.setPro_no((int) session.getAttribute("pro_no"));
+		proVO.setPro_thum(uniqueName+fileExtension);
+		
+		try {
+			file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		// 서비스
 		proVO.setMem_id(mem_id);
 		proVO.setPro_no((int) session.getAttribute("pro_no"));
@@ -393,42 +452,6 @@ public class ProjectController {
 		// 프로젝트 번호
 		proVO.setPro_no((int) session.getAttribute("pro_no"));
 
-		// 서비스객체 -> DAO -> mapper(insert)
-
-		/*
-		 * String fileRealName = file.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드! long
-		 * size = file.getSize(); //파일 사이즈
-		 * 
-		 * System.out.println("파일명 : " + fileRealName);
-		 * System.out.println("용량크기(byte) : " + size);
-		 * 
-		 * //서버에 저장할 파일이름 fileextension으로 .jsp이런식의 확장자 명을 구함 String fileExtension =
-		 * fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
-		 * String uploadFolder = "C:\\test\\upload";
-		 */
-		/*
-		 * 파일 업로드시 파일명이 동일한 파일이 이미 존재할 수도 있고 사용자가 업로드 하는 파일명이 언어 이외의 언어로 되어있을 수 있습니다.
-		 * 타인어를 지원하지 않는 환경에서는 정산 동작이 되지 않습니다.(리눅스가 대표적인 예시) 고유한 랜던 문자를 통해 db와 서버에 저장할
-		 * 파일명을 새롭게 만들어 준다.
-		 */
-
-		/*
-		 * UUID uuid = UUID.randomUUID(); System.out.println(uuid.toString()); String[]
-		 * uuids = uuid.toString().split("-");
-		 * 
-		 * String uniqueName = uuids[0]; System.out.println("생성된 고유문자열" + uniqueName);
-		 * System.out.println("확장자명" + fileExtension);
-		 * 
-		 * File saveFile = new File(uploadFolder+"\\"+uniqueName + fileExtension);
-		 * mylog.debug("파일 이름: " +uniqueName+fileExtension);
-		 * 
-		 * proVO.setPro_file(uniqueName+fileExtension);
-		 * 
-		 * try { file.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에
-		 * 처리해준다.) } catch (IllegalStateException e) { e.printStackTrace(); } catch
-		 * (IOException e) { e.printStackTrace(); }
-		 */
-
 		proService.updateStory(proVO);
 
 		mylog.debug("story : 업데이트 완료! + 탭 이동");
@@ -436,7 +459,7 @@ public class ProjectController {
 		// 3. 페이지 이동
 		return "/project/story";
 	}
-
+	
 	// http://localhost:8080/project/policy
 	/**
 	 * 프로젝트 정책 (GET)
@@ -497,10 +520,6 @@ public class ProjectController {
 			return "redirect:/member/login";
 		}
 
-		// 프로젝트 번호
-		proVO.setPro_no((int) session.getAttribute("pro_no"));
-		proService.getPart(proVO);
-
 		mylog.debug("regist : 탭 이동");
 
 		return "/project/regist";
@@ -509,8 +528,9 @@ public class ProjectController {
 	/**
 	 * 대표자 및 정산 정보 등록 (POST)
 	 */
+	@ResponseBody
 	@RequestMapping(value = "/regist", method = RequestMethod.POST)
-	public String registPOST(HttpSession session, ProjectVO proVO) throws Exception {
+	public String registPOST(@RequestParam HashMap<Object, Object> param, HttpSession session, ProjectVO proVO, MemberVO memVO, MultipartFile file1, MultipartFile file2, HttpServletRequest request) throws Exception {
 		// 로그인 제어
 		String mem_id = (String) session.getAttribute("mem_id");
 		mylog.debug("대표자 등록: " + mem_id);
@@ -518,11 +538,79 @@ public class ProjectController {
 		if (mem_id == null) {
 			return "redirect:/member/login";
 		}
-
-		// 전달 값 확인
-		mylog.debug(proVO + "");
-
-		// 프로젝트 번호
+		
+		mylog.debug((String) param.get("par_cat"));
+		mylog.debug((String) param.get("par_intro"));
+		mylog.debug((String) param.get("par_birth"));
+		mylog.debug(file1 + "");
+		mylog.debug(file2 + "");
+		
+		proVO.setPar_cat((String) param.get("par_cat"));
+		proVO.setPar_intro((String) param.get("par_intro"));
+		proVO.setPar_birth((String) param.get("par_birth"));
+		
+		// 이미지 업로드
+		String fileRealName = file1.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
+		String fileRealName2 = file2.getOriginalFilename(); //파일명을 얻어낼 수 있는 메서드!
+		long size = file1.getSize(); //파일 사이즈
+		long size2 = file2.getSize(); //파일 사이즈
+		
+		System.out.println("파일명 : "  + fileRealName);
+		System.out.println("파일명 : "  + fileRealName2);
+		System.out.println("용량크기(byte) : " + size);
+		System.out.println("용량크기(byte) : " + size2);
+		
+		ServletContext servletContext = request.getSession().getServletContext();
+		String realPath = servletContext.getRealPath("/");
+		
+		String Folder = File.separator + "resources" + File.separator + "upload" + File.separator;
+		String uploadFolder = realPath + Folder;
+		String uploadFolder2 = realPath + Folder;
+		
+		mylog.debug("업로드 폴더:" + uploadFolder);
+		
+		//서버에 저장할 파일이름 fileextension으로 .jsp이런식의  확장자 명을 구함
+		String fileExtension = fileRealName.substring(fileRealName.lastIndexOf("."),fileRealName.length());
+		String fileExtension2 = fileRealName2.substring(fileRealName2.lastIndexOf("."),fileRealName2.length());
+		
+		/*
+		  파일 업로드시 파일명이 동일한 파일이 이미 존재할 수도 있고 사용자가 
+		  업로드 하는 파일명이 언어 이외의 언어로 되어있을 수 있습니다. 
+		  타인어를 지원하지 않는 환경에서는 정산 동작이 되지 않습니다.(리눅스가 대표적인 예시)
+		  고유한 랜던 문자를 통해 db와 서버에 저장할 파일명을 새롭게 만들어 준다.
+		 */
+		
+		UUID uuid = UUID.randomUUID();
+		UUID uuid2 = UUID.randomUUID();
+		System.out.println(uuid.toString());
+		String[] uuids = uuid.toString().split("-");
+		String[] uuids2 = uuid2.toString().split("-");
+		
+		String uniqueName = uuids[0];
+		String uniqueName2 = uuids2[0];
+		System.out.println("생성된 고유문자열" + uniqueName);
+		System.out.println("확장자명" + fileExtension);
+		
+		File saveFile = new File(uploadFolder+"/"+uniqueName + fileExtension);
+		File saveFile2 = new File(uploadFolder2+"/"+uniqueName2 + fileExtension2);
+		mylog.debug("파일 이름: " +uniqueName+fileExtension);
+		mylog.debug("파일 이름2: " +uniqueName2+fileExtension2);
+		
+		proVO.setPar_scan(uniqueName+fileExtension);
+		memVO.setMem_profile(uniqueName2+fileExtension2);
+		
+		try {
+			file1.transferTo(saveFile); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
+			file2.transferTo(saveFile2); // 실제 파일 저장메서드(filewriter 작업을 손쉽게 한방에 처리해준다.)
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		memVO.setMem_id(mem_id);
+		proService.updateMemFile(memVO);
+		
 		proVO.setPro_no((int) session.getAttribute("pro_no"));
 		Integer result = proService.updatePartner(proVO);
 		

@@ -40,7 +40,7 @@ public class OrderVO {
 	private String reward_title;
 	private String reward_shipmonth;
 	private String reward_shipdate;
-	private String pro_file;
+	private String pro_thum;
 	
 	// Admin
 	private ProjectVO ProjectVO;

@@ -186,7 +186,7 @@ $(function(){
           	<c:when test="${ovo2.reward_no != 0 }">
            	 <table id="ship" border="1">
 				<tr>
-					<td id="sd" rowspan="7" style="border-right: none; width:40%"><img src="${ovo.pro_file }" width="200" height="200" alt=""></td>
+					<td id="sd" rowspan="7" style="border-right: none; width:40%"><img src="${ovo.pro_thum }" width="200" height="200" alt=""></td>
 					<td id="sd" style="visibility: hidden; border-bottom: none; border-left: none;">안녕 공간차지용이에요</td>
 				</tr>
 				<tr>
@@ -212,7 +212,7 @@ $(function(){
            <c:otherwise>
             <table id="ship" border="1">
 				<tr>
-					<td id="sd" rowspan="7" style="border-right: none; width:40%"><img src="${ovo2.pro_file }" width="200" height="200" alt=""></td>
+					<td id="sd" rowspan="7" style="border-right: none; width:40%"><img src="${ovo2.pro_thum }" width="200" height="200" alt=""></td>
 					<td id="sd" style="visibility: hidden; border-bottom: none; border-left: none;">안녕 공간차지용이에요</td>
 				</tr>
 				<tr>
