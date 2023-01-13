@@ -36,6 +36,9 @@ public interface OrderDAO {
 	// 리워드 수량 1개 차감
 	public void rewardStock(int reward_no) throws Exception;
 	
+	// 프로젝트 총 금액 업데이트
+	public void updateTp(OrderVO vo) throws Exception;
+	
 	// 주문번호로 주문정보 1개 조회
 	public OrderVO orderInfo(String order_trade_num) throws Exception;
 	

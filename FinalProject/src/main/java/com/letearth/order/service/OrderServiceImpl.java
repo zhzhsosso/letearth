@@ -142,6 +142,14 @@ public class OrderServiceImpl implements OrderService{
 		return dao.orderInfo(order_trade_num);
 	}
 	
+	// 프로젝트 총 금액 업데이트
+	@Override
+	public void updateTp(OrderVO vo) throws Exception {
+		mylog.debug("serviceImpl : updateTp(vo) 호출");
+		
+		dao.updateTp(vo);
+	}
+	
 	//후원만
 	@Override
 	public OrderVO orderInfo2(String order_trade_num) throws Exception {
