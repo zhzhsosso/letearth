@@ -50,14 +50,14 @@ function shareKakao() {
 function shareTwitter() {
 	// alert('twitter');
     var sendText = "LET EARTH" 
-    var sendUrl = "http://localhost:8080/prodetail/info?pro_no=2"
+    var sendUrl = "http://itwillbs11.cafe24.com/prodetail/pro_no=<%=request.getParameter("pro_no")%>"
     window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);  //Twitter에 전송 정보 파라미터 삽입
 }
  
 // 공유하기 - Facebook
 function shareFacebook() {
 	// alert('facebook');
-    var sendUrl = "http://localhost:8080/prodetail/info?pro_no=2";    
+    var sendUrl = "http://itwillbs11.cafe24.com/prodetail/pro_no=<%=request.getParameter("pro_no")%>";    
     window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);       //Facebook에 전송 정보 파라미터 삽입
 } 
 
@@ -662,7 +662,7 @@ $(document).ready(function() {
                             <hr>
                             
                             <div class="project-details-content-top">
-                                <h3 id="stroy" style="margin-top: 60px; color: #B6AD90;"><i class="flaticon-checkmark"></i> 스토리 소개</h3>
+                                <h3 id="story" style="margin-top: 60px; color: #B6AD90;"><i class="flaticon-checkmark"></i> 스토리 소개</h3>
                                 <div id="pro_story" style="display: none;">${pdvo.pro_story}</div>
                                 <div id="viewer2"></div>
                                 <script>
@@ -917,7 +917,7 @@ $(document).ready(function() {
 	                                        <h3>${pdvo.mem_id }</h3>
 	                                        <div class="blog-details__content">
 		                                        <div class="blog-one__meta">
-					                                <a href="#"><i class="fa fa-user-o" style="color: #e1bfa2;"></i> 답글</a>
+					                                <a href="#"><i class="fa fa-user-o" style="color: #e1bfa2;"></i> 판매자 답글</a>
 					                            </div>
 				                            </div>
 				                            <p>${ur.rereply_content }</p>
