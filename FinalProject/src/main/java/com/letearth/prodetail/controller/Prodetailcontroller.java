@@ -79,13 +79,14 @@ public class Prodetailcontroller {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/info", method=RequestMethod.POST)
-	public String infoPOST(RedirectAttributes redirect, ProReplyVO prvo, ProReportVO rpvo,HttpServletRequest request) throws Exception{
-				
+	public String infoPOST(RedirectAttributes redirect, ProReplyVO prvo, ProReportVO rpvo, HttpServletRequest request, HttpSession session) throws Exception{
 			Integer pro_no = Integer.parseInt(request.getParameter("pro_no"));
+			String mem_id = (String) session.getAttribute("mem_id");
 				
 			if(prvo.getReply_classify() != null) {
 				if(prvo.getReply_classify() == 0) {
 					//판매자 공지, 사용자 댓글
+					prvo.setMem_id(mem_id);
 					pdservice.sellNotice(prvo);
 					
 				}else {
@@ -94,9 +95,6 @@ public class Prodetailcontroller {
 				}
 				redirect.addAttribute("pro_no", prvo.getPro_no()); 
 			}
-			System.out.println("@@@@@@@@@@@@@@@@" + prvo);
-				
-			System.out.println("@@@@@@@@@@@@@@@@" + rpvo);
 				
 			if(rpvo.getRep_cat() != null) {
 				if(rpvo.getRep_cat() == 2) {

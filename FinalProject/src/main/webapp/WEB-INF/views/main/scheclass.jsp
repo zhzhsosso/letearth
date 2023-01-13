@@ -20,6 +20,22 @@
 		}
 	})
 	</script>   
+	
+	<style>
+		.explore-projects-item .explore-projects-content .item > span {
+		    background: #A4AC85;
+		    line-height: 20px;
+		    padding: 0 7px;
+		    font-size: 11px;
+		    font-weight: 700;
+		    text-transform: uppercase;
+		    letter-spacing: 1px;
+		    color: #fff;
+		    margin: 10px;
+		    border-radius: 0.2rem;
+		}
+	
+	</style>
     
     <section class="explore-projects-area explore-projects-page-area" style="padding-bottom: 500px;">
         <div class="container">
@@ -40,7 +56,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-9" style="width: 270px;">
                     <div class="explore-projects-item mt-30">
                         <div class="explore-projects-thumb">
-                            <img src="${schc.pro_thum }" alt="LetEarth" style="width: 370px; height: 370px;">
+                            <img src="../resources/upload/${schc.pro_thum }" alt="LetEarth" style="width: 370px; height: 370px;">
                             <a href="/prodetail/info?pro_no=${schc.pro_no}">
                             	<i class="fa fa-heart"></i>
                             </a>
@@ -66,7 +82,7 @@
                             
                             <div style="text-align: center; margin-top: 5%;">
 	                        	<p style="color: #4e5744;">해당 프로젝트의 오픈 예정일은 </p> 
-	                        	<p style="color: #4e5744;"> ${sch.pro_st_dt } 입니다!</p>
+	                        	<p style="color: #4e5744;"> ${schc.pro_st_dt } 입니다!</p>
                         	</div>
                         	
                         </div>

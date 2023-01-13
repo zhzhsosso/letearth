@@ -181,15 +181,16 @@
 	  	
 	<!-- 프로젝트별 판매자 공지사항 리스트 -->
 	<select id="getsnListAll" resultType="ProReplyVO">
-		select * from pro_reply 
-		where pro_no = #{pro_no} and reply_category="3" 
-	  	order by reply_no desc
+		select p.*, m.mem_profile
+		from pro_reply p join member_tbl m on p.mem_id = m.mem_id
+		where pro_no = #{pro_no} and reply_category="3"
+		order by reply_no desc;
 	</select>
 	  	
 	
-	<!-- 프로젝트별 사용자 댓글 리스트 230102 수정함-->
+	<!-- 프로젝트별 사용자 댓글 리스트 230113 수정함 (프로필 추가)-->
 	<select resultType="ProReplyVO" id="geturListAll">
-		select reply_no, pro_no, p.mem_id, reply_content, rereply_content, reply_date, reply_classify, reply_file, reply_category, m.mem_status
+		select reply_no, pro_no, p.mem_id, reply_content, rereply_content, reply_date, reply_classify, reply_file, reply_category, m.mem_status, m.mem_profile
 		from pro_reply p join member_tbl m on p.mem_id = m.mem_id
 		where pro_no=#{pro_no} and reply_category != "3" and m.mem_status != "3"
 		order by reply_no desc 
