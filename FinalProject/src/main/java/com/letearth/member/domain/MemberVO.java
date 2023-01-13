@@ -26,5 +26,6 @@ public class MemberVO {
 	private String bank_acc;  // 계좌
 	private String bank_acc_name;  // 예금주명
 	
-	
+	private int cnt; // 관리자 차트에 쓸 컬럼 추가했습니다.
+	private String mem_ratio; // 유형
 }

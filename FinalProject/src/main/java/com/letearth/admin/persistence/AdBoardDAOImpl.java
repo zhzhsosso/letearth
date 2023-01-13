@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.letearth.admin.domain.AdminVO;
+import com.letearth.member.domain.MemberVO;
 import com.letearth.prodetail.domain.Criteria;
 import com.letearth.project.domain.ProjectVO;
 
@@ -176,12 +177,17 @@ public class AdBoardDAOImpl implements AdBoardDAO {
 	/**
 	 * 구글차트 : 프로젝트상태
 	 */
+	// 진행중인 프로젝트 목표금액과 달성금액 현황(최근5개)
 	@Override
 	public List<ProjectVO> pjChart() throws Exception {
 		return sqlSession.selectList(NAMESPACE + ".pjchart");
 	}
 	
-	
+	// 구글차트 회원 비율 => 구매(0), 판매(1), 블랙(3)
+	@Override
+	public List<MemberVO> memRatio() throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".memRatio");
+	}
 	
 	
 	

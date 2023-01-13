@@ -50,7 +50,7 @@ public interface AdMemproDAO {
 	 * 회원관련 메서드
 	 */
 	// 회원 리스트 조회
-	public List<MemberVO> getMemList(Criteria cri);
+	public List<MemberVO> getMemList(SearchCriteria scri);
 	
 	// 회원 상세조회
 	public MemberVO getMemDetail(String mem_id);

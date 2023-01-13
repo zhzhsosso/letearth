@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 <!-- 헤더 -->
@@ -38,8 +39,8 @@ body {
 }
 
 .table tbody tr {
-    box-shadow: 0 2px 10px rgb(184 179 158 / 50%);
-    border-radius: 5px;
+	box-shadow: 0 2px 10px rgb(184 179 158/ 50%);
+	border-radius: 5px;
 }
 
 .table tbody tr td {
@@ -180,52 +181,50 @@ body {
 
 /*버튼체인지색상*/
 .main-btn::before {
-    position: absolute;
-    content: '';
-    right: 0;
-    top: 0;
-    height: 17px;
-    width: 17px;
-    background: #6F7B63;
-	border-radius:0.25rem;
-    z-index: -1;
+	position: absolute;
+	content: '';
+	right: 0;
+	top: 0;
+	height: 17px;
+	width: 17px;
+	background: #6F7B63;
+	border-radius: 0.25rem;
+	z-index: -1;
 }
 
-.main-btn{
-    border-radius: 0.25rem;
-    background-color: #A4AC85;
-    color: #F2F0E8;
-    font-size: 18px;
-    font-weight: bolder;
-	text-align:center; 
-    vertical-align:middle;
-    line-height:0px;
-    padding:12px;
-    align-content:center;
-    width: 140px;
-    height: 60px;
-    
-    margin: 10px;
-
+.main-btn {
+	border-radius: 0.25rem;
+	background-color: #A4AC85;
+	color: #F2F0E8;
+	font-size: 18px;
+	font-weight: bolder;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 0px;
+	padding: 12px;
+	align-content: center;
+	width: 140px;
+	height: 60px;
+	margin: 10px;
 }
 
 #sbtn { /*검색버튼*/
 	position: absolute;
 	top: 0px;
-	
 	background-color: #A4AC85;
 	height: 35px;
 }
- 
- /*페이징*/
-.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
-    z-index: 2;
-    color: #fff;
-    cursor: default;
-    background-color: #89A378;
-    border-color: #89A378;
-}
 
+/*페이징*/
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover,
+	.pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+	{
+	z-index: 2;
+	color: #fff;
+	cursor: default;
+	background-color: #89A378;
+	border-color: #89A378;
+}
 </style>
 
 
@@ -278,8 +277,8 @@ body {
 					class="fa fa-caret-down"></i>
 			</button>
 			<div class="dropdown-container">
-				<a href="#">프로젝트 승인</a> <a href="#">프로젝트 목록</a> <a href="#">재펀딩</a>
-				<a href="#">정산관리</a>
+				<a href="/mempro/adProList1">프로젝트 승인</a> <a href="/mempro/adProList2"">프로젝트 목록</a> 
+				<a href="">정산관리</a>
 			</div>
 
 			<button class="dropdown-btn">
@@ -287,7 +286,7 @@ body {
 					class="fa fa-caret-down"></i>
 			</button>
 			<div class="dropdown-container">
-				<a href="/report/adRepList">신고접수관리</a> <a href="#">회원목록</a> <a
+				<a href="/report/adRepList">신고접수관리</a> <a href="/mempro/adMemList">회원목록</a> <a
 					href="/report/adBlackList">블랙리스트</a>
 			</div>
 		</div>
@@ -316,7 +315,7 @@ body {
 							<!-- div class="flex-container" -->
 							<!-- 회원정보 (프로필) -->
 							<div class="flex-container" style="width: 1000">
-								<div class="project-details-item" style="width: 1000" >
+								<div class="project-details-item" style="width: 1000">
 									<br> <br> <br>
 									<div>
 										<p style="font-size: 30px; color: #6c757d;" align="left">판매자
@@ -328,19 +327,19 @@ body {
 
 										<div
 											class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-											style="border-color: rgb(164 172 133 / 40%);">
+											style="border-color: rgb(164 172 133/ 40%); width:480px; height:700px; ">
 											<div class="banner"></div>
 											<c:choose>
-									<c:when test="${not empty proVO.memberVO.mem_profile }">
-									<img src=""
-										alt="" class="img-circle mx-auto mb-3">
-									</c:when>
-									<c:otherwise>
-									<img src="/resources/assets/images/userimg.png"
-										alt="" class="img-circle mx-auto mb-3">
-									</c:otherwise>
-									</c:choose>
-											<%--<img src="/resources/assets/images/${proVO.memberVO.mem_profile }" alt="" class="img-circle mx-auto mb-3"> --%>
+												<c:when test="${not empty proVO.memberVO.mem_profile }">
+													<img
+														src="../resources/upload/${proVO.memberVO.mem_profile}"
+														alt="" class="img-circle mx-auto mb-3">
+												</c:when>
+												<c:otherwise>
+													<img src="/resources/assets/images/userimg.png" alt=""
+														class="img-circle mx-auto mb-3">
+												</c:otherwise>
+											</c:choose>
 											<h3 class="mb-4">${proVO.mem_id }</h3>
 
 
@@ -398,12 +397,11 @@ body {
 										<h5 class="title"></h5>
 										<div
 											class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-											style="border-color: rgb(164 172 133 / 40%);">
+											style="border-color: rgb(164 172 133/ 40%); width:480px; height:700px;">
 											<table class="table table-condensed">
-												<!-- 사진을 넣을지 그냥 타이틀만 넣을지 정하기 -->
 												<div class="banner">
-													<img src="/resources/assets/images/messi.jpg" alt=""
-														class="img-rectangle"> <br>
+													<img src="../resources/upload/${pro_thum}" alt=""
+												class="img-rectangle"> <br> <br>
 													<h4 class="mb-4">
 														<br>${proVO.pro_title }</h4>
 													<tbody>
@@ -437,10 +435,10 @@ body {
 															<th>목표금액</th>
 															<td><fmt:formatNumber value="${proVO.pro_gp }" />원</td>
 														</tr>
-<!-- 														<tr> -->
-<!-- 															<th>상태</th> -->
-<%-- 															<td>${ proVO.pro_status }</td> --%>
-<!-- 														</tr> -->
+														<!-- 														<tr> -->
+														<!-- 															<th>상태</th> -->
+														<%-- 															<td>${ proVO.pro_status }</td> --%>
+														<!-- 														</tr> -->
 
 
 													</tbody>
@@ -455,7 +453,7 @@ body {
 
 							<br> <br> <br>
 
-						
+
 							<!-- 미리보기 버튼 -->
 							<div>
 								<button type="button" class="main-btn"
@@ -463,7 +461,7 @@ body {
 									style="font-size: 30px; width: 400px" align="left">프로젝트
 									미리보기</button>
 							</div>
-							
+
 						</div>
 
 						<!-- 프로젝트 미리보기 -->
@@ -473,7 +471,7 @@ body {
 						</div>
 
 
-<br> <br> <br>
+						<br> <br> <br>
 
 
 
@@ -489,23 +487,25 @@ body {
 	</div>
 
 	<div align="center">
-		
-			
-	<c:choose>
-		<c:when test="${proVO.pro_status == 2}">
-			<button type="button" onclick="updatePro3(${proVO.pro_no});" class="main-btn"
-							style="float: center; background-color : #A4AC85">승인</button>
-			<button type="button" onclick="updatePro4(${proVO.pro_no});" class="main-btn" 
-					style="float: center; background-color : #A4AC85;">반려</button>
-			<button type="submit" onclick="location.href='javascript:window.history.back();'" class="main-btn"
-			style="float: center; background-color : #A4AC85">뒤로</button>
-		</c:when>
-		<c:otherwise>
-			<button type="submit" onclick="location.href='javascript:window.history.back();'" class="main-btn"
-			style="float: center; background-color : #A4AC85">뒤로</button>
-		</c:otherwise>
-	</c:choose>
-			
+
+
+		<c:choose>
+			<c:when test="${proVO.pro_status == 2}">
+				<button type="button" onclick="updatePro3(${proVO.pro_no});"
+					class="main-btn" style="float: center; background-color: #A4AC85">승인</button>
+				<button type="button" onclick="updatePro4(${proVO.pro_no});"
+					class="main-btn" style="float: center; background-color: #A4AC85;">반려</button>
+				<button type="submit"
+					onclick="location.href='javascript:window.history.back();'"
+					class="main-btn" style="float: center; background-color: #A4AC85">뒤로</button>
+			</c:when>
+			<c:otherwise>
+				<button type="submit"
+					onclick="location.href='javascript:window.history.back();'"
+					class="main-btn" style="float: center; background-color: #A4AC85">뒤로</button>
+			</c:otherwise>
+		</c:choose>
+
 
 	</div>
 </section>
@@ -566,9 +566,12 @@ for (i = 0; i < dropdown.length; i++) {
 
 
 <!-- 스크롤안에 jsp 불러오기 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script type="text/javascript">
 function proPreviewBtn(num){
 	$.ajax({

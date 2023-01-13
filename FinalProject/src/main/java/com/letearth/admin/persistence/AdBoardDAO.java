@@ -2,7 +2,10 @@ package com.letearth.admin.persistence;
 
 import java.util.List;
 
+import org.json.simple.JSONObject;
+
 import com.letearth.admin.domain.AdminVO;
+import com.letearth.member.domain.MemberVO;
 import com.letearth.prodetail.domain.Criteria;
 import com.letearth.project.domain.ProjectVO;
 
@@ -71,9 +74,11 @@ public interface AdBoardDAO {
 	/**
 	 *  구글차트
 	 */
+	// 진행중인 프로젝트 목표금액과 달성금액 현황(최근5개)
 	public List<ProjectVO> pjChart() throws Exception;
 
-	
+	// 구글차트 회원 비율 => 구매(0), 판매(1), 블랙(3)
+	public List<MemberVO> memRatio() throws Exception;
 	
 }
 

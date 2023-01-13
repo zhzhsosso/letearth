@@ -97,8 +97,8 @@ public class AdMemproServiceImpl implements AdMemproService {
 	 * 회원
 	 */
 	@Override
-	public List<MemberVO> getMemList(Criteria cri) {
-		return admemproDAO.getMemList(cri);
+	public List<MemberVO> getMemList(SearchCriteria scri) {
+		return admemproDAO.getMemList(scri);
 	}
 
 	@Override

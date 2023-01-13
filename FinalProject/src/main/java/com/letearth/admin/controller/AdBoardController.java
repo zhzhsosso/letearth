@@ -314,13 +314,24 @@ public class AdBoardController {
 	
 	
 	/**
-	 * 구글차트
+	 * 구글차트1번
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/pjchart_Json")
 	public JSONObject pjchart_Json() throws Exception{
 		
 		return adBoardService.getChartData();
+	}
+	
+	
+	/**
+	 * 구글차트2번
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/memRatio_Json")
+	public JSONObject memRatio_Json() throws Exception{
+		
+		return adBoardService.getChartData2();
 	}
 	
 	// http://localhost:8080/board/adMain
