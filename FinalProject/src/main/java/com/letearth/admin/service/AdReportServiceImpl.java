@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.letearth.admin.domain.AdminVO;
+import com.letearth.admin.domain.SearchCriteria;
 import com.letearth.prodetail.domain.Criteria;
 import com.letearth.admin.persistence.AdReportDAO;
 import com.letearth.member.domain.MemberVO;
@@ -62,28 +63,28 @@ public class AdReportServiceImpl implements AdReportService {
 	 */
 	// 신고 목록 조회 전체
 	@Override
-	public List<AdminVO> getListAllReport(Criteria cri) throws Exception {
+	public List<AdminVO> getListAllReport(SearchCriteria scri) throws Exception {
 		
-		return adReportDAO.getListAllReport(cri);
+		return adReportDAO.getListAllReport(scri);
 	}
 	
 	// 신고 목록 조회
 	@Override
-	public List<AdminVO> getListReport(Criteria cri, int rep_cat) throws Exception {
+	public List<AdminVO> getListReport(SearchCriteria scri, int rep_cat) throws Exception {
 		
-		return adReportDAO.getListReport(cri, rep_cat);
+		return adReportDAO.getListReport(scri, rep_cat);
 	}
 	
 	// 신고 글 전체개수
 	@Override
-	public int totalRepCntAll() throws Exception {
-		return adReportDAO.totalRepCntAll();
+	public int totalRepCntAll(SearchCriteria scri) throws Exception {
+		return adReportDAO.totalRepCntAll(scri);
 	}
 	
 	// 신고 글 부분전체개수
 	@Override
-	public int totalRepCnt() throws Exception {
-		return adReportDAO.totalRepCnt();
+	public int totalRepCnt(SearchCriteria scri) throws Exception {
+		return adReportDAO.totalRepCnt(scri);
 	}
 	
 	
