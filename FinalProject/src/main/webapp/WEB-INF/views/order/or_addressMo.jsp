@@ -61,7 +61,7 @@
 		font-size: 20px;
 	}
 	
-	#shipAddMo-btn {
+	.shipbtn {
 		box-shadow: 1px 1px 3px 1px black;
 		padding: 5px;
 		margin: 10px;
@@ -271,7 +271,7 @@
                 		  <div class="adress">
                 			<p style="color: black">주소</p>
                 			<input type="text" id="sample6_postcode" placeholder="우편번호" readonly>
-							<button type="button" onclick="sample6_execDaumPostcode()" style="background-color:#6F7B63; color:white; font-size:15px; padding: 5px; width:25%" id="shipAddMo-btn">우편번호 찾기</button><br>
+							<button type="button" class="shipbtn" onclick="sample6_execDaumPostcode()" style="background-color:#6F7B63; color:white; font-size:15px; padding: 5px; width:25%">우편번호 찾기</button><br>
 							<input type="text" id="sample6_address" placeholder="주소" style="width:100%" readonly><br>
 							<input type="text" id="sample6_detailAddress" style="width:100%" placeholder="상세주소" >
 						  </div>
@@ -286,7 +286,7 @@
                 		</div>
                 	  
                 		<div style="text-align: center; margin: 0px 20px;">
-                		<button id="shipAddMo-btn" style="width: 100%; background: #6F7B63; color: white; margin:0px; font-size:15px; padding: 5px">변경하기</button>
+                		<button class="shipbtn" id="shipAddMo-btn" style="width: 100%; background: #6F7B63; color: white; margin:0px; font-size:15px; padding: 5px">변경하기</button>
 <!--                 		<button class="addCancle" id="shipAddMo-btn" style="width: 100%; background: red; color: white; margin:0px;">취소</button> -->
                 		</div>
                   </div>

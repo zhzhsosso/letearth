@@ -225,10 +225,14 @@ public class OrderController {
 	@PostMapping(value="/orderCancel")
 	@ResponseBody
 	public Integer orderCancel(String order_trade_num) throws Exception {
+		int order_status = 0;
 		
 		int cancelResult = service.orderCancel(order_trade_num);
+		if(cancelResult == 1) {
+			order_status = 2;
+		}
 		
-		return cancelResult;
+		return order_status;
 	}
 	
 	/**

@@ -59,7 +59,7 @@ public class OrderServiceImpl implements OrderService{
 			System.out.println(phone);
 		params.put("from", "01095549537");	
 		params.put("type", "SMS");
-		params.put("text", "<LetEarth> 인증번호는 [ " + authNum + " ]입니다.");
+		params.put("text", "<LetEarth> 인증번호는 [" + authNum + "]입니다.");
 			System.out.println(authNum);
 		params.put("app_version", "test app 1.2");		
 		
