@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.letearth.member.domain.MemberVO;
 import com.letearth.project.domain.ProjectVO;
 import com.letearth.project.domain.RewardVO;
 
@@ -44,7 +45,7 @@ public class ProjectDAOImpl implements ProjectDAO{
 		
 		mylog.debug("프로젝트 기본정보 등록완료! -> 서비스 이동");
 	}
-	
+
 	/**
 	 * 기본정보 조회
 	 */
@@ -148,6 +149,14 @@ public class ProjectDAOImpl implements ProjectDAO{
 	public Integer updatePartner(ProjectVO proVO) throws Exception{
 		System.out.println(" DAOImpl : 대표자 및 정산 정보 등록 성공! ");	
 		return sqlSession.update(NAMESPACE + ".updatePartner", proVO);
+	}
+	
+	/**
+	 * 멤버 프로필
+	 */
+	@Override
+	public void updateMemFile(MemberVO memVO) throws Exception {
+		sqlSession.update(NAMESPACE + ".updateMemFile", memVO);
 	}
 
 	/**

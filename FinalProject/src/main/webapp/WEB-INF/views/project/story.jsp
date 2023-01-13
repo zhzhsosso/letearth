@@ -57,6 +57,8 @@ function createReward(seq){
 	contentObj = createFormObject("pro_story", getHtml);		
 	
 	var pro_story=$(contentObj).val();
+	
+	
 	$.ajax({
 		async : true,
 	    type:'post',

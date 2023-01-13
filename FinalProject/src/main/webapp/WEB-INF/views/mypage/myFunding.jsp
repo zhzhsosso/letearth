@@ -18,7 +18,7 @@
 #rangeGraph span{
     height:100%;
     width:0%;
-    background:#29f0b4;
+    background:#A4AC85;
 }
 </style>
 <script>
