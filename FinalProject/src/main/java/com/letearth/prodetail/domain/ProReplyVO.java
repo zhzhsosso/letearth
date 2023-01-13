@@ -18,4 +18,5 @@ public class ProReplyVO {
 	
 	private Integer mem_status;
 	private String pro_title;
+	private String mem_profile;
 }

@@ -47,4 +47,6 @@ public class ProDetailVO {
 	private int reward_price;
 	private int reward_stock;
 	
+	private String mem_profile;
+	
 }

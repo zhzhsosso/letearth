@@ -76,9 +76,9 @@
 	
 	function rpcheck(){
 		var mem_id = '<%=session.getAttribute("mem_id")%>';
-		alert(mem_id);
+		// alert(mem_id);
 		if(mem_id == "null"){
-			swal('로그인 후 이용해주세요!','프로젝트 신고하기는 회원만 가입합니다','info').then(function(){
+			swal('로그인 후 이용해주세요!','프로젝트 신고하기는 회원만 가능합니다','info').then(function(){
 				location.href='/member/login';
 			}) 
 		} else{
