@@ -138,8 +138,8 @@ public class AdMemproDAOImpl implements AdMemproDAO {
 
 	// 회원 목록
 	@Override
-	public List<MemberVO> getMemList(Criteria cri) {
-		return sqlSession.selectList(NAMESPACE+".getMemList",cri);
+	public List<MemberVO> getMemList(SearchCriteria scri) {
+		return sqlSession.selectList(NAMESPACE+".getMemList",scri);
 	}
 	
 	
