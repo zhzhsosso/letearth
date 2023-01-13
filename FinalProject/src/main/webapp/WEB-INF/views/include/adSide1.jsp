@@ -115,7 +115,7 @@
 	<div class="dropdown-container">
 		<a href="/mempro/adProList1">프로젝트 승인</a> 
 		<a href="/mempro/adProList2">프로젝트 목록</a> 
-		<a href="#">정산관리</a>
+		<a href="/openbanking/useroauth">정산관리</a>
 	</div>
 	
 	<button class="dropdown-btn">

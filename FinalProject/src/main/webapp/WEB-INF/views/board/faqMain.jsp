@@ -111,7 +111,7 @@
     
     <section class="page-title-area1 bg_cover1">
         <div >
-            <img alt="" src="/resources/faqPage.png"  height="" style="position: relative; left: 5%; top: 20%">
+            <img alt="" src="/resources/faqPage.png"  height="" style="position: relative; left: 5%; top: 0%">
         </div>
     </section>
     <br><br><br><br><br><br>

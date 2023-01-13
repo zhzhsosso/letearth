@@ -174,25 +174,30 @@ google.load('visualization','1',{
       //차트를 출력할 div
       //LineChart, ColumnChart, PieChart에 따라서 차트의 형식이 바뀐다.
       
-      //var chart = new google.visualization.PieChart(
-              //document.getElementByld('chart_div')); //원형 그래프
+//       var chart = new google.visualization.PieChart(
+//               document.getElementByld('chart_div')); //원형 그래프
       
-      var chart
-       = new google.visualization.LineChart(
-              document.getElementById('chart_div')); //선 그래프 
-              
 //       var chart
-//        = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-//               차트 객체.draw(데이터 테이블, 옵션) //막대그래프
+//        = new google.visualization.LineChart(
+//               document.getElementById('chart_div')); //선 그래프 
+              
+      var chart
+       = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+             // 차트 객체.draw(데이터 테이블, 옵션) //막대그래프
               
               //cuveType : "function" => 곡선처리
               
               //데이터를 가지고 (타이틀, 높이, 너비) 차트를 그린다.
               chart.draw(data, {
-                  title : "프로젝트 진행률",
-                  curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
-                  width : 1000,
-                  height : 400
+            	  // 타이틀
+               	  title: "최근 프로젝트 진행률", titleTextStyle:{color:'#6F7B63'},
+               	  // 차트 형태및크기
+                  //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
+                  width : 600,
+                  height : 400, 
+                  // 막대색
+                  
+              
               });
   }
 
@@ -201,6 +206,28 @@ google.load('visualization','1',{
 
 </script>
 <!-- 구글차트 -->
+
+<style type="text/css">
+#btn {
+	 background: #A4AC85;
+    line-height: 25px;
+    padding: 0 10px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+    margin: 15px;
+    border-radius: 0.2rem;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+#btn:hover{
+	background-color: #6F7B63;
+}
+</style>
 </head>
 <body>
 <!-- 헤더 -->
@@ -233,7 +260,7 @@ google.load('visualization','1',{
 	<div class="dropdown-container">
 		<a href="/mempro/adProList1">프로젝트 승인</a> 
 		<a href="/mempro/adProList2">프로젝트 목록</a> 
-		<a href="#">정산관리</a>
+		<a href="/openbanking/useroauth">정산관리</a>
 	</div>
 	
 	<button class="dropdown-btn">
@@ -252,12 +279,16 @@ google.load('visualization','1',{
 <div class="container" style="display: flex; justify-content: space-around; flex-wrap: wrap;">	
 
     <!-- 차트 출력 영역 -->
-   	<div style="width: 80%; height: 500px;">
-    <div id="chart_div"></div>
-    <!-- 차트가 그려지는 영역 -->
-    <!-- 차트 새로고침 버튼 -->
-    <button id="btn" type="button" onclick="drawChart()">새로고침</button>		
-	</div>	
+  <div style="width: 80%; height: 550px; margin-top: 20px;">
+  	<div style="border: 1px solid #D7D1B9; border-radius: 0.2rem; width: 70%">
+	    <div id="chart_div" align="center"></div>
+	    <!-- 차트가 그려지는 영역 -->
+	    <!-- 차트 새로고침 버튼 -->
+	    <div style="position: relative; bottom : 5%;" align="center">
+	    	<button id="btn" type="button" onclick="drawChart()">새로고침</button>
+	    </div>
+	 </div>		
+  </div>	
 		
 			
 <!-- 아코디언 -->
