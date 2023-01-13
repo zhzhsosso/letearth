@@ -24,7 +24,7 @@
 	<!-- 프로젝트 상세정보 조회 -->
 	<select id="getSettleDetail" resultType="SettleVO">
 		select p.pro_no, p.pro_title, p.mem_id, m.mem_name , p.pro_tp 
-		from project p join member m 
+		from project p join member_tbl m 
 		on p.mem_id = m.mem_id 
 		where p.pro_no = #{pro_no}
 	</select>
@@ -53,13 +53,13 @@
 	
 	<!-- 관리자 핀테크정보 -->
 	<select id="getAdminFin" resultType="MemberVO">
-		select * from member 
+		select * from member_tbl
 		where mem_id = #{mem_id}
 	</select>
 	
 	<!-- 판매자 핀테크정보 -->
 	<select id="getSellFin" resultType="MemberVO">
-		select * from member m 
+		select * from member_tbl m 
 		join project p 
 		on m.mem_id = p.mem_id 
 		where p.pro_no = #{pro_no}

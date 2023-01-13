@@ -5,17 +5,22 @@
 
 <mapper namespace="com.letearth.mapper.adMemproMapper">
 
-	<!-- 프로젝트승인 -->
-	<!-- 프젝 리스트(2~4) : 페이징처리 게시판목록  -->
-	<select id="getListPro1" resultType="ProjectVO">
-	 <![CDATA[
-		select * from project 
-		where pro_no > 0 
-		and pro_status between 2 and 4 
-		order by pro_no desc, pro_cr_dt desc 
-		limit #{pageStart},#{perPageNum}
-		]]> 
-	</select>
+	   <!-- 프로젝트승인 -->
+   <!-- 프젝 리스트(2~4) : 페이징처리 게시판목록  -->
+   <sql id="search">
+      <if test="searchType != null">
+         <if test="searchType == 't'.toString()">AND pro_title LIKE CONCAT('%',#{keyword},'%')</if>
+         <if test="searchType == 'm'.toString()">AND mem_id LIKE CONCAT('%',#{keyword},'%')</if>
+      </if>
+   </sql>
+   <select id="getListPro1" parameterType="com.letearth.admin.domain.SearchCriteria" resultType="ProjectVO">
+      select * from project
+      where pro_no > 0  
+      and pro_status between 5 and 7
+      <include refid="search"></include> 
+      order by pro_no desc, pro_cr_dt desc
+      limit #{pageStart},#{perPageNum}
+   </select>
 
 
 	
@@ -45,24 +50,28 @@
       select pro.pro_no, pro.mem_id, pro.pro_st_dt, pro.pro_ed_dt, pro.pro_gp, pro.pro_title, pro.pro_tp, pro.pro_status, 
       mem.mem_id, mem.mem_name, mem.mem_phone, mem.mem_profile, mem.mem_email, mem.mem_cr_dt 
       from project pro
-      join member mem 
+      join member_tbl mem 
       on pro.mem_id = mem.mem_id 
       where pro.pro_no = #{pro_no} 
    </select>
 
 
 
-	<!-- 프로젝트 목록 -->
-	<!-- 프젝 리스트(5~7) : 페이징처리 게시판목록  -->
-	<select id="getListPro2" resultType="ProjectVO">
-	 <![CDATA[
-		select * from project
-		where pro_no > 0 
-		and pro_status between 5 and 7
-		order by pro_no desc, pro_cr_dt desc
-		limit #{pageStart},#{perPageNum}
-		]]> 
-	</select>
+	   <!-- 프젝 리스트(5~7) : 페이징처리 게시판목록  -->
+   <sql id="search2">
+      <if test="searchType != null">
+         <if test="searchType == 't'.toString()">AND pro_title LIKE CONCAT('%',#{keyword},'%')</if>
+         <if test="searchType == 'm'.toString()">AND mem_id LIKE CONCAT('%',#{keyword},'%')</if>
+      </if>
+   </sql>
+   <select id="getListPro2" parameterType="com.letearth.admin.domain.SearchCriteria" resultType="ProjectVO">
+      select * from project
+      where pro_no > 0  
+      and pro_status between 5 and 7
+      <include refid="search2"></include> 
+      order by pro_no desc, pro_cr_dt desc
+      limit #{pageStart},#{perPageNum}
+   </select>
 	
 	
 <!-- ProDetail2 페이지에서 ProDetail1메서드와 함께 출력할 메서드 -->	
@@ -112,25 +121,31 @@
 
 
 
-	<!-- 회원 전체 리스트 -->
-	<select id="getMemList" resultType="MemberVO">
-	 <![CDATA[
-		select * from member 
- 		order by mem_no desc 
- 		limit #{pageStart},#{perPageNum}
-		]]> 
-	</select>
+   <!-- 회원 전체 리스트 -->
+   <sql id="searchMem">
+      <if test="searchType != null">
+         <if test="searchType == 'na'.toString()">AND mem_name LIKE CONCAT('%',#{keyword},'%')</if>
+         <if test="searchType == 'm'.toString()">AND mem_id LIKE CONCAT('%',#{keyword},'%')</if>
+      </if>
+   </sql>
+   <select id="getMemList" parameterType="com.letearth.admin.domain.SearchCriteria" resultType="memberVO">
+      select * from member_tbl 
+      where mem_no > 0 
+      <include refid="searchMem"></include> 
+       order by mem_no desc 
+       limit #{pageStart},#{perPageNum}
+   </select>
 	
 	
 	<!-- 회원 수 -->
 	<select id="totalMem" resultType="int">
-		select count(mem_id) from member
+		select count(mem_id) from member_tbl
 	</select>
 	
 	
 	<!-- 회원 상세조회 -->
 	<select id="memDetail" resultType="MemberVO">
-		select * from member 
+		select * from member_tbl
 		where mem_id = #{mem_id} 
 	</select>
 
@@ -175,7 +190,7 @@
 	
 	<!--  회원 탈퇴 -->
 	<delete id="deleteMem">
-		delete from member where mem_id=#{mem_id} and mem_pw=#{mem_pw}
+		delete from member_tbl where mem_id=#{mem_id} and mem_pw=#{mem_pw}
 	</delete>
 	
 	

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.letearth.prodetail.domain.Criteria;
 import com.letearth.admin.domain.MemOrdVO;
+import com.letearth.admin.domain.SearchCriteria;
 import com.letearth.order.domain.OrderVO;
 import com.letearth.member.domain.MemberVO;
 import com.letearth.project.domain.ProjectVO;
@@ -37,11 +38,11 @@ public class AdMemproDAOImpl implements AdMemproDAO {
 
 	// 프로젝트 목록조회1 (상태 2-4)
 	@Override
-	public List<ProjectVO> getListPro1(Criteria cri) throws Exception {
+	public List<ProjectVO> getListPro1(SearchCriteria scri) throws Exception {
 		
 		mylog.debug(" getListPro1(Integer page) 페이징처리" );
 		
-		return sqlSession.selectList(NAMESPACE+".getListPro1",cri);
+		return sqlSession.selectList(NAMESPACE+".getListPro1",scri);
 		
 	}
 
@@ -58,11 +59,11 @@ public class AdMemproDAOImpl implements AdMemproDAO {
 
 	// 프로젝트 목록조회2 (상태 5-7)
 	@Override
-	public List<ProjectVO> getListPro2(Criteria cri) throws Exception {
+	public List<ProjectVO> getListPro2(SearchCriteria scri) throws Exception {
 		
 		mylog.debug(" getListPro2(Integer page) 페이징처리" );
 
-		return sqlSession.selectList(NAMESPACE+".getListPro2",cri);
+		return sqlSession.selectList(NAMESPACE+".getListPro2",scri);
 		
 	}
 	
@@ -100,15 +101,15 @@ public class AdMemproDAOImpl implements AdMemproDAO {
 
 	// 프로젝트1 전체 개수
 	@Override
-	public int totalPro1() throws Exception {
-		return sqlSession.selectOne(NAMESPACE+".totalPro1");
+	public int totalPro1(SearchCriteria scri) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+".totalPro1",scri);
 	}
 
 	
 	// 프로젝트2 전체 개수
 	@Override
-	public int totalPro2() throws Exception {
-		return sqlSession.selectOne(NAMESPACE+".totalPro2");
+	public int totalPro2(SearchCriteria scri) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+".totalPro2",scri);
 	}
 
 
@@ -190,8 +191,8 @@ public class AdMemproDAOImpl implements AdMemproDAO {
 
 	// 전체 회원 계산
 	@Override
-	public int totalMem() throws Exception {
-		return sqlSession.selectOne(NAMESPACE+".totalMem");
+	public int totalMem(SearchCriteria scri) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+".totalMem",scri);
 	}
 	
 	

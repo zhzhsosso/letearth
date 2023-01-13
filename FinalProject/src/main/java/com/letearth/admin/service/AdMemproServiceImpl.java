@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.letearth.prodetail.domain.Criteria;
 import com.letearth.admin.domain.MemOrdVO;
+import com.letearth.admin.domain.SearchCriteria;
 import com.letearth.order.domain.OrderVO;
 import com.letearth.admin.persistence.AdMemproDAO;
 import com.letearth.member.domain.MemberVO;
@@ -31,9 +32,9 @@ public class AdMemproServiceImpl implements AdMemproService {
 	 */
 	
 	@Override
-	public List<ProjectVO> getListPro1(Criteria cri) throws Exception {
+	public List<ProjectVO> getListPro1(SearchCriteria scri) throws Exception {
 		mylog.debug(" getListPro1(Criteria cri) 호출 -> DAO 동작 호출");
-		return admemproDAO.getListPro1(cri) ;
+		return admemproDAO.getListPro1(scri) ;
 	}
 
 	@Override
@@ -44,9 +45,9 @@ public class AdMemproServiceImpl implements AdMemproService {
 	}
 
 	@Override
-	public List<ProjectVO> getListPro2(Criteria cri) throws Exception {
+	public List<ProjectVO> getListPro2(SearchCriteria scri) throws Exception {
 		mylog.debug(" getListPro2(Criteria cri) 호출 -> DAO 동작 호출");
-		return admemproDAO.getListPro2(cri);
+		return admemproDAO.getListPro2(scri);
 	}
 	
 	@Override
@@ -71,13 +72,13 @@ public class AdMemproServiceImpl implements AdMemproService {
 	
 	
 	@Override
-	public int totalPro1() throws Exception {
-		return admemproDAO.totalPro1();
+	public int totalPro1(SearchCriteria scri) throws Exception {
+		return admemproDAO.totalPro1(scri);
 	}
 	
 	@Override
-	public int totalPro2() throws Exception {
-		return admemproDAO.totalPro2();
+	public int totalPro2(SearchCriteria scri) throws Exception {
+		return admemproDAO.totalPro2(scri);
 	}
 	
 	@Override
@@ -124,8 +125,8 @@ public class AdMemproServiceImpl implements AdMemproService {
 	}
 
 	@Override
-	public int totalMem() throws Exception {
-		return admemproDAO.totalMem();
+	public int totalMem(SearchCriteria scri) throws Exception {
+		return admemproDAO.totalMem(scri);
 	}
 	
 	
