@@ -72,9 +72,9 @@
                 				<select name="rep_reason" class="textBox" style="padding-top: -12px; margin-bottom: -39px; width: 290px;">
                 					<option value="" selected disabled="hidden">신고사유를 선택해주세요</option>
                 					<option value="욕설">욕설</option>
-                					<option value="광고성 프로젝트">광고성 프로젝트</option>
-                					<option value="지식 재산권 침해">지식 재산권 침해</option>
-                					<option value="프로젝트 이행 문제">프로젝트 이행 문제</option>
+                					<option value="불법정보 포함">불법정보 포함</option>
+                					<option value="청소년에게 유해한 내용">청소년에게 유해한 내용</option>
+                					<option value="불쾌한 표현">불쾌한 표현</option>
                 					<option value="기타">기타</option>
                 				</select>
                 			</div>
