@@ -65,15 +65,14 @@
             
             <c:forEach var="nowp" items="${nowprodList }">
             
-                <div class="col-lg-4 col-md-6 col-sm-9" style="width: 305px;">
+                <div class="col-lg-4 col-md-6 col-sm-9" style="width: 255px;">
                     <div class="explore-projects-item mt-30">
                         <div class="explore-projects-thumb">
                             <img src="../resources/upload/${nowp.pro_thum }" alt="LetEarth" style="width: 370px; height: 370px;">
                             <a href="/prodetail/info?pro_no=${nowp.pro_no}">
-                            	<i class="fa fa-heart"></i>
                             </a>
                         </div>
-                        <div class="explore-projects-content" style="height: 255px;">
+                        <div class="explore-projects-content" style="height: 305px;">
                         	<div class="item d-flex align-items-center">
                             	<p><i class="fa fa-clock-o"></i></p>
                         		<p>프로젝트 종료까지</p>&nbsp;
