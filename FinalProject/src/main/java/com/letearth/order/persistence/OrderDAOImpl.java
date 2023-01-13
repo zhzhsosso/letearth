@@ -42,12 +42,6 @@ public class OrderDAOImpl implements OrderDAO{
 		return sqlSession.selectOne(NAMESPACE+".memInfo", mem_id);
 	}
 	
-	// 연락처 문자인증
-//	@Override
-//	public void authPhoneNumber(String phone, String authNum) {
-//		
-//	}
-
 	// 리워드 리스트
 	@Override
 	public List<RewardVO> rewardList(Integer pro_no) throws Exception {
@@ -87,6 +81,12 @@ public class OrderDAOImpl implements OrderDAO{
 	@Override
 	public void rewardStock(int reward_no) throws Exception {
 		sqlSession.update(NAMESPACE+".rewardStock", reward_no);
+	}
+	
+	// 프로젝트 총금액 업데이트
+	@Override
+	public void updateTp(OrderVO vo) throws Exception {
+		sqlSession.update(NAMESPACE+".updateTp", vo);
 	}
 
 	// 주문번호로 주문정보 1개 조회
