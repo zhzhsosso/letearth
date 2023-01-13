@@ -79,9 +79,11 @@ public interface AdBoardService {
 	/**
 	 * 구글차트
 	 */
+	// 진행중인 프로젝트 목표금액과 달성금액 현황(최근5개)
 	public JSONObject getChartData() throws Exception; // json 타입으로 리턴
 	
-	
+	// 구글차트 회원 비율 => 구매(0), 판매(1), 블랙(3)
+	public JSONObject getChartData2() throws Exception;
 	
 	
 }
