@@ -33,6 +33,18 @@
 			background:#A4AC85;
 		}
 		
+		.explore-projects-item .explore-projects-content .item > span {
+		    background: #A4AC85;
+		    line-height: 20px;
+		    padding: 0 7px;
+		    font-size: 11px;
+		    font-weight: 700;
+		    text-transform: uppercase;
+		    letter-spacing: 1px;
+		    color: #fff;
+		    margin: 10px;
+		    border-radius: 0.2rem;
+		}
 	</style>
 	
 
@@ -72,7 +84,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-9" style="width: 270px;">
                     <div class="explore-projects-item mt-30">
                         <div class="explore-projects-thumb">
-                            <img src="${pro.pro_thum }" alt="LetEarth" style="width: 370px; height: 370px;">
+                            <img src="../resources/upload/${pro.pro_thum }" alt="LetEarth" style="width: 370px; height: 370px;">
                             <a href="/prodetail/info?pro_no=${pro.pro_no}">
                             	<i class="fa fa-heart"></i>
                             </a>

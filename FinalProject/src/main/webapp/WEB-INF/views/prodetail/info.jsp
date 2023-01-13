@@ -48,7 +48,7 @@ function shareKakao() {
 
 // 공유하기 -Twitter
 function shareTwitter() {
-	alert('twitter');
+	// alert('twitter');
     var sendText = "LET EARTH" 
     var sendUrl = "http://localhost:8080/prodetail/info?pro_no=2"
     window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);  //Twitter에 전송 정보 파라미터 삽입
@@ -56,7 +56,7 @@ function shareTwitter() {
  
 // 공유하기 - Facebook
 function shareFacebook() {
-	alert('facebook');
+	// alert('facebook');
     var sendUrl = "http://localhost:8080/prodetail/info?pro_no=2";    
     window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);       //Facebook에 전송 정보 파라미터 삽입
 } 
@@ -170,7 +170,7 @@ $(document).ready(function() {
 	//판매자답글 폼
 	function rrcheck(){
 		if(document.rrfr.rereply_content.value == ""){
-			alert("내용을 입력하세요");
+			swal("내용을 입력하세요",'','info');
 			return false;
 		}
 		if(confirm("답글을 등록 하시겠습니까?") == true){
@@ -182,7 +182,7 @@ $(document).ready(function() {
 
 	// 좋아요 
 	function chkLike(mem_id){	
-		alert('좋아요 클릭');
+		// alert('좋아요 클릭');
 		if(mem_id !== "null"){		
 			var pro_no = $("#pro_no")[0].innerHTML;			
 			$.ajax({
@@ -538,7 +538,7 @@ $(document).ready(function() {
             <div class="row">
                 <div class="col-lg-7">
                     <div class="project-details-thumb">
-                        <img src="${pdvo.pro_thum }" alt="project_thumb"> 
+                        <img src="../resources/upload/${pdvo.pro_thum }" alt="project_thumb"> 
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -775,7 +775,7 @@ $(document).ready(function() {
 	                                <div class="project-details-updates-top">
 	                                    <div class="info-updates d-block d-sm-flex justify-content-between align-items-center">
 	                                        <div class="info">
-	                                            <img src="../resources/assets/images/info.jpg" alt="">
+	                                            <img src="${sn.mem_profile}" alt="" width="65px;" height="65px;">
 	                                          	 <span>by <span>${pdvo.mem_id }<span style="color: #6F7B63;">${sn.reply_date }</span></span></span>
 	                                  			<div class="panmaeja-btn">
 						                            <span>판매자</span>
@@ -851,7 +851,7 @@ $(document).ready(function() {
 		                       		<div class="comment-one__single">
 	                                    <div class="comment-one__image">
 	                                    	<!-- 나중에 멤버랑 합치면 쪼인해서 프사올리기 -->
-	                                        <img src="../resources/assets/images/comment-2.2.jpg" alt="">
+	                                        <img src="${ur.mem_profile }" alt="${ur.mem_profile }" style="width: 165px;">
 	                                    </div>
 	                                    <div class="comment-one__content">
 	                                        <h3>${ur.mem_id } <span class="comment-one__date" style="color: #6F7B63;">${ur.reply_date }</span></h3>
@@ -895,12 +895,14 @@ $(document).ready(function() {
 	                                    </div>
 	                                    
 		                                <!-- 답글쓰기 버튼 관리자만 보이게 -->
+		                                <c:if test="${sessionScope.mem_id eq pdvo.mem_id}">
 	                                    <div class="blog-btn">
 <!-- 	                                        <a href="javascript:onDisplay()" class="main-btn">답글쓰기 </a> -->
 	                                        <a href="#" class="rereplymd main-btn" data-toggle="modal" data-target="#moaModal" onclick="javascript:transferRno(${ur.reply_no});">
 												답글쓰기
 											</a>
 	                                    </div>
+	                                    </c:if>
 		                                <!-- 답글쓰기 버튼 관리자만 보이게 -->
 	                                </div>
 	                                
@@ -915,9 +917,10 @@ $(document).ready(function() {
 	                                        <h3>${pdvo.mem_id }</h3>
 	                                        <div class="blog-details__content">
 		                                        <div class="blog-one__meta">
-					                                <a href="#"><i class="fa fa-user-o"></i> 답글</a>
+					                                <a href="#"><i class="fa fa-user-o" style="color: #e1bfa2;"></i> 답글</a>
 					                            </div>
 				                            </div>
+				                            <p>${ur.rereply_content }</p>
 	                                    </div>
 	                                </div>
                                 </c:if>
