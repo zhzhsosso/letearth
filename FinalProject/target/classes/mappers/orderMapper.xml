@@ -43,6 +43,11 @@
 		update reward set reward_stock=(reward_stock-1) where reward_no=#{reward_no}
 	</update>
 	
+	<!-- 프로젝트 총 금액 업데이트 -->
+	<update id="updateTp">
+		update project set pro_tp = pro_tp + #{total_price} where pro_no = ${pro_no}
+	</update>
+	
 	<!-- 주문번호로 주문정보 1개 조회 -->
 	<select id="orderInfo" resultType="OrderVO">
 		select o.*, date_format(o.order_date,'%Y-%m-%d') as o_date, p.pro_title, p.pro_thum, r.reward_title, r.reward_shipmonth, r.reward_shipdate 
