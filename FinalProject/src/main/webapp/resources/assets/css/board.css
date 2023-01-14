@@ -52,12 +52,12 @@ a {
 
 
 .board_list > div {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #A4AC85;
     font-size: 0;
 }
 
 .board_list > div.top {
-    border-bottom: 1px solid #999;
+    border-bottom: 1px solid #414934;
 }
 
 .board_list > div:last-child {
@@ -123,7 +123,7 @@ a {
 }
 
 .board_list .mem_id { /*notice list*/
-    width: 13%;
+    width: 20%;
 }
 
 .board_list .date { /*notice list*/

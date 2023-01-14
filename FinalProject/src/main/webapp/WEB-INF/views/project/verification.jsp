@@ -3,6 +3,9 @@
 <%@ include file="../include/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="../resources/assets/js/vendor/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <!-- iamport.payment.js -->
 <script type="text/javascript"
@@ -29,10 +32,23 @@
 						imp_uid : rsp.imp_uid
 					},
 				});
-				location.href = "/project/confirm?result=success";
-
+				Swal.fire({
+					icon : 'success',
+					title : '인증에 성공했습니다.',
+					text : '프로젝트 작성 페이지로 이동합니다.',
+					confirmButtonText : '확인',
+					confirmButtonColor: '#A4AC85'
+				})
+				setTimeout(function () {
+					location.href = "/project/confirm?result=success";
+				}, 3000);
 			} else {
-				alert("인증에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+				Swal.fire({
+					icon : 'error',
+					title : '인증에 실패하였습니다.',
+					confirmButtonText : '확인',
+					confirmButtonColor: '#A4AC85'
+				})
 			}
 		});
 

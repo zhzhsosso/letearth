@@ -46,7 +46,7 @@ public class MypageController {
 		mylog.debug(mem_id);
 		
 		if(mem_id == null) {
-			return "/member/login";
+			return "redirect:/member/login";
 		}
 		
 		memVO.setMem_id(mem_id);
@@ -64,8 +64,12 @@ public class MypageController {
 	 * 내정보 이동
 	 */
 	@RequestMapping(value = "/myInfo", method = RequestMethod.GET)
-	public void myInfoGet(HttpSession session, Model model, PlusVO plusVO, MemberVO memVO) throws Exception {
+	public String myInfoGet(HttpSession session, Model model, PlusVO plusVO, MemberVO memVO) throws Exception {
 		String mem_id = (String) session.getAttribute("mem_id");
+		
+		if(mem_id == null) {
+			return "redirect:/member/login";
+		}
 		
 		memVO.setMem_id(mem_id);
 		memVO = memService.getMember(memVO);
@@ -73,21 +77,29 @@ public class MypageController {
 		mylog.debug("myInfo: 내 정보 탭 이동!");
 		
 		model.addAttribute("memVO", memVO);
+		
+		return "/mypage/myInfo";
 	}
 	
 	/**
 	 * 회원정보 수정 (GET)
 	 */
 	@RequestMapping(value = "/myModify", method = RequestMethod.GET)
-	public void myModifyGET(HttpSession session, MemberVO memVO, Model model) throws Exception {
+	public String myModifyGET(HttpSession session, MemberVO memVO, Model model) throws Exception {
 		String mem_id = (String) session.getAttribute("mem_id");
+		
+		if(mem_id == null) {
+			return "redirect:/member/login";
+		}
 				
 		memVO.setMem_id(mem_id);
 		memVO = memService.getMember(memVO);
 		mylog.debug("myModify: 회원정보 저장 완료!");
 		mylog.debug("myModify: 회원 정보 수정 페이지 이동!");
 		
-		model.addAttribute("memVO", memVO);		
+		model.addAttribute("memVO", memVO);	
+		
+		return "/mypage/myModify";
 	}
 	
 	/**
@@ -149,13 +161,19 @@ public class MypageController {
 	 * 나의 프로젝트 이동
 	 */
 	@RequestMapping(value = "/myProject", method = RequestMethod.GET)
-	public void myProjectGet(HttpSession session, Model model, PlusVO plusVO, MemberVO memVO) throws Exception {
+	public String myProjectGet(HttpSession session, Model model, PlusVO plusVO, MemberVO memVO) throws Exception {
 		String mem_id = (String) session.getAttribute("mem_id");
+		
+		if(mem_id == null) {
+			return "redirect:/member/login";
+		}
 		
 		plusVO.setMem_id(mem_id);
 		model.addAttribute("proList", memService.getProject(plusVO));
 		mylog.debug("myProject: 나의 프로젝트 조회 완료!");
 		mylog.debug("myProject: 나의 프로젝트 탭 이동!");
+		
+		return "/mypage/myProject";
 	}
 	
 	// http://localhost:8080/mypage/myProAdmin?pro_no=146
@@ -163,9 +181,14 @@ public class MypageController {
 	 * 주문 내역 조회
 	 */
 	@RequestMapping(value = "/myProAdmin", method = RequestMethod.GET)
-	public void myProAdminGET(@RequestParam("pro_no") String pro_no, HttpSession session, PlusVO plusVO, Model model) throws Exception {
+	public String myProAdminGET(@RequestParam("pro_no") String pro_no, HttpSession session, PlusVO plusVO, Model model) throws Exception {
 	
 		String mem_id = (String) session.getAttribute("mem_id");
+		
+		if(mem_id == null) {
+			return "redirect:/member/login";
+		}
+			
 		mylog.debug(pro_no);
 		
 		List<PlusVO> ordList = memService.getMyOrder(plusVO);
@@ -177,6 +200,8 @@ public class MypageController {
         
 		mylog.debug("myProAdmin: 주문 내역 조회 완료!");
 		mylog.debug("myProAdmin: 판매자 관리 탭 이동!");
+		
+		return "/mypage/myProAdmin";
 		
 	}
 	
@@ -200,27 +225,39 @@ public class MypageController {
 	 * 펀딩 프로젝트 이동
 	 */
 	@RequestMapping(value = "/myFunding", method = RequestMethod.GET)
-	public void myFundingGET(HttpSession session, PlusVO plusVO, Model model) throws Exception {
+	public String myFundingGET(HttpSession session, PlusVO plusVO, Model model) throws Exception {
 		String mem_id = (String) session.getAttribute("mem_id");
+		
+		if(mem_id == null) {
+			return "redirect:/member/login";
+		}
 		
 		plusVO.setMem_id(mem_id);
 		model.addAttribute("ordList", memService.getOrder(plusVO));
 		mylog.debug("myFunding: 펀딩 프로젝트 조회 완료!");
 		mylog.debug("myFunding: 펀딩 프로젝트 탭 이동!");
+		
+		return "/mypage/myFunding";
 	}
 	
 	/**
 	 * 주문 상세내역
 	 */
 	@RequestMapping(value = "/myFunDetail", method = RequestMethod.GET)
-	public void myFunDetailGET(HttpSession session, OrderVO ordVO, Model model) throws Exception {
+	public String myFunDetailGET(HttpSession session, OrderVO ordVO, Model model) throws Exception {
 		String mem_id = (String) session.getAttribute("mem_id");
+		
+		if(mem_id == null) {
+			return "redirect:/member/login";
+		}
 		
 		mylog.debug("주문번호: " + ordVO.getOrder_no());
 		ordVO.setMem_id(mem_id);
 		model.addAttribute("detailOrder", memService.detailOrder(ordVO));
 		
 		mylog.debug("myFunDetail: 주문 상세내역 조회 완료! + 상세내역 이동");
+		
+		return "/mypage/myFunDetail";
 	}
 	
 	/**
@@ -263,15 +300,20 @@ public class MypageController {
 	 * 관심 프로젝트 불러오기
 	 */
 	@RequestMapping(value = "/myLike", method = RequestMethod.GET)
-	public void myLikeGET(HttpSession session, PlusVO plusVO, Model model) throws Exception {
-		
+	public String myLikeGET(HttpSession session, PlusVO plusVO, Model model) throws Exception {
 		String mem_id = (String) session.getAttribute("mem_id");
+		
+		if(mem_id == null) {
+			return "redirect:/member/login";
+		}
 		
 		plusVO.setMem_id(mem_id);
 		
 		model.addAttribute("likey", memService.getLikey(plusVO));
 		mylog.debug("myLike: 관심 프로젝트 저장 완료!");
 		mylog.debug("myLike: 관심 프로젝트 탭 이동!");
+		
+		return "/mypage/myLike";
 	}
 	
 	/**
@@ -291,8 +333,12 @@ public class MypageController {
 	 * 댓글 불러오기
 	 */
 	@RequestMapping(value = "/myReply", method = RequestMethod.GET)
-	public void myReplyGET(HttpSession session, ProReplyVO repVO, Model model) throws Exception {
+	public String myReplyGET(HttpSession session, ProReplyVO repVO, Model model) throws Exception {
 		String mem_id = (String) session.getAttribute("mem_id");
+		
+		if(mem_id == null) {
+			return "redirect:/member/login";
+		}
 		
 		repVO.setMem_id(mem_id);
 		
@@ -300,6 +346,8 @@ public class MypageController {
 		model.addAttribute("cnt",memService.getReplyCnt(repVO));
 		mylog.debug("myReply: 댓글 정보 저장 완료!");
 		mylog.debug("myReply: 댓글 탭 이동!");
+		
+		return "/mypage/myReply";
 	}
 	
 	/**
@@ -318,9 +366,13 @@ public class MypageController {
 	 * qna (GET)
 	 */
 	@RequestMapping(value = "/myQna", method = RequestMethod.GET)
-	public void myQnaGET(HttpSession session, NoticeVO notVO, Model model) throws Exception {
-		
+	public String myQnaGET(HttpSession session, NoticeVO notVO, Model model) throws Exception {
 		String mem_id = (String) session.getAttribute("mem_id");
+		
+		if(mem_id == null) {
+			return "redirect:/member/login";
+		}
+
 		notVO.setMem_id(mem_id);
 		
 		model.addAttribute("notVO", memService.getQna(notVO));
@@ -328,6 +380,8 @@ public class MypageController {
 		
 		mylog.debug("myQna: 1:1 문의 저장 완료!");
 		mylog.debug("myQna: 1:1 문의 탭 이동!");
+		
+		return "/mypage/myQna";
 
 	}
 	

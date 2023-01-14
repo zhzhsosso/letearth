@@ -11,7 +11,7 @@ function createReward(seq){
 	  title: '저장하시겠습니까?',
 	  icon: 'info',
 	  showCancelButton: true,
-	  confirmButtonColor: '#3085d6',
+	  confirmButtonColor: '#A4AC85',
 	  cancelButtonColor: 'grey',
 	  confirmButtonText: '등록',
 	  cancelButtonText: '취소'
@@ -21,21 +21,27 @@ function createReward(seq){
 	 		if($('input:radio[name=par_cat]').is(':checked') == false){
 	 		    Swal.fire({
 	 		    	icon: 'error',
-					title: '구분을 선택해주세요'
+					title: '구분을 선택해주세요',
+					confirmButtonText : '확인',
+					confirmButtonColor: '#A4AC85'
 				})
 	 			return false;
 	 		}
 	 		if($('#input-file').val() == ""){
 	 		    Swal.fire({
 	 		    	icon: 'error',
-	 		    	title: '사진을 입력해주세요'
+	 		    	title: '사진을 입력해주세요',
+	 				confirmButtonText : '확인',
+	 				confirmButtonColor: '#A4AC85'
 				})
 	 			return false;
 	 		}
 	 		if($('#intro').val() == ""){
 	 			Swal.fire({
 	 		    	icon: 'error',
-	 		    	title: '판매자 소개를 입력해주세요'
+	 		    	title: '판매자 소개를 입력해주세요',
+	 				confirmButtonText : '확인',
+	 				confirmButtonColor: '#A4AC85'
 				})
 	 			return false;
 	 		}
@@ -45,7 +51,9 @@ function createReward(seq){
 				if($('#par_com_num').val() == ""){
 					 Swal.fire({
 		 		    	icon: 'error',
-		 		    	title: '사업자등록번호를 입력해주세요'
+		 		    	title: '사업자등록번호를 입력해주세요',
+		 				confirmButtonText : '확인',
+		 				confirmButtonColor: '#A4AC85'
 					})
 		 			return false;
 				}
@@ -53,7 +61,9 @@ function createReward(seq){
 	 			if($('#par_birth').val() == ""){
 					 Swal.fire({
 		 		    	icon: 'error',
-		 		    	title: '생일을 입력해주세요'
+		 		    	title: '생일을 입력해주세요',
+		 				confirmButtonText : '확인',
+		 				confirmButtonColor: '#A4AC85'
 					})
 		 			return false;
 				}
@@ -73,7 +83,13 @@ function createReward(seq){
 	 		    processData: false,
 			    contentType: false,
 	 		    success : function(resp) {
-	 		    	swal('저장 되었습니다.','마이페이지에서 정산 계좌를 등록해주세요.','info');
+	 		    	Swal.fire({
+	 					icon : 'success',
+	 					title : '저장 되었습니다.',
+	 					text : '마이페이지에서 정산 계좌를 등록해주세요.',
+	 					confirmButtonText : '확인',
+	 					confirmButtonColor: '#A4AC85'
+	 				})
 		    		setTimeout(function () {
 	 		    		location.href="/mypage/mypage";
 		    		}, 2000);

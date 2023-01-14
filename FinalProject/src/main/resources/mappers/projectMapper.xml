@@ -25,7 +25,7 @@
 	
 	<!-- 프로젝트 일정 등록 -->
 	<update id="updatePlan">
-		update project set pro_gp=#{pro_gp}, pro_st_dt=#{pro_st_dt}, pro_ed_dt=#{pro_ed_dt}, del_date=#{del_date}
+		update project set pro_gp=#{pro_gp}, pro_st_dt=#{pro_st_dt}, pro_ed_dt=#{pro_ed_dt}, del_date=#{del_date}, pro_cr_dt=now()
 		where pro_no = #{pro_no}
 	</update>
 	
@@ -56,7 +56,7 @@
 	
 	<!-- 스토리 업데이트 -->
 	<update id="updateStory">
-		update project set pro_story=#{pro_story}
+		update project set pro_story=#{pro_story}, pro_cr_dt=now()
 		where pro_no=#{pro_no}
 	</update>
 	
@@ -69,7 +69,7 @@
 
 	<!-- 정책 업데이트-->
 	<update id="updatePolicy">
-		update project set pro_policy=#{pro_policy}
+		update project set pro_policy=#{pro_policy}, pro_cr_dt=now()
 		where pro_no=#{pro_no}
 	</update>
 	
@@ -84,11 +84,11 @@
 	<update id="updatePartner" parameterType="ProjectVO">
 		<choose>
 			<when test='"개인".equals(par_cat)'>
-				update project set par_cat=#{par_cat}, par_intro=#{par_intro}, par_birth=#{par_birth}, par_com_num=0, par_scan=#{par_scan}, pro_status=2
+				update project set par_cat=#{par_cat}, par_intro=#{par_intro}, par_birth=#{par_birth}, par_com_num=0, par_scan=#{par_scan}, pro_status=2, pro_cr_dt=now()
 				where pro_no=#{pro_no}
 			</when>
 			<when test='"사업자".equals(par_cat)'>
-				update project set par_cat=#{par_cat}, par_intro=#{par_intro}, par_com_num=#{par_birth}, par_birth=0, par_scan=#{par_scan}, pro_status=2
+				update project set par_cat=#{par_cat}, par_intro=#{par_intro}, par_com_num=#{par_birth}, par_birth=0, par_scan=#{par_scan}, pro_status=2, pro_cr_dt=now()
 				where pro_no=#{pro_no}
 			</when>
 		</choose>

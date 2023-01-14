@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://kit.fontawesome.com/90a612e2ef.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <style>
 #rangeGraph{
     height:10px;
@@ -94,7 +96,7 @@ function deleteOrder(ord_no) {
 		text: '취소 후 복구는 불가합니다.',
 		icon: 'info',
 		showCancelButton: true,
-		confirmButtonColor: '#3085d6',
+		confirmButtonColor: '#A4AC85',
 		cancelButtonColor: 'grey',
 		confirmButtonText: '주문 취소',
 		cancelButtonText: '닫기'
@@ -109,8 +111,13 @@ function deleteOrder(ord_no) {
 				},
 			    dataType : "text",
 			    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-			    success : function(resp) { 
-			    	swal('취소 완료 되었습니다.','','info');
+			    success : function(resp) {
+			    	Swal.fire({
+    					icon : 'success',
+    					title : '취소 완료 되었습니다..',
+    					confirmButtonText : '확인',
+    					confirmButtonColor: '#A4AC85'
+    				})
 		    		setTimeout(function () {
 		    		 	$.ajax({
 							url:"/mypage/myFunding",
@@ -165,95 +172,118 @@ function change(num) {
 	<br><br>
 	<h3 style="text-align: center; color: #414934;" >주문 상세내역</h3>
 	<br><br>
-	<div class="board_list">
-		<div class="top">
-			<div class="num">주문번호</div>
-			<div class="title">${detailOrder.order_trade_num }</div>
+	<c:choose>
+	<c:when test="${empty detailOrder.address }">
+		<div class="board_list">
+			<div class="top">
+				<div class="num">주문번호</div>
+				<div class="title">${detailOrder.order_trade_num }</div>
+			</div>
+			<div class="top">
+				<div class="num">주문일자</div>
+				<div class="title"><fmt:formatDate value="${detailOrder.order_date }" pattern="yyyy-MM-dd"/></div>
+			</div>
 		</div>
-		<div class="top">
-			<div class="num">주문일자</div>
-			<div class="title"><fmt:formatDate value="${detailOrder.order_date }" pattern="yyyy-MM-dd"/></div>
+		<div class="row justify-content-center">
+			<div style=" display: flex; align-items: center; padding-top: 5em;">
+				<i class="fa-solid fa-face-smile fa-3x" style="color: #6F7B63;"></i>
+				<h3 style="padding-left: 0.5em; color: #838694;">소중한 후원 감사드립니다.</h3>
+			</div>
 		</div>
-		<div class="top">
-			<div class="num">주문자</div>
-			<div class="title">${detailOrder.receiver_name }</div>
+	</c:when>
+	<c:otherwise>
+		<div class="board_list">
+			<div class="top">
+				<div class="num">주문번호</div>
+				<div class="title">${detailOrder.order_trade_num }</div>
+			</div>
+			<div class="top">
+				<div class="num">주문일자</div>
+				<div class="title"><fmt:formatDate value="${detailOrder.order_date }" pattern="yyyy-MM-dd"/></div>
+			</div>
+			<div class="top">
+				<div class="num">주문자</div>
+				<div class="title">${detailOrder.receiver_name }</div>
+			</div>
+			<div class="top">
+				<div class="num">주문처리상태</div>
+				<c:choose>
+					<c:when test="${detailOrder.order_status == 1}">
+						<div class="title">결제완료</div>
+					</c:when>
+					<c:when test="${detailOrder.order_status == 2}">
+						<div class="title">취소요청</div>
+					</c:when>
+					<c:when test="${detailOrder.order_status == 3}">
+						<div class="title">취소완료</div>
+					</c:when>
+				</c:choose>
+			</div>
+		</div> <br>
+		
+		<div class="board_list">
+			<div class="top">
+				<div class="num">수령인</div>
+				<div class="title">${detailOrder.receiver_name }</div>
+			</div>
+			<div class="top">
+				<div class="num">우편번호</div>
+				<div class="title">${detailOrder.address_no }</div>
+			</div>
+			<div class="top" id="addr">
+				<div class="num">주소</div>
+				<div class="title">${detailOrder.address } ${detailOrder.address_detail }</div>
+				<c:if test="${detailOrder.shipping_status == 1 }">
+					<div class="num1"><button class="myBtn" id="changeBtn">변경</button></div>
+				</c:if>
+			</div>
+			<div class="top">
+				<div class="num">우편번호</div>
+				<div class="title">${detailOrder.address_no }</div>
+			</div>
+			<div class="top">
+				<div class="num">전화번호</div>
+				<div class="title">${detailOrder.receiver_phone }</div>
+			</div>
 		</div>
-		<div class="top">
-			<div class="num">주문처리상태</div>
-			<c:choose>
-				<c:when test="${detailOrder.order_status == 1}">
-					<div class="title">결제완료</div>
-				</c:when>
-				<c:when test="${detailOrder.order_status == 2}">
-					<div class="title">취소요청</div>
-				</c:when>
-				<c:when test="${detailOrder.order_status == 3}">
-					<div class="title">취소완료</div>
-				</c:when>
-			</c:choose>
+		<br>
+		<div class="board_list">
+			<div class="top">
+				<div class="num">배송상태</div>
+				<c:choose>
+					<c:when test="${detailOrder.shipping_status == 1}">
+						<div class="title">결제완료</div>
+					</c:when>
+					<c:when test="${detailOrder.shipping_status == 2}">
+						<div class="title">배송준비중</div>
+					</c:when>
+					<c:when test="${detailOrder.shipping_status == 3}">
+						<div class="title">배송중</div>
+					</c:when>
+					<c:when test="${detailOrder.shipping_status == 4}">
+						<div class="title">배송완료</div>
+					</c:when>
+					<c:when test="${detailOrder.shipping_status == 5}">
+						<div class="title">펀딩취소</div>
+					</c:when>
+				</c:choose>
+			</div>
+			<div class="top">
+				<div class="num">택배사</div>
+				<div class="title">${detailOrder.shipping_com }</div>
+			</div>
+			<div class="top">
+				<div class="num">운송장번호</div>
+				<div class="title">${detailOrder.shipping_no }</div>
+			</div>
 		</div>
-	</div> <br>
+	</c:otherwise>
+	</c:choose>
 	
-	<div class="board_list">
-		<div class="top">
-			<div class="num">수취인</div>
-			<div class="title">${detailOrder.receiver_name }</div>
-		</div>
-		<div class="top">
-			<div class="num">우편번호</div>
-			<div class="title">${detailOrder.address_no }</div>
-		</div>
-		<div class="top" id="addr">
-			<div class="num">주소</div>
-			<div class="title">${detailOrder.address } ${detailOrder.address_detail }</div>
-			<c:if test="${detailOrder.shipping_status == 1 }">
-				<div class="num1"><button class="myBtn" id="changeBtn">변경</button></div>
-			</c:if>
-		</div>
-		<div class="top">
-			<div class="num">우편번호</div>
-			<div class="title">${detailOrder.address_no }</div>
-		</div>
-		<div class="top">
-			<div class="num">전화번호</div>
-			<div class="title">${detailOrder.receiver_phone }</div>
-		</div>
-	</div>
-	<br>
-	<div class="board_list">
-		<div class="top">
-			<div class="num">배송상태</div>
-			<c:choose>
-				<c:when test="${detailOrder.shipping_status == 1}">
-					<div class="title">결제완료</div>
-				</c:when>
-				<c:when test="${detailOrder.shipping_status == 2}">
-					<div class="title">배송준비중</div>
-				</c:when>
-				<c:when test="${detailOrder.shipping_status == 3}">
-					<div class="title">배송중</div>
-				</c:when>
-				<c:when test="${detailOrder.shipping_status == 4}">
-					<div class="title">배송완료</div>
-				</c:when>
-				<c:when test="${detailOrder.shipping_status == 5}">
-					<div class="title">펀딩취소</div>
-				</c:when>
-			</c:choose>
-		</div>
-		<div class="top">
-			<div class="num">택배사</div>
-			<div class="title">${detailOrder.shipping_com }</div>
-		</div>
-		<div class="top">
-			<div class="num">운송장번호</div>
-			<div class="title">${detailOrder.shipping_no }</div>
-		</div>
-	</div>
 	<br><br>
 	<div class="text-center">
 		<button class="myBtn" id="back" onclick="back();">돌아가기</button>
-		<c:if test="${detailOrder.shipping_status < 3 }">
+		<c:if test="${detailOrder.shipping_status < 2 }">
 			<button class="myBtn" id="deleteOrder" onclick="deleteOrder(${detailOrder.order_no});">주문취소</button>
 		</c:if>
 	</div>

@@ -2,8 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri ="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <link rel="stylesheet" href="../resources/assets/css/project.css">
 <script src="../resources/assets/js/vendor/jquery-3.5.1.min.js"></script>
+<script src="https://kit.fontawesome.com/90a612e2ef.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <style>
 #rangeGraph{
     height:10px;
@@ -47,12 +50,21 @@ function myProUpdate(num){
 	<div class="project-details-content-top">
 		<!-- 프로젝트 시작 -->
 		<div class="row justify-content-center">
+		<c:if test="${empty proList }">
+			<div class="row justify-content-center">
+				<div style=" display: flex; align-items: center; padding-top: 5em;">
+					<i class="fa-solid fa-circle-info fa-3x" style="color: #6F7B63;"></i>
+					<h3 style="padding-left: 0.5em; color: #838694;">나의 프로젝트가 없습니다.</h3>
+				</div>
+			</div>
+		</c:if>
 			<c:forEach var="pro" items="${proList }" >
 				<div class="col-lg-4 col-md-6 col-sm-9">
 					<div class="explore-projects-item mt-30">
 						<div class="explore-projects-thumb">
 							<img src="../resources/upload/${pro.pro_thum}" width="100px;" height="300px;"> 
-							<a href="/prodetail/info?pro_no=${pro.pro_no}"> <i class="fa fa-heart"></i>
+							<a href="/prodetail/info?pro_no=${pro.pro_no}" style="background: none;">
+							<i class="fa-solid fa-heart" style="color: A4AC85;"></i>
 							</a>
 						</div>
 						<div class="explore-projects-content">
@@ -85,10 +97,20 @@ function myProUpdate(num){
 								</c:when>
 							</c:choose>
 							</div>  <br>
+							<div>
 							<a href="/prodetail/info?pro_no=${pro.pro_no}">
-								<h3>${pro.pro_title }</h3>
+							<c:choose>
+						        <c:when test="${fn:length(pro.pro_title) gt 7}">
+							        <h3><c:out value="${fn:substring(pro.pro_title, 0, 6)}...">
+							        </c:out></h3></c:when>
+						        <c:otherwise>
+						      	  <h3>${pro.pro_title }</h3>
+						        </c:otherwise>
+							</c:choose>
 							</a>
-
+							<small style="float: right;"><fmt:formatDate value="${pro.pro_cr_dt }" pattern="yyyy-MM-dd"/></small>
+							</div>
+							<br>
 							<div class="projects-range">
 								<div class="projects-range-content">
 									<ul>

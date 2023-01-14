@@ -50,7 +50,7 @@ function myFunDetail(num){
 	var strList = ${jsonString};
 	
 	var shipping_status = [
-        { Name: "미정", Id: 1 },
+        { Name: "결제완료", Id: 1 },
         { Name: "배송준비중", Id: 2 },
         { Name: "배송시작", Id: 3 },
         { Name: "배송완료", Id: 4 },
@@ -93,9 +93,10 @@ function myFunDetail(num){
         			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
         			success : function(resp) {
         				Swal.fire({
-        					icon : 'info',
+        					icon : 'success',
         					title : '배송 정보가 등록되었습니다.',
-        					confirmButtonText : '확인'
+        					confirmButtonText : '확인',
+        					confirmButtonColor: '#A4AC85'
         				})
         			},
         			error: function(jqXHR, textStatus, errorThrown) {
@@ -107,9 +108,14 @@ function myFunDetail(num){
 
         fields: [
             { name: "order_trade_num", title:"주문번호", width: 150, align: "center", editing: false },
-            { name: "pro_title", title:"프로젝트", width: 200, align: "center"},
+            { name: "create_title", title:"프로젝트", width: 200, align: "center" },
             { name: "mem_id", title:"회원 아이디", width: 120, align: "center" },
             { name: "create_date", title:"주문일시", width: 200, align: "center" },
+            { name: "reward_title", title:"리워드", width: 200, align: "center" },
+            { name: "receiver_name", title:"수령인", width: 100, align: "center" },
+            { name: "address_no", title:"우편번호", width: 100, align: "center" },
+            { name: "create_address", title:"주소", width: 250, align: "center" },
+            { name: "receiver_phone", title:"연락처", width: 150, align: "center" },
             { name: "reward_title", title:"리워드", width: 200, align: "center" },
             { name: "total_price", title:"금액", type: "number", width: 100, align: "center", editing: false },
             { name: "shipping_status", type: "select", items: shipping_status, title:"배송상태", valueField: "Id", textField: "Name", align: "center" },
