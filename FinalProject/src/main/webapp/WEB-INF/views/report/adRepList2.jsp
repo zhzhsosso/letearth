@@ -17,12 +17,12 @@
 
 
 <style type="text/css">
-#sbtn {
+#searchBtn {
 	position: absolute;
 	top: 0px;
 	
 	background-color: #A4AC85;
-	height: 35px;
+	height: 38px;
 }
 
  #mbtn { 
@@ -108,17 +108,24 @@
 
 /*셀렉트 꾸미기*/
 /* The container must be positioned relative: */
-.fcntr {
+.searchselect {
   position: relative;
-  font-family: Arial;
+  width: 30%;
+  padding-right: 0px;
+  padding-left: 0px;
+  text-align: center;
+  margin-right: 5px;
 }
 
-.fcntr select {
+.searchselect select {
   display: none; /*hide original SELECT element: */
 }
 
 .select-selected {
-  background-color: #BFCC97;
+  background-color: #A4AC85;
+  height: 38px;
+  vertical-align: middle;
+  text-align: left;
 }
 
 /* Style the arrow inside the select element: */
@@ -141,7 +148,7 @@
 
 /* style the items (options), including the selected item: */
 .select-items div,.select-selected {
-  color: #6c757d;
+  color: #F2F0E8;
   padding: 8px 16px;
   border: 1px solid transparent;
   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
@@ -153,7 +160,7 @@
 /* Style items (options): */
 .select-items {
   position: absolute;
-  background-color: #EEF5E6;
+  background-color: #B1B796;
   top: 100%;
   left: 0;
   right: 0;
@@ -215,14 +222,17 @@
 							<div class="box-tools" align="right">
 								<div class="input-group input-group-sm hidden-xs"
 									style="width: 380px; height: 35px;" id="search">
-									<select name="searchType">
-										<option value="n"
-											<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>카테고리</option>
-										<option value="er"
-											<c:out value="${scri.searchType eq 'er' ? 'selected' : ''}"/>>신고자</option>
-										<option value="ed"
-											<c:out value="${scri.searchType eq 'ed' ? 'selected' : ''}"/>>신고대상</option>
-									</select> <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control pull-right"
+									<div class="searchselect">
+										<select name="searchType">
+											<option value="n"
+												<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>카테고리</option>
+											<option value="er"
+												<c:out value="${scri.searchType eq 'er' ? 'selected' : ''}"/>>신고자</option>
+											<option value="ed"
+												<c:out value="${scri.searchType eq 'ed' ? 'selected' : ''}"/>>신고대상</option>
+										</select> 
+									</div>
+									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control pull-right"
 										placeholder="검색어를 입력해주세요" style="height: 38px; width: 150px; font-size: 1rem;">
 									<div class="input-group-btn" style="padding-left: 3px;">
 										<button id="searchBtn" type="submit" class="btn btn-default">
@@ -236,6 +246,7 @@
 
 			<!-- 검색 -->
 				<div style="padding-top: 30px; padding-bottom: 30px;"></div>
+<%-- 				글의 개수 : ${pvo.totalCount} --%>
 <!-- tableAll --><div class="box" style="border: none;">
 					<div class="box-body table-responsive no-padding" id="tableAll" >
 			<form role="form" name="fr" id="contact-form" action="" method="post">
@@ -317,11 +328,12 @@
 			</div>
 
 	
-   </div>
-   <br><br><br>
-<!-- 페이징처리 -->
+   <!-- 페이징처리 -->
+   <div style="padding: 30px 30px;"></div>
+<!-- 				<div class="pagination" -->
+<!-- 					style="position: absolute; right: 40%; bottom:0%; border: none;"> -->
 				<div class="pagination"
-					style="position: absolute; right: 45%; border: none;">
+					style="position: relative ; left: 40%; bottom:0%; border: none;">
 					<ul class="pagination" style="font-size: 18px;">
 						<c:if test="${pvo.prev }">
 							<li class="paging"><a
@@ -343,10 +355,13 @@
 						</c:if>
 					</ul>
 				</div>
+				
+				</div> <!-- 컨데이너 안 -->
+   </div>
 </section>
    
    
-   
+   <div style="padding: 40px 40px;"></div>
    
    <!-- 푸터 -->
    <%@ include file="../include/footer.jsp" %>
@@ -405,7 +420,7 @@ $(document).ready(function(){
 // 셀렉트 꾸미기
 var x, i, j, l, ll, selElmnt, a, b, c;
 /* Look for any elements with the class "custom-select": */
-x = document.getElementsByClassName("fcntr");
+x = document.getElementsByClassName("searchselect");
 l = x.length;
 for (i = 0; i < l; i++) {
   selElmnt = x[i].getElementsByTagName("select")[0];

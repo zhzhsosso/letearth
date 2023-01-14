@@ -14,18 +14,16 @@
 .sidenav {
   height: 100%;
   width: 200px;
-  position: fixed;
   z-index: 1;
-/*    top: 30%;  */
-/*    left: 20%;  */
+    top: 60%;  
+    left: 10%;  
   background-color: #EDEAE0;
   overflow-x: hidden;
   padding-top: 30px;
   padding-bottom : 100px;
 
-  position: relative;
-  top: 400px;
-  left: 300px; 
+  position: sticky;
+
 }
 
 /* Style the sidenav links and the dropdown button */
@@ -83,6 +81,7 @@
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
 </style>
 </head>
 <body>

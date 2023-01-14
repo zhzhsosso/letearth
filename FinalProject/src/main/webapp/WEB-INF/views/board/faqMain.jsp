@@ -74,9 +74,9 @@
 
 /*배경*/
 .faq-title-area .section-title {
-    background: #E8E4D7;
-    padding-top: 112px;
-    padding-bottom: 120px;
+    background: initial;
+    font-weight: bold; 
+    
 }
 
 .faq-design-area .tab-content .tab-pane .faq-accrodion .accrodion {
@@ -103,20 +103,25 @@
 /*     font-weight: 400; */
 }
 
-
+.page-title-area1 {
+    margin-top: 150px;
+    margin-left: 500px;
+    margin-right: 0px;
+}
 </style>  
    
    
     <!--====== PAGE TITLE PART START ======-->
     
-    <section class="page-title-area1 bg_cover1">
-        <div >
-            <img alt="" src="/resources/faqPage.png"  height="" style="position: relative; left: 5%; top: 0%">
-        </div>
-    </section>
-    <br><br><br><br><br><br>
-	<div style="padding-top: 30px; padding-bottom: 30px;"></div>
+<!--     <section class="page-title-area1 bg_cover1"> -->
+<!--         <div > -->
+<!--             <img alt="" src="/resources/faqPage.png"  height="" style="position: relative; left: 5%; top: 0%"> -->
+<!--         </div> -->
+<!--     </section> -->
+	
     <!--====== PAGE TITLE PART ENDS ======-->
+    
+<div style="padding-top: 80px; padding-bottom: 80px;"></div>
 
     <!--====== FAQ TITLE PART START ======-->
     
@@ -126,7 +131,10 @@
                 <div class="col-lg-12">
                     <div class="section-title text-center" style="padding-top: 80px; padding-bottom: 80px;">
                         <span style="font-size: 20px; color: #6F7B63; font-weight: bold; position: static; padding-bottom: 10px;">Frequently Asked Questions</span><br>
-                        <h3 class="title" style="color: #414934;">자주 묻는 질문들을 모아봤어요!</h3>
+                        
+                        <h3 class="title" style="color: #414934; font-weight: bold;">자주 묻는 질문들을 모아봤어요!</h3>
+                        <div align="center"><hr style="height: 5px; background-color: #D7D1B9; border: none; width: 50%;"></div>
+                        
 <!--                         <div class="row justify-content-center"> -->
 <!--                             <div class="col-lg-8"> -->
 <!--                                 <div class="input-box"> -->
@@ -185,6 +193,10 @@
     </section>
     
     <!--====== FAQ TITLE PART ENDS ======-->
+    
+    
+<div style="padding-top: 0px; padding-bottom: 0px;"></div>
+
 
     <!--====== FAQ DESIGN PART START ======-->
     <section class="faq-design-area pb-120">
@@ -204,6 +216,9 @@
                             </li>
                         </ul>
                     </div>
+              
+                    
+<div style="padding-top: 40px; padding-bottom: 40px;"></div>
                     
                     <div class="tab-content mt-55" id="pills-tabContent">
           <!-- 후원자 2번 -->  
@@ -299,8 +314,9 @@
                 </div>
             </div>
         </div>
+        
     </section>
-    
+    <div style="padding-top: 50px; padding-bottom: 50px;"></div>
     <!--====== FAQ DESIGN PART ENDS ======-->   
    
    

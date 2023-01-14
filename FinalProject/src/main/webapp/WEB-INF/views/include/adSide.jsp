@@ -23,7 +23,7 @@
   padding-top: 30px;
   padding-bottom : 100px;
 
-  position: relative;
+  position: sticky;
   top: 330px;
   left: 250px; 
 }
@@ -83,6 +83,7 @@
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
 </style>
 </head>
 <body>
@@ -103,7 +104,7 @@
 		&nbsp;고객센터 <i class="fa fa-caret-down"></i>
 	</button>
 	<div class="dropdown-container">
-		<a href="/board/adNoticeList">공지사항</a> 
+		<a href="/notice/main">공지사항</a> 
 		<a href="/board/adFaqList">FAQ</a> 
 		<a href="/board/adRewriteList">1:1문의</a>
 	</div>
@@ -115,7 +116,7 @@
 	<div class="dropdown-container">
 		<a href="/mempro/adProList1">프로젝트 승인</a> 
 		<a href="/mempro/adProList2">프로젝트 목록</a> 
-		<a href="#">정산관리</a>
+		<a href="/openbanking/useroauth">정산관리</a>
 	</div>
 	
 	<button class="dropdown-btn">
