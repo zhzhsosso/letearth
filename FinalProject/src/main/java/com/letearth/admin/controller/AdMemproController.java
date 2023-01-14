@@ -51,10 +51,12 @@ public class AdMemproController {
 	public String adProList1GET(HttpSession session, Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		// session - id값 가져오기
 		// 관리자 로그인제어
-//		String id = (String)session.getAttribute("id");
-//		if(id==null || !id.equals("admin")) {
-//			return "redirect:member/login";
-//		}
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
 		
 		// 서비스 -dao 프로젝트 목록 가져오기
 		List<ProjectVO> proList = adMemproService.getListPro1(scri);
@@ -81,7 +83,15 @@ public class AdMemproController {
 	 */
 	//http://localhost:8080/mempro/adProDetail1
 	@RequestMapping(value="/adProDetail1", method=RequestMethod.GET)
-	public void adProDetail1GET(Model model, @RequestParam("pro_no") int pro_no, HttpSession session, OrderVO ordVO,@RequestParam("mem_id") String mem_id) throws Exception{
+	public String adProDetail1GET(HttpSession session, Model model, @RequestParam("pro_no") int pro_no, OrderVO ordVO,@RequestParam("mem_id") String mem_id) throws Exception{
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
 		
 		ProjectVO proVO = adMemproService.getDetailPro1(pro_no);
 		int memOrd = adMemproService.totalMemOrd(mem_id);
@@ -91,7 +101,7 @@ public class AdMemproController {
 		model.addAttribute("memOrd", memOrd);
 		model.addAttribute("memPro", memPro);
 		
-		
+		return "/mempro/adProDetail1";
 		
 	}
 	
@@ -103,6 +113,14 @@ public class AdMemproController {
 	//http://localhost:8080/mempro/adProList2
 	@RequestMapping(value="/adProList2", method=RequestMethod.GET)
 	public String adProList2GET(HttpSession session, Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
 		
 		// 서비스 -dao 프로젝트 목록 가져오기
 		List<ProjectVO> proList = adMemproService.getListPro2(scri);
@@ -120,38 +138,6 @@ public class AdMemproController {
 		
 		return "/mempro/adProList2";
 	}
-//	
-//	
-//	
-//	/**
-//	 * 프로젝트 리스트 조회 2(상태5-7)
-//	 */
-//	//http://localhost:8080/mempro/adProList2
-//	@RequestMapping(value="/adProList2", method=RequestMethod.GET)
-//	public String adProList2GET(HttpSession session, Model model, Criteria cri) throws Exception{
-//		// session - id값 가져오기
-//		// 관리자 로그인제어
-////		String id = (String)session.getAttribute("id");
-////		if(id==null || !id.equals("admin")) {
-////			return "redirect:member/login";
-////		}
-//		
-//		// 서비스 -dao 프로젝트 목록 가져오기
-//		List<ProjectVO> proList = adMemproService.getListPro2(cri);
-//		
-//		// 페이징처리 하단부 정보 준비 -> 뷰페이지로 전달
-//		PageVO pvo = new PageVO();
-//		pvo.setCri(cri);
-//		mylog.debug("totalPro2 : "+adMemproService.totalPro2());
-//		pvo.setTotalCount(adMemproService.totalPro2()); // 결제리스트 전체 개수
-//		
-//		
-//		model.addAttribute("proList",proList);
-//		model.addAttribute("pvo", pvo);
-//		
-//		return "/mempro/adProList2";
-//	}
-	
 	
 	
 	/**
@@ -159,9 +145,15 @@ public class AdMemproController {
 	 */
 
 	@RequestMapping(value="/adProDetail2", method=RequestMethod.GET)
-	public void adProDetail2GET(Model model, @RequestParam("pro_no") int pro_no, HttpSession session, OrderVO ordVO, @RequestParam("mem_id") String mem_id) throws Exception{
+	public String adProDetail2GET(Model model, @RequestParam("pro_no") int pro_no, HttpSession session, OrderVO ordVO, @RequestParam("mem_id") String mem_id) throws Exception{
 		
-		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
 		
 		ProjectVO proVO = adMemproService.getDetailPro1(pro_no);
 		int memOrd = adMemproService.totalMemOrd(mem_id);
@@ -176,20 +168,9 @@ public class AdMemproController {
 		
 		System.out.println("ordList  가 담기는가 확인해보자고 : 컨트롤러 "  + ordList);
 		
-	}	
-	
-	
-	
-	/**
-	 * 배송현황 상세조회
-	 */
-	//http://localhost:8080/mempro/adShipDetail
-	@RequestMapping(value="/adShipDetail", method=RequestMethod.GET)
-	public void adShipDetailGET(HttpSession session, Model model,@RequestParam("pro_no") int pro_no) throws Exception{
+		return "/mempro/adProDetail2";
 		
-	}
-	
-	
+	}	
 	
 	
 	/**
@@ -198,7 +179,7 @@ public class AdMemproController {
 	 */
 	
 	@RequestMapping(value = "/adProStatus3", method = RequestMethod.GET)
-	public String adProUp3GET(Model model, RedirectAttributes rttr, ProjectVO proVO) throws Exception{
+	public String adProUp3GET(HttpSession session, Model model, RedirectAttributes rttr, ProjectVO proVO) throws Exception{
 
 		adMemproService.updateProStatus3(proVO);
 		rttr.addFlashAttribute("result", "승인완료");
@@ -215,7 +196,7 @@ public class AdMemproController {
 	 */
 	
 	@RequestMapping(value = "/adProStatus4", method = RequestMethod.GET)
-	public String adProUp4GET(Model model, RedirectAttributes rttr, ProjectVO proVO) throws Exception{
+	public String adProUp4GET(HttpSession session, Model model, RedirectAttributes rttr, ProjectVO proVO) throws Exception{
 		
 		adMemproService.updateProStatus4(proVO);
 		rttr.addFlashAttribute("result", "반려완료");
@@ -236,13 +217,15 @@ public class AdMemproController {
 	//http://localhost:8080/mempro/adMemList
 	@RequestMapping(value="/adMemList", method=RequestMethod.GET)
 	public String adMemListGET(HttpSession session, Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
-			// session - id값 가져오기
+			
 			// 관리자 로그인제어
-//			String id = (String)session.getAttribute("id");
-//			if(id==null || !id.equals("admin")) {
-//				return "redirect:member/login";
-//			}
-			///
+			String id = (String)session.getAttribute("mem_id");
+			if(id==null) {
+				return "redirect:/member/login";
+			} else if( !id.equals("admin")) {
+				return "redirect:/member/main";
+			}
+			
 			// 서비스 dao 회원 목록 가져오기
 			List<MemberVO> memList = adMemproService.getMemList(scri);
 			
@@ -268,7 +251,15 @@ public class AdMemproController {
 	 */
 	//http://localhost:8080/mempro/adMemDetail
 	@RequestMapping(value="/adMemDetail", method=RequestMethod.GET)
-	public void adMemDetailGET(HttpSession session, Model model, @RequestParam("mem_id") String mem_id, MemOrdVO moVO, ProjectVO proVO, OrderVO ordVO) throws Exception{
+	public String adMemDetailGET(HttpSession session, Model model, @RequestParam("mem_id") String mem_id, MemOrdVO moVO, ProjectVO proVO, OrderVO ordVO) throws Exception{
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
 		
 		MemberVO memVO = adMemproService.getMemDetail(mem_id);
 		List<MemOrdVO> ordList = adMemproService.memOrdList(moVO);
@@ -276,13 +267,8 @@ public class AdMemproController {
 		int memOrd = adMemproService.totalMemOrd(mem_id);
 		int memPro = adMemproService.totalMemPro(mem_id);
 		
-//		mylog.debug("memVO : 매퍼에서 다 넣어졌는지 확인해보기 " + memVO);
-//		System.out.println("proVO : 매퍼에서 다 넣어졌는지 확인해보기 " + memVO);
-//		System.out.println("ordList : ordList가 만들어졌는가...확인해보자 " + ordList);
-//		System.out.println("proList : proList가 만들어졌는가...확인해보자 " + proList);
-		System.out.println("memPro : memPro가 만들어졌는가...확인해보자 " + memPro);
-		System.out.println("memOrd : memOrd가 만들어졌는가...확인해보자 " + memOrd);
-		
+		System.out.println("memPro : "+ memPro);
+		System.out.println("memOrd : "+ memOrd);
 		
 		
 		model.addAttribute("memVO", memVO);
@@ -291,35 +277,9 @@ public class AdMemproController {
 		model.addAttribute("memOrd", memOrd);
 		model.addAttribute("memPro", memPro);
 		
+		return "/mempro/adMemDetail";
 		
 	}
-	
-
-	/**
-	 * 회원 탈퇴
-	 * GET은 따로 만들지않고 모달창에서 removeForm받은 다음 post로 보내기
-	 */
-	//http://localhost:8080/mempro/adMemRemove
-	@RequestMapping(value="/adMemRemove", method=RequestMethod.POST)
-	public String adMemRemovePOST(MemberVO memVO) throws Exception{
-		
-		return "redirect:/mempro/adMemList";
-	}
-	
-	
-	
-	
-	
-
-	
-		
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

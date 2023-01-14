@@ -4323,7 +4323,8 @@ p {
         width: 144px;
         height: 137px;
         padding-top: 40px;
-        margin-right: 6px; }
+        margin-right: 6px;
+        padding-left: 0px; }
         .project-details-area .project-details-content .project-details-item .item .title {
           font-size: 24px;
           color: #674df0; }
