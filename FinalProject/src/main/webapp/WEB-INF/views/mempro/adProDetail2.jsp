@@ -2,8 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+	rel="stylesheet" type="text/css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -114,8 +117,8 @@ body {
 	overflow-x: hidden;
 	padding-top: 30px;
 	padding-bottom: 100px;
-	position: relative;
-	top: 120px;
+	position: sticky;
+	top: 40%;
 	left: 250px;
 }
 
@@ -278,8 +281,8 @@ body {
 					class="fa fa-caret-down"></i>
 			</button>
 			<div class="dropdown-container">
-				<a href="/board/adNoticeList">공지사항</a> <a href="/board/adFaqList">FAQ</a>
-				<a href="/board/adRewriteList">1:1문의</a>
+				<a href="/notice/main">공지사항</a> <a href="/board/adFaqList">FAQ</a> <a
+					href="/board/adRewriteList">1:1문의</a>
 			</div>
 
 			<button class="dropdown-btn">
@@ -287,8 +290,9 @@ body {
 					class="fa fa-caret-down"></i>
 			</button>
 			<div class="dropdown-container">
-				<a href="/mempro/adProList1">프로젝트 승인</a> <a href="/mempro/adProList2"">프로젝트 목록</a> 
-				<a href="">정산관리</a>
+				<a href="/mempro/adProList1">프로젝트 승인</a> <a
+					href="/mempro/adProList2">프로젝트 목록</a> <a
+					href="/openbanking/useroauth">정산관리</a>
 			</div>
 
 			<button class="dropdown-btn">
@@ -296,8 +300,8 @@ body {
 					class="fa fa-caret-down"></i>
 			</button>
 			<div class="dropdown-container">
-				<a href="/report/adRepList">신고접수관리</a> <a href="/mempro/adMemList">회원목록</a> <a
-					href="/report/adBlackList">블랙리스트</a>
+				<a href="/report/adRepListAll">신고접수관리</a> <a
+					href="/mempro/adMemList">회원목록</a> <a href="/report/adBlackList">블랙리스트</a>
 			</div>
 		</div>
 		<!-- 사이드바 -->
@@ -319,7 +323,7 @@ body {
 
 					<!-- div class="flex-container" -->
 					<!-- 회원정보 (프로필) -->
-					<div class="flex-container" style="width: 1000">
+					<div class="flex-container" style="width: 1200">
 						<div class="project-details-item" style="width: 1000">
 							<br> <br> <br> <br> <br>
 							<div>
@@ -332,11 +336,12 @@ body {
 
 								<div
 									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-									style="border-color: rgb(164 172 133/ 40%); width:480px; height:700px;">
+									style="border-color: rgb(164 172 133/ 40%); width: 540px; height: 700px;">
 									<div class="banner"></div>
 									<c:choose>
 										<c:when test="${not empty proVO.memberVO.mem_profile }">
-											<img src="../resources/upload/${proVO.memberVO.mem_profile}" alt="" class="img-circle mx-auto mb-3">
+											<img src="../resources/upload/${proVO.memberVO.mem_profile}"
+												alt="" class="img-circle mx-auto mb-3">
 										</c:when>
 										<c:otherwise>
 											<img src="/resources/assets/images/userimg.png" alt=""
@@ -344,32 +349,37 @@ body {
 										</c:otherwise>
 									</c:choose>
 									<%--<img src="/resources/assets/images/${proVO.memberVO.mem_profile }" alt="" class="img-circle mx-auto mb-3"> --%>
-									<h3 class="mb-4">${proVO.mem_id }</h3>
+									<h3 class="mb-4" style="color: #414934; font-weight: bold;">${proVO.mem_id }</h3>
 
 
 
 									<table class="table table-condensed">
 										<tbody>
 											<tr>
-												<th style="width: 150px">연락처</th>
-												<td>${proVO.memberVO.mem_phone }</td>
+												<th style="color: #414934; font-weight: bold;">연락처</th>
+												<td
+													style="text-align: center; color: #414934; font-weight: bold;">${proVO.memberVO.mem_phone }</td>
 											</tr>
 											<tr>
-												<th>이메일</th>
-												<td>${proVO.memberVO.mem_email }</td>
+												<th style="color: #414934; font-weight: bold;">이메일</th>
+												<td
+													style="text-align: center; color: #414934; font-weight: bold;">${proVO.memberVO.mem_email }</td>
 											</tr>
 											<tr>
-												<th>가입날짜</th>
-												<td><fmt:formatDate
-														value="${proVO.memberVO.mem_cr_dt }" pattern="yyyy-MM-dd" /></td>
+												<th style="color: #414934; font-weight: bold;">가입날짜</th>
+												<td
+													style="text-align: center; color: #414934; font-weight: bold;"><fmt:formatDate
+														value="${proVO.memberVO.mem_cr_dt }" pattern="yy-MM-dd" /></td>
 											</tr>
 											<tr>
-												<th>펀딩횟수</th>
-												<td>${memPro }회</td>
+												<th style="color: #414934; font-weight: bold;">펀딩횟수</th>
+												<td
+													style="text-align: center; color: #414934; font-weight: bold;">${memPro }회</td>
 											</tr>
 											<tr>
-												<th>구매횟수</th>
-												<td>${memOrd }회</td>
+												<th style="color: #414934; font-weight: bold;">구매횟수</th>
+												<td
+													style="text-align: center; color: #414934; font-weight: bold;">${memOrd }회</td>
 											</tr>
 
 										</tbody>
@@ -401,7 +411,7 @@ body {
 								<h5 class="title"></h5>
 								<div
 									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-									style="border-color: rgb(164 172 133/ 40%); width:480px; height:700px;">
+									style="border-color: rgb(164 172 133/ 40%); width: 540px; height: 700px;">
 									<table class="table table-condensed">
 										<!-- 사진을 넣을지 그냥 타이틀만 넣을지 정하기 -->
 										<div class="banner">
@@ -415,33 +425,37 @@ body {
 												<%-- 													<td>${proVO.pro_title }</td> --%>
 												<!-- 												</tr> -->
 												<tr>
-													<th>시작일</th>
-													<td>${proVO.pro_st_dt }</td>
-												</tr>
-												<tr>
-													<th>종료일</th>
-													<td>${proVO.pro_ed_dt }</td>
-												</tr>
-												<tr>
-													<th>기간</th>
+													<th style="color: #414934; font-weight: bold;">시작일</th>
 													<fmt:parseDate value="${proVO.pro_st_dt }" var="str_Date"
-														pattern="yyyy-MM-dd" />
+																pattern="yy-MM-dd" />
+															<td
+																style="text-align: center; color: #414934; font-weight: bold;"><fmt:formatDate value="${str_Date}" pattern="yy-MM-dd"/></td>
+												</tr>
+												<tr>
+													<th style="color: #414934; font-weight: bold;">종료일</th>
+													<fmt:parseDate value="${proVO.pro_ed_dt }" var="end_Date"
+																pattern="yy-MM-dd" />
+															<td
+																style="text-align: center; color: #414934; font-weight: bold;"><fmt:formatDate value="${end_Date}" pattern="yy-MM-dd"/></td>
+													</tr>
+												<tr>
+													<th style="color: #414934; font-weight: bold;">기간</th>
+													<fmt:parseDate value="${proVO.pro_st_dt }" var="str_Date"
+														pattern="yy-MM-dd" />
 													<fmt:parseNumber value="${str_Date.time / (1000*60*60*24)}"
 														integerOnly="true" var="strDate"></fmt:parseNumber>
 													<fmt:parseDate value="${proVO.pro_ed_dt }" var="end_Date"
-														pattern="yyyy-MM-dd" />
+														pattern="yy-MM-dd" />
 													<fmt:parseNumber value="${end_Date.time / (1000*60*60*24)}"
 														integerOnly="true" var="endDate"></fmt:parseNumber>
-													<td>${endDate - strDate }일</td>
+													<td
+														style="text-align: center; color: #414934; font-weight: bold;">${endDate - strDate }일</td>
 												</tr>
 												<tr>
-													<th>목표금액</th>
-													<td><fmt:formatNumber value="${proVO.pro_gp }" />원</td>
-												</tr>
-												<th></th>
-												<td></td>
-												</tr>
-
+													<th style="color: #414934; font-weight: bold;">목표금액</th>
+													<td
+														style="text-align: center; color: #414934; font-weight: bold;"><fmt:formatNumber
+															value="${proVO.pro_gp }" />원</td>
 											</tbody>
 										</div>
 									</table>
@@ -452,91 +466,92 @@ body {
 					<!-- div class="flex-container" -->
 
 
-
-					<!-- 결제회원 리스트 -->
-					<br> <br> <br> <br>
-					<div class="container" style="width: 135%">
-						<p style="font-size: 2em;">결제 회원 리스트</p>
-						<br>
-
-							<!-- 결제회원이 없을 때 -->
-						<c:choose>
-							<c:when test="${empty ordList }">
-								<div
-									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-									style="border-color: rgb(164 172 133/ 40%); display: block;">
-									<i class="ion-checkmark-round"></i>&nbsp;결제한 회원 내역이 없습니다.
-									<h5 class="title"></h5>
-
-									<table class="table">
-										<!-- 								<thead> -->
-										<!-- 								</thead> -->
-
-										<%-- 								<c:forEach var="ordList" items="${ordList  }" varStatus="status"> --%>
-										<!-- 									<tbody> -->
-										<!-- 									</tbody> -->
-										<%-- 								</c:forEach> --%>
-									</table>
-							<!-- 결제회원이 없을 때 -->
-								</div>
-							</c:when>
-
-							<c:otherwise>
-								<div
-									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-									style="border-color: rgb(164 172 133/ 40%);">
-							<!--  결제회원이 있을 때 -->
-									<h5 class="title"></h5>
-
-									<table class="table">
-										<thead>
-											<tr>
-												<th></th>
-												<th style="width: 100px">아이디</th>
-												<th style="width: 100px">리워드</th>
-												<th style="width: 180px">구매수량</th>
-												<th style="width: 150px">결제금액</th>
-												<th style="width: 200px">결제일시</th>
-												<th style="width: 200px">운송장번호</th>
-											</tr>
-										</thead>
-
-										<c:forEach var="ordList" items="${ordList  }"
-											varStatus="status">
-											<tbody>
-												<tr>
-													<td>${status.count }</td>
-													<td>
-														<div class="user-info">
-															<!-- 																<div class="user-info__img"> -->
-															<!-- 																	<img src="img/user1.jpg" alt="User Img"> -->
-															<!-- 																</div> -->
-															<div class="user-info__basic">
-																<h5 class="mb-0">${ordList.mem_id }</h5>
-															</div>
-														</div>
-													</td>
-													<td>${ordList.reward_no }</td>
-													<td>${ordList.order_count }개</td>
-													<td>${ordList.total_price }원</td>
-													<td><fmt:formatDate value="${ordList.order_date }"
-															pattern="yyyy-MM-dd" /></td>
-													<td>${ordList.shipping_no }</td>
-												</tr>
-											</tbody>
-										</c:forEach>
-									</table>
-								</div>
-							</c:otherwise>
-						</c:choose>
-					</div>
-					<!--  결제회원이 있을 때 -->
-					<!-- 결제회원 리스트 -->
-
-
 				</div>
 				<!-- 프로젝트정보 (프로필) -->
 			</div>
+
+			<!-- 결제회원 리스트 -->
+			<br> <br> <br> <br>
+			<div class="container" style="width: 135%">
+				<p style="font-size: 2em;">결제 회원 리스트</p>
+				<br>
+
+				<!-- 결제회원이 없을 때 -->
+				<c:choose>
+					<c:when test="${empty ordList }">
+						<div
+							class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+							style="border-color: rgb(164 172 133/ 40%); display: block;">
+							<i class="ion-checkmark-round"></i>&nbsp;결제한 회원 내역이 없습니다.
+							<h5 class="title"></h5>
+
+							<table class="table">
+								<!-- 								<thead> -->
+								<!-- 								</thead> -->
+
+								<%-- 								<c:forEach var="ordList" items="${ordList  }" varStatus="status"> --%>
+								<!-- 									<tbody> -->
+								<!-- 									</tbody> -->
+								<%-- 								</c:forEach> --%>
+							</table>
+							<!-- 결제회원이 없을 때 -->
+						</div>
+					</c:when>
+
+					<c:otherwise>
+						<div
+							class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+							style="border-color: rgb(164 172 133/ 40%);">
+							<!--  결제회원이 있을 때 -->
+							<h5 class="title"></h5>
+
+							<table class="table">
+								<thead>
+									<tr>
+										<th></th>
+										<th
+											style="text-align: center; color: #414934; font-weight: bold; width: 200px">아이디</th>
+										<th
+											style="text-align: center; color: #414934; font-weight: bold; width: 100px">리워드</th>
+										<th
+											style="text-align: center; color: #414934; font-weight: bold; width: 180px">구매수량</th>
+										<th
+											style="text-align: center; color: #414934; font-weight: bold; width: 150px">결제금액</th>
+										<th
+											style="text-align: center; color: #414934; font-weight: bold; width: 200px">결제일시</th>
+										<th
+											style="text-align: center; color: #414934; font-weight: bold; width: 200px">운송장번호</th>
+									</tr>
+								</thead>
+
+								<c:forEach var="ordList" items="${ordList  }" varStatus="status">
+									<tbody>
+										<tr>
+											<td
+												style="text-align: center; color: #414934; font-weight: bold;">${status.count }</td>
+											<td
+												style="text-align: center; color: #414934; font-weight: bold;">${ordList.mem_id }</td>
+											<td
+												style="text-align: center; color: #414934; font-weight: bold;">${ordList.reward_no }</td>
+											<td
+												style="text-align: center; color: #414934; font-weight: bold;">${ordList.order_count }개</td>
+											<td
+												style="text-align: center; color: #414934; font-weight: bold;">${ordList.total_price }원</td>
+											<td
+												style="text-align: center; color: #414934; font-weight: bold;"><fmt:formatDate
+													value="${ordList.order_date }" pattern="yy-MM-dd" /></td>
+											<td
+												style="text-align: center; color: #414934; font-weight: bold;">${ordList.shipping_no }</td>
+										</tr>
+									</tbody>
+								</c:forEach>
+							</table>
+						</div>
+					</c:otherwise>
+				</c:choose>
+			</div>
+			<!--  결제회원이 있을 때 -->
+			<!-- 결제회원 리스트 -->
 		</div>
 
 

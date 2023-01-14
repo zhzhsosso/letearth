@@ -17,6 +17,7 @@ public class MemOrdVO { // -> 선택하면 해당 주문서 볼 수 있도록?
 	private Timestamp order_date;
 	private int pro_tp;
 	private int pro_gp;
+	private String shipping_no;
 	
 	
 }

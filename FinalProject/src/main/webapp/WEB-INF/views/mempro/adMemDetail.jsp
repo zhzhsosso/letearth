@@ -118,10 +118,11 @@ body {
 	overflow-x: hidden;
 	padding-top: 30px;
 	padding-bottom: 100px;
-	position: relative;
-	top: 120px;
+	position: sticky;
+	top: 40%;
 	left: 250px;
 }
+
 
 /* Style the sidenav links and the dropdown button */
 .sidenav a, .dropdown-btn {
@@ -373,8 +374,8 @@ body {
 					class="fa fa-caret-down"></i>
 			</button>
 			<div class="dropdown-container">
-				<a href="/board/adNoticeList">공지사항</a> <a href="/board/adFaqList">FAQ</a>
-				<a href="/board/adRewriteList">1:1문의</a>
+				<a href="/notice/main">공지사항</a> <a href="/board/adFaqList">FAQ</a> <a
+					href="/board/adRewriteList">1:1문의</a>
 			</div>
 
 			<button class="dropdown-btn">
@@ -382,8 +383,9 @@ body {
 					class="fa fa-caret-down"></i>
 			</button>
 			<div class="dropdown-container">
-				<a href="/mempro/adProList1">프로젝트 승인</a> <a href="#">프로젝트 목록</a> <a href="#">재펀딩</a>
-				<a href="/mempro/adProList2">정산관리</a>
+				<a href="/mempro/adProList1">프로젝트 승인</a> <a
+					href="/mempro/adProList2">프로젝트 목록</a> <a
+					href="/openbanking/useroauth">정산관리</a>
 			</div>
 
 			<button class="dropdown-btn">
@@ -391,8 +393,8 @@ body {
 					class="fa fa-caret-down"></i>
 			</button>
 			<div class="dropdown-container">
-				<a href="/report/adRepList">신고접수관리</a> <a href="/mempro/adMemList">회원목록</a> <a
-					href="/report/adBlackList">블랙리스트</a>
+				<a href="/report/adRepListAll">신고접수관리</a> <a
+					href="/mempro/adMemList">회원목록</a> <a href="/report/adBlackList">블랙리스트</a>
 			</div>
 		</div>
 		<!-- 사이드바 -->
@@ -451,51 +453,51 @@ body {
 										<tbody
 											style="border-top: none; width: 40%; table-layout: fixed;">
 											<tr>
-												<th style="width: 40%;">이름</th>
-												<td style="width: 300px;">${memVO.mem_name }</td>
+												<th style="width: 40%; font-weight: bold;">이름</th>
+												<td style="width: 300px; font-weight: bold;">${memVO.mem_name }</td>
 											</tr>
 											<tr>
 												<th style="width: 150px">연락처</th>
-												<td>${memVO.mem_phone }</td>
+												<td style="width: 300px; font-weight: bold;">${memVO.mem_phone }</td>
 											</tr>
 											<tr>
 												<th>이메일</th>
-												<td>${memVO.mem_email }</td>
+												<td style="width: 300px; font-weight: bold;">${memVO.mem_email }</td>
 											</tr>
 											<tr>
 												<th>가입날짜</th>
-												<td><fmt:formatDate value="${memVO.mem_cr_dt }"
-														pattern="yyyy-MM-dd" /></td>
+												<td style="width: 300px; font-weight: bold;"><fmt:formatDate
+														value="${memVO.mem_cr_dt }" pattern="yy-MM-dd" /></td>
 											</tr>
 										</tbody>
 
 										<tbody
 											style="border-top: none; width: 40%; table-layout: fixed;">
 											<tr>
-												<th style="width: 40%;">펀딩횟수</th>
-												<td style="width: 300px;">${memPro }회</td>
-											</tr>
-											<tr>
-												<th>구매횟수</th>
-												<td>${memOrd }회</td>
+												<th>회원번호</th>
+												<td style="width: 300px; font-weight: bold;">${memVO.mem_no }</td>
 											</tr>
 											<tr>
 												<th>회원상태</th>
 												<c:choose>
 													<c:when test="${memVO.mem_status == 0}">
-														<td>구매회원</td>
+														<td style="width: 300px; font-weight: bold;">구매회원</td>
 													</c:when>
 													<c:when test="${memVO.mem_status == 1}">
-														<td>판매회원</td>
+														<td style="width: 300px; font-weight: bold;">판매회원</td>
 													</c:when>
 													<c:when test="${memVO.mem_status == 3}">
-														<td>블랙리스트</td>
+														<td style="width: 300px; font-weight: bold;">블랙리스트</td>
 													</c:when>
 												</c:choose>
 											</tr>
 											<tr>
-												<th>하나더넣기</th>
-												<td>${memPro }기억회</td>
+												<th style="width: 40%;">펀딩횟수</th>
+												<td style="width: 300px; font-weight: bold;">${memPro }회</td>
+											</tr>
+											<tr>
+												<th>구매횟수</th>
+												<td style="width: 300px; font-weight: bold;">${memOrd }회</td>
 											</tr>
 										</tbody>
 									</table>
@@ -510,145 +512,164 @@ body {
 
 
 
-					<!-- 구매 리스트  -->
-					<br> <br> <br> <br>
-					<div class="container" style="width: 145%">
-						<p style="font-size: 2em;">구매 리스트</p>
-						<br>
-						<!-- 결제내역 X-->
-						<c:choose>
-							<c:when test="${empty ordList }">
-								<div
-									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-									style="border-color: rgb(164 172 133/ 40%); display: block;">
-									<i class="ion-checkmark-round"></i>&nbsp;결제내역이 없습니다
-									<h5 class="title"></h5>
-								</div>
-								<!-- 결제내역 X -->
-							</c:when>
-							<c:otherwise>
-								<!-- 결제내역 O -->
-								<div
-									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-									style="border-color: rgb(164 172 133/ 40%)">
-									<h5 class="title"></h5>
-
-									<table class="table">
-										<thead>
-											<tr>
-												<th></th>
-												<th style="width: 200px">프로젝트이름</th>
-												<th style="width: 150px">리워드번호</th>
-												<th style="width: 200px">리워드이름</th>
-												<th style="width: 150px">결제금액</th>
-												<th style="width: 150px">결제일시</th>
-												<th style="width: 100px">달성률</th>
-												<th style="width: 150px">운송장번호</th>
-											</tr>
-										</thead>
-
-										<c:forEach var="ordList" items="${ordList  }"
-											varStatus="status">
-											<tbody>
-												<tr>
-													<td>${status.count }</td>
-													<td>${ordList.pro_title }</td>
-													<td style="text-align: center">${ordList.reward_no }</td>
-													<td>${ordList.reward_title }</td>
-													<td><fmt:formatNumber value="${ordList.total_price }" />원</td>
-													<td><fmt:formatDate value="${ordList.order_date }"
-															pattern="yyyy-MM-dd" /></td>
-													<td><fmt:formatNumber
-															value="${ordList.pro_tp / ordList.pro_gp }"
-															type="percent" /></td>
-													<td>${ordList.shipping_no }</td>
-												</tr>
-											</tbody>
-										</c:forEach>
-
-									</table>
-								</div>
-							</c:otherwise>
-						</c:choose>
-						<!-- 판매리스트 -->
-						<br> <br> <br> <br>
-						<!-- 						<div class="container" style="width: 145%"> -->
-						<p style="font-size: 2em;">판매 리스트</p>
-						<br>
-						<c:choose>
-							<c:when test="${empty proList }">
-								<div
-									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-									style="border-color: rgb(164 172 133/ 40%); display: block;">
-									<!-- 판매내역 X -->
-									<i class="ion-checkmark-round"></i>&nbsp;판매내역이 없습니다
-									<h5 class="title"></h5>
-
-								</div>
-								<!-- 판매내역 X -->
-							</c:when>
-
-							<c:otherwise>
-								<!-- 판매내역 O -->
-								<div
-									class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-									style="border-color: rgb(164 172 133/ 40%);">
-									<h5 class="title"></h5>
-
-									<table class="table">
-										<thead>
-											<tr>
-												<th></th>
-												<th style="width: 80px">분류</th>
-												<th style="width: 200px">프로젝트번호</th>
-												<th style="width: 200px">프로젝트이름</th>
-												<th style="width: 180px">목표금액</th>
-												<th style="width: 150px">달성금액</th>
-												<th style="width: 100px">달성률</th>
-												<th style="width: 200px">시작일</th>
-												<th style="width: 200px">종료일</th>
-												<th style="width: 100px">기간</th>
-												<!-- 										<th style="width: 100px">상태</th> -->
-											</tr>
-										</thead>
-
-										<c:forEach var="proList" items="${proList  }"
-											varStatus="status">
-											<tbody>
-												<tr>
-													<td>${status.count }</td>
-													<td>${proList.cat_name }</td>
-													<td style="text-align: center">${proList.pro_no }</td>
-													<td>${proList.pro_title }</td>
-													<td><fmt:formatNumber value="${proList.pro_gp }" />원</td>
-													<td><fmt:formatNumber value="${proList.pro_tp }" />원</td>
-													<td><fmt:formatNumber
-															value="${proList.pro_tp / proList.pro_gp }"
-															type="percent" /></td>
-													<td>${proList.pro_st_dt }</td>
-													<td>${proList.pro_ed_dt }</td>
-													<fmt:parseDate value="${proList.pro_st_dt }" var="str_Date"
-														pattern="yyyy-MM-dd" />
-													<fmt:parseNumber value="${str_Date.time / (1000*60*60*24)}"
-														integerOnly="true" var="strDate"></fmt:parseNumber>
-													<fmt:parseDate value="${proList.pro_ed_dt }" var="end_Date"
-														pattern="yyyy-MM-dd" />
-													<fmt:parseNumber value="${end_Date.time / (1000*60*60*24)}"
-														integerOnly="true" var="endDate"></fmt:parseNumber>
-													<td>${endDate - strDate }일</td>
-												</tr>
-											</tbody>
-										</c:forEach>
-
-									</table>
-								</div>
-							</c:otherwise>
-						</c:choose>
-						<!-- 판매내역 O -->
-						<!-- 						</div> -->
-						<!-- 판매 리스트  -->
-					</div>
 				</div>
+			</div>
+			<!-- 구매 리스트  -->
+			<br> <br> <br> <br>
+			<div class="container" style="width: 150%">
+				<p style="font-size: 2em;">구매 리스트</p>
+				<br>
+				<!-- 결제내역 X-->
+				<c:choose>
+					<c:when test="${empty ordList }">
+						<div
+							class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+							style="border-color: rgb(164 172 133/ 40%); display: block;">
+							<i class="ion-checkmark-round"></i>&nbsp;결제내역이 없습니다
+							<h5 class="title"></h5>
+						</div>
+						<!-- 결제내역 X -->
+					</c:when>
+					<c:otherwise>
+						<!-- 결제내역 O -->
+						<div
+							class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+							style="border-color: rgb(164 172 133/ 40%)">
+							<h5 class="title"></h5>
+
+							<table class="table">
+								<thead>
+									<tr>
+										<th
+											style="width: 10px; font-weight: bold; text-align: center;"></th>
+										<th
+											style="width: 400px; font-weight: bold; text-align: center;">프로젝트이름</th>
+										<th
+											style="width: 140px; font-weight: bold; text-align: center;">리워드번호</th>
+										<th
+											style="width: 200px; font-weight: bold; text-align: center;">리워드이름</th>
+										<th
+											style="width: 150px; font-weight: bold; text-align: center;">결제금액</th>
+										<th
+											style="width: 120px; font-weight: bold; text-align: center;">결제일시</th>
+										<th
+											style="width: 100px; font-weight: bold; text-align: center;">달성률</th>
+										<th
+											style="width: 200px; font-weight: bold; text-align: center;">운송장번호</th>
+									</tr>
+								</thead>
+
+								<c:forEach var="ordList" items="${ordList  }" varStatus="status">
+									<tbody>
+										<tr>
+											<td style="font-weight: bold; text-align: center;">${status.count }</td>
+											<td style="font-weight: bold; text-align: center;">${ordList.pro_title }</td>
+											<td style="font-weight: bold; text-align: center;">${ordList.reward_no }</td>
+											<td style="font-weight: bold; text-align: center;">${ordList.reward_title }</td>
+											<td style="font-weight: bold; text-align: center;"><fmt:formatNumber
+													value="${ordList.total_price }" />원</td>
+											<td style="font-weight: bold; text-align: center;"><fmt:formatDate
+													value="${ordList.order_date }" pattern="yy-MM-dd" /></td>
+											<td style="font-weight: bold; text-align: center;"><fmt:formatNumber
+													value="${ordList.pro_tp / ordList.pro_gp }" type="percent" /></td>
+											<td style="font-weight: bold; text-align: center;">${ordList.shipping_no }</td>
+										</tr>
+									</tbody>
+								</c:forEach>
+
+							</table>
+						</div>
+					</c:otherwise>
+				</c:choose>
+				<!-- 판매리스트 -->
+				<br> <br> <br> <br>
+				<!-- 						<div class="container" style="width: 145%"> -->
+				<p style="font-size: 2em;">판매 리스트</p>
+				<br>
+				<c:choose>
+					<c:when test="${empty proList }">
+						<div
+							class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+							style="border-color: rgb(164 172 133/ 40%); display: block;">
+							<!-- 판매내역 X -->
+							<i class="ion-checkmark-round"></i>&nbsp;판매내역이 없습니다
+							<h5 class="title"></h5>
+
+						</div>
+						<!-- 판매내역 X -->
+					</c:when>
+
+					<c:otherwise>
+						<!-- 판매내역 O -->
+						<div
+							class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
+							style="border-color: rgb(164 172 133/ 40%);">
+							<h5 class="title"></h5>
+
+							<table class="table">
+								<thead>
+									<tr>
+										<th
+											style="width: 10px; font-weight: bold; text-align: center;"></th>
+										<th
+											style="width: 80px; font-weight: bold; text-align: center;">분류</th>
+										<th
+											style="width: 240px; font-weight: bold; text-align: center;">프로젝트번호</th>
+										<th
+											style="width: 600px; font-weight: bold; text-align: center;">프로젝트이름</th>
+										<th
+											style="width: 180px; font-weight: bold; text-align: center;">목표금액</th>
+										<th
+											style="width: 150px; font-weight: bold; text-align: center;">달성금액</th>
+										<th
+											style="width: 100px; font-weight: bold; text-align: center;">달성률</th>
+										<th
+											style="width: 180px; font-weight: bold; text-align: center;">시작일</th>
+										<th
+											style="width: 180px; font-weight: bold; text-align: center;">종료일</th>
+										<th
+											style="width: 100px; font-weight: bold; text-align: center;">기간</th>
+										<!-- 										<th style="width: 100px">상태</th> -->
+									</tr>
+								</thead>
+
+								<c:forEach var="proList" items="${proList  }" varStatus="status">
+									<tbody>
+										<tr>
+											<td style="font-weight: bold; text-align: center;">${status.count }</td>
+											<td style="font-weight: bold; text-align: center;">${proList.cat_name }</td>
+											<td style="font-weight: bold; text-align: center;">${proList.pro_no }</td>
+											<td style="font-weight: bold; text-align: center;">${proList.pro_title }</td>
+											<td style="font-weight: bold; text-align: center;"><fmt:formatNumber
+													value="${proList.pro_gp }" />원</td>
+											<td style="font-weight: bold; text-align: center;"><fmt:formatNumber
+													value="${proList.pro_tp }" />원</td>
+											<td style="font-weight: bold; text-align: center;"><fmt:formatNumber
+													value="${proList.pro_tp / proList.pro_gp }" type="percent" /></td>
+											<fmt:parseDate value="${proList.pro_st_dt }" var="str_Date" pattern="yy-MM-dd" />
+											<td style="text-align: center; color: #414934; font-weight: bold;"><fmt:formatDate value="${str_Date}" pattern="yy-MM-dd"/></td>
+											
+											<fmt:parseDate value="${proList.pro_ed_dt }" var="end_Date" pattern="yy-MM-dd" />
+											<td style="text-align: center; color: #414934; font-weight: bold;"><fmt:formatDate value="${end_Date}" pattern="yy-MM-dd"/></td>
+											<fmt:parseDate value="${proList.pro_st_dt }" var="str_Date"
+												pattern="yy-MM-dd" />
+											<fmt:parseNumber value="${str_Date.time / (1000*60*60*24)}"
+												integerOnly="true" var="strDate"></fmt:parseNumber>
+											<fmt:parseDate value="${proList.pro_ed_dt }" var="end_Date"
+												pattern="yy-MM-dd" />
+											<fmt:parseNumber value="${end_Date.time / (1000*60*60*24)}"
+												integerOnly="true" var="endDate"></fmt:parseNumber>
+											<td style="font-weight: bold; text-align: center;">${endDate - strDate }일</td>
+										</tr>
+									</tbody>
+								</c:forEach>
+
+							</table>
+						</div>
+					</c:otherwise>
+				</c:choose>
+				<!-- 판매내역 O -->
+				<!-- 판매 리스트  -->
 			</div>
 		</div>
 
@@ -660,6 +681,7 @@ body {
 				class="main-btn" style="float: center;">목록</button>
 			<!-- 			</form> -->
 
+		</div>
 		</div>
 </section>
 <!--  ====== PROJECT CONTENT PART ENDS ====== -->

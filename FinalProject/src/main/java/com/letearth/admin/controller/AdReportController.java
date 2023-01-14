@@ -46,8 +46,17 @@ public class AdReportController {
 	
 	@RequestMapping(value = "/adBlackModify", method = RequestMethod.GET)
 	//public String adBlackModifyPOST(@RequestParam("rep_no") int rep_no,@RequestParam("rep_cat") int rep_cat, RedirectAttributes rttr) throws Exception{
-	public String adBlackModifyPOST(AdminVO vo, RedirectAttributes rttr) throws Exception{
+	public String adBlackModifyPOST(HttpSession session, AdminVO vo, RedirectAttributes rttr) throws Exception{
 								// rep_cat, pro_no, reped_id
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if(!id.equals("admin")) {
+			return "redirect:/member/main";
+		}
+		
 		Integer result;
 		
 		if(vo.getRep_cat() == 1) { // 타입이 회원일 때
@@ -70,6 +79,14 @@ public class AdReportController {
 	// 리스트 GET
 	@RequestMapping(value = "/adBlackList",method = RequestMethod.GET)
 	public String adBlackListGET(Criteria cri,HttpSession session,Model model) throws Exception{
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
 		
 		session.setAttribute("updateCheck", true); // => 세션 존재하면 true
 		
@@ -103,6 +120,14 @@ public class AdReportController {
 	@RequestMapping(value = "/adRepListAll",method = RequestMethod.GET)
 	public String adRepListAllGET(HttpSession session,Model model,@ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
+		
 		session.setAttribute("updateCheck", true); // => 세션 존재하면 true
 		
 			List<AdminVO> adRepList = adReportService.getListAllReport(scri);
@@ -120,7 +145,7 @@ public class AdReportController {
 			
 		
 		// 페이지 이동(/report/adRepList)	
-		return "/report/adRepList2";
+		return "redirect:/report/adRepList2";
 		
 	}
 	
@@ -129,6 +154,14 @@ public class AdReportController {
 	// 조회 GET
 	@RequestMapping(value = "/adRepList",method = RequestMethod.GET)
 	public String adRepListGET(HttpSession session,Model model, @RequestParam("rep_cat") int rep_cat,@ModelAttribute("scri") SearchCriteria scri) throws Exception{
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
 		
 		session.setAttribute("updateCheck", true); // => 세션 존재하면 true
 			
@@ -156,13 +189,24 @@ public class AdReportController {
 	
 	// 신고상세GET
 	@RequestMapping(value = "/adRepRead", method = RequestMethod.GET)
-	public void adFaqReadGET(Model model, @RequestParam("rep_no") int rep_no, HttpSession session) throws Exception{
+	public String adFaqReadGET(Model model, @RequestParam("rep_no") int rep_no, HttpSession session) throws Exception{
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
+		
 		
 		// 서비스 -> DAO (특정 글번호에 해당하는 정보 가져오기)
 		AdminVO vo = adReportService.getReport(rep_no);
 				
 		// 연결된 뷰페이지로 정보 전달		
 		model.addAttribute("vo", vo);
+		
+		return "/report/adRepRead";
 		
 	}
 
