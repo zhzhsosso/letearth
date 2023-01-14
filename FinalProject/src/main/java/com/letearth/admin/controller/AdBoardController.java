@@ -37,25 +37,88 @@ public class AdBoardController {
 	
 	
 	
+	
+	
+	/**
+	 * 관리자메인 GET
+	 * 
+	 *신고접수 최근 그리고 승인요청
+	 */
+	//@ResponseBody
+	@RequestMapping(value = "/adMain", method = RequestMethod.GET)
+	public String adMainGET(HttpSession session, Model model) throws Exception{
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if(!id.equals("admin")) {
+			return "redirect:/member/main";
+		}
+		
+		//  신고 리스트
+		List<AdminVO> adMainRepList = adBoardService.adMainRepList();
+		model.addAttribute("adMainRepList", adMainRepList);
+		
+		// 승인요청리스트
+		List<ProjectVO> adPro2List = adBoardService.adMainPro2();
+		model.addAttribute("adPro2List" , adPro2List);
+		
+		
+		mylog.debug("관리자메인페이지이동");
+		
+		return "/board/adMain";
+	}
+	
+	
+	
 	/**
 	 * FAQ 글쓰기 GET/POST
 	 */
 	// GET
 	@RequestMapping(value = "/adFaqRegist", method = RequestMethod.GET)
-	public void adFaqRegistGET() throws Exception{
+	public String adFaqRegistGET(HttpSession session) throws Exception{
 		mylog.debug("/board/adFaqRegist(GET) 호출 -> 페이지 이동 완 ");
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
+		
+		return "/board/adFaqRegist";
 	}
 	
 	// GET2
 	@RequestMapping(value = "/adFaqRegist2", method = RequestMethod.GET)
-	public void adFaqRegist2GET() throws Exception{
+	public String adFaqRegist2GET(HttpSession session) throws Exception{
 		mylog.debug("/board/adFaqRegist(GET) 호출 -> 페이지 이동 완 ");
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
+		
+		return "/board/adFaqRegist2";
 	}
 	
 	// POST
 	@RequestMapping(value = "/adFaqRegist", method = RequestMethod.POST)
-	public String adFaqRegistPOST(AdminVO vo, RedirectAttributes rttr) throws Exception{
+	public String adFaqRegistPOST(HttpSession session, AdminVO vo, RedirectAttributes rttr) throws Exception{
 		mylog.debug("/board/adFaqRegist(POST) 호출 ");
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
 		
 		// 전달정보 저장 확인
 		mylog.debug(vo+"");
@@ -80,6 +143,14 @@ public class AdBoardController {
 	// GET
 	@RequestMapping(value = "/adFaqList",method = RequestMethod.GET)
 	public String adFaqListGET(Criteria cri,HttpSession session,Model model) throws Exception{
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
 		
 		session.setAttribute("updateCheck", true); // => 세션 존재하면 true
 		
@@ -107,7 +178,15 @@ public class AdBoardController {
 	 */
 	// GET
 	@RequestMapping(value = "/adFaqRead", method = RequestMethod.GET)
-	public void adFaqReadGET(Model model, @RequestParam("not_no") int not_no, HttpSession session) throws Exception{
+	public String adFaqReadGET(Model model, @RequestParam("not_no") int not_no, HttpSession session) throws Exception{
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
 		
 		// 세션객체 (for 조회수)
 		boolean isUpdateCheck = (boolean) session.getAttribute("updateCheck");
@@ -127,6 +206,8 @@ public class AdBoardController {
 		// 연결된 뷰페이지로 정보 전달		
 		model.addAttribute("vo", vo);
 		
+		return "/board/adFaqRead";
+		
 	}
 	
 	
@@ -137,15 +218,33 @@ public class AdBoardController {
 	 */
 	// GET
 	@RequestMapping(value = "/adFaqModify", method = RequestMethod.GET)
-	public void adFaqModifyGET(Model model, int not_no) throws Exception{
+	public String adFaqModifyGET(HttpSession session, Model model, int not_no) throws Exception{
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
 		
 		// model객체를 사용해서 뷰페이지로 정보 전달
 		model.addAttribute("vo", adBoardService.getFaq(not_no));
+		
+		return "/board/adFaqModify";
 	}
 	
 	// POST
 	@RequestMapping(value = "/adFaqModify", method = RequestMethod.POST)
-	public String adFaqModifyPOST(AdminVO vo, RedirectAttributes rttr) throws Exception{
+	public String adFaqModifyPOST(HttpSession session, AdminVO vo, RedirectAttributes rttr) throws Exception{
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
 		
 		Integer result = adBoardService.updateFaq(vo);
 		
@@ -164,7 +263,15 @@ public class AdBoardController {
 	 */
 	// POST
 	@RequestMapping(value = "/adFaqRemove", method = RequestMethod.POST)
-	public String adFaqRemovePOST(int not_no, RedirectAttributes rttr) throws Exception{
+	public String adFaqRemovePOST(HttpSession session, int not_no, RedirectAttributes rttr) throws Exception{
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
 		
 		// 서비스
 		adBoardService.deleteFaq(not_no);
@@ -187,6 +294,14 @@ public class AdBoardController {
 	// GET
 	@RequestMapping(value = "/adRewriteList",method = RequestMethod.GET)
 	public String adRewriteListGET(Criteria cri,HttpSession session,Model model) throws Exception{
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
 		
 		session.setAttribute("updateCheck", true); // => 세션 존재하면 true
 		
@@ -214,7 +329,15 @@ public class AdBoardController {
 	 */
 	// GET
 	@RequestMapping(value = "/adRewriteRead", method = RequestMethod.GET)
-	public void adRereplyReadGET(Model model, @RequestParam("not_no") int not_no, HttpSession session) throws Exception{
+	public String adRereplyReadGET(Model model, @RequestParam("not_no") int not_no, HttpSession session) throws Exception{
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
 		
 		// 세션객체 (for 조회수)
 		boolean isUpdateCheck = (boolean) session.getAttribute("updateCheck");
@@ -234,6 +357,8 @@ public class AdBoardController {
 		// 연결된 뷰페이지로 정보 전달		
 		model.addAttribute("vo", vo);
 		
+		return "/board/adRewriteRead";
+		
 	}
 	
 	
@@ -242,15 +367,33 @@ public class AdBoardController {
 	 */
 	// GET
 		@RequestMapping(value = "/adRewriteRegist", method = RequestMethod.GET)
-		public void adRewriteRegistGET() throws Exception{
+		public String adRewriteRegistGET(HttpSession session) throws Exception{
 			
 			mylog.debug("/board/adRewriteRegistGET 호출 -> 페이지 이동 완 ");
+			
+			// 관리자 로그인제어
+			String id = (String)session.getAttribute("mem_id");
+			if(id==null) {
+				return "redirect:/member/login";
+			} else if( !id.equals("admin")) {
+				return "redirect:/member/main";
+			}
+			
+			return "/board/adRewriteRegist";
 		}
 		
 		// POST
 		@RequestMapping(value = "/adRewriteRegist", method = RequestMethod.POST)
-		public String adRewriteRegistPOST(AdminVO vo, RedirectAttributes rttr) throws Exception{
+		public String adRewriteRegistPOST(HttpSession session, AdminVO vo, RedirectAttributes rttr) throws Exception{
 			mylog.debug("/board/adRewriteRegistPOST 호출 ");
+			
+			// 관리자 로그인제어
+			String id = (String)session.getAttribute("mem_id");
+			if(id==null) {
+				return "redirect:/member/login";
+			} else if( !id.equals("admin")) {
+				return "redirect:/member/main";
+			}
 			
 			// 전달정보 저장 확인
 			mylog.debug(vo+"");
@@ -273,7 +416,15 @@ public class AdBoardController {
 	 */
 	// POST
 	@RequestMapping(value = "/adRewriteRemove", method = RequestMethod.GET)
-	public String adRewriteRemovePOST(int not_no, RedirectAttributes rttr) throws Exception{
+	public String adRewriteRemovePOST(HttpSession session, int not_no, RedirectAttributes rttr) throws Exception{
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
 		
 		// 서비스
 		adBoardService.deleteRewrite(not_no);
@@ -295,7 +446,15 @@ public class AdBoardController {
 	 */
 	// GET
 	@RequestMapping(value = "/faqMain", method = RequestMethod.GET)
-	public void faqMainGET(Model model) throws Exception{
+	public String faqMainGET(HttpSession session, Model model) throws Exception{
+		
+		// 관리자 로그인제어
+		String id = (String)session.getAttribute("mem_id");
+		if(id==null) {
+			return "redirect:/member/login";
+		} else if( !id.equals("admin")) {
+			return "redirect:/member/main";
+		}
 		
 		// 최신 list 에서 4개만
 		// 구매자1번 / 후원자2번 / 판매자3번
@@ -309,6 +468,8 @@ public class AdBoardController {
 		model.addAttribute("faqMainList3", faqMainList3);
 		
 		mylog.debug("/board/faqMain(GET) 호출 -> 페이지 이동 완 ");
+		
+		return "/board/faqMain";
 		
 	}
 	
@@ -335,28 +496,7 @@ public class AdBoardController {
 	}
 	
 	// http://localhost:8080/board/adMain
-	
-	
-	/**
-	 * 관리자메인 GET
-	 * 
-	 *신고접수 최근 그리고 승인요청
-	 */
-	//@ResponseBody
-	@RequestMapping(value = "/adMain", method = RequestMethod.GET)
-	public void adMainGET(Model model) throws Exception{
-		
-		//  신고 리스트
-		List<AdminVO> adMainRepList = adBoardService.adMainRepList();
-		model.addAttribute("adMainRepList", adMainRepList);
-		
-		// 승인요청리스트
-		List<ProjectVO> adPro2List = adBoardService.adMainPro2();
-		model.addAttribute("adPro2List" , adPro2List);
-		
-		
-		mylog.debug("관리자메인페이지이동");
-	}
+
 
 	
 	

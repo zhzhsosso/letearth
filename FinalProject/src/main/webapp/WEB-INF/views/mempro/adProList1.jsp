@@ -28,11 +28,11 @@
 	font-size: 15px;
 }
 
-#sbtn { /*검색버튼*/
+#searchBtn { /*검색버튼*/
 	position: absolute;
 	top: 0px;
 	background-color: #A4AC85;
-	height: 35px;
+	height: 38px;
 }
 
 #repSelector {
@@ -121,6 +121,152 @@
 	background-color: #B6AD90;
 	color: #E8E4D7;
 }
+
+/*사이드바*/
+/* Fixed sidenav, full height */
+.sidenav {
+	height: 100%;
+	width: 200px;
+	position: fixed;
+	z-index: 1;
+	/*    top: 30%;  */
+	/*    left: 20%;  */
+	background-color: #EDEAE0;
+	overflow-x: hidden;
+	padding-top: 30px;
+	padding-bottom: 100px;
+	position: sticky;
+	top: 64%;
+	left: 250px;
+}
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+	padding: 6px 8px 6px 16px;
+	text-decoration: none;
+	font-size: 17px;
+	color: #414934;
+	display: block;
+	border: none;
+	background: none;
+	width: 100%;
+	text-align: left;
+	cursor: pointer;
+	outline: none;
+}
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+	color: #B6AD90;
+}
+/* Main content */
+.main {
+	margin-left: 200px; /* Same as the width of the sidenav */
+	font-size: 20px; /* Increased text to enable scrolling */
+	padding: 0px 10px;
+	position: relative;
+	top: 30%;
+	left: 20%
+}
+/* Add an active class to the active dropdown button */
+.active1 {
+	background-color: #D7D1B9;
+	color: white;
+}
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+	display: none;
+	background-color: #EDEAE0;
+	padding-left: 8px;
+}
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+	float: right;
+	padding-right: 8px;
+}
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+	.sidenav {
+		padding-top: 15px;
+	}
+	.sidenav a {
+		font-size: 18px;
+	}
+}
+
+/*셀렉트 꾸미깅*/
+/* The container must be positioned relative: */
+.searchselect {
+  position: relative;
+  width: 35%;
+  padding-right: 0px;
+  padding-left: 0px;
+  text-align: center;
+  margin-right: 5px;
+}
+
+.searchselect select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: #A4AC85;
+  height: 38px;
+  vertical-align: middle;
+  text-align: left;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  color: #F2F0E8;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  font-weight: bolder;
+  border-radius : 0.25rem;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: #B1B796;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.reptb a:hover{
+  color : #B6AD90;
+  transition : 0s;
+  font-weight: bolder;
+}
 </style>
 </head>
 <body>
@@ -133,7 +279,39 @@
 		<div style="display: flex;">
 
 			<!-- 사이드바 -->
-			<%@ include file="../include/adSide.jsp"%>
+			<div class="sidenav">
+				<a href="/board/adMain"> <i class="fa fa-solid fa-leaf"></i> <span
+					style="position: relative; left: 2px; bottom: 3px; font-weight: bolder;">관리자메인</span>
+				</a>
+				<button class="dropdown-btn">
+					<i class="fa fa-solid fa-paper-plane"></i> &nbsp;고객센터 <i
+						class="fa fa-caret-down"></i>
+				</button>
+				<div class="dropdown-container">
+					<a href="/notice/main">공지사항</a> <a href="/board/adFaqList">FAQ</a>
+					<a href="/board/adRewriteList">1:1문의</a>
+				</div>
+
+				<button class="dropdown-btn">
+					<i class="fa fa-solid fa-bank"></i> &nbsp;펀딩관리 <i
+						class="fa fa-caret-down"></i>
+				</button>
+				<div class="dropdown-container">
+					<a href="/mempro/adProList1">프로젝트 승인</a> <a
+						href="/mempro/adProList2">프로젝트 목록</a> <a
+						href="/openbanking/useroauth">정산관리</a>
+				</div>
+
+				<button class="dropdown-btn">
+					<i class="fa fa-solid fa-users"></i> &nbsp;회원관리 <i
+						class="fa fa-caret-down"></i>
+				</button>
+				<div class="dropdown-container">
+					<a href="/report/adRepListAll">신고접수관리</a> <a
+						href="/mempro/adMemList">회원목록</a> <a href="/report/adBlackList">블랙리스트</a>
+				</div>
+			</div>
+			<!-- 사이드바 -->
 
 			<div class="container">
 				<br> <br> <br> <br> <br> <br>
@@ -163,16 +341,19 @@
 							<div class="box-tools" align="right">
 								<div class="input-group input-group-sm hidden-xs"
 									style="width: 380px; height: 35px;" id="search">
+									<div class="searchselect">
 									<select name="searchType">
 										<option value="n"
-											<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
+											<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>카테고리</option>
 										<option value="t"
 											<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 										<option value="m"
 											<c:out value="${scri.searchType eq 'm' ? 'selected' : ''}"/>>작성자</option>
 										<option value="tm"
 											<c:out value="${scri.searchType eq 'tm' ? 'selected' : ''}"/>>제목+작성자</option>
-									</select> <input type="text" name="keyword" id="keywordInput"
+									</select> 
+									</div>
+									<input type="text" name="keyword" id="keywordInput"
 										value="${scri.keyword}" class="form-control pull-right"
 										placeholder="검색어를 입력해주세요"
 										style="height: 38px; width: 150px; font-size: 1rem;">
@@ -184,7 +365,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<!-- 검색기능 -->
 						<br> <br>
 
@@ -195,42 +376,58 @@
 								<table class="table table-hover">
 									<tbody>
 										<tr style="background-color: #EDEAE0">
-											<th style="font-size: 15px; width: 10%; table-layout: fixed;">프로젝트
+											<th
+												style="font-size: 15px; width: 10%; text-align: center; color: #414934; font-weight: bold;">프로젝트
 												번호</th>
-											<th style="font-size: 15px; width: 38%; table-layout: fixed;">프로젝트
+											<th
+												style="font-size: 15px; width: 38%; text-align: center; color: #414934; font-weight: bold;">프로젝트
 												이름</th>
-											<th style="font-size: 15px; width: 12%; table-layout: fixed;">아이디</th>
-											<th style="font-size: 15px;">펀딩 시작날짜</th>
-											<th style="font-size: 15px;">목표금액</th>
-											<th style="font-size: 15px;">승인상태</th>
+											<th
+												style="font-size: 15px; width: 12%; text-align: center; color: #414934; font-weight: bold;">아이디</th>
+											<th
+												style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">펀딩
+												시작날짜</th>
+											<th
+												style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">목표금액</th>
+											<th
+												style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">승인상태</th>
 										</tr>
 
 										<c:forEach var="proVO" items="${proList }">
 											<tr>
-												<td style="font-size: 15px; text-align: center;">${proVO.pro_no }</td>
-												<td style="font-size: 15px;"><a
+												<td
+													style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">${proVO.pro_no }</td>
+												<td
+													style="font-size: 15px; color: #414934; font-weight: bold;"><a
 													<%-- 													href="/mempro/adProDetail1?pro_no=${proVO.pro_no }" --%>
 													href="/mempro/adProDetail1?pro_no=${proVO.pro_no }&mem_id=${proVO.mem_id}"
 													style="color: green"> ${proVO.pro_title } </a></td>
-												<td style="font-size: 15px;">${proVO.mem_id }</td>
-												<td style="font-size: 15px;">${proVO.pro_st_dt }</td>
-												<td style="font-size: 15px;"><fmt:formatNumber
+												<td
+													style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">${proVO.mem_id }</td>
+												<fmt:parseDate value="${proVO.pro_st_dt }" var="str_Date" pattern="yy-MM-dd" />
+												<td style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">
+												<fmt:formatDate value="${str_Date}" pattern="yy-MM-dd"/></td>
+												<td
+													style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;"><fmt:formatNumber
 														value="${proVO.pro_gp }" />원</td>
 												<c:choose>
 													<c:when test="${proVO.pro_status == 2}">
-														<td style="text-align: center;">
+														<td
+															style="text-align: center; text-align: center; color: #414934; font-weight: bold;">
 															<button type="button" class="btn btn-primary"
 																style="font-size: 12px; background-color: #89A378; border-color: #89A378;">승인요청</button>
 														</td>
 													</c:when>
 													<c:when test="${proVO.pro_status == 3}">
-														<td style="text-align: center;">
+														<td
+															style="text-align: center; text-align: center; color: #414934; font-weight: bold;">
 															<button type="button" class="btn btn-primary"
 																style="font-size: 12px; background-color: #B6AD90; border-color: #B6AD90;">승인</button>
 														</td>
 													</c:when>
 													<c:when test="${proVO.pro_status == 4}">
-														<td style="text-align: center;">
+														<td
+															style="text-align: center; text-align: center; color: #414934; font-weight: bold;">
 															<button type="button" class="btn btn-primary"
 																style="font-size: 12px; background-color: #BFCC97; border-color: #BFCC97;">반려</button>
 														</td>
@@ -251,28 +448,43 @@
 								<table class="table table-hover">
 									<tbody>
 										<tr style="background-color: #EDEAE0">
-											<th style="font-size: 15px; width: 10%; table-layout: fixed;">프로젝트
+											<th
+												style="font-size: 15px; width: 10%; text-align: center; color: #414934; font-weight: bold;">프로젝트
 												번호</th>
-											<th style="font-size: 15px; width: 38%; table-layout: fixed;">프로젝트
+											<th
+												style="font-size: 15px; width: 38%; text-align: center; color: #414934; font-weight: bold;">프로젝트
 												이름</th>
-											<th style="font-size: 15px; width: 12%; table-layout: fixed;">아이디</th>
-											<th style="font-size: 15px;">펀딩 시작날짜</th>
-											<th style="font-size: 15px;">목표금액</th>
-											<th style="font-size: 15px;">승인상태</th>
+											<th
+												style="font-size: 15px; width: 12%; text-align: center; color: #414934; font-weight: bold;">아이디</th>
+											<th
+												style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">펀딩
+												시작날짜</th>
+											<th
+												style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">목표금액</th>
+											<th
+												style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">승인상태</th>
 										</tr>
 										<c:forEach var="proVO2" items="${proList }">
 											<c:if test="${proVO2.pro_status == 2}">
 												<tr>
-													<td style="font-size: 15px; text-align: center;">${proVO2.pro_no }</td>
-													<td style="font-size: 15px;"><a
+													<td
+														style="font-size: 15px; text-align: center; text-align: center; color: #414934; font-weight: bold;">${proVO2.pro_no }</td>
+													<td
+														style="font-size: 15px; color: #414934; font-weight: bold;"><a
 														<%-- 														href="/mempro/adProDetail1?pro_no=${proVO2.pro_no }" --%>
 														href="/mempro/adProDetail1?pro_no=${proVO2.pro_no }&mem_id=${proVO2.mem_id}"
 														style="color: green"> ${proVO2.pro_title } </a></td>
-													<td style="font-size: 15px;">${proVO2.mem_id }</td>
-													<td style="font-size: 15px;">${proVO2.pro_st_dt }</td>
-													<td style="font-size: 15px;"><fmt:formatNumber
-															value="${proVO2.pro_gp }" />원</td>
-													<td style="text-align: center;">
+													<td
+														style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">${proVO2.mem_id }</td>
+													
+												<fmt:parseDate value="${proVO2.pro_st_dt }" var="str_Date2" pattern="yy-MM-dd" />
+												<td style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">
+												<fmt:formatDate value="${str_Date2}" pattern="yy-MM-dd"/></td>
+													<td
+														style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">
+														<fmt:formatNumber value="${proVO2.pro_gp }" />원</td>
+													<td
+														style="text-align: center; text-align: center; color: #414934; font-weight: bold;">
 														<button type="button" class="btn btn-primary"
 															style="font-size: 12px; background-color: #89A378; border-color: #89A378;">승인요청</button>
 													</td>
@@ -293,28 +505,42 @@
 								<table class="table table-hover">
 									<tbody>
 										<tr style="background-color: #EDEAE0">
-											<th style="font-size: 15px; width: 10%; table-layout: fixed;">프로젝트
+											<th
+												style="font-size: 15px; width: 10%; text-align: center; color: #414934; font-weight: bold;">프로젝트
 												번호</th>
-											<th style="font-size: 15px; width: 38%; table-layout: fixed;">프로젝트
+											<th
+												style="font-size: 15px; width: 38%; text-align: center; color: #414934; font-weight: bold;">프로젝트
 												이름</th>
-											<th style="font-size: 15px; width: 12%; table-layout: fixed;">아이디</th>
-											<th style="font-size: 15px;">펀딩 시작날짜</th>
-											<th style="font-size: 15px;">목표금액</th>
-											<th style="font-size: 15px;">승인상태</th>
+											<th
+												style="font-size: 15px; width: 12%; text-align: center; color: #414934; font-weight: bold;">아이디</th>
+											<th
+												style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">펀딩
+												시작날짜</th>
+											<th
+												style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">목표금액</th>
+											<th
+												style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">승인상태</th>
 										</tr>
 										<c:forEach var="proVO3" items="${proList }">
 											<c:if test="${proVO3.pro_status == 3}">
 												<tr>
-													<td style="font-size: 15px; text-align: center;">${proVO3.pro_no }</td>
-													<td style="font-size: 15px;"><a
+													<td
+														style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">${proVO3.pro_no }</td>
+													<td
+														style="font-size: 15px; color: #414934; font-weight: bold;"><a
 														<%-- 														href="/mempro/adProDetail1?pro_no=${proVO3.pro_no }" --%>
 														href="/mempro/adProDetail1?pro_no=${proVO3.pro_no }&mem_id=${proVO3.mem_id}"
 														style="color: green"> ${proVO3.pro_title } </a></td>
-													<td style="font-size: 15px;">${proVO3.mem_id }</td>
-													<td style="font-size: 15px;">${proVO3.pro_st_dt }</td>
-													<td style="font-size: 15px;"><fmt:formatNumber
+													<td
+														style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">${proVO3.mem_id }</td>
+													<fmt:parseDate value="${proVO3.pro_st_dt }" var="str_Date3" pattern="yy-MM-dd" />
+												<td style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">
+												<fmt:formatDate value="${str_Date3}" pattern="yy-MM-dd"/></td>
+													<td
+														style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;"><fmt:formatNumber
 															value="${proVO3.pro_gp }" />원</td>
-													<td style="text-align: center;">
+													<td
+														style="text-align: center; color: #414934; font-weight: bold;">
 														<button type="button" class="btn btn-primary"
 															style="font-size: 12px; background-color: #B6AD90; border-color: #B6AD90;">승인</button>
 													</td>
@@ -334,28 +560,42 @@
 								<table class="table table-hover">
 									<tbody>
 										<tr style="background-color: #EDEAE0">
-											<th style="font-size: 15px; width: 10%; table-layout: fixed;">프로젝트
+											<th
+												style="font-size: 15px; width: 10%; text-align: center; color: #414934; font-weight: bold;">프로젝트
 												번호</th>
-											<th style="font-size: 15px; width: 38%; table-layout: fixed;">프로젝트
+											<th
+												style="font-size: 15px; width: 38%; text-align: center; color: #414934; font-weight: bold;">프로젝트
 												이름</th>
-											<th style="font-size: 15px; width: 12%; table-layout: fixed;">아이디</th>
-											<th style="font-size: 15px;">펀딩 시작날짜</th>
-											<th style="font-size: 15px;">목표금액</th>
-											<th style="font-size: 15px;">승인상태</th>
+											<th
+												style="font-size: 15px; width: 12%; text-align: center; color: #414934; font-weight: bold;">아이디</th>
+											<th
+												style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">펀딩
+												시작날짜</th>
+											<th
+												style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">목표금액</th>
+											<th
+												style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">승인상태</th>
 										</tr>
 										<c:forEach var="proVO4" items="${proList }">
 											<c:if test="${proVO4.pro_status == 4}">
 												<tr>
-													<td style="font-size: 15px; text-align: center;">${proVO4.pro_no }</td>
-													<td style="font-size: 15px;"><a
+													<td
+														style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">${proVO4.pro_no }</td>
+													<td
+														style="font-size: 15px; color: #414934; font-weight: bold;"><a
 														<%-- 														href="/mempro/adProDetail1?pro_no=${proVO4.pro_no }" --%>
 														href="/mempro/adProDetail1?pro_no=${proVO4.pro_no }&mem_id=${proVO4.mem_id}"
 														style="color: green"> ${proVO4.pro_title } </a></td>
-													<td style="font-size: 15px;">${proVO4.mem_id }</td>
-													<td style="font-size: 15px;">${proVO4.pro_st_dt }</td>
-													<td style="font-size: 15px;"><fmt:formatNumber
+													<td
+														style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">${proVO4.mem_id }</td>
+													<fmt:parseDate value="${proVO4.pro_st_dt }" var="str_Date4" pattern="yy-MM-dd" />
+												<td style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;">
+												<fmt:formatDate value="${str_Date4}" pattern="yy-MM-dd"/></td>
+													<td
+														style="font-size: 15px; text-align: center; color: #414934; font-weight: bold;"><fmt:formatNumber
 															value="${proVO4.pro_gp }" />원</td>
-													<td style="text-align: center;">
+													<td
+														style="text-align: center; color: #414934; font-weight: bold;">
 														<button type="button" class="btn btn-primary"
 															style="font-size: 12px; background-color: #BFCC97; border-color: #BFCC97;">반려</button>
 													</td>
@@ -371,9 +611,9 @@
 
 					</div>
 				</div>
-				<br>
-				<br>
+				
 				<!-- 페이징처리 -->
+				<div style="padding: 30px 30px;"></div>
 				<div class="pagination"
 					style="position: absolute; right: 45%; border: none;">
 					<ul class="pagination" style="font-size: 18px;">
@@ -399,20 +639,35 @@
 				</div>
 				<!-- 페이징처리 -->
 			</div>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
+			
+			</div>
 	</section>
 
-
-
+<div style="padding: 40px 40px;"></div>
 
 	<!-- 푸터 -->
 	<%@ include file="../include/footer.jsp"%>
 </body>
 <!-- jQuery-->
+
+<!-- 드롭다운 -->
+<script>
+	/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+	var dropdown = document.getElementsByClassName("dropdown-btn");
+	var i;
+	for (i = 0; i < dropdown.length; i++) {
+		dropdown[i].addEventListener("click", function() {
+			this.classList.toggle("active1");
+			var dropdownContent = this.nextElementSibling;
+			if (dropdownContent.style.display === "block") {
+				dropdownContent.style.display = "none";
+			} else {
+				dropdownContent.style.display = "block";
+			}
+		});
+	}
+</script>
+<!-- 드롭다운 -->
 
 <!-- div숨기기 나타내기 -->
 <script type="text/javascript" src="jquery-3.6.3.min.js"></script>
@@ -527,8 +782,94 @@
 	});
 </script>
 
+<!-- 셀렉트 꾸미기 -->
+<script type="text/javascript">
+var x, i, j, l, ll, selElmnt, a, b, c;
+/* Look for any elements with the class "custom-select": */
+x = document.getElementsByClassName("searchselect");
+l = x.length;
+for (i = 0; i < l; i++) {
+  selElmnt = x[i].getElementsByTagName("select")[0];
+  ll = selElmnt.length;
+  /* For each element, create a new DIV that will act as the selected item: */
+  a = document.createElement("DIV");
+  a.setAttribute("class", "select-selected");
+  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+  x[i].appendChild(a);
+  /* For each element, create a new DIV that will contain the option list: */
+  b = document.createElement("DIV");
+  b.setAttribute("class", "select-items select-hide");
+  for (j = 1; j < ll; j++) {
+    /* For each option in the original select element,
+    create a new DIV that will act as an option item: */
+    c = document.createElement("DIV");
+    c.innerHTML = selElmnt.options[j].innerHTML;
+    c.addEventListener("click", function(e) {
+        /* When an item is clicked, update the original select box,
+        and the selected item: */
+        var y, i, k, s, h, sl, yl;
+        s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+        sl = s.length;
+        h = this.parentNode.previousSibling;
+        for (i = 0; i < sl; i++) {
+          if (s.options[i].innerHTML == this.innerHTML) {
+            s.selectedIndex = i;
+            h.innerHTML = this.innerHTML;
+            y = this.parentNode.getElementsByClassName("same-as-selected");
+            yl = y.length;
+            for (k = 0; k < yl; k++) {
+              y[k].removeAttribute("class");
+            }
+            this.setAttribute("class", "same-as-selected");
+            break;
+          }
+        }
+        h.click();
+    });
+    b.appendChild(c);
+  }
+  x[i].appendChild(b);
+  a.addEventListener("click", function(e) {
+    /* When the select box is clicked, close any other select boxes,
+    and open/close the current select box: */
+    e.stopPropagation();
+    closeAllSelect(this);
+    this.nextSibling.classList.toggle("select-hide");
+    this.classList.toggle("select-arrow-active");
+  });
+}
+
+function closeAllSelect(elmnt) {
+  /* A function that will close all select boxes in the document,
+  except the current select box: */
+  var x, y, i, xl, yl, arrNo = [];
+  x = document.getElementsByClassName("select-items");
+  y = document.getElementsByClassName("select-selected");
+  xl = x.length;
+  yl = y.length;
+  for (i = 0; i < yl; i++) {
+    if (elmnt == y[i]) {
+      arrNo.push(i)
+    } else {
+      y[i].classList.remove("select-arrow-active");
+    }
+  }
+  for (i = 0; i < xl; i++) {
+    if (arrNo.indexOf(i)) {
+      x[i].classList.add("select-hide");
+    }
+  }
+}
+
+/* If the user clicks anywhere outside the select box,
+then close all select boxes: */
+document.addEventListener("click", closeAllSelect);
+</script>   
+
+
 <!-- 검색기능 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$('#searchBtn').click(

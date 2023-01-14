@@ -2,8 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+	rel="stylesheet" type="text/css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 <!-- 헤더 -->
@@ -111,8 +114,8 @@ body {
 	overflow-x: hidden;
 	padding-top: 30px;
 	padding-bottom: 100px;
-	position: relative;
-	top: 120px;
+	position: sticky;
+	top: 40%;
 	left: 250px;
 }
 /* Style the sidenav links and the dropdown button */
@@ -225,6 +228,25 @@ body {
 	background-color: #89A378;
 	border-color: #89A378;
 }
+
+/*스크롤바*/
+#contentArea::-webkit-scrollbar {
+	width: 10px;
+	overflow-y: scroll;
+}
+
+#contentArea::-webkit-scrollbar-thumb {
+	background-color: #B6AD90;
+	border-radius: 10px;
+	background-clip: padding-box;
+	border: 2px solid transparent;
+}
+
+#contentArea::-webkit-scrollbar-track {
+	background-color: none;
+	border-radius: 10px;
+	box-shadow: inset 0px 0px 5px white;
+}
 </style>
 
 
@@ -268,8 +290,8 @@ body {
 					class="fa fa-caret-down"></i>
 			</button>
 			<div class="dropdown-container">
-				<a href="/board/adNoticeList">공지사항</a> <a href="/board/adFaqList">FAQ</a>
-				<a href="/board/adRewriteList">1:1문의</a>
+				<a href="/notice/main">공지사항</a> <a href="/board/adFaqList">FAQ</a> <a
+					href="/board/adRewriteList">1:1문의</a>
 			</div>
 
 			<button class="dropdown-btn">
@@ -277,8 +299,9 @@ body {
 					class="fa fa-caret-down"></i>
 			</button>
 			<div class="dropdown-container">
-				<a href="/mempro/adProList1">프로젝트 승인</a> <a href="/mempro/adProList2"">프로젝트 목록</a> 
-				<a href="">정산관리</a>
+				<a href="/mempro/adProList1">프로젝트 승인</a> <a
+					href="/mempro/adProList2">프로젝트 목록</a> <a
+					href="/openbanking/useroauth">정산관리</a>
 			</div>
 
 			<button class="dropdown-btn">
@@ -286,8 +309,8 @@ body {
 					class="fa fa-caret-down"></i>
 			</button>
 			<div class="dropdown-container">
-				<a href="/report/adRepList">신고접수관리</a> <a href="/mempro/adMemList">회원목록</a> <a
-					href="/report/adBlackList">블랙리스트</a>
+				<a href="/report/adRepListAll">신고접수관리</a> <a
+					href="/mempro/adMemList">회원목록</a> <a href="/report/adBlackList">블랙리스트</a>
 			</div>
 		</div>
 		<!-- 사이드바 -->
@@ -301,7 +324,7 @@ body {
 		<div class="container">
 
 			<!-- 			<div class="row justify-content-center" style="width: 1200"> -->
-			<div class="container" style="width: 1400">
+			<div class="container" style="width: 2000">
 				<!-- 본문시작 -->
 				<div class="col-lg-8">
 					<!-- 					<form action="/mempro/adProList1" method="get"> -->
@@ -314,7 +337,7 @@ body {
 
 							<!-- div class="flex-container" -->
 							<!-- 회원정보 (프로필) -->
-							<div class="flex-container" style="width: 1000">
+							<div class="flex-container" style="width: 1200">
 								<div class="project-details-item" style="width: 1000">
 									<br> <br> <br>
 									<div>
@@ -327,7 +350,7 @@ body {
 
 										<div
 											class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-											style="border-color: rgb(164 172 133/ 40%); width:480px; height:700px; ">
+											style="border-color: rgb(164 172 133/ 40%); width: 540px; height: 700px;">
 											<div class="banner"></div>
 											<c:choose>
 												<c:when test="${not empty proVO.memberVO.mem_profile }">
@@ -347,26 +370,30 @@ body {
 											<table class="table table-condensed">
 												<tbody>
 													<tr>
-														<th style="width: 150px">연락처</th>
-														<td>${proVO.memberVO.mem_phone }</td>
+														<th style="font-weight: bold;">연락처</th>
+														<td
+															style="text-align: center; color: #414934; font-weight: bold;">${proVO.memberVO.mem_phone }</td>
 													</tr>
 													<tr>
-														<th>이메일</th>
-														<td>${proVO.memberVO.mem_email }</td>
+														<th style="font-weight: bold;">이메일</th>
+														<td
+															style="text-align: center; color: #414934; font-weight: bold;">${proVO.memberVO.mem_email }</td>
 													</tr>
 													<tr>
-														<th>가입날짜</th>
-														<td><fmt:formatDate
-																value="${proVO.memberVO.mem_cr_dt }"
-																pattern="yyyy-MM-dd" /></td>
+														<th style="font-weight: bold;">가입날짜</th>
+														<td
+															style="text-align: center; color: #414934; font-weight: bold;"><fmt:formatDate
+																value="${proVO.memberVO.mem_cr_dt }" pattern="yy-MM-dd" /></td>
 													</tr>
 													<tr>
-														<th>펀딩횟수</th>
-														<td>${memPro }회</td>
+														<th style="font-weight: bold;">펀딩횟수</th>
+														<td
+															style="text-align: center; color: #414934; font-weight: bold;">${memPro }회</td>
 													</tr>
 													<tr>
-														<th>구매횟수</th>
-														<td>${memOrd }회</td>
+														<th style="font-weight: bold;">구매횟수</th>
+														<td
+															style="text-align: center; color: #414934; font-weight: bold;">${memOrd }회</td>
 													</tr>
 
 												</tbody>
@@ -397,11 +424,11 @@ body {
 										<h5 class="title"></h5>
 										<div
 											class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center position-relative overflow-hidden"
-											style="border-color: rgb(164 172 133/ 40%); width:480px; height:700px;">
+											style="border-color: rgb(164 172 133/ 40%); width: 540px; height: 700px;">
 											<table class="table table-condensed">
 												<div class="banner">
 													<img src="../resources/upload/${pro_thum}" alt=""
-												class="img-rectangle"> <br> <br>
+														class="img-rectangle"> <br> <br>
 													<h4 class="mb-4">
 														<br>${proVO.pro_title }</h4>
 													<tbody>
@@ -410,30 +437,40 @@ body {
 														<%-- 													<td>${proVO.pro_title }</td> --%>
 														<!-- 												</tr> -->
 														<tr>
-															<th>시작일</th>
-															<td>${proVO.pro_st_dt }</td>
-														</tr>
-														<tr>
-															<th>종료일</th>
-															<td>${proVO.pro_ed_dt }</td>
-														</tr>
-														<tr>
-															<th>기간</th>
+															<th style="font-weight: bold;">시작일</th>
 															<fmt:parseDate value="${proVO.pro_st_dt }" var="str_Date"
-																pattern="yyyy-MM-dd" />
+																pattern="yy-MM-dd" />
+															<td
+																style="text-align: center; color: #414934; font-weight: bold;"><fmt:formatDate value="${str_Date}" pattern="yy-MM-dd"/></td>
+														</tr>
+														<tr>
+															<th style="font-weight: bold;">종료일</th>
+															<fmt:parseDate value="${proVO.pro_ed_dt }" var="end_Date"
+																pattern="yy-MM-dd" />
+															<td
+																style="text-align: center; color: #414934; font-weight: bold;"><fmt:formatDate value="${end_Date}" pattern="yy-MM-dd"/></td>
+														</tr>
+														</tr>
+														<tr>
+															<th style="font-weight: bold;">기간</th>
+															<fmt:parseDate value="${proVO.pro_st_dt }" var="str_Date"
+																pattern="yy-MM-dd" />
 															<fmt:parseNumber
-																value="${str_Date.time / (1000*60*60*24)}"
+																value="${str_Date.time / (1000*	60*60*24)}"
 																integerOnly="true" var="strDate"></fmt:parseNumber>
 															<fmt:parseDate value="${proVO.pro_ed_dt }" var="end_Date"
-																pattern="yyyy-MM-dd" />
+																pattern="yy-MM-dd" />
 															<fmt:parseNumber
 																value="${end_Date.time / (1000*60*60*24)}"
 																integerOnly="true" var="endDate"></fmt:parseNumber>
-															<td>${endDate - strDate }일</td>
+															<td
+																style="text-align: center; color: #414934; font-weight: bold;">${endDate - strDate }일</td>
 														</tr>
 														<tr>
-															<th>목표금액</th>
-															<td><fmt:formatNumber value="${proVO.pro_gp }" />원</td>
+															<th style="font-weight: bold;">목표금액</th>
+															<td
+																style="text-align: center; color: #414934; font-weight: bold;"><fmt:formatNumber
+																	value="${proVO.pro_gp }" />원</td>
 														</tr>
 														<!-- 														<tr> -->
 														<!-- 															<th>상태</th> -->
@@ -458,7 +495,7 @@ body {
 							<div>
 								<button type="button" class="main-btn"
 									onclick="proPreviewBtn(${proVO.pro_no});"
-									style="font-size: 30px; width: 400px" align="left">프로젝트
+									style="font-size: 30px; width: 1190px" align="left">프로젝트
 									미리보기</button>
 							</div>
 
@@ -467,9 +504,7 @@ body {
 						<!-- 프로젝트 미리보기 -->
 						<div id="result" class="container"
 							style="width: 2000px; overflow-y: scroll; height: 800px;">
-
 						</div>
-
 
 						<br> <br> <br>
 
@@ -491,13 +526,13 @@ body {
 
 		<c:choose>
 			<c:when test="${proVO.pro_status == 2}">
+				<button type="submit"
+					onclick="location.href='javascript:window.history.back();'"
+					class="main-btn" style="float: center; background-color: #A4AC85">뒤로</button>
 				<button type="button" onclick="updatePro3(${proVO.pro_no});"
 					class="main-btn" style="float: center; background-color: #A4AC85">승인</button>
 				<button type="button" onclick="updatePro4(${proVO.pro_no});"
 					class="main-btn" style="float: center; background-color: #A4AC85;">반려</button>
-				<button type="submit"
-					onclick="location.href='javascript:window.history.back();'"
-					class="main-btn" style="float: center; background-color: #A4AC85">뒤로</button>
 			</c:when>
 			<c:otherwise>
 				<button type="submit"
