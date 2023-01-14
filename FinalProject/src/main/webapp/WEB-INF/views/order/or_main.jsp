@@ -21,13 +21,14 @@
 
 
 <style>
+
 	.ortitle {
 		display: flex;
 		margin: 20px 0px;
 	}
 	
 	.row {
-		margin: 20px 0px 20px 0px;
+		margin-bottom: 20px;
 	}
 	
 	.proimg {
@@ -201,77 +202,6 @@ function requestPay() {
     });
   }
   
-	// 유효성 체크
-	function send(){
-		let reward_no = $('#re_no').val();
-		let phone = $('#phone').val();
-		let receiver_name = $('#receiver_name').val();
-		let receiver_phone = $('#receiver_phone').val();
-		let address_no = $('#sample6_postcode').val();
-		let address_detail = $('#sample6_detailAddress').val();
-		let hidcheck = $('#hidcheak').val();
-		let agree1 = $('#agree1');
-		let agree2 = $('#agree2');
-		
-		
-		if(reward_no != 0 ){
-			if(phone.length == 0){
-				alert('연락처를 입력해주세요');
-				$('#phone').focus();
-				
-			 	return;
-			}
-			
-			if(receiver_name.length == 0){
-				alert('받는 분 성함을 입력해주세요');
-				$('#receiver_name').focus();
-				
-			 	return;
-			}
-			
-			if(address_no.length == 0){
-				alert('주소를 입력해주세요');
-				$('#sample6_postcode').focus();
-				
-			 	return;
-			}
-			
-			if(address_detail.length == 0){
-				alert('상세주소를 입력해주세요');
-				$('#sample6_detailAddress').focus();
-				
-			 	return;
-			}
-			
-			if(receiver_phone.length == 0){
-				alert('받는 분 연락처를 입력해주세요');
-				$('#receiver_phone').focus();
-				
-			 	return;
-			}
-			
-			if(hidcheck == 0){
-				alert('연락처 본인 인증을 완료해주세요');
-				$('#phone').focus();
-				
-			 	return;
-			}
-			
-		}
-			// 약관 동의 체크
-			if(!agree1[0].checked) {
-				alert("개인정보이용에 동의해주세요");
-				return;
-			}
-			
-			if(!agree2[0].checked) {
-				alert("후원 유의사항 확인에 동의해주세요");
-				return;
-			}
-		
-		document.fr.submit();
-	}
-	
 	function getCookie(name) {
 		var value = document.cookie.match('(^|;)?'+name+'=([^;]*)(;|$)');
 		return value? unescape(value[2]) : null;
@@ -360,10 +290,10 @@ function requestPay() {
 							alert('인증번호를 입력해주세요.')
 						} else if(getCookie("code") == checkNum) {
 							alert('인증되었습니다.');
-							$('#phoneCheck').hide();
-							$('#checkNum').hide();
-							$("#sendPhone").hide();
-							$("#timer").hide();
+							$('#phoneCheck').css('visibility','hidden');
+							$('#checkNum').css('visibility','hidden');
+							$("#sendPhone").css('visibility','hidden');
+							$("#timer").css('visibility','hidden');
 							$("#phone").attr('readonly',true);
 							$("#phone").css('border','none');
 							$("#hidcheck").attr('value','1');
@@ -477,7 +407,7 @@ function requestPay() {
     
     <!--====== PAGE TITLE PART START ======-->
    
-    <section class="page-title-area bg_cover" style="background-image: url(assets/images/page-title-bg.jpg);">
+    <section class="page-title-area bg_cover">
 
     </section>
     <br>
@@ -490,7 +420,7 @@ function requestPay() {
                 
 	    <div class="ortitle">
 	        <div class="proimg">
-	            <img src="${pvo.pro_thum }" width="150" height="150" alt="">
+	            <img src="../resources/upload/${pvo.pro_thum }" width="150" height="150" alt="">
 	        </div>
 	        <div class="explain">
 	            <div class="explain-list">
@@ -591,7 +521,7 @@ function requestPay() {
                           </div>
                           <!--  공간 맞추기용 -->
                           <div>
-                          	<input type="button" id="gift" value="변경" style="visibility: hidden;">
+                          	<input type="button" id="gift" class="main-btn" value="변경" style="visibility: hidden;">
                           </div>
                            <!--  공간 맞추기용 -->
                          </div>
@@ -641,7 +571,7 @@ function requestPay() {
                           </div>
                         
                         <div class="info2">
-                        	<div style="width:20%; padding-right: 10px">
+                        	<div style="width:19%; padding-right: 10px">
 	                          	<h5>이메일</h5>
 	                          </div>
 	                          <div>
@@ -738,7 +668,7 @@ function requestPay() {
                 
                     <div class="about-introduction-content" style="margin-bottom: 30px">
                     	<div class="info" style="margin-top: 55px; font-size: 20px">
-                    		<div style="width:30%; margin-right: 30px">
+                    		<div style="width:35%; margin-right: 30px">
                     			<p style="color:red; font-size: 20px;"><b>최종 후원 금액</b></p>
                     		</div>
                     		<div>

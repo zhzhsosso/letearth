@@ -26,7 +26,7 @@
 	
 	<!-- 후원 달성률 순으로 정렬한 프로젝트 정보 가져오기 : main/all -->
 	<select id="getPopularProject" resultType="ProDetailVO">
-		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt,  
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt, tags,  
 		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
 		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
 		from project
@@ -91,7 +91,7 @@
 		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
 		from project
 		<![CDATA[
-		where DATE_FORMAT(pro_st_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 1 and pro_status != '7'
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 1 and pro_status != '7'
 		]]>
 		order by pro_st_dt desc
 	</select>
@@ -103,7 +103,7 @@
 		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
 		from project
 		<![CDATA[
-		where DATE_FORMAT(pro_st_dt, "%Y%m%d") < DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 2 and pro_status != '7'
+		where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 2 and pro_status != '7'
 		]]>
 		order by pro_st_dt desc
 	</select>

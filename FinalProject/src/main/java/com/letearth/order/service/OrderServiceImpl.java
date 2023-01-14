@@ -59,7 +59,7 @@ public class OrderServiceImpl implements OrderService{
 			System.out.println(phone);
 		params.put("from", "01095549537");	
 		params.put("type", "SMS");
-		params.put("text", "<LetEarth> 인증번호는 [ " + authNum + " ]입니다.");
+		params.put("text", "<LetEarth> 인증번호는 [" + authNum + "]입니다.");
 			System.out.println(authNum);
 		params.put("app_version", "test app 1.2");		
 		
@@ -140,6 +140,14 @@ public class OrderServiceImpl implements OrderService{
 		mylog.debug("serviceImpl : orderInfo(order_trade_num) 호출");
 		
 		return dao.orderInfo(order_trade_num);
+	}
+	
+	// 프로젝트 총 금액 업데이트
+	@Override
+	public void updateTp(OrderVO vo) throws Exception {
+		mylog.debug("serviceImpl : updateTp(vo) 호출");
+		
+		dao.updateTp(vo);
 	}
 	
 	//후원만

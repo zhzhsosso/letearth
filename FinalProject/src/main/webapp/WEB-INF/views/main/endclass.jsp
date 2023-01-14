@@ -65,15 +65,14 @@
             
             <c:forEach var="endc" items="${endclassList }">
 
-                <div class="col-lg-4 col-md-6 col-sm-9" style="width: 305px;">
+                <div class="col-lg-4 col-md-6 col-sm-9" style="width: 255px;">
                     <div class="explore-projects-item mt-30">
                         <div class="explore-projects-thumb">
                             <img src="../resources/upload/${endc.pro_thum }" alt="LetEarth" style="width: 370px; height: 370px;">
                             <a href="/prodetail/info?pro_no=${endc.pro_no}">
-                            	<i class="fa fa-heart"></i>
                             </a>
                         </div>
-                        <div class="explore-projects-content" style="height: 255px;">
+                        <div class="explore-projects-content" style="height: 305px;">
                         	<div class="item d-flex align-items-center">
                             	<p><i class="fa fa-clock-o"></i></p>
                                 <span>마감되었어요</span>

@@ -34,24 +34,6 @@ public class OrderController {
 	@Inject
 	private OrderService service;
 	
-//	rttr.addAttribute("msg", "ITWILL"); 
-	// 기존의 Model  객체와 동일
-	// - URI에 표시됨, F5(새로고침)시 데이터 유지
-	// 기존의 이동방식 사용가능
-	
-//	rttr.addFlashAttribute("msg", "ITWILL"); // 기존의 Model  객체와 동일
-	// 전달 정보를 1회성으로 사용가능
-	// - URI에 표시안됨, F5(새로고침)시 데이터 사라짐
-	//   redirect 이동시에만 사용가능
-	
-//	model.addAttribute(/*"msg", "ITWILL"*/);
-	// => 주소줄에 파라미터 형태로 전달 /doF?msg=ITWILL
-	
-//	return "/doF"; // 리다이렉트 X, 뷰페이지 호출 O
-//	return "forward:/doF"; // 포워딩 O
-//	return "redirect:/doF?msg=hello"; // 리다이렉트 O
-//	return "redirect:/doF"; // 리다이렉트 O
-	
 	
 	/**
 	 * 구매 메인 get
@@ -99,7 +81,8 @@ public class OrderController {
 		mylog.debug(mem_id+"");
 		
 		service.insertOrder(vo);
-		// mylog.debug(service.insertOrder(vo) + "@@@@@@@@@@@@@@@@");
+		service.updateTp(vo);
+		
 		if(reward_no > 0) {
 			service.rewardStock(reward_no);
 		}
@@ -196,19 +179,9 @@ public class OrderController {
 		OrderVO ovo2 = service.orderInfo2(order_trade_num);
 		OrderVO ovo = service.orderInfo(order_trade_num);
 
-		System.out.println(mvo);
-//		System.out.println(ovo);
-//		System.out.println(ovo2);
-		
-		if(ovo != null) {
-			if(mem_id == null || !mem_id.equals(ovo.getMem_id())) {
-				return "redirect:/main/all";
+		if(ovo == null && ovo2 == null) {
+				return "redirect:/member/login";
 			}
-		} else if(ovo2 != null) {
-			if(mem_id == null || !mem_id.equals(ovo2.getMem_id())) {
-				return "redirect:/main/all";
-			}
-		}
 		
 		model.addAttribute("ovo", ovo);
 		model.addAttribute("ovo2", ovo2);
@@ -225,10 +198,14 @@ public class OrderController {
 	@PostMapping(value="/orderCancel")
 	@ResponseBody
 	public Integer orderCancel(String order_trade_num) throws Exception {
+		int order_status = 0;
 		
 		int cancelResult = service.orderCancel(order_trade_num);
+		if(cancelResult == 1) {
+			order_status = 2;
+		}
 		
-		return cancelResult;
+		return order_status;
 	}
 	
 	/**

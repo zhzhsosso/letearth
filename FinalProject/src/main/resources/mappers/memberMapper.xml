@@ -7,7 +7,7 @@
 	
 	<!-- 일반 회원가입 -->
 	<insert id="insertMember">
-		insert into member_tbl_tbl(mem_id, mem_pw, mem_name, mem_phone, mem_email, mem_cr_dt, mem_link, rep_cnt, mem_status) 
+		insert into member_tbl(mem_id, mem_pw, mem_name, mem_phone, mem_email, mem_cr_dt, mem_link, rep_cnt, mem_status) 
 		value(#{mem_id},#{mem_pw},#{mem_name},#{mem_phone},#{mem_email},now(),"N", 0, 0)
 	</insert>
 	

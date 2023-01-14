@@ -198,7 +198,7 @@
 	                		  	<summary style="color: blue; text-align: center;">추가 후원하기</summary>
 	                		  	<hr>
 	                			<p style="font-size: 13px">추가 후원금(선택)</p>
-	                			<input type="text" id="plus0" value="0" oninput="this.value = this.value.replace(/\d(?=(?:\d{3})+$)/g, '$&,')">
+	                			<input type="text" id="plus0" value="0" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
 	                			<p style="font-size: 13px">* 더 후원해주시면 프로젝트 성사가 앞당겨집니다.</p>
 	                			<div style="text-align: center">
 	                			<button id="giftMo-btn" style="margin-left: 0px" onclick="one(0)">+ 5천원</button>
@@ -230,7 +230,7 @@
                 		  	<summary style="color: blue; text-align: center;">추가 후원하기</summary>
                 		  	<hr>
                 			<p style="font-size: 13px">추가 후원금(선택)</p>
-                			<input type="text" id="plus${re.reward_no }" value="0">
+                			<input type="text" id="plus${re.reward_no }" value="0" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
                 			<p style="font-size: 13px">* 더 후원해주시면 프로젝트 성사가 앞당겨집니다.</p>
                 			<div style="text-align: center">
                 			<button id="giftMo-btn" style="margin-left: 0px" onclick="one(${re.reward_no})">+ 5천원</button>
