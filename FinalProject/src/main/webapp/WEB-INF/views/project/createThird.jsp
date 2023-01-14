@@ -4,15 +4,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script src="../resources/assets/js/vendor/jquery-3.5.1.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#btn').click(function() {
@@ -23,18 +19,25 @@
 <script>
 	function ckModal() {
 		if (document.getElementById("result").value == "") {
-			Swal.fire({
+		 	Swal.fire({
 				icon : 'error',
-				title : '심사 기준을 확인해주세요.'
+				title : '심사 기준을 확인해주세요..',
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
 			})
-			document.fr.reward_stock.focus();
+		document.fr.reward_stock.focus();
 			return false;
 		}
 
 		location.href = "/project/verification";
 	}
 </script>
-
+<style>
+.HL {
+	background-color: #B6AD90;
+	color: white;
+}
+</style>
 <section class="about-area pt-120 pb-120">
 	<section class="project-details-content-area pb-110">
 		<div class="row justify-content-center">
@@ -49,7 +52,9 @@
 						보기</button>
 					<br> <br>
 					
-					<h4>승인 가능 프로젝트</h4>
+					<hr>
+					
+					<h4><span class="HL">승인 가능 프로젝트</span></h4>
 					<br>
 					<ul style="list-style-type: square; text-align: left; display: inline-block;">
 						<li>기존에 없던 새로운 시도</li>
@@ -58,7 +63,7 @@
 					</ul>
 					<br> <br> <br>
 
-					<h4>반려 대상 프로젝트</h4>
+					<h4><span class="HL">반려 대상 프로젝트</span></h4>
 					<br>
 					<ul style="list-style-type: square; text-align: left; display: inline-block;">
 						<li>기존 상품· 콘텐츠의 판매 및 홍보</li>

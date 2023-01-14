@@ -153,7 +153,8 @@ function checkPlan() {
 		Swal.fire({
 			icon : 'error',
 			title : '목표금액을 입력해주세요!',
-			confirmButtonText : '확인'
+			confirmButtonText : '확인',
+			confirmButtonColor: '#A4AC85'
 		})
 		document.fr.pro_gp.focus();
 		return false;
@@ -162,7 +163,8 @@ function checkPlan() {
 		Swal.fire({
 			icon : 'error',
 			title : '시작날짜를 입력해주세요!',
-			confirmButtonText : '확인'
+			confirmButtonText : '확인',
+			confirmButtonColor: '#A4AC85'
 		})
 		document.fr.pro_gp.focus();
 		return false;
@@ -171,7 +173,8 @@ function checkPlan() {
 		Swal.fire({
 			icon : 'error',
 			title : '종료날짜를 입력해주세요!',
-			confirmButtonText : '확인'
+			confirmButtonText : '확인',
+			confirmButtonColor: '#A4AC85'
 		})
 		document.fr.pro_ed_dt.focus();
 		return false;
@@ -180,7 +183,8 @@ function checkPlan() {
 		Swal.fire({
 			icon : 'error',
 			title : '배송 예정일을 입력해주세요!',
-			confirmButtonText : '확인'
+			confirmButtonText : '확인',
+			confirmButtonColor: '#A4AC85'
 		})
 		document.fr.del_date.focus();
 		return false;

@@ -10,21 +10,34 @@
 }
 </style>
 <!-- sweetalert -->
-<script src="../resources/assets/js/vendor/jquery-3.5.1.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	function Checkb() {
 
 		if (document.fr.check1.checked == false) {
-			swal('유의사항을 체크해주세요.', "", 'info');
+			Swal.fire({
+	 		    icon: 'info',
+	 		    title: '유의사항을 체크해주세요.',
+	 		    confirmButtonColor: '#A4AC85'
+			})
 			return;
 		}
 		if (document.fr.check2.checked == false) {
-			swal('유의사항을 체크해주세요.', "", 'info');
+			Swal.fire({
+	 		    icon: 'info',
+	 		    title: '유의사항을 체크해주세요.',
+	 		    confirmButtonColor: '#A4AC85'
+			})
 			return;
 		}
 		if (document.fr.check3.checked == false) {
-			swal('유의사항을 체크해주세요.', "", 'info');
+			Swal.fire({
+	 		    icon: 'info',
+	 		    title: '유의사항을 체크해주세요.',
+	 		    confirmButtonColor: '#A4AC85'
+			})
 			return;
 		}
 

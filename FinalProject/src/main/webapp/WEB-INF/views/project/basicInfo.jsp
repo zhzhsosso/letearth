@@ -70,7 +70,7 @@ var input1 = document.querySelector('input[name=pro_tags]'),
 // 태그 입력 제어
 tagify1 = new Tagify(input1, {
 	whitelist : [ "펀딩", "렛어스", "비건", "클래스", "지구하자", "친환경", "클래스", "강의", "DIY" ],
-	blacklist : [ "시발", "개좋음" ]
+	blacklist : [ "개좋음" ]
 });
 	
 </script>
@@ -125,7 +125,8 @@ function checkInfo() {
 			Swal.fire({
 				title : '카테고리를 선택하세요!',
 				icon : 'error',
-				confirmButtonText : '확인'
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
 			})
 			return false;
 		}
@@ -133,7 +134,8 @@ function checkInfo() {
 			Swal.fire({
 				title : '프로젝트 제목을 입력하세요!',
 				icon : 'error',
-				confirmButtonText : '확인'
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
 			})
 			return false;
 		}
@@ -141,7 +143,8 @@ function checkInfo() {
 			Swal.fire({
 				title : '프로젝트 제목을 변경해주세요!',
 				icon : 'error',
-				confirmButtonText : '확인'
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
 			})
 			return false;
 		}
@@ -149,7 +152,8 @@ function checkInfo() {
 			Swal.fire({
 				title : '프로젝트 내용을 입력하세요!',
 				icon : 'error',
-				confirmButtonText : '확인'
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
 			})
 			return false;
 		}
@@ -157,7 +161,8 @@ function checkInfo() {
 			Swal.fire({
 				title : '사진을 업로드 해주세요!',
 				icon : 'error',
-				confirmButtonText : '확인'
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
 			})
 			return false;
 		}
@@ -165,7 +170,8 @@ function checkInfo() {
 			Swal.fire({
 				title : '태그를 입력 해주세요!',
 				icon : 'error',
-				confirmButtonText : '확인'
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
 			})
 			return false;
 		}
@@ -312,7 +318,7 @@ function checkInfo() {
 					</div>
 				</div>
 
-        		<label class="btn btn-primary" for="input-file" id="scan" style="background-color: #414934; position: inherit; border: none;">
+        		<label class="btn btn-primary" for="input-file" id="scan" style="background-color: #414934; position: inherit; border: none; font-family: S-CoreDream-3Light;">
 				사진 업로드 </label>
 				<div style="display: none">
 					<input type="file" id="input-file" name="pro_thum" /> <br><br>

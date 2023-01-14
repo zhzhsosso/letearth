@@ -52,19 +52,8 @@
 	}
 
 	function updatePolicy(seq) {
-		// 	if($('#editor3').val() == "") {
-		// 		Swal.fire({
-		// 			title : '프로젝트 정책을 입력해주세요!',
-		// 			icon : 'error',
-		// 			confirmButtonText : '확인'
-		// 		})
-		// 		document.fr.pro_policy.focus();
-		// 		return false;
-		// 	}
-
 		var getHtml = editor3.getHTML();
 		contentObj = createFormObject("pro_policy", getHtml);
-		// 	fr.appendChild(contentObj);		
 
 		var pro_policy = $(contentObj).val();
 

@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://kit.fontawesome.com/90a612e2ef.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <style>
 #rangeGraph{
     height:10px;
@@ -36,7 +38,8 @@ function insertQna(){
 		Swal.fire({
 			title : '카테고리를 선택해주세요!',
 			icon : 'error',
-			confirmButtonText : '확인'
+			confirmButtonText : '확인',
+			confirmButtonColor: '#A4AC85'
 		})
 		document.fr.not_middle.focus();
 		return false;
@@ -45,7 +48,8 @@ function insertQna(){
 		Swal.fire({
 			title : '제목을 입력해주세요!',
 			icon : 'error',
-			confirmButtonText : '확인'
+			confirmButtonText : '확인',
+			confirmButtonColor: '#A4AC85'
 		})
 		document.fr.not_title.focus();
 		return false;
@@ -54,7 +58,8 @@ function insertQna(){
 		Swal.fire({
 			title : '내용을 입력해주세요!',
 			icon : 'error',
-			confirmButtonText : '확인'
+			confirmButtonText : '확인',
+			confirmButtonColor: '#A4AC85'
 		})
 		document.fr.not_content.focus();
 		return false;
@@ -72,7 +77,12 @@ function insertQna(){
 	    dataType : "text",
 	    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 	    success : function(resp) {
-	    	swal('등록되었습니다.','','info');
+	    	Swal.fire({
+				icon : 'success',
+				title : '등록되었습니다.',
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
+			})
 	    	$.ajax({
 				url:"/mypage/myQna",
 				type:"get",
@@ -96,7 +106,7 @@ function deleteQna(not_no) {
 		text: '글 삭제 후 복구는 불가합니다.',
 		icon: 'info',
 		showCancelButton: true,
-		confirmButtonColor: '#3085d6',
+		confirmButtonColor: '#A4AC85',
 		cancelButtonColor: 'grey',
 		confirmButtonText: '삭제',
 		cancelButtonText: '취소'
@@ -112,7 +122,7 @@ function deleteQna(not_no) {
 			    dataType : "text",
 			    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 			    success : function(resp) { 
-			    	swal('삭제 되었습니다.','','info');
+			    	swal('삭제 되었습니다.','','success');
 		    		setTimeout(function () {
 		    		 	$.ajax({
 							url:"/mypage/myQna",
@@ -135,6 +145,12 @@ function deleteQna(not_no) {
 
 <div class="comment-one mt-50" style="padding-left: 15em; padding-right: 15em;">
 	<h3 class="comment-one__block-title" style="color: #414934;">${cnt } 개의 글</h3>
+	<c:if test="${empty notVO }">
+	<div style=" display: flex; align-items: center;">
+		<i class="fa-solid fa-circle-info fa-3x" style="color: #6F7B63;"></i>
+		<h3 style="padding-left: 0.5em; color: #838694;">등록된 글이 없습니다.</h3>
+	</div>
+	</c:if>
 	<c:forEach var="notVO" items="${notVO }">
 		<c:choose>
 			<c:when test="${notVO.not_re_lev == 1 }">
@@ -146,7 +162,7 @@ function deleteQna(not_no) {
 							<span class="comment-one__date" style="color: #414934;"><fmt:formatDate value="${notVO.not_date }" pattern="yyyy-MM-dd"/></span>
 							<span style="float: right; font-weight: bold; color: #414934;">답변 완료</span>
 							</div>
-							<p>${notVO.not_title }</p>
+							<p style="font-weight: bold; color: #414934;">${notVO.not_title }</p>
 							<p>${notVO.not_reply }</p>
 						</div>
 					</div>
@@ -178,7 +194,7 @@ function deleteQna(not_no) {
 						</c:choose>
 						<span style="float: right;" onclick="deleteQna(${notVO.not_no });">삭제ㅤ</span>
 						</div>
-						<p>${notVO.not_title }</p>
+						<p style="font-weight: bold; color: #414934;">${notVO.not_title }</p>
 						<p>${notVO.not_content }</p>
 					</div>
 				</div>
