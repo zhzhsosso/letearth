@@ -275,8 +275,9 @@
 			</div>
 
 	</div>
+	   
        </div>    
-       
+   <br><br><br><br>   
        <br><br><br>
         <!-- 페이징처리 -->
 <div class="pagination" style="position: absolute; right: 45%; border: none;">
@@ -298,7 +299,6 @@
 	</div>
 <!-- 페이징처리 -->
 
-<br><br><br><br><br><br><br><br>
     </section>
    
    <!-- 푸터 -->

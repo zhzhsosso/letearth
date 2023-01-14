@@ -63,18 +63,16 @@
 .sidenav {
   height: 100%;
   width: 200px;
-  position: fixed;
   z-index: 1;
-/*    top: 30%;  */
-/*    left: 20%;  */
+    top: 55%;  
+    left: 17%;  
   background-color: #EDEAE0;
   overflow-x: hidden;
   padding-top: 30px;
   padding-bottom : 100px;
 
-  position: relative;
-  top: 600px;
-  left: 300px; 
+  position: sticky;
+
 }
 
 /* Style the sidenav links and the dropdown button */
@@ -188,7 +186,7 @@
 		&nbsp;고객센터 <i class="fa fa-caret-down"></i>
 	</button>
 	<div class="dropdown-container">
-		<a href="/board/adNoticeList">공지사항</a> 
+		<a href="/notice/main">공지사항</a> 
 		<a href="/board/adFaqList">FAQ</a> 
 		<a href="/board/adRewriteList">1:1문의</a>
 	</div>
@@ -396,17 +394,14 @@
 <!-- faq3 -->
 <!-- 					</div> -->
 
-<br><br>
 <!-- 				</div> -->
 		
 			</div>
 
   
-  </div>
-  </div>    
-  <br><br>
 <!-- 페이징처리 -->
-<div class="pagination" style="position: absolute; right: 45%; border: none;">
+<div style="padding: 30px 30px;"></div>
+<div class="pagination" style="position: relative ; left: 40%; bottom:0%; border: none;">
 		<ul class="pagination" style="font-size: 18px;">
 			<c:if test="${pvo.prev }">
 				<li class="paging"><a href="/board/adFaqList?page=${pvo.startPage-1 }">«</a></li> <!-- 10 -->
@@ -424,9 +419,12 @@
 		</ul>
  </div> 
 <!-- 페이징처리 -->	
+  </div>
+  </div>    
+
 </section>
    
-   
+  <div style="padding: 40px 40px;"></div> 
    
    
    <!-- 푸터 -->

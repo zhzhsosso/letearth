@@ -155,7 +155,7 @@
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    
+    border-color: #EDEAE0;
 }
 </style>
 </head>
@@ -279,7 +279,7 @@
             			<!-- 뷰어시작 -->
 <%--             			<textarea class="form-control" id="message-text" rows="5">${vo.not_reply }</textarea> --%>
 					
-            			<div id="not_reply" class="form-control1" style="height: 150px;">${vo.not_reply}</div>
+            			<div id="not_reply" class="form-control1" style="height: 150px; color: #414934;">${vo.not_reply}</div>
 					<div id="viewer" style="display: none"></div>	
                                 <script>
 									var not_content = $("#not_reply")[0].innerHTML;
@@ -307,7 +307,9 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #6F7B63; border-color:#6F7B63; ">확인</button>
-        <button type="button" class="btn btn-primary"  onclick="location.href='/board/adRewriteRegist?not_no=${vo.not_no }';" style="background-color: #A4AC85; border-color:#A4AC85; ">답글달기</button>
+          <c:if test="${vo.not_middle != 4 }">
+        	<button type="button" class="btn btn-primary"  onclick="location.href='/board/adRewriteRegist?not_no=${vo.not_no }';" style="background-color: #A4AC85; border-color:#A4AC85; ">답글달기</button>
+          </c:if>
       </div>
     </div>
   </div>
@@ -341,11 +343,9 @@
                                      
                 </div>
             </div>
-        </div>
-     </div> 
-     <br><br><br>  
 <!-- 페이징처리 -->
-<div class="pagination" style="position: absolute; right: 45%; border: none;">
+<div style="padding: 30px 30px;"></div>
+<div class="pagination"style="position: relative ; left: 40%; bottom:0%; border: none;">
 		<ul class="pagination" style="font-size: 18px;">
 			<c:if test="${pvo.prev }">
 				<li class="paging"><a href="/board/adRewriteList?page=${pvo.startPage-1 }">«</a></li> <!-- 10 -->
@@ -363,8 +363,11 @@
 		</ul>
  </div>
 <!-- 페이징처리 -->	
+        </div>
+     </div> 
+  
   </section>
-  <br><br><br><br><br><br><br><br><br>
+  <div style="padding: 40px 40px;"></div>
    
    
    

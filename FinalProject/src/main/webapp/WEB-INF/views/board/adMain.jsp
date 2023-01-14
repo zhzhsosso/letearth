@@ -28,18 +28,17 @@
 .sidenav {
   height: 100%;
   width: 200px;
-  position: fixed;
   z-index: 1;
-/*    top: 30%;  */
-/*    left: 20%;  */
+ top: 40%;  
+    left: 12%;  
   background-color: #EDEAE0;
   overflow-x: hidden;
   padding-top: 30px;
   padding-bottom : 100px;
 
-  position: relative;
-  top: 50px;
-  left: 250px; 
+/*   position: relative; */
+position: sticky;
+
 }
 
 /* Style the sidenav links and the dropdown button */
@@ -139,6 +138,65 @@
 	color: #6F7B63;
 	font-size: 16px;
 }
+
+/*아코디언 내용폼*/
+.faq-accrodion .accrodion .accrodion-content1 #accont p {
+    margin: 0;
+    color: #6F7B63;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+   
+}
+.faq-accrodion .accrodion .accrodion-content1 .inner {
+    padding: 0 38px;
+    padding-right: 50px;
+    padding-top: 29px;
+    padding-bottom: 0px;
+}
+.faq-accrodion .accrodion .accrodion-title1 {
+    padding: 0px 38px;
+    cursor: pointer;
+    position: relative;
+/*     -webkit-transition: all .4s ease; */
+    transition: all .4s ease;
+}
+.faq-accrodion .accrodion .accrodion-title1::before {
+    content: "\f10f";
+    font-family: Flaticon;
+    font-size: 14px;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    opacity: 1;
+    transition: all 500ms ease;
+}
+.faq-accrodion .accrodion .accrodion-title1 h4 {
+    margin: 0;
+    color: #fff;
+    font-family: "S-CoreDream-3Light", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+}
+.faq-accrodion .accrodion .accrodion-title1::after {
+    content: "\f110";
+    font-family: Flaticon;
+    font-size: 14px;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: all 500ms ease;
+}
+
+.faq-accrodion .accrodion.active .accrodion-title1::after {
+    opacity: 1;
+    color: #29f0b4;
+}
 </style>
 
 <!-- 구글차트1 -->
@@ -191,13 +249,16 @@ google.load('visualization','1',{
               chart.draw(data, {
             	  // 타이틀
                	  title: "최근 프로젝트 진행률", titleTextStyle:{color:'#6F7B63'},
+               	 
                	  // 차트 형태및크기
                   //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
                   width : 600,
                   height : 400, 
-                  // 막대색
+                  //css
+                  colors : ['#6F7B63', '#B6AD90'], 
+               	  fontSize: 14,
+               	  legend: 'bottom', 
                   
-              
               });
   } 
   // 옵션css
@@ -243,8 +304,8 @@ google.load('visualization','1',{
        = new google.visualization.LineChart(
               document.getElementById('memRatio_div')); //선 그래프 
               
-      var chart
-       = new google.visualization.ColumnChart(document.getElementById('memRatio_div'));
+//       var chart
+//        = new google.visualization.ColumnChart(document.getElementById('memRatio_div'));
              // 차트 객체.draw(데이터 테이블, 옵션) //막대그래프
               
               //cuveType : "function" => 곡선처리
@@ -253,12 +314,19 @@ google.load('visualization','1',{
               chart.draw(data, {
             	  // 타이틀
                	  title: "회원비율", titleTextStyle:{color:'#6F7B63'},
-               	  //subtitle:"0 : 구매, 1 : 판매, 3 : 블랙",
                	  // 차트 형태및크기
-                  //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
-                  width : 600,
-                  height : 400, 
-                  // 막대색
+                  curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
+                  width : 500,
+                  height : 400,
+                  // css
+                  colors : ['#A4AC85'],
+                  pointSize : 10, 
+                  series:{
+                	  0: { pointShape : 'circle'}, 
+                	  1: { pointShape : 'circle'}, 
+                	  2: { pointShape : 'circle'} 
+                	  
+                  }
                   
               
               });
@@ -286,6 +354,7 @@ google.load('visualization','1',{
 #btn:hover{
 	background-color: #6F7B63;
 }
+
 </style>
 </head>
 <body>
@@ -294,9 +363,10 @@ google.load('visualization','1',{
 
 <section class="contact-form-area">
 <br><br><br><br>	<br><br><br><br>	<br><br>
- <div style="display: flex;">
+ <div style="display: flex; justify-content: space-around;"> <!-- 사이드바와 본문을 묶는 div -->
  
 <!-- 사이드바 -->
+<!-- <div style="float: left;"> -->
 <div class="sidenav">	
 	<div class="adminall"><a href="/board/adMain">
 	<i class="fa fa-solid fa-leaf" id="admain"></i>
@@ -332,52 +402,52 @@ google.load('visualization','1',{
 		<a href="/report/adBlackList">블랙리스트</a>
 	</div>
 </div>
+<!-- </div> -->
 <!-- 사이드바 -->
 	
-
-<div class="container" style="display: flex; justify-content: space-around; flex-wrap: wrap;">	
+<!-- <div style="float: right;"> -->
+<div class="container" style="display: flex; justify-content: space-around; flex-wrap: wrap; max-width: 1400px;"><!-- 차트와 아코디언을 묶는 div -->
 
 <!-- 차트1 출력 영역 -->
-	  <div style="width: 80%; height: 550px; margin-top: 20px;">
-	  	<div style="border: 1px solid #D7D1B9; border-radius: 0.2rem; width: 70%">
-		    <div id="chart_div" align="center"></div>
+	  <div style="width: 100%; height: 450px; margin-top: 20px; margin-bottom:100px; display: flex; justify-content: space-between;">
+	  	<div style="border: 2px solid #D7D1B9; border-radius: 0.2rem; width: 58%;">
+		    <div id="chart_div" align="center" style="width: 100%;"></div>
 		    <!-- 차트가 그려지는 영역 -->
 		    <!-- 차트 새로고침 버튼 -->
-<!-- 		    <div style="position: relative; bottom : 5%;" align="center"> -->
-<!-- 		    	<button id="btn" type="button" onclick="drawChart()">새로고침</button> -->
-<!-- 		    </div> -->
+		    <div style="position: relative; right:28%;  bottom : 10%;" align="center">
+		    	<button id="btn" type="button" onclick="drawChart()">새로고침</button>
+		    </div>
 		 </div>		
-	  </div>	
+	  	
 <!-- 차트1 출력 영역 -->		
 <!-- 차트2 출력 영역 -->
-	   <div style="width: 80%; height: 550px; margin-top: 20px;">
-	  	<div style="border: 1px solid #D7D1B9; border-radius: 0.2rem; width: 70%">
+	   
+	  	<div style="border: 1px solid #D7D1B9; border-radius: 0.2rem; width: 40%">
 		    <div id="memRatio_div" align="center"></div>
 		    <!-- 차트가 그려지는 영역 -->
 		    <!-- 차트 새로고침 버튼 -->
-<!-- 		    <div style="position: relative; bottom : 5%;" align="center"> -->
-<!-- 		    	<button id="btn" type="button" onclick="drawChart2()">새로고침</button> -->
-<!-- 		    </div> -->
+		    <div style="position: relative; bottom : 5%;" align="center">
+		    	<button id="btn" type="button" onclick="drawChart2()">새로고침</button>
+		    </div>
 		 </div>		
 	  </div>		
 <!-- 차트2 출력 영역 -->		
 
-
 			
 <!-- 아코디언 -->
 <!-- 	<div class="container" style="display: flex; justify-content: space-around;"> -->
-<div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
+	<div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
                             	<!-- 신고 ${adMainRepList } -->
                             <div>
                               <span style="font-size: 25px; font-weight: bold; color: #414934;">최근 신고알림</span>
                             	<c:forEach var="vo" items="${adMainRepList }" varStatus="i">
-	                                    <div class="faq-accordion" style="width: 500px; background-color: #EDEAE0;">
+	                                    <div class="faq-accordion" style="width: 450px; background-color: #EDEAE0;">
 	                                        <div class="accrodion-grp animated wow fadeInLeft faq-accrodion" data-wow-duration="1500ms" data-wow-delay="0ms" data-grp-name="faq-accrodion">
 	                                            <div class="accrodion  " style="background-color: rgba(0, 0, 0, 0);">
 	                                                <div class="accrodion-inner1">
 	                                                    <div class="accrodion-title">
-	                                                        <h4><span style="color: #9C947B;">${vo.reper_id} ▶ ${vo.reped_id}</span>
-	                                                        　<span style="color: #6F7B63; font-weight: bold;"> :　${vo.rep_reason }</span></h4>
+	                                                        <h4><span style="color: #9C947B; font-size: 19px;">${vo.reper_id} ▶ ${vo.reped_id}</span>
+	                                                        　<span style="color: #6F7B63; font-weight: bold; font-size: 19px;"> :　${vo.rep_reason }</span></h4>
 	                                                    </div>
 	                                                    <div class="accrodion-content" style="">
 	                                                        <div class="inner" >
@@ -395,32 +465,58 @@ google.load('visualization','1',{
                                 </c:forEach>
 	                         </div>
                                 <!-- 신고 ${adMainRepList } -->
- </div>                               
-  <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">                              
+ 	</div>                               
+  	<div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">                              
                                 <!-- 승인 ${adPro2List }-->
                              <div>
                               <span style="font-size: 25px; font-weight: bold; color: #414934;">승인대기중인 프로젝트</span>
                                 <c:forEach var="Pro2" items="${adPro2List }" varStatus="i">
-	                                    <div class="faq-accordion" style="width: 500px; background-color: #EDEAE0;">
+	                                    <div class="faq-accordion" style="width: 750px; background-color: #EDEAE0;">
 	                                        <div class="accrodion-grp animated wow fadeInLeft faq-accrodion" data-wow-duration="1500ms" data-wow-delay="0ms" data-grp-name="faq-accrodion">
 	                                             <div class="accrodion  " style="background-color: rgba(0, 0, 0, 0);">
 	                                                <div class="accrodion-inner1">
 	                                                    <div class="accrodion-title">
 	                                                        <h4>
-	                                                        	<span style="color: #9C947B;">${i.count}.</span>
-	                                                       		<span style="color: #6F7B63; font-weight: bold;">${Pro2.pro_title }</span>
+	                                                        	<span style="color: #9C947B; font-size: 19px;">${i.count}.</span>
+	                                                       		<span style="color: #6F7B63; font-weight: bold; font-size: 19px;">${Pro2.pro_title }</span>
 	                                                        </h4>
 	                                                    </div>
-	                                                    <div class="accrodion-content" style="">
+	                                                    <div class="accrodion-content" id="accont" style="color: #6F7B63; ">
 	                                                        <div class="inner">
-	                                                        <p style="color: #6F7B63; font-weight: bold;">아이디 : </p>
-	                                                        <p class="form-control1" style="color: #6F7B63; font-weight: bold;">${Pro2.mem_id }</p> <br>
-	                                                        <p style="color: #6F7B63; font-weight: bold;">프로젝트 내용 : </p>
-	                                                        <p class="form-control1" style="color: #6F7B63; font-weight: bold;">${Pro2.pro_context }</p> <br>
-	                                                        <p style="color: #6F7B63; font-weight: bold;">펀딩 시작날짜 : </p>
-	                                                        <p class="form-control1" style="color: #6F7B63; font-weight: bold;">${Pro2.pro_st_dt }</p> <br>
-	                                                        <p style="color: #6F7B63; font-weight: bold;">목표금액 : </p>
-	                                                        <p class="form-control1" style="color: #6F7B63; font-weight: bold;">${Pro2.pro_gp } 원</p> <br>
+	                                                        	<div style="display: flex; ">
+			                                                        <p style="color: #6F7B63; font-weight: bold; line-height: 2.3">아이디 : </p>
+			                                                        <p class="form-control1" style="color: #6F7B63; font-weight: bold; width: 70%; margin-left: 20px; line-height: 20px">${Pro2.mem_id }</p>
+			                                                    </div>
+			                                                    <div style="margin-top: 20px;" id="accont">
+			                                                       	<p style="color: #6F7B63; font-weight: bold;">프로젝트 내용 : </p> 
+			                                                       	<hr style="border-top:4px solid rgba(0, 0, 0, .1);">
+<%-- 			                                                       <span style="color: #6F7B63; font-weight: bold;" id="pro_context">${Pro2.pro_context }</span> --%>
+			                                                       <div id="viewer" style="color: #6F7B63; font-weight: bold;" id="pro_context">${Pro2.pro_context }</div>	
+										                                <script>
+																			var not_content = $("#pro_context")[0].innerHTML;
+																			
+																			const editor = new toastui.Editor.factory({
+																				el: document.querySelector('#viewer'),
+																			    previewStyle: 'vertical',
+																			    height: '1000px',
+																			    initialValue: "",
+																			    initialEditType : "wysiwyg",
+																			    initialValue : not_reply,
+																			    viewer: true,
+																			   
+																			});
+																		</script>
+																		
+			                                                        <hr style="border-top:4px solid rgba(0, 0, 0, .1);">
+			                                                    </div>
+			                                                    <div style="display: flex; margin-top: 40px;"> 
+			                                                        <p style="color: #6F7B63; font-weight: bold; line-height: 2.3">펀딩 시작날짜 : </p>
+			                                                        <p class="form-control1" style="color: #6F7B63; font-weight: bold; width: 70%; margin-left: 20px;">${Pro2.pro_st_dt }</p>
+			                                                    </div>
+			                                                    <div style="display: flex; margin-top: 20px;">
+			                                                        <p style="color: #6F7B63; font-weight: bold; line-height: 2.3">목표금액 : </p>
+			                                                        <p class="form-control1" style="color: #6F7B63; font-weight: bold; width: 70%; margin-left: 55px;">${Pro2.pro_gp } 원</p> <br>
+			                                                    </div>    
 	                                                        </div><!-- /.inner -->
 	                                                    </div>
 	                                                </div><!-- /.accrodion-inner -->
@@ -430,12 +526,13 @@ google.load('visualization','1',{
                                 </c:forEach>
                                 <!-- 승인 ${adPro2List }-->
                             </div>
- </div>
+ 	</div>
 <!-- 아코디언 -->
 
 			
-		</div>
-	</div> <!-- 플렉스 -->
+		</div><!-- 차트와 아코디언을 묶는 div -->
+<!-- </div> -->
+	</div> <!-- 사이드바와 전체를 묶는 div -->
 
 </section>
 
@@ -451,6 +548,10 @@ google.load('visualization','1',{
 
 $(".accrodion-title").on('click',function(){
 	  $(this).next(".accrodion-content").slideUp(100); // slideToggle
+	})
+	
+$(".accrodion-title1").on('click',function(){
+	  $(this).next(".accrodion-content1").slideToggle(100); // slideToggle
 	})
 </script>
 

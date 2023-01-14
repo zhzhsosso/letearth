@@ -302,7 +302,7 @@
 		from project
 		where pro_no > 0 and pro_status = 5
 		order by pro_cr_dt desc
-		limit 0,5
+		limit 0,4
 	  	]]>
   	</select>
  	

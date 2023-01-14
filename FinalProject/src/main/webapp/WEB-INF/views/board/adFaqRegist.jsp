@@ -168,7 +168,6 @@ function regFaq(seq){
 /* The container must be positioned relative: */
 .fcntr {
   position: relative;
-  font-family: Arial;
 }
 
 .fcntr select {
