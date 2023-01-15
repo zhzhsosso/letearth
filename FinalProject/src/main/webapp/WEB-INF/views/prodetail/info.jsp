@@ -29,7 +29,7 @@
 <script type="text/javascript">
 
 
-// 공유하기 - Kakao
+//공유하기 - Kakao
 function shareKakao() {
     Kakao.init('d34848fa1deecaf897fe27c8be1709c3');        
  
@@ -37,11 +37,10 @@ function shareKakao() {
         container : '#btnKakao',
         objectType : 'text',
         text:
-        	// 지금은 text 타입으로 했으나 로고 이미지 생성 후 이미지 있는 타입으로 변경하기
             'Let Earth 지구하자',
           link: {
             // mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'http://localhost:8080/prodetail/info?pro_no=2',
+            webUrl: 'http://itwillbs11.cafe24.com/prodetail/info?pro_no=<%=request.getParameter("pro_no")%>',
           }
     });
 }

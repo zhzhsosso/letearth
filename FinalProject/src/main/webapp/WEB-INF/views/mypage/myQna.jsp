@@ -152,7 +152,9 @@ function deleteQna(not_no) {
 	</div>
 	</c:if>
 	<c:forEach var="notVO" items="${notVO }">
+	
 		<c:choose>
+		
 			<c:when test="${notVO.not_re_lev == 1 }">
 					<div style="padding-left: 3em;">
 					<div class="comment-one__single_">
@@ -168,6 +170,7 @@ function deleteQna(not_no) {
 					</div>
 					</div>
 			</c:when>
+			
 			<c:when test="${notVO.not_re_lev == 0 }">
 				<div class="comment-one__single_">
 					<div class="comment-one__content">
@@ -185,10 +188,10 @@ function deleteQna(not_no) {
 						</c:choose>
 						<span class="comment-one__date" style="color: #414934;"><fmt:formatDate value="${notVO.not_date }" pattern="yyyy-MM-dd"/></span>
 						<c:choose>
-							<c:when test="${notVO.not_count == 1 }">
+							<c:when test="${empty notVO.not_pw }">
 								<span style="float: right; font-weight: bold;">답변 대기</span>
 							</c:when>
-							<c:when test="${notVO.not_count == 2 }">
+							<c:when test="${notVO.not_pw == 'Y' }">
 								<span style="float: right; font-weight: bold; color: #414934;">답변 완료</span>
 							</c:when>
 						</c:choose>
@@ -199,7 +202,9 @@ function deleteQna(not_no) {
 					</div>
 				</div>
 			</c:when>
+			
 		</c:choose>
+		
 	</c:forEach>
 </div>
 <!-- 질문 폼 --> 

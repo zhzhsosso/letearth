@@ -50,6 +50,9 @@ public interface AdBoardService {
 	// 1:1문의 notice_no를 사용한 정보조회
 	public AdminVO getRewrite(Integer not_no) throws Exception;
 	
+	// 1:1 문의 원글 Y 추가
+	public void updateY(AdminVO vo) throws Exception;
+	
 	// 1:1 문의 작성
 	public Integer insertRewrite(AdminVO vo) throws Exception;
 	

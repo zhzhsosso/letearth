@@ -190,11 +190,11 @@
 	
 	<!-- qna 불러오기 -->
 	<select id="getQna" resultType="NoticeVO">
-		select *
+	    select *
 		from notice
-		<![CDATA[
-		where not_re_ref > 0 and mem_id=#{mem_id}
-		]]>
+		where not_re_ref in (select not_no
+							from notice
+			                where mem_id=#{mem_id})
 	    order by not_re_ref desc, not_re_seq asc;
 	</select>
 	
