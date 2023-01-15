@@ -140,6 +140,8 @@
   font-weight: bolder;
 }
 </style>
+
+
 </head>
 <body>
 
@@ -257,101 +259,12 @@
 
 
  	 
- 	 
  	
+
+					
+					
 	
- 	
-<!--  	<div class="sidebar__single sidebar__category"> -->
-<!--         <h3 class="sidebar__title">토큰발급</h3> -->
-<!--         <ul class="sidebar__category-list"> -->
-<%--             <li class="sidebar__category-list-item">access_token : ${responseTokenVO.access_token }</li> --%>
-<%--             <li class="sidebar__category-list-item">token_type : ${responseTokenVO.token_type }</li> --%>
-<%--             <li class="sidebar__category-list-item">expires_in : ${responseTokenVO.expires_in }</li> --%>
-<%--             <li class="sidebar__category-list-item">refresh_token : ${responseTokenVO.refresh_token }</li> --%>
-<%--             <li class="sidebar__category-list-item">scope : ${responseTokenVO.scope }</li> --%>
-<%--             <li class="sidebar__category-list-item">user_seq_no : ${responseTokenVO.user_seq_no }</li> --%>
-<!--         </ul>/.sidebar__category-list -->
-<!--     </div> -->
-    
-    
-    
-    
-<!-- 	<div class="sidebar__single sidebar__category"> -->
-<!--  		<!-- 오픈뱅킹 자산 조회 버튼 - 토큰 발급 후 이동 -->
-<!-- 		 <!-- sessionToken 값이 있어야 자산 조회 버튼 생성 -->	
-<%-- <%-- 	     <c:if test="${not empty sessionScope.token}"> --%> 
-<!--                 자산 조회를 위한 인증 요청 작업 수행 -->
-<!--                 <form method="get" action="/openbanking/userInfo" > -->
-<!-- <!--                   <input type="hidden" name="access_token" value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDE3MTk1Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwib29iIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2ODEyMDMwMTUsImp0aSI6IjZjODZkM2Q4LTE4YTUtNDEyZS1iMjRkLWYyYzdkMDFhNGYzOSJ9.zfT7xFPJiL9BD5bc9IBrcP3PSVA_wnI69vjJhokrq4g"> -->
-<%--                   <input type="hidden" name="access_token" value="${responseTokenVO.access_token }"> --%>
-<!-- <!--                   <input type="hidden" name="user_seq_no" value="1101017195"> -->
-<%--                   <input type="hidden" name="user_seq_no" value=${responseTokenVO.user_seq_no }> --%>
-<!-- 				  <input type="submit" value="내 자산조회"> -->
-<!--                 </form> -->
-<%-- <%-- 		</c:if> --%>
-
-
-
-		<!-- 출금이체 : 관리자가 구매자 계좌에서 출금 -->
-<!-- 				<form method="post" action="withdraw"> -->
-<%-- 						<input type="hidden" name="access_token" value="${responseTokenVO.access_token }"> --%>
-<%-- 						<input type="hidden" name="bank_tran_id" value="${responseTokenVO.bank_tran_id }"> --%>
-<!-- 						<input type="hidden" name="cntr_account_type" value="N"> -->
-<!-- 						<input type="hidden" name="cntr_account_num" value="1234123412341234"> 렛어스 계좌번호 -->
-<!-- 						<input type="hidden" name="dps_print_content" value="렛어스"> -->
-<!-- <!-- 						<input type="hidden" name="fintech_use_num" value="120220234388941212453442"> -->
-<!-- 						<input type="hidden" name="fintech_use_num" value="120220234388941212225903"> 구매자의 핀테크번호 -->
-						
-<!-- 						<input type="hidden" name="tran_amt" value="1000"> 금액 -->
-<!-- 						<input type="hidden" name="tran_dtime" value="20221104070455"> 날짜 14자리 -->
-<!-- 						<input type="hidden" name="req_client_name" value="정지현"> 구매자 이름 -->
-<!-- 						<input type="hidden" name="req_client_num" value="HONGGILDONG1211"> -->
-<!-- 						<input type="hidden" name="transfer_purpose" value="TR"> 송금하기 -->
-<!-- 						<input type="hidden" name="req_client_bank_code" value="011"> 구매자 은행코드 -->
-<!-- 						<input type="hidden" name="req_client_account_num" value="300000000001"> 구매자 계좌번호 -->
-						
-<!-- 						<input type="hidden" name="recv_client_name" value="렛어스"> 수취인 이름 -->
-<!-- 						<input type="hidden" name="recv_client_bank_code" value="004"> 렛어스 은행코드 -->
-<!-- 						<input type="hidden" name="recv_client_account_num" value="1234123412341234"> 렛어스 계좌번호 -->
-						
-<!-- 						<input type="submit" value="후원금 받기">	 -->
-<!-- 					</form> -->
-					
-					
-				
-				
-				
-
-			<!-- 입금이체 : 관리자가 판매자 계좌로 입금 -->
-<!-- 				<form method="post" action="/openbanking/deposit"> -->
-<%-- 					<input type="hidden" name="access_token" value="${responseTokenVO.access_token }"> --%>
-<!-- <!-- 					<input type="hidden" name="access_token" value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDE3MDIxIiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwib29iIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE2ODEwODc2MDIsImp0aSI6IjEwOTFlM2MwLWQxMDMtNDVkOC04ZTU1LWFjNGE2YTcxYTUwMSJ9.0FAFGwfG12VFnFoTA-L1LKDLOlS-j2JKWeLtvfcOOGk"> -->
-<!-- 					<input type="hidden" name="cntr_account_type" value="N"> -->
-<!-- 					<input type="hidden" name="cntr_account_num" value="1234123412341234"> -->
-<!-- 					<input type="hidden" name="wd_pass_phrase" value="NONE"> 테스트환경은 NONE을 사용 -->
-<!-- 					<input type="hidden" name="wd_print_content" value="정산해요"> -->
-<!-- 					<input type="hidden" name="name_check_option" value="off"> -->
-<!-- 					<input type="hidden" name="tran_dtime" value="20230106101921"> -->
-<!-- 					<input type="hidden" name="req_cnt" value="1"> -->
-					
-<!-- 					<input type="hidden" name="tran_no" value="1"> -->
-<%-- <%-- 					<input type="hidden" name="bank_tran_id" value="${responseTokenVO.bank_tran_id }"> --%> 
-<!-- 					<input type="hidden" name="bank_tran_id" value="M202202343U123456789"> -->
-<!-- 					<input type="hidden" name="fintech_use_num" value="120220234388941212225903"> -->
-<!-- <!-- 					<input type="hidden" name="fintech_use_num" value="120220234388941212453442"> -->
-<!-- 					<input type="hidden" name="print_content" value="정산해요"> -->
-<!-- 					<input type="hidden" name="tran_amt" value="500"> 금액 -->
-					
-<!-- 					<input type="hidden" name="req_client_name" value="정지현">  -->
-<!-- 					<input type="hidden" name="req_client_bank_code" value="011"> 은행 코드 -->
-<!-- 					<input type="hidden" name="req_client_account_num" value="300000000001"> -->
-					
-<!-- 					<input type="hidden" name="req_client_num" value="HONGGILDONG1211"> -->
-<!-- 					<input type="hidden" name="transfer_purpose" value="TR"> -->
-					
-<!-- 					<input type="submit" value="정산하기"> -->
-<!-- 				</form> -->
-<!-- 	</div> -->
+	</div>
 
  	
  	
@@ -360,24 +273,24 @@
  	
  	
  	
- <script type="text/javascript" src="jquery-3.6.3.min.js"></script>
- <script type="text/javascript">
- 	$(document).ready(function(){
- 		$(".Settlem1").css("color","#6F7B63"); 
- 		$(".Settlem1").css("font-weight","bolder");
- 		$(".Settlem2").css("color","#B6AD90"); 
- 		$(".Settlem2").css("font-weight","normal");
+<!--  <script type="text/javascript" src="jquery-3.6.3.min.js"></script> -->
+<!--  <script type="text/javascript"> -->
+<!-- //  	$(document).ready(function(){ -->
+<!-- //  		$(".Settlem1").css("color","#6F7B63");  -->
+<!-- //  		$(".Settlem1").css("font-weight","bolder"); -->
+<!-- //  		$(".Settlem2").css("color","#B6AD90");  -->
+<!-- //  		$(".Settlem2").css("font-weight","normal"); -->
  		
- 		$(".Settlem2").hover(function(){
- 			$(this).css('color', '#6F7B63'); // 마우스 오버 시
- 			$(this).css('font-weight', 'bolder'); 
- 		}, function(){
- 			$(this).css('color', '#B6AD90'); // 마우스 논오버 시
- 			$(this).css('font-weight', 'normal'); 
- 		});
- 	});
+<!-- //  		$(".Settlem2").hover(function(){ -->
+<!-- //  			$(this).css('color', '#6F7B63'); // 마우스 오버 시 -->
+<!-- //  			$(this).css('font-weight', 'bolder');  -->
+<!-- //  		}, function(){ -->
+<!-- //  			$(this).css('color', '#B6AD90'); // 마우스 논오버 시 -->
+<!-- //  			$(this).css('font-weight', 'normal');  -->
+<!-- //  		}); -->
+<!-- //  	}); -->
  
- </script>	
+<!--  </script>	 -->
  	
  	
  	

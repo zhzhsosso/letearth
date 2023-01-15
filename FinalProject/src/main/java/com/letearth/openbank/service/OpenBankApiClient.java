@@ -53,7 +53,7 @@ public class OpenBankApiClient {
 
 	// httpheader에 토큰값 담아가기 위해서 헤더에 토큰추가하는 메서드 정의
 	public HttpHeaders setHeaderAccessToken(String access_token) {
-		httpHeaders.add("Authorization", "Bearer " + access_token);
+		httpHeaders.add("Authorization", "Bearer" + access_token);
 
 		return httpHeaders;
 	}
@@ -174,7 +174,7 @@ public class OpenBankApiClient {
 		p1.put("transfer_purpose", withdrawRequestVO.getTransfer_purpose());
 		p1.put("req_client_bank_code", withdrawRequestVO.getReq_client_bank_code());
 		p1.put("req_client_account_num", withdrawRequestVO.getReq_client_account_num());
-		//p1.put("req_client_fintech_use_num", withdrawRequestVO.getReq_client_fintech_use_num());
+		p1.put("req_client_fintech_use_num", withdrawRequestVO.getReq_client_fintech_use_num());
 		p1.put("recv_client_name", withdrawRequestVO.getRecv_client_name());
 		p1.put("recv_client_bank_code", withdrawRequestVO.getRecv_client_bank_code());
 		p1.put("recv_client_account_num", withdrawRequestVO.getRecv_client_account_num());

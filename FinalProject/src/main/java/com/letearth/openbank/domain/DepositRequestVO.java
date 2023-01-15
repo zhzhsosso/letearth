@@ -15,7 +15,7 @@ public class DepositRequestVO {
 	private String name_check_option; //수취인성명 검정여부 on
 	private String tran_dtime; //요청일시 14자리
 	private String req_cnt; //입금요청건수 1
-	private List<DepositVO> req_list; //입금요청목록
+	private List req_list; //입금요청목록
 	
 	private String tran_no; //거래순ㄹ번 1
 	private String bank_tran_id; //은행거래고유번호
@@ -26,6 +26,7 @@ public class DepositRequestVO {
 	private String req_client_name; //요청고객성명
 //	
 	private String req_client_fintech_use_num; //핀테크이용번호
+	
 //	private String req_client_bank_code;
 //	private String req_client_account_num;
 	

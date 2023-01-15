@@ -9,7 +9,7 @@
 	<select id="getListSettle" resultType="ProjectVO">
 	<![CDATA[
 		select * from project 
-		where pro_no > 0 and pro_status='6' and (pro_tp>pro_gp OR pro_tp = pro_gp) 
+		where pro_no > 0 and pro_status=6 and (pro_tp>pro_gp OR pro_tp = pro_gp)
 		order by pro_no desc, pro_ed_dt 
 		limit #{pageStart},#{perPageNum}
 	]]>
