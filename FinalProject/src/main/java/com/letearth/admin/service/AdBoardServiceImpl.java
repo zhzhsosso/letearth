@@ -104,6 +104,12 @@ public class AdBoardServiceImpl implements AdBoardService {
 	public AdminVO getRewrite(Integer not_no) throws Exception {
 		return adBoardDAO.getRewrite(not_no);
 	}
+	
+	// 1:1 문의 원글 Y 추가
+	@Override
+	public void updateY(AdminVO vo) throws Exception {
+		adBoardDAO.updateY(vo);
+	}
 
 	// 1:1문의 작성 
 	@Override

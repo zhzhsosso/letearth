@@ -108,6 +108,13 @@ public class AdBoardDAOImpl implements AdBoardDAO {
 		return vo;
 	}
 	
+	// 1:1 문의 Y 추가
+	@Override
+	public void updateY(AdminVO vo) throws Exception {
+		sqlSession.update(NAMESPACE + ".updateY", vo);
+		
+	}
+
 	// 1:1 문의 작성
 	@Override
 	public Integer insertRewrite(AdminVO vo) throws Exception {

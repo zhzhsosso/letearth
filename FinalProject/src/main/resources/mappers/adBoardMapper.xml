@@ -81,6 +81,10 @@
  		where not_no = #{not_no }
  	</select>
  	
+ 	<update id="updateY">
+ 		update notice set not_pw='Y'
+ 		where not_no=#{not_no}
+ 	</update>
  	
  	
  	<update id="updateRewrite" parameterType="AdminVO">

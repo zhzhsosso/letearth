@@ -399,6 +399,7 @@ public class AdBoardController {
 			mylog.debug(vo+"");
 
 			// 서비스
+			adBoardService.updateY(vo);
 			Integer result = adBoardService.insertRewrite(vo);
 			mylog.debug("답글 완료!");
 			

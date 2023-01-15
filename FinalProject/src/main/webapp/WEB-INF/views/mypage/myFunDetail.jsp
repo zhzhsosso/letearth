@@ -114,7 +114,7 @@ function deleteOrder(ord_no) {
 			    success : function(resp) {
 			    	Swal.fire({
     					icon : 'success',
-    					title : '취소 완료 되었습니다..',
+    					title : '취소 완료 되었습니다.',
     					confirmButtonText : '확인',
     					confirmButtonColor: '#A4AC85'
     				})
@@ -236,10 +236,6 @@ function change(num) {
 				<c:if test="${detailOrder.shipping_status == 1 }">
 					<div class="num1"><button class="myBtn" id="changeBtn">변경</button></div>
 				</c:if>
-			</div>
-			<div class="top">
-				<div class="num">우편번호</div>
-				<div class="title">${detailOrder.address_no }</div>
 			</div>
 			<div class="top">
 				<div class="num">전화번호</div>
