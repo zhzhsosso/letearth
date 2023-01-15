@@ -151,11 +151,17 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+.reptb a{
+	color: 	#B6AD90;
+	
+}
+
 .reptb a:hover{
   color : #B6AD90;
   transition : 0s;
   font-weight: bolder;
 }
+
 </style>
 </head>
 <body>   
@@ -174,7 +180,9 @@
  	<br> 
  	<br>    
    <!-- 어드민 -->		
-						<h2 class="box-title" align="center"><b style="color: #6F7B63;"> 관리자 신고접수 목록 </b></h2>
+						<h2 class="box-title" align="center">
+						 <b style="color: #6F7B63;"> 관리자 신고접수 목록 </b>
+						</h2>
 						<hr id="repSelector" align="center">
 			<div class="col-xs-12" style="font-size: 16px;"><br><br>
 				<div style="font-size: 1.7rem; cursor: pointer;" align="left" id="aaadiv" >
@@ -185,7 +193,7 @@
 					| 
 					<a href="/report/adRepList?rep_cat=2" id="listPro">프로젝트</a>
 				</span>
-					<hr style="border-color: rgba(164, 172, 133, .5); position: relative; top: -10px; width: 100%; ">
+					<hr id="repSelector1">
 				</div>
 					
 			<!-- 어드민 -->
@@ -197,14 +205,14 @@
 								<div class="input-group input-group-sm hidden-xs"
 									style="width: 380px; height: 35px;" id="search">
 									<div class="searchselect">
-									<select name="searchType">
-										<option value="n"
-											<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>카테고리</option>
-										<option value="er"
-											<c:out value="${scri.searchType eq 'er' ? 'selected' : ''}"/>>신고자</option>
-										<option value="ed"
-											<c:out value="${scri.searchType eq 'ed' ? 'selected' : ''}"/>>신고대상</option>
-									</select> 
+										<select name="searchType">
+											<option value="n"
+												<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>카테고리</option>
+											<option value="er"
+												<c:out value="${scri.searchType eq 'er' ? 'selected' : ''}"/>>신고자</option>
+											<option value="ed"
+												<c:out value="${scri.searchType eq 'ed' ? 'selected' : ''}"/>>신고대상</option>
+										</select> 
 									</div>
 									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="form-control pull-right"
 										placeholder="검색어를 입력해주세요" style="height: 38px; width: 150px; font-size: 1rem;">
@@ -219,7 +227,7 @@
 						
 			<!-- 검색 -->
 					<div style="padding-top: 30px; padding-bottom: 30px;"></div>
-					글의 개수 : ${pvo.totalCount }
+<%-- 					글의 개수 : ${pvo.totalCount } --%>
 <!-- tableAll --><div class="box" style="border: none;">
 					<div class="box-body table-responsive no-padding" id="tableAll">
 			<form role="form" name="fr" id="contact-form" action="" method="post">
@@ -237,26 +245,26 @@
 								</tr>
 								<c:forEach var="vo" items="${adRepList }" varStatus="vs">
 												<tr class="reptb">
-													<td style="padding: 8px; text-align: center; vertical-align:middle; color: #414934; ">
+													<td style="padding: 8px; text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
 														<input type="hidden" id="rep_no" value="${vo.rep_no }">
 														${vo.rep_no }
 													</td>
-													<td style="vertical-align:middle; padding: 8px; text-align:center;">${vo.reper_id }</td>
-													<td style="vertical-align:middle; padding: 8px; text-align:center; width : 8%; table-layout: fixed;">
+													<td style="vertical-align:middle; padding: 8px; text-align:center;  font-weight: bold;">${vo.reper_id }</td>
+													<td style="vertical-align:middle; padding: 8px; text-align:center; width : 8%; table-layout: fixed;  font-weight: bold;">
 														<c:if test="${vo.rep_cat == 1}">회원</c:if>
 														<c:if test="${vo.rep_cat == 2}">프로젝트</c:if>
 													</td>													
-													<td style="vertical-align:middle; padding: 8px; text-align:center;">
-														<a href="/prodetail/info?pro_no=${vo.pro_no }" style="color: #414934;">${vo.reped_id }</a>
+													<td style="vertical-align:middle; padding: 8px; text-align:center;  font-weight: bold;">
+														<a href="/prodetail/info?pro_no=${vo.pro_no }" style="font-weight: bold;">${vo.reped_id }</a>
 													</td>
-													<td style="vertical-align:middle; padding: 8px; width : 30%; table-layout: fixed;">
+													<td style="vertical-align:middle; padding: 8px; width : 30%; table-layout: fixed;  font-weight: bold;">
 														${vo.rep_reason }
 													</td>
-													<td style="vertical-align:middle; padding: 8px; text-align:center;">
+													<td style="vertical-align:middle; padding: 8px; text-align:center;  font-weight: bold;">
 														<fmt:formatDate value="${vo.rep_date }" pattern="yyyy-MM-dd"/>
 													</td>
-													<td style="vertical-align:middle; padding: 8px; text-align:center; width : 5%; table-layout: fixed;">${vo.rep_status }</td>
-													<td style="vertical-align:middle; padding: 8px; text-align:center;">
+													<td style="vertical-align:middle; padding: 8px; text-align:center; width : 5%; table-layout: fixed;  font-weight: bold;">${vo.rep_status }</td>
+													<td style="vertical-align:middle; padding: 8px; text-align:center;  font-weight: bold;">
 																										
 															<!-- Button trigger modal -->
 																<button type="button" id="mbtn" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter${vs.index}" style="background-color: #A4AC85; border-color:#A4AC85; ">
@@ -273,7 +281,7 @@
 																          <span aria-hidden="true">&times;</span>
 																        </button>
 																      </div>
-																      <div class="modal-body">
+																      <div class="modal-body" style=" font-weight: bold; color: #6F7B63">
 																        	${vo.rep_content }
 																      </div>
 																      <div class="modal-footer">
@@ -307,7 +315,7 @@
 					<ul class="pagination" style="font-size: 18px;">
 						<c:if test="${pvo.prev }">
 							<li class="paging"><a
-								href="adRepList${pvo.makeSearch(pvo.starPage-1) }">«</a></li>
+								href="/report/adRepList${pvo.makeSearch(pvo.starPage-1) }">«</a></li>
 							<!-- 10 -->
 						</c:if>
 
@@ -315,12 +323,12 @@
 							end="${pvo.endPage }" step="1">
 							<li class="paging"
 								<c:out value="${idx == pvo.cri.page? 'class=active':'' }"/>><a
-								href="adRepList${pvo.makeSearch(idx) }">${idx }</a></li>
+								href="/report/adRepList${pvo.makeSearch(idx) }">${idx }</a></li>
 						</c:forEach>
 
 						<c:if test="${pvo.next }">
 							<li class="paging"><a
-								href="adRepList${pvo.makeSearch(pvo.endPage+1) }">»</a></li>
+								href="/report/adRepList${pvo.makeSearch(pvo.endPage+1) }">»</a></li>
 							<!-- 11 -->
 						</c:if>
 					</ul>
@@ -438,7 +446,7 @@ var rep_cat = url.searchParams.get("rep_cat");
 // 셀렉트 꾸미기
 var x, i, j, l, ll, selElmnt, a, b, c;
 /* Look for any elements with the class "custom-select": */
-x = document.getElementsByClassName("fcntr");
+x = document.getElementsByClassName("searchselect");
 l = x.length;
 for (i = 0; i < l; i++) {
   selElmnt = x[i].getElementsByTagName("select")[0];

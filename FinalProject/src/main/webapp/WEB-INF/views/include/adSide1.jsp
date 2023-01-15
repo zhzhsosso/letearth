@@ -12,20 +12,21 @@
 
 /* Fixed sidenav, full height */
 .sidenav {
-  height: 100%;
-  width: 200px;
-  z-index: 1;
-    top: 60%;  
-    left: 10%;  
-  background-color: #EDEAE0;
-  overflow-x: hidden;
-  padding-top: 30px;
-  padding-bottom : 100px;
-
-  position: sticky;
-
+	height: 100%;
+	width: 200px;
+	z-index: 1;
+	/*    top: 30%;  */
+	/*    left: 20%;  */
+	background-color: #EDEAE0;
+	overflow-x: hidden;
+	padding-top: 30px;
+	padding-bottom: 100px;
+	position: sticky;
+	top: 560px;
+	left: 250px;
+	
+	
 }
-
 /* Style the sidenav links and the dropdown button */
 .sidenav a, .dropdown-btn {
   padding: 6px 8px 6px 16px;

@@ -252,7 +252,7 @@ google.load('visualization','1',{
                	 
                	  // 차트 형태및크기
                   //curveType : "function", //curveType는 차트의 모양이 곡선으로 바뀐다는 뜻
-                  width : 600,
+                  width : 700,
                   height : 400, 
                   //css
                   colors : ['#6F7B63', '#B6AD90'], 
@@ -406,7 +406,7 @@ google.load('visualization','1',{
 <!-- 사이드바 -->
 	
 <!-- <div style="float: right;"> -->
-<div class="container" style="display: flex; justify-content: space-around; flex-wrap: wrap; max-width: 1400px;"><!-- 차트와 아코디언을 묶는 div -->
+<div class="container" style="display: flex; justify-content: space-around; flex-wrap: wrap; max-width: 1300px;"><!-- 차트와 아코디언을 묶는 div -->
 
 <!-- 차트1 출력 영역 -->
 	  <div style="width: 100%; height: 450px; margin-top: 20px; margin-bottom:100px; display: flex; justify-content: space-between;">
@@ -414,7 +414,7 @@ google.load('visualization','1',{
 		    <div id="chart_div" align="center" style="width: 100%;"></div>
 		    <!-- 차트가 그려지는 영역 -->
 		    <!-- 차트 새로고침 버튼 -->
-		    <div style="position: relative; right:28%;  bottom : 10%;" align="center">
+		    <div style="position: relative; right:-40%;  bottom : 25%;" align="center">
 		    	<button id="btn" type="button" onclick="drawChart()">새로고침</button>
 		    </div>
 		 </div>		
@@ -446,8 +446,8 @@ google.load('visualization','1',{
 	                                            <div class="accrodion  " style="background-color: rgba(0, 0, 0, 0);">
 	                                                <div class="accrodion-inner1">
 	                                                    <div class="accrodion-title">
-	                                                        <h4><span style="color: #9C947B; font-size: 19px;">${vo.reper_id} ▶ ${vo.reped_id}</span>
-	                                                        　<span style="color: #6F7B63; font-weight: bold; font-size: 19px;"> :　${vo.rep_reason }</span></h4>
+	                                                        <h4><span style="color: #9C947B; font-size: 17px; font-weight: bold;">${vo.reper_id} ▶ ${vo.reped_id}</span>
+	                                                        　<span style="color: #6F7B63; font-weight: bold; font-size: 17px;"> :　${vo.rep_reason }</span></h4>
 	                                                    </div>
 	                                                    <div class="accrodion-content" style="">
 	                                                        <div class="inner" >
@@ -477,8 +477,8 @@ google.load('visualization','1',{
 	                                                <div class="accrodion-inner1">
 	                                                    <div class="accrodion-title">
 	                                                        <h4>
-	                                                        	<span style="color: #9C947B; font-size: 19px;">${i.count}.</span>
-	                                                       		<span style="color: #6F7B63; font-weight: bold; font-size: 19px;">${Pro2.pro_title }</span>
+	                                                        	<span style="color: #9C947B; font-size: 18px; font-weight: bold;">${i.count}.</span>
+	                                                       		<span style="color: #6F7B63; font-weight: bold; font-size: 18px;">${Pro2.pro_title }</span>
 	                                                        </h4>
 	                                                    </div>
 	                                                    <div class="accrodion-content" id="accont" style="color: #6F7B63; ">

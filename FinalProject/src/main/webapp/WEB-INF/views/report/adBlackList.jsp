@@ -36,6 +36,8 @@
 #repSelector1{
    position: relative;
    top: -15px; 
+   border-color: rgba(164, 172, 133, .5);
+   width: 100%;
 }
 
 /*hover*/
@@ -109,7 +111,9 @@
  	<br> 
     <br>   
    <!-- 어드민 -->		
-		<h2 class="box-title" align="center"><b style="color: #6F7B63;">관리자 블랙리스트</b></h2>
+		<h2 class="box-title" align="center">
+		<b style="color: #6F7B63;">관리자 블랙리스트</b>
+		</h2>
 		<hr id="repSelector" align="center">
 			<div class="col-xs-12" style="font-size: 16px;"><br><br>
 				<div style="font-size: 1.7rem; cursor: pointer;" align="left">
@@ -139,7 +143,7 @@
 							</div>
 						</div>
 					</div>
-					<div style="padding-top: 30px; padding-bottom: 30px;"></div>
+<div style="padding-top: 30px; padding-bottom: 30px;"></div>
 <!-- tableAll -->
 					<div class="box-body table-responsive no-padding" id="tableAll">
 			<form role="form" name="fr" id="contact-form" action="" method="post">
@@ -277,11 +281,12 @@
 	</div>
 	   
        </div>    
-   <br><br><br><br>   
-       <br><br><br>
+				<div style="padding: 30px 30px;"></div>
+
         <!-- 페이징처리 -->
-<div class="pagination" style="position: absolute; right: 45%; border: none;">
-		<ul class="pagination" style="font-size: 18px;">
+<div class="pagination"
+					style="position: relative ; left: 40%; bottom:0%; border: none;">
+					<ul class="pagination" style="font-size: 18px;">
 			<c:if test="${pvo.prev }">
 				<li class="paging"><a href="/report/adBlackList?page=${pvo.startPage-1 }">«</a></li> <!-- 10 -->
 			</c:if>
@@ -300,7 +305,7 @@
 <!-- 페이징처리 -->
 
     </section>
-   
+   <div style="padding: 40px 40px;"></div>
    <!-- 푸터 -->
    <%@ include file="../include/footer.jsp" %>
 </body>

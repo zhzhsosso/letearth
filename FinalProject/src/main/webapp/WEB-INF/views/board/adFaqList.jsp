@@ -49,7 +49,12 @@
    position: relative;
    top: -15px; 
 }
-
+#repSelector1{
+   position: relative;
+   top: -15px; 
+   border-color: rgba(164, 172, 133, .5);
+   width: 100%;
+}
 /* On mouse-over */
 .faqL a:hover {
   color: #ACCC97;
@@ -64,8 +69,8 @@
   height: 100%;
   width: 200px;
   z-index: 1;
-    top: 55%;  
-    left: 17%;  
+ top: 65%;  
+    left: 12%;   
   background-color: #EDEAE0;
   overflow-x: hidden;
   padding-top: 30px;
@@ -131,6 +136,10 @@
   /*text-decoration: underline;*/
   
  } 
+ 
+#listBtn:hover{
+	background-color: #B6AD90;
+} 
  
 /*페이징*/
 .paging {
@@ -216,8 +225,7 @@
 
   
         <div class="container"> 
- 	<br>
- 	<br> 	<br>        	<br>               
+ 	<br> <br> <br> <br> <br>               
    <!-- 어드민 -->	
    <div align="center"><img src="/resources/faq.jpg" width="80%" height="5%;"></div>	<br><br>
 <!-- 						<h3 class="box-title" align="center">관리자 FAQ 리스트</h3> -->
@@ -234,7 +242,7 @@
 					</span>
 					<hr style="border-color: #A4AC85; position: relative; top: -10px;">
 				</div>
-					<button type="button" class="btn" id="listBtn" onclick="" style="background-color: #6F7B63; color: #F2F0E8;">FAQ글쓰기</button>
+					<button type="button" class="btn" id="listBtn" onclick="" style="background-color: #6F7B63; color: #F2F0E8; cursor: pointer; ">FAQ글쓰기</button>
 			<!-- 어드민 -->                                                      
 <!-- 				<div class="box"> -->
 					

@@ -186,7 +186,7 @@
 
 <section class="contact-form-area">
 
-<form role="form" method="post">
+<form role="form" name="fr" method="post">
 		<input type="hidden" name="not_no" id="not_no" value="${vo.not_no }">
 </form>
 
@@ -320,8 +320,11 @@ function createFormObject(tagName, content){
 	$(document).ready(function(){
 		var formObj = $("form[role='form']"); 
 		
-			 
 			$("#modifyFAQ").click(function(){
+				
+				var not_no = document.fr.not_no.value;
+				 
+// 				alert(not_no);
 				
 				Swal.fire({
 					  html: '<h4><b>수정페이지로 이동합니다</b></h4>',
@@ -335,15 +338,16 @@ function createFormObject(tagName, content){
 					  if (result.value) {
 				        //"삭제" 버튼을 눌렀을 때 작업할 내용을 이곳에 넣어주면 된다. 
 					
-				        var getHtml = editor.getHTML();
+// 				        var getHtml = editor.getHTML();
 			
-						contentObj = createFormObject("not_content", getHtml);		
-						fr.appendChild(contentObj);		
+// 						contentObj = createFormObject("not_content", getHtml);		
+// 						fr.appendChild(contentObj);		
 						
-							formObj.attr("action", "/board/adFaqModify");
-							formObj.attr("method", "get");
-							formObj.submit(); // form태그를 submit방식으로 보내자.
-						
+// 							formObj.attr("action", "/board/adFaqModify");
+// 							formObj.attr("method", "get");
+							//formObj.submit(); // form태그를 submit방식으로 보내자.
+							
+							location.href="/board/adFaqModify?not_no="+not_no;
 					  }
 					})		
 		 }); // #modifyFAQ

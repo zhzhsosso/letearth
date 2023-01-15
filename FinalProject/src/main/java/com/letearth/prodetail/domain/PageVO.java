@@ -23,8 +23,8 @@ public class PageVO {
 	
 	private int displayPageNum = 10;
 	/////////////////////////////////////////////
-
 	
+
 	public void setCri(Criteria cri) {
 		this.cri = cri;
 	}

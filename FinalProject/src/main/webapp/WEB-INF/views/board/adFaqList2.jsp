@@ -72,8 +72,9 @@
                     </form>
                     <p class="form-message"></p>
         <!-- 페이징처리 -->
-  <div>
-		<ul>
+<div class="pagination"
+					style="position: relative ; left: 40%; bottom:0%; border: none;">
+					<ul class="pagination" style="font-size: 18px;">
 		
 			<c:if test="${pvo.prev }">
 				<li><a href="/board/adFaqList?page=${pvo.startPage-1 }">«</a></li> <!-- 10 -->
