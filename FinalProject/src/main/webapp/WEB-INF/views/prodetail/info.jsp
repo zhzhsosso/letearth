@@ -98,14 +98,22 @@ $(document).ready(function() {
     	$("#blockArea3").css("display", "block")
     } 
 
-    // 오픈예정 프로젝트
-    var startPjtDt = new Date($("#startDt")[0].innerHTML);
+ // 오픈예정 프로젝트
+    // var startPjtDt = new Date($("#startDt")[0].innerHTML);
+    var startPjtDt = $("#startDt")[0].innerHTML;
     var today = new Date();
+    var year = today.getFullYear();
+    var month = ('0' + (today.getMonth() + 1)).slice(-2);
+    var day = ('0' + today.getDate()).slice(-2);
+
+    var dateString = year + '-' + month  + '-' + day;
     
-    if(startPjtDt > today){
-    	$("#blockArea").css("display", "block")
-    	$("#blockArea")[0].innerHTML = "오픈 예정인 프로젝트 입니다!";    	
+    if(startPjtDt > dateString){
+       $("#blockArea").css("display", "block")
+       $("#blockArea")[0].innerHTML = "오픈 예정인 프로젝트 입니다!";       
     }
+    
+});
     
 });
 
