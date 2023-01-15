@@ -11,6 +11,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <script src="https://kit.fontawesome.com/bd939ba5e2.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 <title>LetEarth</title>
@@ -84,7 +87,12 @@ $(function(){
 		var order_status = $("#orderS").val();
 		
 		if(order_status == 2) {
-			alert("이미 취소요청 진행 중인 후원입니다.");
+			Swal.fire({
+				title : '이미 취소요청 진행 중인 후원입니다.',
+				icon : 'error',
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
+			})
 			
 			return;
 		}
@@ -96,11 +104,21 @@ $(function(){
 			data:{"order_trade_num":order_trade_num},
 			success:function(order_status){
 				if(order_status == 2){
-					alert('취소 요청이 정상 처리 되었습니다.\n취소 처리까지 카드 영업일 기준 최대 3~5일 소요됩니다. ');
+					Swal.fire({
+						title : '취소 요청이 정상 처리 되었습니다.\n취소 처리까지 카드 영업일 기준 최대 3~5일 소요됩니다.',
+						icon : 'success',
+						confirmButtonText : '확인',
+						confirmButtonColor: '#A4AC85'
+					})
 					$('#orderS').attr("value",order_status);
 					$('#cmsg').html("[취소 요청]");
 				} else {
-					alert('실패');
+					Swal.fire({
+						title : '실패',
+						icon : 'error',
+						confirmButtonText : '확인',
+						confirmButtonColor: '#A4AC85'
+					})
 				}
 			}
 			

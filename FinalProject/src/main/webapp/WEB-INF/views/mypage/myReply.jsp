@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://kit.fontawesome.com/90a612e2ef.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <style>
 #rangeGraph{
     height:10px;
@@ -41,7 +43,8 @@ function deleteMyReply(reply_no, reply_category) {
 		Swal.fire({
 			title : '공지는 삭제할 수 없습니다!',
 			icon : 'error',
-			confirmButtonText : '확인'
+			confirmButtonText : '확인',
+			confirmButtonColor: '#A4AC85'
 		})
 		return false;
 	}
@@ -51,7 +54,7 @@ function deleteMyReply(reply_no, reply_category) {
 		text: '글 삭제 후 복구는 불가합니다.',
 		icon: 'info',
 		showCancelButton: true,
-		confirmButtonColor: '#3085d6',
+		confirmButtonColor: '#A4AC85',
 		cancelButtonColor: 'grey',
 		confirmButtonText: '삭제',
 		cancelButtonText: '취소'
@@ -67,7 +70,12 @@ function deleteMyReply(reply_no, reply_category) {
 			    dataType : "text",
 			    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 			    success : function(resp) { 
-			    	swal('삭제 되었습니다.','','info');
+			    	Swal.fire({
+						icon : 'success',
+						title : '삭제되었습니다.',
+						confirmButtonText : '확인',
+						confirmButtonColor: '#A4AC85'
+					})
 		    		setTimeout(function () {
 		    		 	$.ajax({
 							url:"/mypage/myReply",
@@ -90,6 +98,12 @@ function deleteMyReply(reply_no, reply_category) {
 
 <div class="comment-one mt-50" style="padding-left: 15em; padding-right: 15em;">
 	<h3 class="comment-one__block-title" style="color: #414934;">${cnt } 개의 글</h3>
+	<c:if test="${empty reply }">
+	<div style=" display: flex; align-items: center;">
+		<i class="fa-solid fa-circle-info fa-3x" style="color: #6F7B63;"></i>
+		<h3 style="padding-left: 0.5em; color: #838694;">등록된 글이 없습니다.</h3>
+	</div>
+	</c:if>
 	<c:forEach var="reply" items="${reply }">
 		<c:choose>
 			<c:when test="${empty reply.rereply_content }">
@@ -97,6 +111,9 @@ function deleteMyReply(reply_no, reply_category) {
 					<div class="comment-one__content">
 						<div class="qna">
 						<c:choose>
+							<c:when test="${reply.reply_category == 0 }">
+								<span class="myBtn2">문의글</span>
+							</c:when>
 							<c:when test="${reply.reply_category == 1 }">
 								<span class="myBtn">응원글</span>
 							</c:when>
@@ -108,14 +125,6 @@ function deleteMyReply(reply_no, reply_category) {
 							</c:when>
 						</c:choose>
 						<span class="comment-one__date" style="color: #414934;"><fmt:formatDate value="${reply.reply_date }" pattern="yyyy-MM-dd"/></span>
-						<c:choose>
-							<c:when test="${reply.reply_classify == 0 }">
-								<span style="float: right;">댓글</span>
-							</c:when>
-							<c:when test="${reply.reply_classify == 1 }">
-								<span style="float: right;">답글</span>
-							</c:when>
-						</c:choose>
 						<span style="float: right;" onclick="deleteMyReply(${reply.reply_no },${reply.reply_category });">삭제ㅤ</span>
 						</div>
 						<p onclick="project(${reply.pro_no});">${reply.pro_title }</p>
@@ -128,6 +137,9 @@ function deleteMyReply(reply_no, reply_category) {
 					<div class="comment-one__content">
 						<div class="qna">
 						<c:choose>
+							<c:when test="${reply.reply_category == 0 }">
+								<span class="myBtn2">문의글</span>
+							</c:when>
 							<c:when test="${reply.reply_category == 1 }">
 								<span class="myBtn">응원글</span>
 							</c:when>
@@ -151,14 +163,6 @@ function deleteMyReply(reply_no, reply_category) {
 						<div class="qna">
 							<span class="myBtn4">답변</span>
 						<span class="comment-one__date" style="color: #414934;"><fmt:formatDate value="${reply.reply_date }" pattern="yyyy-MM-dd"/></span>
-						<c:choose>
-							<c:when test="${reply.reply_classify == 0 }">
-								<span style="float: right;">댓글</span>
-							</c:when>
-							<c:when test="${reply.reply_classify == 1 }">
-								<span style="float: right;">답글</span>
-							</c:when>
-						</c:choose>
 						</div>
 						<p>${reply.pro_title }</p>
 						<p>${reply.rereply_content }</p>

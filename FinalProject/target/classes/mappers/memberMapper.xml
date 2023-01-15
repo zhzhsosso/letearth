@@ -51,13 +51,12 @@
 	<select id="getOrder" resultType="PlusVO">
 		select *
 		from order_tbl ord
-		join reward rew
-		on ord.reward_no=rew.reward_no
-		join member_tbl mem
-		on ord.mem_id=mem.mem_id
+		left join reward rew
+		on ord.reward_no = rew.reward_no
 		join project pro
-		on ord.pro_no=pro.pro_no
+		on ord.pro_no = pro.pro_no
 		where ord.mem_id=#{mem_id}
+		order by ord.order_no desc
 	</select>
 	
 	<!-- 상세 주문내역 -->
@@ -82,7 +81,7 @@
 	
 	<!-- 나의 프로젝트 불러오기 -->
 	<select id="geMyProject" resultType="PlusVO">
-		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt, pro_status,
+		select pro_no, pro_title, pro_thum, pro_gp, pro_tp, pro_st_dt, pro_ed_dt, pro_status, pro_cr_dt,
 		truncate(pro_tp / pro_gp, 2) * 100 as "achievement_rate", 
 		DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
 		from project
@@ -91,7 +90,9 @@
 	
 	<!-- 주문 내역 조회 -->
 	<select id="getMyOrder" resultType="PlusVO">
-		select *, date_format(order_date, '%Y-%m-%d %H:%i') as create_date
+		select *, date_format(order_date, '%Y-%m-%d %H:%i') as create_date,
+		concat(left(pro_title, 10),'...') as create_title,
+		concat(address,address_detail) as create_address
 		from order_tbl ord
 		join project pro
 		on ord.pro_no=pro.pro_no

@@ -4,6 +4,9 @@
 <html>
 <head>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<style>
 	#shipMo {
 		border: 1px solid #dcdcdc;
@@ -114,35 +117,60 @@
 			var order_status = $("#orderS").val();
 			
 			if(order_status == 2) {
-				alert("후원취소 진행 중이므로 배송지 변경 불가합니다.");
+				Swal.fire({
+					title : '후원취소 진행 중이므로 배송지 변경 불가합니다.',
+					icon : 'error',
+					confirmButtonText : '확인',
+					confirmButtonColor: '#A4AC85'
+				})
 				
 				return;
 			}
 			
 				
 				if(receiver_name.length == 0){
-					alert('받는 분 성함을 입력해주세요');
+					Swal.fire({
+						title : '받는 분 성함을 입력해주세요',
+						icon : 'error',
+						confirmButtonText : '확인',
+						confirmButtonColor: '#A4AC85'
+					})
 					$('#receiver_name').focus();
 					
 				 	return;
 				}
 				
 				if(address_no.length == 0){
-					alert('주소를 입력해주세요');
+					Swal.fire({
+						title : '주소를 입력해주세요',
+						icon : 'error',
+						confirmButtonText : '확인',
+						confirmButtonColor: '#A4AC85'
+					})
 					$('#sample6_postcode').focus();
 					
 				 	return;
 				}
 				
 				if(address_detail.length == 0){
-					alert('상세주소를 입력해주세요');
+					Swal.fire({
+						title : '상세주소를 입력해주세요',
+						icon : 'error',
+						confirmButtonText : '확인',
+						confirmButtonColor: '#A4AC85'
+					})
 					$('#sample6_detailAddress').focus();
 					
 				 	return;
 				}
 				
 				if(receiver_phone.length == 0){
-					alert('받는 분 연락처를 입력해주세요');
+					Swal.fire({
+						title : '받는 분 연락처를 입력해주세요',
+						icon : 'error',
+						confirmButtonText : '확인',
+						confirmButtonColor: '#A4AC85'
+					})
 					$('#receiver_phone').focus();
 					
 				 	return;
@@ -158,14 +186,24 @@
 					"shipping_req":shipping_req},
 				success:function(shipResult){
 					if(shipResult==1){
-						alert("배송지가 변경되었습니다.");
+						Swal.fire({
+							title : '배송지가 변경되었습니다.',
+							icon : 'success',
+							confirmButtonText : '확인',
+							confirmButtonColor: '#A4AC85'
+						})
 						$("#shipAddMoCl").click();
 						
 						$("#shipInfo").load(window.location.href+ " #shipInfo");
 					}
 				}, 
 				error:function(){
-					alert("실패");
+					Swal.fire({
+						title : '실패',
+						icon : 'error',
+						confirmButtonText : '확인',
+						confirmButtonColor: '#A4AC85'
+					})
 				}
 			});
 		});

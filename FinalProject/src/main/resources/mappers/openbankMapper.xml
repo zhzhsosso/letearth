@@ -9,7 +9,7 @@
 	<select id="getListSettle" resultType="ProjectVO">
 	<![CDATA[
 		select * from project 
-		where pro_no > 0 and pro_status=6 and pro_tp>pro_gp || pro_tp = pro_gp 
+		where pro_no > 0 and pro_status='6' and (pro_tp>pro_gp OR pro_tp = pro_gp) 
 		order by pro_no desc, pro_ed_dt 
 		limit #{pageStart},#{perPageNum}
 	]]>
@@ -39,8 +39,8 @@
 	<select id="getComplete" resultType="ProjectVO">
 		<![CDATA[
 			select * from project 
-			where pro_no > 0 and pro_status=8 and pro_tp>pro_gp || pro_tp = pro_gp 
-			order by pro_no desc, pro_ed_dt  
+			where pro_no > 0 and pro_status=8 and (pro_tp>pro_gp || pro_tp = pro_gp) 
+			order by date_format(pro_ed_dt, '%Y-%M-%D') desc    
 			limit #{pageStart},#{perPageNum}
 		]]>
 	</select>
@@ -53,7 +53,7 @@
 	
 	<!-- 관리자 핀테크정보 -->
 	<select id="getAdminFin" resultType="MemberVO">
-		select * from member_tbl
+		select * from member_tbl 
 		where mem_id = #{mem_id}
 	</select>
 	

@@ -47,7 +47,6 @@
 		}
 	</style>
 	
-
 	<!-- 광고 배너 -->
 	<section class="page-title-area" style="background-image: url(../resources/assets/images/ad.png);">
 	    <div class="container">
@@ -64,7 +63,7 @@
 
 
     <!-- 신규 프로젝트 -->
-    <section class="explore-projects-area explore-projects-page-area" style="padding-bottom: 90px; background: white;">
+    <section style="padding-top: 5em; padding-bottom: 90px;">
         <div class="container">
         
             <div class="row justify-content-center">
@@ -130,7 +129,7 @@
 
 
     <!-- 인기 프로젝트  -->
-    <section class="explore-projects-area explore-projects-page-area" style="padding-bottom: 325px;">
+    <section style="padding-bottom: 325px;">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
@@ -188,7 +187,6 @@
             </div>
     </section>
     <!-- 인기 프로젝트 -->
-    
 
 
 	<!-- 푸터 -->

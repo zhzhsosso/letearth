@@ -3,17 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- sweetalert -->
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="../resources/assets/js/vendor/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="../resources/assets/css/project.css">
 <style>
 #box {
-	width: 300px;
-	height: 450px;
+	width: 550px;
+	height: 370px;
 	border-radius: 8px;
 	overflow: hidden;
 	transition: all 0.3s cubic-bezier(0.42, 0.0, 0.58, 1.0);
@@ -125,7 +123,7 @@ function cancelReward(seq){
 	  title: '리워드 작성을 취소하시겠습니까?',
 	  icon: 'info',
 	  showCancelButton: true,
-	  confirmButtonColor: '#3085d6',
+	  confirmButtonColor: '#A4AC85',
 	  cancelButtonColor: 'grey',
 	  confirmButtonText: '취소',
 	  cancelButtonText: '돌아가기'
@@ -141,7 +139,7 @@ function createReward(seq){
 	  title: '리워드를 추가 하시겠습니까?',
 	  icon: 'info',
 	  showCancelButton: true,
-	  confirmButtonColor: '#3085d6',
+	  confirmButtonColor: '#A4AC85',
 	  cancelButtonColor: 'grey',
 	  confirmButtonText: '확인',
 	  cancelButtonText: '취소'
@@ -151,49 +149,63 @@ function createReward(seq){
 	 		if($('#reward_price').val() == ""){
 	 		    Swal.fire({
 	 		    	icon: 'error',
-	 		    	title: '금액을 입력해주세요'
+	 		    	title: '금액을 입력해주세요',
+	 		    	confirmButtonText : '확인',
+	 		    	confirmButtonColor: '#A4AC85'
 				})
 	 			return false;
 	 		}
 	 		if($('#reward_title').val() == ""){
 	 		    Swal.fire({
 	 		    	icon: 'error',
-	 		    	title: '제목을 입력해주세요'
+	 		    	title: '제목을 입력해주세요',
+	 		    	confirmButtonText : '확인',
+	 		    	confirmButtonColor: '#A4AC85'
 				})
 	 			return false;
 	 		}
 	 		if($('#reward_content').val() == ""){
 	 			Swal.fire({
 	 		    	icon: 'error',
-	 		    	title: '설명을 입력해주세요'
+	 		    	title: '설명을 입력해주세요',
+	 		    	confirmButtonText : '확인',
+	 		    	confirmButtonColor: '#A4AC85'
 				})
 	 			return false;
 	 		}
 	 		if($('#reward_stock').val() <= 0){
 	 			Swal.fire({
 	 		    	icon: 'error',
-	 		    	title: '수량을 입력해주세요'
+	 		    	title: '수량을 입력해주세요',
+	 		    	confirmButtonText : '확인',
+	 		    	confirmButtonColor: '#A4AC85'
 				})
 	 			return false;
 	 		}
 	 		if($('input:radio[name=reward_ship]').val() == ""){
 	 			Swal.fire({
 	 		    	icon: 'error',
-	 		    	title: '배송 여부를 입력해주세요'
+	 		    	title: '배송 여부를 입력해주세요',
+	 		    	confirmButtonText : '확인',
+	 		    	confirmButtonColor: '#A4AC85'
 				})
 	 			return false;
 	 		}
 	 		if($('#reward_shipmonth').val() == 0){
 	 			Swal.fire({
 	 		    	icon: 'error',
-	 		    	title: '배송월을 입력해주세요'
+	 		    	title: '배송월을 입력해주세요',
+	 		    	confirmButtonText : '확인',
+	 		    	confirmButtonColor: '#A4AC85'
 				})
 	 			return false;
 	 		}
 	 		if($('#reward_shipdate').val() == 0){
 	 			Swal.fire({
 	 		    	icon: 'error',
-	 		    	title: '배송일을 입력해주세요'
+	 		    	title: '배송일을 입력해주세요',
+	 		    	confirmButtonText : '확인',
+	 		    	confirmButtonColor: '#A4AC85'
 				})
 	 			return false;
 	 		}
@@ -330,17 +342,16 @@ function deleteReward(seq){
 		<c:if test="${not empty rewList }">
 			<c:forEach var="rewList" items="${rewList }">
 				<div id="box">
-					<div style="padding: 1em;">
+					<div style="padding: 2em;">
 						<h1 class="heading">${rewList.reward_title }</h1>
 						<div class="data"></div>
 						<p class="texts">가격 : ${rewList.reward_price }</p>
-						<p class="texts">재고 : ${rewList.reward_stock }</p>
 						<p class="texts">재고 : ${rewList.reward_stock }</p>
 						<p class="texts">내용 : ${rewList.reward_content }</p>
 						<p class="texts">배송 여부: ${rewList.reward_ship }</p>
 						<p class="texts">배송 월: ${rewList.reward_shipmonth }</p>
 						<p class="texts">배송 일: ${rewList.reward_shipdate }</p>
-						<a href="javascript:deleteReward(${rewList.reward_no });">삭제</a>
+						<a href="javascript:deleteReward(${rewList.reward_no });" style="color: #414934;">삭제</a>
 					</div>
 				</div>
 	
@@ -377,7 +388,7 @@ function deleteReward(seq){
 						<div id="content_div">
 							<textarea name="reward_content" id="reward_content" class="textArea" style="width: 90%"></textarea>
 						</div>
-						<br> <br> 제한 수량<br>
+						<br> <br> 재고<br>
 						<input type="text" name="stock" id="stock" value="" placeholder="0" numberOnlyMinComma="true" koreanCurrency="true" class="textBox"> 개
 						<input type="hidden" name="reward_stock" value="" id="reward_stock">
 						<br> <br> 배송 여부<br>
@@ -407,7 +418,7 @@ function deleteReward(seq){
 							경우, 서포터가 펀딩금 반환을 신청할 수 있으니 신중하게 선택해 주세요.</small><br> 
 						<small>· 종료일 + 11개월까지 리워드 발송이 시작되지 않은 경우, 미발송 상태인 서포터의 펀딩금 반환이 자동으로 완료
 							처리(결제 취소)되니 유의해 주세요.</small><br> <br>
-						<div id="buttons">
+						<div id="buttons" class="row justify-content-center">
 							<input type="button" value="추가" class="main-btn" onclick="createReward();" style="background-color: #A4AC85; border: none;">
 						</div>
 					</div>

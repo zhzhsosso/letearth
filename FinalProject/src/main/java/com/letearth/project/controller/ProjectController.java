@@ -170,6 +170,9 @@ public class ProjectController {
 	public String createGET(HttpSession session, ProjectVO proVO) throws Exception {
 		// 로그인 제어
 		String mem_id = (String) session.getAttribute("mem_id");
+		if (mem_id == null) {
+			return "redirect:/member/login";
+		} 
 		
 		int pro_no = 0;
 		
@@ -181,9 +184,6 @@ public class ProjectController {
 		
 		mylog.debug("프로젝트 번호 : " + pro_no );
 		
-		if (mem_id == null) {
-			return "redirect:/member/login";
-		} 
 
 		return "/project/create";
 	}

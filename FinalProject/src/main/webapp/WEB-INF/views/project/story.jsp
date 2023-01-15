@@ -40,7 +40,9 @@ function createReward(seq){
 	if(document.getElementById("result").value == ""){
 		Swal.fire({
 	    icon: 'error',
-		title: '광고 심의 가이드 라인을 확인해주세요'
+		title: '광고 심의 가이드 라인을 확인해주세요',
+		confirmButtonText : '확인',
+		confirmButtonColor: '#A4AC85'
 	})
 		return false;
 	}
@@ -48,7 +50,9 @@ function createReward(seq){
 	if($("input:checkbox[id='check']").is(":checked") != true){
 		Swal.fire({
 	    icon: 'error',
-		title: '광고 심의 가이드 라인 동의에 체크 해주세요.'
+		title: '광고 심의 가이드 라인 동의에 체크 해주세요.',
+		confirmButtonText : '확인',
+		confirmButtonColor: '#A4AC85'
 	})
 		return false;
 	}

@@ -58,36 +58,31 @@
  		}
 		
 		function checkMemberExist(kakaoAcountInfo){
-	 		$.ajax({
-	        type: "GET",
-	        url: "/member/checkKakaoAccountExist?kid="+kakaoAcountInfo.id,
-	        async: false,
-	        success: function(res) {        	
-	            if(res == "true"){
-	            	// 회원정보가 있음 -> 로그인
-	            	swal("카카오 로그인 정보가 있습니다!",'로그인을 진행합니다','success');
-	            	location.href="/main/all"
-	            }
-	            else{
-	            	// 회원정보가 없음 -> 회원가입?
-	            	if(confirm("회원이 아닙니다. 가입하시겠습니까?")){
-	            		// 회원가입 진행
-	            		insertKakaoMember(kakaoAcountInfo);
-	            	}
-	            	else{
-	            		// 로그인페이지로 이동
-	            		location.href="/member/login"
-	            	}
-	            }
-	        },
-	        error: function() {
-	          console.log('실패!!');
-	        },
-	        complete: function(){
-	        	
-	        }
-	      });
-	 	}
+	          $.ajax({
+	           type: "GET",
+	           url: "/member/checkKakaoAccountExist?kid="+kakaoAcountInfo.id,
+	           async: false,
+	           success: function(res) {  
+	               if(res == "true"){
+	                  // 회원정보가 있음 -> 로그인
+	                  swal("카카오 로그인 정보가 있습니다!",'로그인을 진행합니다','success').then(function(){
+	                     location.href="/main/all"            
+	                 });
+	               } else{
+	                  // 회원정보가 없음 -> 회원가입?
+	                  swal("카카오 간편 로그인 회원이 아닙니다!",'가입을 진행합니다','info').then(function(){
+	                     insertKakaoMember(kakaoAcountInfo);
+	                  });
+	               }
+	           },
+	           error: function() {
+	             console.log('실패!!');
+	           },
+	           complete: function(){
+	              
+	           }
+	         });
+	       }
 	
 		function insertKakaoMember(kakaoAcountInfo){
 	 		var kid = kakaoAcountInfo.id;

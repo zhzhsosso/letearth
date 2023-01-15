@@ -71,7 +71,7 @@ function deleteMember() {
 		text: '탈퇴 후 복구가 불가능합니다. 신중히 생각해주세요!',
 		icon: 'info',
 		showCancelButton: true,
-		confirmButtonColor: '#3085d6',
+		confirmButtonColor: '#A4AC85',
 		cancelButtonColor: 'grey',
 		confirmButtonText: '탈퇴',
 		cancelButtonText: '취소'
@@ -91,11 +91,18 @@ function deleteMember() {
 			 		    Swal.fire({
 			 		    	icon: 'error',
 			 		    	title: '비밀번호를 다시 확인해주세요.',
+			 		    	confirmButtonColor: '#A4AC85',
 			 		    	confirmButtonText : '확인'
 						})
 			    		return false;
 			    	} else {
-			    		swal('탈퇴 완료 되었습니다.','자동으로 메인페이지로 이동합니다.','info');
+			    		Swal.fire({
+	    					icon : 'success',
+	    					title : '탈퇴 완료 되었습니다.',
+	    					text : '자동으로 메인페이지로 이동합니다.',
+	    					confirmButtonText : '확인',
+	    					confirmButtonColor: '#A4AC85'
+	    				})
 			    		setTimeout(function () {
 			    			$.ajax({
 				    			async : true,
@@ -107,7 +114,7 @@ function deleteMember() {
 				    		    dataType : "text",
 				    		    contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 				    		    success : function(resp) { 
-				    		    	location.href="/project/createFirst";
+				    		    	location.href="/main/all";
 				    		    },
 				    		    error: function(jqXHR, textStatus, errorThrown) {
 				    		        alert("ERROR : " + textStatus + " : " + errorThrown);
@@ -143,8 +150,11 @@ function deleteMember() {
 				이름 <input type="text" name="name" value="${memVO.mem_name }" class="textBox" readonly="readonly"> <br>
 				전화번호 <input type="text" name="name" value="${memVO.mem_phone }" class="textBox" readonly="readonly"> <br>
 				이메일 <input type="text" name="name" value="${memVO.mem_email }" class="textBox" readonly="readonly"> <br>
-				거래은행 <input type="text" name="name" value="${memVO.bank_name }" class="textBox" readonly="readonly"> 
-				<button type="button" class="myBtn2" id="account">계좌 등록</button><br>
+				거래은행 <input type="text" name="name" value="${memVO.bank_name }" class="textBox" readonly="readonly">
+				<c:if test="${not empty memVO.bank_name }"> <br> </c:if>
+				<c:if test="${empty memVO.bank_name }">
+					<button type="button" class="myBtn2" id="account">계좌 등록</button><br>
+				</c:if>
 				예금주명 <input type="text" name="name" value="${memVO.bank_acc_name }" class="textBox" readonly="readonly"> <br>
 				계좌번호 <input type="text" name="name" value="${memVO.bank_acc }" class="textBox" readonly="readonly"> <br>
 				
@@ -208,7 +218,7 @@ function deleteMember() {
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-						<button type="button" class="btn btn-primary" onclick="deleteMember();">확인</button>
+						<button type="button" class="btn btn-primary" onclick="deleteMember();" style="background-color: #A4AC85; border-color: #A4AC85">확인</button>
 					</div>
 				</div>
 			</div>

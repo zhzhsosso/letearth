@@ -4,6 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<style>
 	#giftMo {
 		border: 1px solid #dcdcdc;
@@ -89,7 +92,12 @@
 			$('#re_shipdate').attr("value",null);
 			
 			$('#totalRe').attr("value",1000);
-			alert("변경 되었습니다!");
+			Swal.fire({
+				title : '변경 되었습니다!',
+				icon : 'success',
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
+			})
 			
 			$('#receiver_name').attr("disabled",true);
 			$('#receiver_phone').attr("disabled",true);
@@ -110,7 +118,12 @@
 			$('#re_shipdate').attr("value",null);
 			
 			$('#totalRe').attr("value",plus0);
-			alert("변경 되었습니다!");
+			Swal.fire({
+				title : '변경 되었습니다!',
+				icon : 'success',
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
+			})
 			
 			$('#receiver_name').attr("disabled",true);
 			$('#receiver_phone').attr("disabled",true);
@@ -142,7 +155,12 @@
 				
 				var total = parseInt((vo.reward_price))+parseInt((plus));
 				$('#totalRe').attr("value",total);
-				alert("변경 되었습니다!");
+				Swal.fire({
+					title : '변경 되었습니다!',
+					icon : 'success',
+					confirmButtonText : '확인',
+					confirmButtonColor: '#A4AC85'
+				})
 				
 				$('#receiver_name').attr("disabled",false);
 				$('#receiver_phone').attr("disabled",false);
