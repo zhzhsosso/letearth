@@ -388,7 +388,7 @@ function deleteReward(seq){
 						<div id="content_div">
 							<textarea name="reward_content" id="reward_content" class="textArea" style="width: 90%"></textarea>
 						</div>
-						<br> <br> 제한 수량<br>
+						<br> <br> 재고<br>
 						<input type="text" name="stock" id="stock" value="" placeholder="0" numberOnlyMinComma="true" koreanCurrency="true" class="textBox"> 개
 						<input type="hidden" name="reward_stock" value="" id="reward_stock">
 						<br> <br> 배송 여부<br>

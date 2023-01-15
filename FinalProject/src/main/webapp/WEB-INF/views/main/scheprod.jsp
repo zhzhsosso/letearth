@@ -15,7 +15,6 @@
 		for(var i=0; i<tagObj.length; i++){
 			var tagText = $(".tags")[i].innerHTML;	
 		    tagText = tagText.replaceAll(',', ' #');
-		    tagText = "#" + tagText;    
 		    $(".tags")[i].innerHTML = tagText;
 		}
 	})
@@ -78,7 +77,7 @@
                             </div>
                             
                             <div class="tags">
-                                 <span class="tags" style="color: #A4AC85;">${schp.tags }</span>
+                                 <span class="tags" style="color: #A4AC85;">#${schp.tags }</span>
                             </div>
                             
                             <div style="text-align: center; margin-top: 8%;">
