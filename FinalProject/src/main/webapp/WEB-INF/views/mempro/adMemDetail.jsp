@@ -434,7 +434,7 @@ body {
                         <c:choose>
                            <c:when test="${not empty memVO.mem_profile }">
                               <img
-                                 src="../resources/upload/${memVO.mem_profile} alt="
+                                 src="../resources/upload/${memVO.mem_profile}" alt="
                                  " class="img-circle mx-auto mb-3">
                            </c:when>
                            <c:otherwise>
