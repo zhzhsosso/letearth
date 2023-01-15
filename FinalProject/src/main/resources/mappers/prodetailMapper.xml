@@ -19,7 +19,7 @@
       DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
       from project
       <![CDATA[
-      where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and pro_status != '7' and pro_status = '3'
+      where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and pro_status != '7' and pro_status = '5'
       ]]>
       order by pro_st_dt desc
    </select>
@@ -31,7 +31,7 @@
       DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
       from project
       <![CDATA[
-      where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and pro_status != '7' and pro_status = '3'
+      where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and pro_status != '7' and pro_status = '5'
       ]]>
       order by truncate(pro_tp / pro_gp, 2) * 100 desc
    </select>
@@ -79,7 +79,7 @@
       DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
       from project
       <![CDATA[
-      where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") >= DATE_FORMAT(now(), "%Y%m%d") and pro_status != '7' and pro_status = '3'
+      where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") >= DATE_FORMAT(now(), "%Y%m%d") and pro_status != '7' and pro_status = '5'
       ]]>
       order by pro_st_dt desc
    </select>
@@ -91,7 +91,7 @@
       DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
       from project
       <![CDATA[
-      where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 1 and pro_status != '7' and pro_status = '3'
+      where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 1 and pro_status != '7' and pro_status = '5'
       ]]>
       order by pro_st_dt desc
    </select>
@@ -103,7 +103,7 @@
       DATEDIFF(DATE_FORMAT(pro_ed_dt, "%Y%m%d"),  DATE_FORMAT(now(), "%Y%m%d")) as "left_date"
       from project
       <![CDATA[
-      where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 2 and pro_status != '7' and pro_status = '3'
+      where DATE_FORMAT(pro_st_dt, "%Y%m%d") <= DATE_FORMAT(now(), "%Y%m%d") and DATE_FORMAT(pro_ed_dt, "%Y%m%d") > DATE_FORMAT(now(), "%Y%m%d") and cat_no = 2 and pro_status != '7' and pro_status = '5'
       ]]>
       order by pro_st_dt desc
    </select>

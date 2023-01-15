@@ -314,11 +314,19 @@
    	<script type="text/javascript">
 		var result = '${result}';
 		if(result == '블랙리스트회원추가'){
-			alert("블랙리스트회원추가");
+			Swal.fire({         
+		         title : '블랙리스트로 추가되었습니다!',
+		          icon: 'success',
+		         confirmButtonText: '확인'
+		      })
 		}
 		
-		if(result == '수정완'){
-			alert("블랙리스트프젝추가!");
+		if(result == '블랙리스트프젝추가'){
+			Swal.fire({         
+		         title : '블랙리스트로 추가되었습니다!',
+		          icon: 'success',
+		         confirmButtonText: '확인'
+		      })
 		}
 		
 		

@@ -427,7 +427,7 @@ body {
 											style="border-color: rgb(164 172 133/ 40%); width: 540px; height: 700px;">
 											<table class="table table-condensed">
 												<div class="banner">
-													<img src="../resources/upload/${pro_thum}" alt=""
+													<img src="../resources/upload/${proVO.pro_thum}" alt=""
 														class="img-rectangle"> <br> <br>
 													<h4 class="mb-4">
 														<br>${proVO.pro_title }</h4>

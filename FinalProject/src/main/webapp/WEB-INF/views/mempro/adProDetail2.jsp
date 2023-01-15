@@ -415,7 +415,7 @@ body {
 									<table class="table table-condensed">
 										<!-- 사진을 넣을지 그냥 타이틀만 넣을지 정하기 -->
 										<div class="banner">
-											<img src="../resources/upload/${pro_thum}" alt=""
+											<img src="../resources/upload/${proVO.pro_thum}" alt=""
 												class="img-rectangle"> <br>
 											<h4 class="mb-4">
 												<br>${proVO.pro_title }</h4>
