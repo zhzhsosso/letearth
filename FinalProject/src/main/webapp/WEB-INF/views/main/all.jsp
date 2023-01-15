@@ -10,7 +10,7 @@
 	<script>
 	$(document).ready(function() {		
 		var tagObj = $(".tags");
-				debugger;
+// 				debugger;
 		for(var i=0; i<tagObj.length; i++){
 			var tagText = $(".tags")[i].innerHTML;	
 		    tagText = tagText.replaceAll(',', ' #');
