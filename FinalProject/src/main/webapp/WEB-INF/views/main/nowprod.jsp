@@ -49,7 +49,7 @@
 	</style>
 
     
-    <section class="explore-projects-area explore-projects-page-area" style="padding-bottom: 1000px;">
+    <section style="padding-bottom: 325px;">
         <div class="container">
         
             <div class="row justify-content-center">
