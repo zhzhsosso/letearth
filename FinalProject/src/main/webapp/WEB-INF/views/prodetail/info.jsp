@@ -183,7 +183,7 @@ $(document).ready(function() {
 	// 좋아요 
 	function chkLike(mem_id){	
 		// alert('좋아요 클릭');
-		if(mem_id !== "null"){		
+		if(mem_id != "null"){		
 			var pro_no = $("#pro_no")[0].innerHTML;			
 			$.ajax({
 				url:"/prodetail/findLike?pro_no="+pro_no+"&mem_id="+mem_id,

@@ -24,37 +24,37 @@
 
 
 	
-	<!-- 프젝 상세조회(프젝번호 클릭시) : getDetailPro -->
-	<resultMap type="com.letearth.member.domain.MemberVO" id="MemberVO">
-		<result column="mem_id" property="mem_id"/>
-		<result column="mem_name" property="mem_name"/>
-		<result column="mem_phone" property="mem_phone"/>
-		<result column="mem_profile" property="mem_profile"/>
-		<result column="mem_email" property="mem_email"/>
-		<result column="mem_cr_dt" property="mem_cr_dt"/>
-	</resultMap>
-	
-	<resultMap type="com.letearth.project.domain.ProjectVO" id="ProjectVO">
-		<result column="pro_no" property="pro_no"/>
-		<result column="mem_id" property="mem_id"/>
-		<result column="pro_st_dt" property="pro_st_dt"/>
-		<result column="pro_ed_dt" property="pro_ed_dt"/>
-		<result column="pro_gp" property="pro_gp"/>
-		<result column="pro_title" property="pro_title"/>
-		<result column="pro_tp" property="pro_tp"/>
-		<result column="pro_status" property="pro_status"/>
-		<collection property="MemberVO" resultMap="MemberVO"/>
-	</resultMap>
-	
-	<select id="getDetailPro1" parameterType="ProjectVO" resultMap="ProjectVO">
-      select pro.pro_no, pro.mem_id, pro.pro_st_dt, pro.pro_ed_dt, pro.pro_gp, pro.pro_title, pro.pro_tp, pro.pro_status, 
+	   <!-- 프젝 상세조회(프젝번호 클릭시) : getDetailPro -->
+   <resultMap type="com.letearth.member.domain.MemberVO" id="MemberVO">
+      <result column="mem_id" property="mem_id"/>
+      <result column="mem_name" property="mem_name"/>
+      <result column="mem_phone" property="mem_phone"/>
+      <result column="mem_profile" property="mem_profile"/>
+      <result column="mem_email" property="mem_email"/>
+      <result column="mem_cr_dt" property="mem_cr_dt"/>
+   </resultMap>
+   
+   <resultMap type="com.letearth.project.domain.ProjectVO" id="ProjectVO">
+      <result column="pro_no" property="pro_no"/>
+      <result column="mem_id" property="mem_id"/>
+      <result column="pro_st_dt" property="pro_st_dt"/>
+      <result column="pro_ed_dt" property="pro_ed_dt"/>
+      <result column="pro_gp" property="pro_gp"/>
+      <result column="pro_title" property="pro_title"/>
+      <result column="pro_tp" property="pro_tp"/>
+      <result column="pro_status" property="pro_status"/>
+      <result column="pro_thum" property="pro_thum"/>
+      <collection property="MemberVO" resultMap="MemberVO"/>
+   </resultMap>
+   
+   <select id="getDetailPro1" parameterType="ProjectVO" resultMap="ProjectVO">
+      select pro.pro_no, pro.mem_id, pro.pro_st_dt, pro.pro_ed_dt, pro.pro_gp, pro.pro_title, pro.pro_tp, pro.pro_status, pro.pro_thum,  
       mem.mem_id, mem.mem_name, mem.mem_phone, mem.mem_profile, mem.mem_email, mem.mem_cr_dt 
       from project pro
       join member_tbl mem 
       on pro.mem_id = mem.mem_id 
       where pro.pro_no = #{pro_no} 
    </select>
-
 
 
 	   <!-- 프젝 리스트(5~7) : 페이징처리 게시판목록  -->

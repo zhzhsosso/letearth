@@ -190,11 +190,11 @@
 	
 	<!-- qna 불러오기 -->
 	<select id="getQna" resultType="NoticeVO">
-		select *, count(*) over(partition by not_re_ref) AS not_count
+		select *
 		from notice
-		where not_re_ref in (select not_no
-							 from 	notice
-							 where	mem_id=#{mem_id})
+		<![CDATA[
+		where not_re_ref > 0 and mem_id=#{mem_id}
+		]]>
 	    order by not_re_ref desc, not_re_seq asc;
 	</select>
 	
