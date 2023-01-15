@@ -31,7 +31,7 @@
   border : 0;
   
    position: relative;
-   top: -10px; 
+   top: -12px; 
 /*    left: 380px;  */
    left: 42.5%;
 }
@@ -39,7 +39,8 @@
 #repSelector1{
    position: relative;
    top: -15px; 
-   
+   border-color: rgba(164, 172, 133, .5);
+   width: 100%;
 }
 
 
@@ -180,7 +181,7 @@
 						<h2 class="box-title" align="center"><b style="color: #6F7B63;"> 관리자 1:1 문의 </b></h2>
 						<hr id="repSelector" align="center">
 			<div class="col-xs-12" style="font-size: 16px;"><br><br>
-				<div style="font-size: 1.5rem; cursor: pointer;" align="left" id="aaadiv" >
+				<div style="font-size: 1.7rem; cursor: pointer;" align="left" id="aaadiv" >
 					<br>  
 					<hr id="repSelector1">	
 				</div>
@@ -203,7 +204,7 @@
 							</div>
 						</div>
 					</div>
-					<div style="padding-top: 30px; padding-bottom: 30px;"></div>
+					<div style="padding-top: 25px; padding-bottom: 25px;"></div>
 			글의 개수 : ${pvo.totalCount }
 <!-- tableAll -->
 					<div class="box-body table-responsive no-padding" id="tableAll">
@@ -345,8 +346,9 @@
             </div>
 <!-- 페이징처리 -->
 <div style="padding: 30px 30px;"></div>
-<div class="pagination"style="position: relative ; left: 40%; bottom:0%; border: none;">
-		<ul class="pagination" style="font-size: 18px;">
+<div class="pagination"
+					style="position: relative ; left: 40%; bottom:0%; border: none;">
+					<ul class="pagination" style="font-size: 18px;">
 			<c:if test="${pvo.prev }">
 				<li class="paging"><a href="/board/adRewriteList?page=${pvo.startPage-1 }">«</a></li> <!-- 10 -->
 			</c:if>

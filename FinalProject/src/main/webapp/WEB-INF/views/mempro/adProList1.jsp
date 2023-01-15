@@ -41,9 +41,16 @@
 	background-color: #D7D1B9;
 	border: 0;
 	position: relative;
-	top: -95px;
-	/*    left: 380px;  */
-	left: 45%;
+   top: -12px; 
+/*    left: 380px;  */
+   left: 45%;
+}
+
+#repSelector1{
+   position: relative;
+   top: -15px; 
+   border-color: rgba(164, 172, 133, .5);
+   width: 100%;
 }
 
 /* hr { */
@@ -127,7 +134,6 @@
 .sidenav {
 	height: 100%;
 	width: 200px;
-	position: fixed;
 	z-index: 1;
 	/*    top: 30%;  */
 	/*    left: 20%;  */
@@ -136,8 +142,10 @@
 	padding-top: 30px;
 	padding-bottom: 100px;
 	position: sticky;
-	top: 64%;
+	top: 560px;
 	left: 250px;
+	
+	
 }
 /* Style the sidenav links and the dropdown button */
 .sidenav a, .dropdown-btn {
@@ -314,13 +322,13 @@
 			<!-- 사이드바 -->
 
 			<div class="container">
-				<br> <br> <br> <br> <br> <br>
+				<br> <br> <br> <br> <br>
 				<!-- 어드민 -->
 				<h2 class="box-title" align="center">
-					<b style="color: #6c757d;">프로젝트 승인</b> <br> <br> <br>
+					<b style="color: #6c757d;">프로젝트 승인</b>
 				</h2>
 				<hr id="repSelector" align="center">
-				<div class="col-xs-12">
+				<div class="col-xs-12" style="font-size: 16px;"><br><br>
 					<div style="font-size: 1.7rem" align="left" class="proList1">
 						<span id="hov"> <a id="listAll"
 							style="color: #6F7B63; font-weight: bolder;">전체</a> | <a
@@ -328,10 +336,8 @@
 							style="color: #B6AD90">승인</a> | <a id="list4"
 							style="color: #B6AD90">반려</a>
 						</span>
-						<hr
-							style="border-color: rgba(164, 172, 133, .5); position: relative; top: -10px; width: 100%;">
+						<hr id="repSelector1">
 					</div>
-					<br>
 					<!-- 어드민 -->
 
 					<!-- 검색기능 -->
@@ -367,7 +373,7 @@
 						</div>
 
 						<!-- 검색기능 -->
-						<br> <br>
+<div style="padding-top: 30px; padding-bottom: 30px;"></div>
 
 						<!-- proAll -->
 						<div class="box-body table-responsive no-padding" id="proAll">
@@ -615,7 +621,7 @@
 				<!-- 페이징처리 -->
 				<div style="padding: 30px 30px;"></div>
 				<div class="pagination"
-					style="position: absolute; right: 45%; border: none;">
+					style="position: relative ; left: 40%; bottom:0%; border: none;">
 					<ul class="pagination" style="font-size: 18px;">
 						<c:if test="${pvo.prev }">
 							<li class="paging"><a

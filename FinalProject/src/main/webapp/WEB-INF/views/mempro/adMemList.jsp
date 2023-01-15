@@ -43,9 +43,16 @@
 	background-color: #D7D1B9;
 	border: 0;
 	position: relative;
-	top: -95px;
-	/*    left: 380px;  */
-	left: 45%;
+   top: -12px; 
+/*    left: 380px;  */
+   left: 45%;
+}
+
+#repSelector1{
+   position: relative;
+   top: -15px; 
+   border-color: rgba(164, 172, 133, .5);
+   width: 100%;
 }
 
 /* hr { */
@@ -60,7 +67,6 @@
 .sidenav {
 	height: 100%;
 	width: 200px;
-	position: fixed;
 	z-index: 1;
 	/*    top: 30%;  */
 	/*    left: 20%;  */
@@ -68,8 +74,11 @@
 	overflow-x: hidden;
 	padding-top: 30px;
 	padding-bottom: 100px;
-	top: 300px;
+	position: sticky;
+	top: 560px;
 	left: 250px;
+	
+	
 }
 
 /* Style the sidenav links and the dropdown button */
@@ -200,75 +209,6 @@
 	color: #E8E4D7;
 }
 
-/*사이드바*/
-/* Fixed sidenav, full height */
-.sidenav {
-	height: 100%;
-	width: 200px;
-	position: fixed;
-	z-index: 1;
-	/*    top: 30%;  */
-	/*    left: 20%;  */
-	background-color: #EDEAE0;
-	overflow-x: hidden;
-	padding-top: 30px;
-	padding-bottom: 100px;
-	position: sticky;
-	top: 62%;
-	left: 250px;
-}
-/* Style the sidenav links and the dropdown button */
-.sidenav a, .dropdown-btn {
-	padding: 6px 8px 6px 16px;
-	text-decoration: none;
-	font-size: 17px;
-	color: #414934;
-	display: block;
-	border: none;
-	background: none;
-	width: 100%;
-	text-align: left;
-	cursor: pointer;
-	outline: none;
-}
-/* On mouse-over */
-.sidenav a:hover, .dropdown-btn:hover {
-	color: #B6AD90;
-}
-/* Main content */
-.main {
-	margin-left: 200px; /* Same as the width of the sidenav */
-	font-size: 20px; /* Increased text to enable scrolling */
-	padding: 0px 10px;
-	position: relative;
-	top: 30%;
-	left: 20%
-}
-/* Add an active class to the active dropdown button */
-.active1 {
-	background-color: #D7D1B9;
-	color: white;
-}
-/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-.dropdown-container {
-	display: none;
-	background-color: #EDEAE0;
-	padding-left: 8px;
-}
-/* Optional: Style the caret down icon */
-.fa-caret-down {
-	float: right;
-	padding-right: 8px;
-}
-/* Some media queries for responsiveness */
-@media screen and (max-height: 450px) {
-	.sidenav {
-		padding-top: 15px;
-	}
-	.sidenav a {
-		font-size: 18px;
-	}
-}
 
 /*셀렉트 꾸미깅*/
 /* The container must be positioned relative: */
@@ -393,24 +333,26 @@
 			<!-- 사이드바 -->
 
 			<div class="container">
-				<br> <br> <br> <br> <br> <br>
+				<br> <br> <br> <br> <br> 
 
 				<!-- 어드민 -->
 				<h2 class="box-title" align="center">
 
-					<b style="color: #6c757d;">회원 리스트</b> <br> <br> <br>
+					<b style="color: #6F7B63;">회원 리스트</b>
 				</h2>
 				<hr id="repSelector" align="center">
-				<div class="col-xs-12">
-					<div style="font-size: 1.7rem;" align="left" class="proList2">
-						<span id="hov"> <a id="listAll"
-							style="color: #6F7B63; font-weight: bolder;">전체</a> | <a
-							id="list2" style="color: #B6AD90">구매회원</a> | <a id="list3"
-							style="color: #B6AD90">판매회원</a> | <a id="list4"
-							style="color: #B6AD90">블랙리스트</a>
+				<div class="col-xs-12" style="font-size: 16px;"><br><br>
+					<div style="font-size: 1.7rem; cursor: pointer;" align="left" class="proList2">
+						<span id="hov"> 
+							<a id="listAll" style="color: #6F7B63; font-weight: bolder;">전체</a> 
+							| 
+							<a id="list2" style="color: #B6AD90">구매회원</a> 
+							| 
+							<a id="list3" style="color: #B6AD90">판매회원</a> 
+							| 
+							<a id="list4" style="color: #B6AD90">블랙리스트</a>
 						</span>
-						<hr
-							style="border-color: rgba(164, 172, 133, .5); position: relative; top: -10px; width: 100%;">
+						<hr id="repSelector1">	
 					</div>
 					<!-- 어드민 -->
 
@@ -444,7 +386,7 @@
 							</div>
 						</div>
 						<!-- 검색기능 -->
-						<br> <br>
+<div style="padding-top: 30px; padding-bottom: 30px;"></div>
 						<!-- memAll -->
 						<div class="box-body table-responsive no-padding" id="memAll">
 							<form role="form" name="fr" id="contact-form" action=""
@@ -690,11 +632,11 @@
 
 
 					</div>
-					<br> <br>
+<div style="padding: 30px 30px;"></div>
 					<!-- 페이징처리 -->
 					<div class="pagination"
-						style="position: absolute; right: 45%; border: none;">
-						<ul class="pagination" style="font-size: 18px;">
+					style="position: relative ; left: 40%; bottom:0%; border: none;">
+					<ul class="pagination" style="font-size: 18px;">
 							<c:if test="${pvo.prev }">
 								<li class="paging"><a
 									href="adMemList${pvo.makeSearch(pvo.starPage-1) }">«</a></li>
@@ -719,9 +661,8 @@
 				</div>
 			</div>
 		</div>
-		<br> <br> <br> <br> <br>
 	</section>
-
+   <div style="padding: 40px 40px;"></div>
 
 
 

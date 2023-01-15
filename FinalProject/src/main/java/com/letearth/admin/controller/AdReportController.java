@@ -145,7 +145,8 @@ public class AdReportController {
 			
 		
 		// 페이지 이동(/report/adRepList)	
-		return "redirect:/report/adRepList2";
+//		return "redirect:/report/adRepList2";
+		return "/report/adRepList2";
 		
 	}
 	

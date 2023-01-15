@@ -45,6 +45,8 @@
 #repSelector1{
    position: relative;
    top: -15px; 
+   border-color: rgba(164, 172, 133, .5);
+   width: 100%;
 }
 
 /*a 태그 상태 css*/
@@ -176,6 +178,11 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+.reptb a{
+	color: 	#414934;
+	
+}
+
 .reptb a:hover{
   color : #B6AD90;
   transition : 0s;
@@ -264,22 +271,22 @@
 								</tr>
 								<c:forEach var="vo" items="${adRepList }" varStatus="vs">
 												<tr class="reptb">
-													<td style="padding: 8px; text-align: center; vertical-align:middle; color: #414934; ">
+													<td style="padding: 8px; text-align: center; vertical-align:middle; color: #414934; font-weight: bold;">
 														<input type="hidden" id="rep_no" value="${vo.rep_no }">
 														${vo.rep_no }
 													</td>
-													<td style="vertical-align:middle; padding: 8px; text-align:center;">${vo.reper_id }</td>
-													<td style="vertical-align:middle; padding: 8px; text-align:center; width : 8%; table-layout: fixed;">
+													<td style="vertical-align:middle; padding: 8px; text-align:center; font-weight: bold;">${vo.reper_id }</td>
+													<td style="vertical-align:middle; padding: 8px; text-align:center; width : 8%; table-layout: fixed; font-weight: bold;">
 														<c:if test="${vo.rep_cat == 1}">회원</c:if>
 														<c:if test="${vo.rep_cat == 2}">프로젝트</c:if>
 													</td>													
 													<td style="vertical-align:middle; padding: 8px; text-align:center;">
-														<a href="/prodetail/info?pro_no=${vo.pro_no }" style="color: #414934;">${vo.reped_id }</a>
+														<a href="/prodetail/info?pro_no=${vo.pro_no }" style=" font-weight: bold;">${vo.reped_id }</a>
 													</td>
-													<td style="vertical-align:middle; padding: 8px; width : 30%; table-layout: fixed;"">
+													<td style="vertical-align:middle; padding: 8px; width : 30%; table-layout: fixed; font-weight: bold;">
 														${vo.rep_reason }
 													</td>
-													<td style="vertical-align:middle; padding: 8px; text-align:center;">
+													<td style="vertical-align:middle; padding: 8px; text-align:center; font-weight: bold;">
 														<fmt:formatDate value="${vo.rep_date }" pattern="yyyy-MM-dd"/>
 													</td>
 													<td style="vertical-align:middle; padding: 8px; text-align:center; width : 5%; table-layout: fixed;">${vo.rep_status }</td>
@@ -337,7 +344,7 @@
 					<ul class="pagination" style="font-size: 18px;">
 						<c:if test="${pvo.prev }">
 							<li class="paging"><a
-								href="adRepList2${pvo.makeSearch(pvo.starPage-1) }">«</a></li>
+								href="/report/adRepListAll${pvo.makeSearch(pvo.starPage-1) }">«</a></li>
 							<!-- 10 -->
 						</c:if>
 
@@ -345,12 +352,12 @@
 							end="${pvo.endPage }" step="1">
 							<li class="paging"
 								<c:out value="${idx == pvo.cri.page? 'class=active':'' }"/>><a
-								href="adRepList2${pvo.makeSearch(idx) }">${idx }</a></li>
+								href="/report/adRepListAll${pvo.makeSearch(idx) }">${idx }</a></li>
 						</c:forEach>
 
 						<c:if test="${pvo.next }">
 							<li class="paging"><a
-								href="adRepList2${pvo.makeSearch(pvo.endPage+1) }">»</a></li>
+								href="/report/adRepListAll${pvo.makeSearch(pvo.endPage+1) }">»</a></li>
 							<!-- 11 -->
 						</c:if>
 					</ul>
