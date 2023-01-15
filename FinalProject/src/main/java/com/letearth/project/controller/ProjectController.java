@@ -266,7 +266,8 @@ public class ProjectController {
 		System.out.println("생성된 고유문자열" + uniqueName);
 		System.out.println("확장자명" + fileExtension);
 		
-		File saveFile = new File(uploadFolder+"\\"+uniqueName + fileExtension);
+		File saveFile = new File(uploadFolder+uniqueName + fileExtension);
+		mylog.debug("업로드 파일 이름 : "+uploadFolder+uniqueName + fileExtension);
 		mylog.debug("파일 이름: " +uniqueName+fileExtension);
 		
 		proVO.setPro_no((int) session.getAttribute("pro_no"));

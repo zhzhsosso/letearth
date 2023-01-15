@@ -440,38 +440,31 @@ public class AdBoardController {
 	
 	
 	
-	/**
-	 * 사용자들이 보는 FAQ => faqMain
-	 * 구매자1번 / 후원자2번 / 판매자3번
-	 */
-	// GET
-	@RequestMapping(value = "/faqMain", method = RequestMethod.GET)
-	public String faqMainGET(HttpSession session, Model model) throws Exception{
-		
-		// 관리자 로그인제어
-		String id = (String)session.getAttribute("mem_id");
-		if(id==null) {
-			return "redirect:/member/login";
-		} else if( !id.equals("admin")) {
-			return "redirect:/member/main";
-		}
-		
-		// 최신 list 에서 4개만
-		// 구매자1번 / 후원자2번 / 판매자3번
-		List<AdminVO> faqMainList1 = adBoardService.faqMainList1();
-		model.addAttribute("faqMainList1", faqMainList1);
-		
-		List<AdminVO> faqMainList2 = adBoardService.faqMainList2();
-		model.addAttribute("faqMainList2", faqMainList2);
-		
-		List<AdminVO> faqMainList3 = adBoardService.faqMainList3();
-		model.addAttribute("faqMainList3", faqMainList3);
-		
-		mylog.debug("/board/faqMain(GET) 호출 -> 페이지 이동 완 ");
-		
-		return "/board/faqMain";
-		
-	}
+	   /**
+	    * 사용자들이 보는 FAQ => faqMain
+	    * 구매자1번 / 후원자2번 / 판매자3번
+	    */
+	   // GET
+	   @RequestMapping(value = "/faqMain", method = RequestMethod.GET)
+	   public void faqMainGET(HttpSession session, Model model) throws Exception{
+
+	      
+	      // 최신 list 에서 4개만
+	      // 구매자1번 / 후원자2번 / 판매자3번
+	      List<AdminVO> faqMainList1 = adBoardService.faqMainList1();
+	      model.addAttribute("faqMainList1", faqMainList1);
+	      
+	      List<AdminVO> faqMainList2 = adBoardService.faqMainList2();
+	      model.addAttribute("faqMainList2", faqMainList2);
+	      
+	      List<AdminVO> faqMainList3 = adBoardService.faqMainList3();
+	      model.addAttribute("faqMainList3", faqMainList3);
+	      
+	      mylog.debug("/board/faqMain(GET) 호출 -> 페이지 이동 완 ");
+	      
+	      
+	   }
+	   
 	
 	
 	/**
