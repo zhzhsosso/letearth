@@ -15,6 +15,9 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 	<script src="https://kit.fontawesome.com/bd939ba5e2.js" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	
 	<title>LetEarth</title>
 
@@ -130,42 +133,72 @@ function requestPay() {
 	
 	if(reward_no != 0 ){
 		if(phone.length == 0){
-			alert('연락처를 입력해주세요');
+			Swal.fire({
+				title : '연락처를 입력해주세요',
+				icon : 'error',
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
+			})
 			$('#phone').focus();
 			
 		 	return;
 		}
 		
 		if(receiver_name.length == 0){
-			alert('받는 분 성함을 입력해주세요');
+			Swal.fire({
+				title : '받는 분 성함을 입력해주세요',
+				icon : 'error',
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
+			})
 			$('#receiver_name').focus();
 			
 		 	return;
 		}
 		
 		if(address_no.length == 0){
-			alert('주소를 입력해주세요');
+			Swal.fire({
+				title : '주소를 입력해주세요',
+				icon : 'error',
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
+			})
 			$('#sample6_postcode').focus();
 			
 		 	return;
 		}
 		
 		if(address_detail.length == 0){
-			alert('상세주소를 입력해주세요');
+			Swal.fire({
+				title : '상세주소를 입력해주세요',
+				icon : 'error',
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
+			})
 			$('#sample6_detailAddress').focus();
 			
 		 	return;
 		}
 		
 		if(receiver_phone.length == 0){
-			alert('받는 분 연락처를 입력해주세요');
+			Swal.fire({
+				title : '받는 분 연락처를 입력해주세요',
+				icon : 'error',
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
+			})
 			$('#receiver_phone').focus();
 			
 		 	return;
 		}
 		
 		if(hidcheck == 0){
-			alert('연락처 본인 인증을 완료해주세요');
+			Swal.fire({
+				title : '연락처 본인 인증을 완료해주세요',
+				icon : 'error',
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
+			})
 			$('#phone').focus();
 			
 		 	return;
@@ -174,12 +207,22 @@ function requestPay() {
 	}
 		// 약관 동의 체크
 		if(!agree1[0].checked) {
-			alert("개인정보이용에 동의해주세요");
+			Swal.fire({
+				title : "개인정보 이용에 동의해주세요",
+				icon : 'error',
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
+			})
 			return;
 		}
 		
 		if(!agree2[0].checked) {
-			alert("후원 유의사항 확인에 동의해주세요");
+			Swal.fire({
+				title : "후원 유의사항 확인에 동의해주세요",
+				icon : 'error',
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
+			})
 			return;
 		}
 	
@@ -194,10 +237,20 @@ function requestPay() {
       buyer_tel: "010-9554-9537",  //
     }, function (rsp) { // callback
       if (rsp.success) {
-    	  alert('후원 성공!');
-    	  document.fr.submit();
+		Swal.fire({
+			title : '후원 성공!',
+			icon : 'success',
+			confirmButtonText : '확인',
+			confirmButtonColor: '#A4AC85'
+		})
+    	document.fr.submit();
       } else {
-          alert('후원 실패! 에러 내용: ${rsp.error_msg}');
+    		Swal.fire({
+    			title : '후원 실패! 에러 내용: ${rsp.error_msg}',
+    			icon : 'success',
+    			confirmButtonText : '확인',
+    			confirmButtonColor: '#A4AC85'
+    		})
       }
     });
   }
@@ -230,6 +283,7 @@ function requestPay() {
 	     clearInterval(timer);
 	     display.html("");
 	     $('#sendPhone').attr("disabled",false);
+	     $('#phone').attr("readonly",false);
 	     isRunning = false;
         }
     }, 1000);
@@ -249,12 +303,23 @@ function requestPay() {
 // 			var sec = 180;
 
 			if(phone == ""){
-				alert('연락처를 입력해주세요.')
+				Swal.fire({
+					title : '연락처를 입력해주세요.',
+					icon : 'error',
+					confirmButtonText : '확인',
+					confirmButtonColor: '#A4AC85'
+				})
 				
 				return;
 			}
 			
-			alert("인증번호를 보냈습니다.");
+			Swal.fire({
+				title : "인증번호를 보냈습니다.",
+				icon : 'info',
+				confirmButtonText : '확인',
+				confirmButtonColor: '#A4AC85'
+			})
+			$("#phone").attr('readonly',true);
 			$("#sendPhone").attr('disabled','disabled')
 			$('#phoneCheck').css('visibility','visible');
 			$('#checkNum').css('visibility','visible');
@@ -287,9 +352,19 @@ function requestPay() {
 						var checkNum = $("#checkNum").val();
 						
 						if(checkNum == ""){
-							alert('인증번호를 입력해주세요.')
+							Swal.fire({
+								title : '인증번호를 입력해주세요.',
+								icon : 'info',
+								confirmButtonText : '확인',
+								confirmButtonColor: '#A4AC85'
+							})
 						} else if(getCookie("code") == checkNum) {
-							alert('인증되었습니다.');
+							Swal.fire({
+								title : '인증되었습니다.',
+								icon : 'success',
+								confirmButtonText : '확인',
+								confirmButtonColor: '#A4AC85'
+							})
 							$('#phoneCheck').css('visibility','hidden');
 							$('#checkNum').css('visibility','hidden');
 							$("#sendPhone").css('visibility','hidden');
@@ -304,24 +379,49 @@ function requestPay() {
 								data:{"phone":phone},
 								success:function(result){
 									if(result == 1){
-										alert('연락처가 등록되었습니다.');
+										Swal.fire({
+											title : '연락처가 등록되었습니다.',
+											icon : 'success',
+											confirmButtonText : '확인',
+											confirmButtonColor: '#A4AC85'
+										})
 									} else {
-										alert('실패');
+										Swal.fire({
+											title : '실패',
+											icon : 'error',
+											confirmButtonText : '확인',
+											confirmButtonColor: '#A4AC85'
+										})
 									}
 								}
 								
 							});
 							
 						} else if(getCookie("code")==null) {
-							alert('인증시간이 지났습니다. 인증번호를 다시 받아주세요.');							
+							Swal.fire({
+								title : '인증시간이 지났습니다. 인증번호를 다시 받아주세요.',
+								icon : 'error',
+								confirmButtonText : '확인',
+								confirmButtonColor: '#A4AC85'
+							})
 						} else if(getCookie("code") != checkNum){
-							alert('인증번호가 틀립니다.');
+							Swal.fire({
+								title : '인증번호가 틀립니다.',
+								icon : 'error',
+								confirmButtonText : '확인',
+								confirmButtonColor: '#A4AC85'
+							})
 						}
 					});
 						
 				},
 				error:function(){
-					alert("실패");
+					Swal.fire({
+						title : '실패',
+						icon : 'error',
+						confirmButtonText : '확인',
+						confirmButtonColor: '#A4AC85'
+					})
 				}
 			});
 		});
