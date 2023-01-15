@@ -18,7 +18,11 @@
         <br><br><br>
         
         <ul class="sidebar__category-list">
-       	 <li class="sidebar__category-list-item">거래내역조회 전에 개발자사이트에 데이터넣고오기</li>
+       	 <li class="sidebar__category-list-item">토큰 : ${responseTokenVO.access_token }<br>
+	사용자일련번호 : ${responseTokenVO.user_seq_no }<br>
+	이용기관코드 : ${responseTokenVO.client_use_code }<br></li>
+       	 
+	<hr>
         </ul>
         
         <form method="post" action="/openbanking/transfer" >

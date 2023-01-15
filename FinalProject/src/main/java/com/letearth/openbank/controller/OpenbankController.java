@@ -60,6 +60,7 @@ public class OpenbankController {
 		String mem_id = (String)session.getAttribute("mem_id");
 		
 		List<ProjectVO> fproList = openBankService.getListSettle(cri);
+		System.out.println("fproList:"+fproList);
 		
 		// 페이징처리 하단부 정보 준비 -> 뷰페이지로 전달
 		PageVO pvo = new PageVO();
@@ -170,8 +171,11 @@ public class OpenbankController {
 		
 		System.out.println("responseTokenVO : "+responseTokenVO);
 	
-		return "/openbanking/useroauth";
+		return "redirect:/mypage/mypage";
 	}
+	
+	
+
 	
 	
 	

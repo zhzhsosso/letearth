@@ -187,7 +187,35 @@ body {
 }
 </style>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
 
+<script src="../resources/assets/js/vendor/jquery-3.5.1.min.js"></script>
+
+<script type="text/javascript">
+ jQuery(document).ready(function(){ 
+ 	jQuery('#btn-submit').click(function(e){ 
+ 		 e.preventDefault(); 
+ 		 let form = jQuery(this).parents('form'); 
+ 		 Swal.fire({ 
+ 				title: '이체하시겠습니까?', 
+ 				text: '다시 한 번 확인해주세요!',
+ 				icon: 'info',
+ 				showCancelButton: true, 
+ 				confirmButtonColor: '#3085d6', 
+ 				cancelButtonColor: 'grey', 
+ 				confirmButtonText: '이체하기',
+ 				cancelButtonText: '취소' 
+ 		}).then((result) => { 
+             if (result.isConfirmed) { 
+                 form.submit(); 
+             } 
+         }) 
+ 	}); 
+ }); 
+
+ </script>
 
 <section class="project-details-content-area pb-110">
 	<div style="display: flex;">
@@ -268,33 +296,27 @@ body {
 												
 											</table>
 											<!-- 입금이체 : 관리자가 판매자 계좌로 입금 -->
-														<form method="post" action="/openbanking/deposit">
-<%-- 															<input type="hidden" name="access_token" value="${responseTokenVO.access_token }"> --%>
-															<!-- 관리자 토큰값 고정 -->
-															<input type="hidden" name="access_token" value="${adfin.bank_token }">
+														<form method="post" action="/openbanking/deposit" id="form">
+															<!-- 이용기관 토큰값 고정 -->
+															<input type="hidden" name="access_token" value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJNMjAyMjAyMzQzIiwic2NvcGUiOlsib29iIl0sImlzcyI6Imh0dHBzOi8vd3d3Lm9wZW5iYW5raW5nLm9yLmtyIiwiZXhwIjoxNjgxNTQ1ODE5LCJqdGkiOiJjNzhmMTk1Yy1jZWJmLTRlNDQtOWFhMS04ZWJiNmE2YmNiZWQifQ.oEAi761wKaHMqNd_xLEtAVIsQxSVtmSGQaHWi-JwDyk">
 															<input type="hidden" name="cntr_account_type" value="N">
 															<input type="hidden" name="cntr_account_num" value="${adfin.bank_acc }">
 															<input type="hidden" name="wd_pass_phrase" value="NONE"> <!-- 테스트환경은 NONE을 사용 -->
 															<input type="hidden" name="wd_print_content" value="정산해요">
 															<input type="hidden" name="name_check_option" value="off">
-															<input type="hidden" name="tran_dtime" value="20230106101921">
+															<input type="hidden" name="tran_dtime" value="20230115101921">
 															<input type="hidden" name="req_cnt" value="1">
 															
 															<input type="hidden" name="tran_no" value="1">
-<%-- 															<input type="hidden" name="bank_tran_id" value="${responseTokenVO.bank_tran_id }"> --%>
-															<!-- 거래고유번호 일단 고정 한번만 사용가능 -->
-<!-- 															<input type="hidden" name="bank_tran_id" value="M202202343U123456757"> -->
-<!-- 															<input type="hidden" name="fintech_use_num" value="120220234388941213030431"> -->
 															<input type="hidden" name="fintech_use_num" value="${sellfin.bank_fin_num }">
 															<input type="hidden" name="print_content" value="정산해요">
-															<input type="hidden" name="tran_amt" value="${totalamt}"> <!-- 금액 -->
+															<input type="hidden" name="tran_amt" value="${totalamt }"> <!-- 금액 -->
 															
-															<input type="hidden" name="req_client_name" value="${sellfin.bank_acc_name }"> 
+															<input type="hidden" name="req_client_name" value="정지현"> 
 															
 															<input type="hidden" name="req_client_fintech_use_num" value="${sellfin.bank_fin_num }">
-<!-- 															<input type="hidden" name="req_client_fintech_use_num" value="120220234388941213956446"> -->
 <%-- 															<input type="hidden" name="req_client_bank_code" value="${sellfin.bank_code }"> <!-- 은행 코드 --> --%>
-<!-- 															<input type="hidden" name="req_client_account_num" value="1313131313131313"> -->
+<!-- 															<input type="hidden" name="req_client_account_num" value="4848484848484848"> -->
 															
 															<input type="hidden" name="req_client_num" value="HONGGILDONG1234">
 															<input type="hidden" name="transfer_purpose" value="AU">
@@ -303,7 +325,7 @@ body {
 															
 															<div class="btnbtn">
 														         <div class="blog-btn">
-																	<input type="submit" class="main-btn" value="정산하기">
+																	<input type="button" class="main-btn" value="정산하기" id="btn-submit">
 														         </div>
 													        </div>
 														</form>
@@ -330,16 +352,7 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
+	
 
 
 

@@ -178,7 +178,7 @@ function deleteMember() {
 				<!-- 고정값: code -->
 				<input type="hidden" name="response_type" value="code">
 				<!-- 오픈뱅킹에서 발급한 이용기관 앱의 Client ID -->
-				<input type="hidden" name="client_id" value="497a96be-b96b-4f3c-9a29-c8cbed7bd6b5">
+				<input type="hidden" name="client_id" value="be6aa2c4-8b34-4401-9c54-49643df0e522">
 				<!-- 사용자인증이 성공하면 이용기관으로 연결되는 URL callback_uri -->
 				<input type="hidden" name="redirect_uri" value="http://localhost:8080/openbanking/callback">
 				<!-- Access Token 권한 범위 -->
