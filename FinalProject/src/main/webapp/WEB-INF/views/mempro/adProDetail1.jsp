@@ -628,7 +628,7 @@ function updatePro3(num){
 	        icon: 'warning', 
 	        html: "<h5>프로젝트 승인리스트로 이동합니다.</h5>",
 	        showCancelButton: true,         
-	        confirmButtonColor: '#3085d6', 
+	        confirmButtonColor: '#A4AC85', 
 	        cancelButtonColor: 'grey', 
 	        confirmButtonText: '승인하기', 
 	        cancelButtonText: '취소하기' 
@@ -647,7 +647,7 @@ function updatePro4(num){
 	        icon: 'warning', 
 	        html: "<h5>프로젝트 승인리스트로 이동합니다.</h5>",
 	        showCancelButton: true,         
-	        confirmButtonColor: '#3085d6', 
+	        confirmButtonColor: '#A4AC85', 
 	        cancelButtonColor: 'grey', 
 	        confirmButtonText: '반려하기', 
 	        cancelButtonText: '취소하기' 

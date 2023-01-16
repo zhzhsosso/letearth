@@ -40,7 +40,7 @@ function shareKakao() {
             'Let Earth 지구하자',
           link: {
             // mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'http://itwillbs11.cafe24.com/prodetail/info?pro_no=<%=request.getParameter("pro_no")%>',
+            webUrl: 'http://letearth.shop/prodetail/info?pro_no=<%=request.getParameter("pro_no")%>',
           }
     });
 }
@@ -49,14 +49,14 @@ function shareKakao() {
 function shareTwitter() {
    // alert('twitter');
     var sendText = "LET EARTH" 
-    var sendUrl = "http://itwillbs11.cafe24.com/prodetail/info?pro_no=<%=request.getParameter("pro_no")%>"
+    var sendUrl = "http://letearth.shop/prodetail/info?pro_no=<%=request.getParameter("pro_no")%>"
     window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
 }
  
 // 공유하기 - Facebook
 function shareFacebook() {
    // alert('facebook');
-    var sendUrl = "http://itwillbs11.cafe24.com/prodetail/info?pro_no=<%=request.getParameter("pro_no")%>";    
+    var sendUrl = "http://letearth.shop/prodetail/info?pro_no=<%=request.getParameter("pro_no")%>";    
     window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
 } 
 
