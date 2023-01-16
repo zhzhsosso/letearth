@@ -37,7 +37,7 @@ import com.letearth.openbank.domain.WithdrawResponseVO;
 public class OpenBankApiClient {
 	private String client_id="be6aa2c4-8b34-4401-9c54-49643df0e522";
 	private String client_secret="b1a25933-1cb9-4ef0-ba24-74020c8fc412";
-	private String redirect_uri="http://localhost:8080/openbanking/callback";
+	private String redirect_uri="http://letearth.shop/openbanking/callback";
 	private String grant_type="authorization_code";
 	
 	

@@ -118,7 +118,7 @@ function modifyMember() {
 				<!-- 오픈뱅킹에서 발급한 이용기관 앱의 Client ID -->
 				<input type="hidden" name="client_id" value="497a96be-b96b-4f3c-9a29-c8cbed7bd6b5">
 				<!-- 사용자인증이 성공하면 이용기관으로 연결되는 URL callback_uri -->
-				<input type="hidden" name="redirect_uri" value="http://localhost:8080/openbanking/callback">
+				<input type="hidden" name="redirect_uri" value="http://letearth.shop/openbanking/callback">
 				<!-- Access Token 권한 범위 -->
 				<input type="hidden" name="scope" value="login inquiry transfer oob">
 				<!-- CSRF 보안위협에 대응하기 위해 이용기관이 세팅하는 난수값 32자리 -->
