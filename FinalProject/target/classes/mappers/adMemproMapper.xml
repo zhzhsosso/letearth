@@ -24,7 +24,7 @@
 
 
 	
-	   <!-- 프젝 상세조회(프젝번호 클릭시) : getDetailPro -->
+   <!-- 프젝 상세조회(프젝번호 클릭시) : getDetailPro -->
    <resultMap type="com.letearth.member.domain.MemberVO" id="MemberVO">
       <result column="mem_id" property="mem_id"/>
       <result column="mem_name" property="mem_name"/>
@@ -109,7 +109,31 @@
     	update project set pro_status=3
     	where pro_no = #{pro_no }  
   	</update>
+  	
+  	
+  	<!-- 구매회원 -> 판매회원 -->
+     <update id="updateMemStatus">
+        update member_tbl set mem_status=1
+        where mem_id = #{mem_id}
+     </update>
 
+
+	<!-- 프로젝트 시작시 승인(3) -> 판매중(5) 변경 -->
+	<update id="updateStart">
+		update project set pro_status =5
+		where pro_status = 3 
+		and #{pro_st_dt} = curDate()
+	</update>
+	
+	
+	<!-- 프로젝트 종료시 판매중(5) -> 마감(6) 변경 -->
+	<update id="updateEnd">
+		update project set pro_status =6
+		where pro_status = 5 
+		and #{pro_ed_dt} < curDate()
+	</update>
+	
+	
 
  	<!-- 프로젝트 상태변경 (승인요청(2) -> 반려(4)으로 변경 -->
  	<update id="updatePro4">
@@ -187,14 +211,6 @@
 	</select>
 	
 
-	
-	<!--  회원 탈퇴 -->
-	<delete id="deleteMem">
-		delete from member_tbl where mem_id=#{mem_id} and mem_pw=#{mem_pw}
-	</delete>
-	
-	
-	
-	
+
 
 </mapper>

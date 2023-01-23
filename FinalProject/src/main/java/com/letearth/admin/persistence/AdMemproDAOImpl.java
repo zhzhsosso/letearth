@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.letearth.prodetail.domain.Criteria;
+import com.letearth.admin.domain.AdminVO;
 import com.letearth.admin.domain.MemOrdVO;
 import com.letearth.admin.domain.SearchCriteria;
 import com.letearth.order.domain.OrderVO;
@@ -114,18 +115,19 @@ public class AdMemproDAOImpl implements AdMemproDAO {
 
 
 	// 프로젝트 상태변경 (승인요청(2) -> 승인(3)으로 변경
+	//	+ 회원 상태변경 (구매회원(0) -> 판매회원(1))
 	@Override
-	public Integer updateProStatus3(ProjectVO proVO) throws Exception {
-		return sqlSession.update(NAMESPACE+".updatePro3",proVO);
+	public Integer updateProStatus3(AdminVO adVO) throws Exception {
+		return sqlSession.update(NAMESPACE+".updatePro3",adVO)
+				+ sqlSession.update(NAMESPACE+".updateMemStatus",adVO);
 	}
 	
 	
 	// 프로젝트 상태변경 (승인요청(2) -> 반려(4)으로 변경
 	@Override
-	public Integer updateProStatus4(ProjectVO proVO) throws Exception {
-		return sqlSession.update(NAMESPACE+".updatePro4",proVO);
+	public Integer updateProStatus4(AdminVO adVO) throws Exception {
+		return sqlSession.update(NAMESPACE+".updatePro4",adVO);
 	}
-	
 	
 	
 	

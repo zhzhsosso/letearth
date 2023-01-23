@@ -3,6 +3,7 @@ package com.letearth.admin.service;
 import java.util.List;
 
 import com.letearth.prodetail.domain.Criteria;
+import com.letearth.admin.domain.AdminVO;
 import com.letearth.admin.domain.MemOrdVO;
 import com.letearth.admin.domain.SearchCriteria;
 import com.letearth.order.domain.OrderVO;
@@ -39,12 +40,13 @@ public interface AdMemproService {
 	public int totalPro2(SearchCriteria scri) throws Exception;
 	
 	// 프로젝트 상태변경 (승인요청(2) -> 승인(3)으로 변경
-	public Integer updateProStatus3(ProjectVO proVO) throws Exception;
+	//	+ 회원 상태변경 (구매회원(0) -> 판매회원(1))
+	public Integer updateProStatus3(AdminVO adVO) throws Exception;
 	
 	// 프로젝트 상태변경 (승인요청(2) -> 반려(4)으로 변경
-	public Integer updateProStatus4(ProjectVO proVO) throws Exception;
+	public Integer updateProStatus4(AdminVO adVO) throws Exception;
 	
-	
+
 	
 	
 	/**

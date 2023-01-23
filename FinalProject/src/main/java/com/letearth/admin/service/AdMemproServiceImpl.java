@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.letearth.prodetail.domain.Criteria;
+import com.letearth.admin.domain.AdminVO;
 import com.letearth.admin.domain.MemOrdVO;
 import com.letearth.admin.domain.SearchCriteria;
 import com.letearth.order.domain.OrderVO;
@@ -82,15 +83,16 @@ public class AdMemproServiceImpl implements AdMemproService {
 	}
 	
 	@Override
-	public Integer updateProStatus3(ProjectVO proVO) throws Exception {
-		return admemproDAO.updateProStatus3(proVO);
+	public Integer updateProStatus3(AdminVO adVO) throws Exception {
+		return admemproDAO.updateProStatus3(adVO);
 	}
 	
 	@Override
-	public Integer updateProStatus4(ProjectVO proVO) throws Exception {
-		return admemproDAO.updateProStatus4(proVO);
+	public Integer updateProStatus4(AdminVO adVO) throws Exception {
+		return admemproDAO.updateProStatus4(adVO);
 	}
 	
+
 	
 	
 	/**

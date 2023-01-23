@@ -42,6 +42,8 @@ public class AdMemproController {
 	private AdMemproService adMemproService;
 	private ProDetailService pdservice;
 	
+	//http://itwillbs11.cafe24.com/main/all
+	
 	
 	/**
 	 * 프로젝트 리스트 조회 1(상태2-4)
@@ -179,11 +181,12 @@ public class AdMemproController {
 	 */
 	
 	@RequestMapping(value = "/adProStatus3", method = RequestMethod.GET)
-	public String adProUp3GET(HttpSession session, Model model, RedirectAttributes rttr, ProjectVO proVO) throws Exception{
+	public String adProUp3GET(HttpSession session, Model model, RedirectAttributes rttr, AdminVO adVO) throws Exception{
 
-		adMemproService.updateProStatus3(proVO);
+		adMemproService.updateProStatus3(adVO);
 		rttr.addFlashAttribute("result", "승인완료");
-		model.addAttribute("pro_no", proVO.getPro_no());
+		model.addAttribute("pro_no", adVO.getPro_no());
+		model.addAttribute("mem_id", adVO.getMem_id());
 		
 		return "redirect:/mempro/adProList1";
 	}
@@ -196,11 +199,11 @@ public class AdMemproController {
 	 */
 	
 	@RequestMapping(value = "/adProStatus4", method = RequestMethod.GET)
-	public String adProUp4GET(HttpSession session, Model model, RedirectAttributes rttr, ProjectVO proVO) throws Exception{
+	public String adProUp4GET(HttpSession session, Model model, RedirectAttributes rttr, AdminVO adVO) throws Exception{
 		
-		adMemproService.updateProStatus4(proVO);
+		adMemproService.updateProStatus4(adVO);
 		rttr.addFlashAttribute("result", "반려완료");
-		model.addAttribute("pro_no", proVO.getPro_no());
+		model.addAttribute("pro_no", adVO.getPro_no());
 		
 		return "redirect:/mempro/adProList1";
 	}

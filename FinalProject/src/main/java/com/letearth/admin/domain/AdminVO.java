@@ -52,6 +52,13 @@ public class AdminVO {
 	private String colName;
 	
 	
+	// 회원 
+	private Integer mem_status;
+	
+	// 프로젝트 
+	private int pro_status;
+	
+	
 	
 	
 }
