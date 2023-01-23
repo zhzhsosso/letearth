@@ -529,7 +529,7 @@ body {
 				<button type="submit"
 					onclick="location.href='javascript:window.history.back();'"
 					class="main-btn" style="float: center; background-color: #A4AC85">뒤로</button>
-				<button type="button" onclick="updatePro3(${proVO.pro_no});"
+				<button type="button" onclick="updatePro3(${proVO.pro_no},'${proVO.memberVO.mem_id }');"
 					class="main-btn" style="float: center; background-color: #A4AC85">승인</button>
 				<button type="button" onclick="updatePro4(${proVO.pro_no});"
 					class="main-btn" style="float: center; background-color: #A4AC85;">반려</button>
@@ -622,7 +622,7 @@ function proPreviewBtn(num){
 
 
 
-function updatePro3(num){
+function updatePro3(num,id){
 		 Swal.fire({ 
 	        title: '프로젝트를 승인하시겠습니까?', 
 	        icon: 'warning', 
@@ -635,7 +635,7 @@ function updatePro3(num){
 	      }).then((result) => { 
 	        if (result.isConfirmed) {           
 	             
-	       	 location.href="/mempro/adProStatus3?pro_no="+num;
+	       	 location.href="/mempro/adProStatus3?pro_no="+num+"&mem_id="+id;
 	        } 
 	      }) 
 }
