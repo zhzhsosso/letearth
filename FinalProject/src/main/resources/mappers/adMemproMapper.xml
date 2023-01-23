@@ -104,6 +104,29 @@
 	</select>
 
 
+  	<!-- 구매회원 -> 판매회원 -->
+     <update id="updateMemStatus">
+        update member_tbl set mem_status=1
+        where mem_id = #{mem_id}
+     </update>
+
+
+	<!-- 프로젝트 시작시 승인(3) -> 판매중(5) 변경 -->
+	<update id="updateStart">
+		update project set pro_status =5
+		where pro_status = 3 
+		and #{pro_st_dt} = curDate()
+	</update>
+	
+	
+	<!-- 프로젝트 종료시 판매중(5) -> 마감(6) 변경 -->
+	<update id="updateEnd">
+		update project set pro_status =6
+		where pro_status = 5 
+		<![CDATA[and #{pro_ed_dt} < curDate()]]>
+	</update>
+
+
  	<!-- 프로젝트 상태변경 (승인요청(2) -> 승인(3)으로 변경 -->
  	<update id="updatePro3">
     	update project set pro_status=3
