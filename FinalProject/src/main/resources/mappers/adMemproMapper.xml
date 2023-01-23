@@ -151,9 +151,9 @@
 	
 	<!-- 프로젝트 종료시 판매중(5) -> 마감(6) 변경 -->
 	<update id="updateEnd">
-		update project set pro_status =6
+		<![CDATA[update project set pro_status =6
 		where pro_status = 5 
-		and #{pro_ed_dt} < curDate()
+		and #{pro_ed_dt} < curDate()]]>
 	</update>
 	
 	
