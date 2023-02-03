@@ -5,9 +5,9 @@
 </a>
 
 ## 📢 Introduction
-- 렌터카 예약 홈페이지 구현
-- 🚘[타이소(Taiso)](http://itwillbs2.cafe24.com/project_taiso/ReservationMain.rez)🚘바로가기
-- 팀프로젝트였던 렌터카 홈페이지 + 개인적으로 기능추가(검색,챗봇 api)
+- 크라우드 펀딩 웹사이트 구현
+- 🍃[렛어스(letearth)](http://letearth.shop/main/all)🍃바로가기
+
 
 ### 　
 ### 　　　
