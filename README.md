@@ -7,15 +7,16 @@
 ## 📢 Introduction
 - 제로웨이스트 기반 크라우드 펀딩 웹사이트 구현
 - 🍃[렛어스(letearth)](http://letearth.shop/main/all)🍃바로가기
+![image](https://user-images.githubusercontent.com/118797686/216546787-14caf1bb-ff12-443f-8d54-fbf8d7bc08f4.png)
 
+### 　　　
+<hr>
 
 ### 　
 ### 　　　
 
 ## 🛠 Tech stack
 <img src="https://img.shields.io/badge/-Spring Framework-6DB33F?style=flat-plastic&logo=Spring&logoColor=white"/>   <img src="https://img.shields.io/badge/-MyBatis-191A1B?style=flat-plastic&logo=MyBatis&logoColor=white"/>   <img src="https://img.shields.io/badge/-Maven-C71A36?style=flat-plastic&logo=Apache Maven&logoColor=white"/>   <img src="https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-plastic&logo=JavaScript&logoColor=white"/>   <img src="https://img.shields.io/badge/-jQuery-0769AD?style=flat-plastic&logo=jQuery&logoColor=white"/>   <img src="https://img.shields.io/badge/-API-F575C6?style=flat-plastic&logo=API&logoColor=white"/>   <img src="https://img.shields.io/badge/-AJAX-37D1CB?style=flat-plastic&logo=AJAX&logoColor=white"/>   <img src="https://img.shields.io/badge/-MySQL-4479A1?style=flat-plastic&logo=MySQL&logoColor=white"/>   <img src="https://img.shields.io/badge/-CSS-F59C54?style=flat-plastic&logo=CSS3&logoColor=white"/>   <img src="https://img.shields.io/badge/-SCSS-CD6799?style=flat-plastic&logo=SCSS&logoColor=white"/>   <img src="https://img.shields.io/badge/-HTML-E34F26?style=flat-plastic&logo=HTML5&logoColor=white"/>   <img src="https://img.shields.io/badge/-Bootstrap-7952B3?style=flat-plastic&logo=Bootstrap&logoColor=white"/>   <img src="https://img.shields.io/badge/-ApachetTomcat9.0-D22128?style=flat-plastic&logo=Apache&logoColor=white"/>   
-
-
 
 
 
@@ -29,14 +30,18 @@
 
 
 ### 　　　
+### 　
+
+## 👯 팀원 소개
+![image](https://user-images.githubusercontent.com/118797686/216546843-3c152274-7181-47b9-99e7-b5a1705e5f1d.png)
+
 ### 　　　
+<hr>
+
+### 　
 
 ## 📅 개발 일정
-### 1. 일정관리 
-![일정관리](https://user-images.githubusercontent.com/118797686/214765218-b669cdd8-4a71-4585-9124-58cf945ba445.png)
-### 　
-### 2. 개발일정 
-![개발일정](https://user-images.githubusercontent.com/118797686/214765214-465ac003-eeb0-40bc-bbd0-548cdf75074d.png)
+![image](https://user-images.githubusercontent.com/118797686/216546843-3c152274-7181-47b9-99e7-b5a1705e5f1d.png)
 
 ### 　　　
 <hr>
