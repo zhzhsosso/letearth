@@ -5,7 +5,7 @@
 </a>
 
 ## 📢 Introduction
-- 크라우드 펀딩 웹사이트 구현
+- 제로웨이스트 기반 크라우드 펀딩 웹사이트 구현
 - 🍃[렛어스(letearth)](http://letearth.shop/main/all)🍃바로가기
 
 
