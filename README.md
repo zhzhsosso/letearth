@@ -46,10 +46,9 @@
 ### 　　　
 
 ## 📊 E-R Diagram
-![타이소ERD](https://user-images.githubusercontent.com/118797686/214764141-51045b33-f9b7-4435-a788-c0cc37fb06c9.png)
+![image](https://user-images.githubusercontent.com/118797686/216549254-320c11d3-ff96-4d64-a9ba-bc7d39e710f5.png)
 
 ### 　　
-<hr>
 
 ### 　　　
 
