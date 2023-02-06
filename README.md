@@ -59,7 +59,6 @@
 > ### 2. 깃허브/요구사항정의서 [바로가기](https://docs.google.com/spreadsheets/d/1ORegfpn04ZWk9H5nrkABw1Gpf_AUyKhHPssgZvun6uY/edit?pli=1#gid=1325078952)
 ![KakaoTalk_20230203_180035263](https://user-images.githubusercontent.com/118797686/216893146-58a101ce-8633-4307-bf15-3502eeaade2f.png)
 ### 　　　
-<hr>
 
 ### 　　　　
 
