@@ -54,20 +54,10 @@
 
 ## 💻 협업 도구　
 > ### 1. 슬랙/카카오오븐
-![슬랙,카카오오븐](https://user-images.githubusercontent.com/118797686/214765131-159d896a-a0e1-4647-ad1f-aa9586d6ff0e.png)
+![KakaoTalk_20230203_175527166](https://user-images.githubusercontent.com/118797686/216893123-68101849-aca9-46dd-8fa7-1c973d778c07.png)
 ### 　
-> ### 2. 깃허브/ERD
-![깃허브,ERD](https://user-images.githubusercontent.com/118797686/214765144-84bb2465-d502-4c4f-b855-5e84df891500.png)
-### 　
-> ### 3. 유스케이스
-![유스케이스](https://user-images.githubusercontent.com/118797686/214765158-90a619ea-c07b-4333-b29d-99a9ed8ba32c.png)
-### 　
-> ### 4. 요구사항정의서 [바로가기](https://docs.google.com/spreadsheets/d/1QtAqQH0A_m7-ze3XhSkfsWuaNlpo1l9SFScPLc-R-X4/edit?pli=1#gid=554889087)
-![요구사항정의서](https://user-images.githubusercontent.com/118797686/214765172-159d0fd2-7227-4964-9220-876cec2e16d0.png)
-### 　
-> ### 5. 구조명세서 [바로가기](https://docs.google.com/spreadsheets/d/1QtAqQH0A_m7-ze3XhSkfsWuaNlpo1l9SFScPLc-R-X4/edit?pli=1#gid=447372283)
-![구조명세서](https://user-images.githubusercontent.com/118797686/214765187-cc323510-b687-4344-9a76-32103dc16516.png)
-
+> ### 2. 깃허브/요구사항정의서 [바로가기](https://docs.google.com/spreadsheets/d/1ORegfpn04ZWk9H5nrkABw1Gpf_AUyKhHPssgZvun6uY/edit?pli=1#gid=1325078952)
+![KakaoTalk_20230203_180035263](https://user-images.githubusercontent.com/118797686/216893146-58a101ce-8633-4307-bf15-3502eeaade2f.png)
 ### 　　　
 <hr>
 
@@ -84,16 +74,16 @@
 
 ## 💡 기능 구현
 > ### 구매자
- - ㅇㅇㅇ
- - ㅇㅇㅇ
+ - 본인 기능 상세적기
+ - 본인 기능 상세적기
 ### 　　
 > ### 판매자
- - ㅇㅇㅇ
- - ㅇㅇㅇ
+ - 본인 기능 상세적기
+ - 본인 기능 상세적기
 ### 　　
 > ### 관리자
- - ㅇㅇㅇ
- - ㅇㅇㅇ
+ - 본인 기능 상세적기
+ - 본인 기능 상세적기
 
 ### 　　
 
