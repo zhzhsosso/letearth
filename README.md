@@ -92,7 +92,7 @@
 
 
 > ### 회원가입 및 로그인
-<img src="![ezgif com-video-to-gif](https://user-images.githubusercontent.com/104848301/218434063-916d013a-65c1-4b71-914c-5d9886e78a28.gif)">
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/104848301/218434063-916d013a-65c1-4b71-914c-5d9886e78a28.gif)
 
 
 ###
