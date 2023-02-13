@@ -71,7 +71,7 @@
 ### 　　
 ### 　　
 
-## 💡 기능 구현
+## 💡 기능 요약
 > ### 구매자
  - 본인 기능 상세적기
  - 본인 기능 상세적기
@@ -85,5 +85,13 @@
  - 본인 기능 상세적기
 
 ### 　　
+
+
+## 📝 구현 기능
+> ### 계좌등록 및 정산하기
+
+
+> ### 회원가입 및 로그인
+
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=B6AD90&height=150&section=footer" />
