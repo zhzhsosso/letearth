@@ -93,20 +93,55 @@
 
 > ### 회원가입 및 로그인
 
+###
+
 #### 1. 회원가입
 ![녹화_2023_02_14_11_12_03_341](https://user-images.githubusercontent.com/104848301/218621281-ac108981-9ae5-456b-9311-11b4c941c773.gif)
 
 ###
 
 #### 2. 일반 로그인
-![녹화_2023_02_14_11_18_07_779](https://user-images.githubusercontent.com/104848301/218621929-d7b6af05-fd34-483e-8e57-d68a173e0d67.gif)
+![녹화_2023_02_14_11_20_44_766](https://user-images.githubusercontent.com/104848301/218622268-a5ade6cc-0f51-4388-85d7-4bd90d57c95d.gif)
+
 
 ###
 #### 3. 카카오 
-
+![녹화_2023_02_14_11_22_13_247](https://user-images.githubusercontent.com/104848301/218622775-e56f862c-dae9-450f-bdc5-dfb148f6b365.gif)
 
 
 ###
+#### 4. 아이디 찾기
+![녹화_2023_02_14_11_25_38_527](https://user-images.githubusercontent.com/104848301/218622986-f497a0f3-32d5-40b3-8ad9-500ce93635bd.gif)
+
+###
+#### 5. 비밀번호 변경
+![녹화_2023_02_14_11_26_51_131](https://user-images.githubusercontent.com/104848301/218623218-8e7ce51f-37e0-49c6-9956-7bb6b2a10c9a.gif)
+
+###
+---
+###
+
+> ### 프로젝트 상세
+
+###
+
+#### 1. 좋아요 기능
+![녹화_2023_02_14_11_36_21_827](https://user-images.githubusercontent.com/104848301/218624593-fb3f302c-b218-4f43-9427-d4c6ba59d322.gif)
+- 관심 프로젝트 등록 및 삭제
+
+###
+#### 2. 공유하기
+###
+- url 복사
+![녹화_2023_02_14_11_40_06_531](https://user-images.githubusercontent.com/104848301/218625055-13be2e7c-b9bc-48c0-8d66-cac9e05f7ac0.gif)
+
+###
+- kakao 공유하기
+![녹화_2023_02_14_11_44_24_906](https://user-images.githubusercontent.com/104848301/218625638-96db61bb-1102-464a-89d5-f7c60071985e.gif)
+
+###
+
+
 
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=B6AD90&height=150&section=footer" />
