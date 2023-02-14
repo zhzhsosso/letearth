@@ -92,7 +92,18 @@
 
 
 > ### 회원가입 및 로그인
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/104848301/218434063-916d013a-65c1-4b71-914c-5d9886e78a28.gif)
+
+#### 1. 회원가입
+![녹화_2023_02_14_11_12_03_341](https://user-images.githubusercontent.com/104848301/218621281-ac108981-9ae5-456b-9311-11b4c941c773.gif)
+
+###
+
+#### 2. 일반 로그인
+![녹화_2023_02_14_11_18_07_779](https://user-images.githubusercontent.com/104848301/218621929-d7b6af05-fd34-483e-8e57-d68a173e0d67.gif)
+
+###
+#### 3. 카카오 
+
 
 
 ###
