@@ -288,16 +288,49 @@
 ### 3. 1:1 문의
 - 사용자의 문의 확인 후 답글 작성
 ###
-![녹화_2023_02_14_15_36_01_737](https://user-images.githubusercontent.com/104848301/218658351-297d069a-9128-46cf-a2ed-574f4eafd97b.gif)
+![녹화_2023_02_14_15_40_40_437](https://user-images.githubusercontent.com/104848301/218660684-f0815a82-7ac8-4ae5-b909-9d1c523e5bfd.gif)
 ###
 
 ### 4. 프로젝트 승인
 - 승인요청, 승인, 반려된 프로젝트 목록
 - 게시판 검색 기능
+- 프로젝트 미리보기 기능
 - 프로젝트 상세정보 확인 후 승인 또는 반려
 ###
 ![녹화_2023_02_14_15_45_17_88](https://user-images.githubusercontent.com/104848301/218660062-f5990e6c-794a-4d49-aef4-190a5cbf1e73.gif)
 ###
+
+### 5. 프로젝트 목록
+- 판매중, 마감, 판매중지된 프로젝트 목록
+- 프로젝트 상세정보 및 진행상황 확인
+
+###
+![녹화_2023_02_14_15_51_20_820](https://user-images.githubusercontent.com/104848301/218661119-0ebc3b78-b852-4816-8e9d-4eb3ce84b506.gif)
+###
+
+### 6. 정산관리
+###
+
+### 7. 신고관리
+- 신고된 회원, 프로젝트 목록
+- 댓글과 프로젝트 확인 후 블랙리스트 전환 가능
+
+###
+![녹화_2023_02_14_16_21_21_460](https://user-images.githubusercontent.com/104848301/218667155-6dcc7d67-3b85-4f3d-a0da-93d837933a61.gif)
+###
+
+### 8. 블랙리스트 목록
+![녹화_2023_02_14_16_26_25_30](https://user-images.githubusercontent.com/104848301/218667975-93605860-8208-4aa5-99d7-dee7f168d839.gif)
+###
+
+### 9. 회원목록
+- 구매회원, 판매회원, 블랙리스트로 구분
+###
+
+![녹화_2023_02_14_16_29_26_748](https://user-images.githubusercontent.com/104848301/218668706-5dace369-5031-426f-9de4-befc112aec4b.gif)
+###
+
+
 
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=B6AD90&height=150&section=footer" />
