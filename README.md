@@ -126,17 +126,21 @@
 ###
 
 ### 1. 좋아요 기능
-![녹화_2023_02_14_11_36_21_827](https://user-images.githubusercontent.com/104848301/218624593-fb3f302c-b218-4f43-9427-d4c6ba59d322.gif)
 - 관심 프로젝트 등록 및 삭제
+- 마이페이지 > 관심 프로젝트에서 조회 가능
+
+###
+![녹화_2023_02_14_11_36_21_827](https://user-images.githubusercontent.com/104848301/218624593-fb3f302c-b218-4f43-9427-d4c6ba59d322.gif)
+
 
 ###
 ### 2. 공유하기
 ###
-- url 복사
+#### 1) url 복사
 ![녹화_2023_02_14_11_40_06_531](https://user-images.githubusercontent.com/104848301/218625055-13be2e7c-b9bc-48c0-8d66-cac9e05f7ac0.gif)
 
 ###
-- kakao 공유하기
+#### 2) kakao 공유하기
 ![녹화_2023_02_14_11_44_24_906](https://user-images.githubusercontent.com/104848301/218625638-96db61bb-1102-464a-89d5-f7c60071985e.gif)
 
 ###
@@ -146,28 +150,28 @@
 ### 4. 알림 (판매자 공지사항)
 ![녹화_2023_02_14_11_54_46_360](https://user-images.githubusercontent.com/104848301/218627129-9d1f75f6-b951-4a4e-aa8c-2e0215641c20.gif)
 ###
-- 판매자만 공지 작성 가능
+
 
 ###
 
 ### 5. 커뮤니티
 ###
-- 구매자 댓글 작성
+#### 1) 구매자 댓글 작성
 ![녹화_2023_02_14_12_23_51_384](https://user-images.githubusercontent.com/104848301/218631260-cc1a24dc-c7fe-4c3e-a3b7-9acc56c672e2.gif)
 
 ###
-- 판매자 답글 작성
+#### 2) 판매자 답글 작성
 ![녹화_2023_02_14_12_28_29_23](https://user-images.githubusercontent.com/104848301/218631899-2cd9bc93-7567-4cef-b570-ca837e5eb82d.gif)
 
 ###
 
 ### 6. 신고하기
 ###
-- 프로젝트 신고하기
+#### 1) 프로젝트 신고하기
 ![녹화_2023_02_14_12_37_56_294](https://user-images.githubusercontent.com/104848301/218633128-70d288c2-11ee-463d-893c-6a2b4009bef6.gif)
 
 ###
-- 댓글 신고하기
+#### 2) 댓글 신고하기
 ![녹화_2023_02_14_12_41_56_648](https://user-images.githubusercontent.com/104848301/218633635-c38eafb5-23b9-481c-9d1b-625c371c6506.gif)
 
 
@@ -176,19 +180,89 @@
 
 > ## 후원하기
 ###  1. 리워드 없이 후원하기
+![녹화_2023_02_14_13_46_42_886](https://user-images.githubusercontent.com/104848301/218641855-c6aaaefd-d124-4781-9b87-66b078fcc381.gif)
 
 ###
 
 ### 2. 리워드 선택 후 후원하기
-
+![녹화_2023_02_14_13_48_32_234](https://user-images.githubusercontent.com/104848301/218642172-0c95339d-5ee9-4eb2-974f-d704e5a9c9e5.gif)
 ###
 
 ### 3. 결제하기
+![녹화_2023_02_14_13_50_32_992](https://user-images.githubusercontent.com/104848301/218642702-0fa1bc44-7d80-4ed1-a58c-d73b75dc3406.gif)
+###
 
+### 4. 후원 확인
+- 마이페이지 > 펀딩 프로젝트에서 후원내역 확인 가능
+
+###
+![녹화_2023_02_14_14_10_58_122](https://user-images.githubusercontent.com/104848301/218645125-d2661950-e8f5-4f5e-b27c-623f724b1d86.gif)
+###
+
+### 5. 후원 취소
+- 마이페이지 > 펀딩 프로젝트에서 후원 취소 가능
+
+###
+![녹화_2023_02_14_14_12_02_517](https://user-images.githubusercontent.com/104848301/218645222-a80c79ab-ac4d-4fc3-adf7-7b4443afff30.gif)
+###
+
+---
+> ## 마이페이지
+###
+
+### 1. 내 정보 수정
+![녹화_2023_02_14_14_19_45_853](https://user-images.githubusercontent.com/104848301/218646358-200bdafa-6920-4f52-97fa-9804eacd5714.gif)
+###
+
+### 2. 회원 탈퇴
+###
+
+### 3. 내 댓글 조회 및 삭제
+![녹화_2023_02_14_14_24_38_730](https://user-images.githubusercontent.com/104848301/218647031-6d853776-162f-4278-bdca-b8136b87a479.gif)
+###
+
+### 4. 1:1 문의
+- 사용자가 관리자에게 1:1 문의
+
+###
+![녹화_2023_02_14_14_27_00_219](https://user-images.githubusercontent.com/104848301/218647517-b4343e83-11d2-4fe1-bb38-7dce1774cc4b.gif)
+###
+
+### 5. 나의 프로젝트 (판매회원)
+- 판매회원은 자신이 올린 프로젝트의 주문 관리 가능
+
+###
+![녹화_2023_02_14_14_36_30_135](https://user-images.githubusercontent.com/104848301/218648868-6e497d6d-528b-470f-94b9-faa40cc53c55.gif)
 ###
 
 
+---
+> ## 프로젝트 만들기
 
+
+### 1. 사전 유의사항 및 본인인증
+- 간편인증 완료 후 판매회원으로 전환
+
+###
+![녹화_2023_02_14_14_56_22_253](https://user-images.githubusercontent.com/104848301/218652121-f904a490-46fa-49e2-983a-c77534cf14e7.gif)
+###
+
+### 2. 기본 정보 입력
+![녹화_2023_02_14_15_02_03_479](https://user-images.githubusercontent.com/104848301/218652886-36b84a04-ec37-45b8-bea9-fd8fd72f2647.gif)
+###
+
+### 3. 일정 입력
+![녹화_2023_02_14_15_05_57_405](https://user-images.githubusercontent.com/104848301/218653332-d2d24fe3-1147-4f90-988e-b5fa6616fffc.gif)
+###
+
+### 4. 리워드 추가
+![녹화_2023_02_14_15_07_18_352](https://user-images.githubusercontent.com/104848301/218653589-41f3e212-4ef2-43b7-96e6-dd0193a61609.gif)
+###
+
+### 5. 스토리 & 정책 & 판매자 정보 추가
+- 프로젝트는 추후 관리자가 심사 후 승인
+![녹화_2023_02_14_15_10_43_294](https://user-images.githubusercontent.com/104848301/218654480-74be15ff-47d0-434c-a41b-2e24e61a57ef.gif)
+###
 
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=B6AD90&height=150&section=footer" />
